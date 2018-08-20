@@ -1,7 +1,0 @@
-
-
-\documentclass[a4paper,12pt]{article}
-\begin{document}
-Esse é um exemplo de como se usa alguns comandos básicos para criação de documentos em \LaTeX.
-\end{document}
-
