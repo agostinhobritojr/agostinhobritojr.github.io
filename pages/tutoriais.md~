@@ -1,0 +1,37 @@
+---
+layout: page
+title: Tutoriais
+permalink: /tutoriais/
+show_meta: true
+# imagefeature path is relative to images/ directory.
+imagefeature: tutoriais.png
+published: true
+description: "Tutoriais desenvolvidos"
+category: views
+comments: false
+mathjax: true
+noindex: false
+sitemap:
+    priority: 0.7
+    changefreq: 'monthly'
+    lastmod: 2018-06-08
+# tags will be used as html meta keywords.    
+tags:
+  - "tutoriais"
+---
+
+## [C++](/tutoriais_/prograv/)
+
+## [Processamento Digital de Imagens com OpenCV](/tutoriais_/pdi/)
+
+## [OpenGL](/tutoriais_/opengl/)
+
+## [Linux](/tutoriais_/linux/)
+
+## [HTML](/tutoriais_/html/)
+
+## [Qt](/tutoriais_/qt/)
+
+## [LaTeX](/tutoriais_/latex/)
+
+*[volutpat]: Tooltip for abbreviation.
