@@ -1,0 +1,176 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 1. Introdu&ccedil;&atilde;o</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Tutorial de LaTeX"><link rel="up" href="index.html" title="Tutorial de LaTeX"><link rel="prev" href="pre.prefacio.html" title="Pref&aacute;cio"><link rel="next" href="cha.estrutura_basica.html" title="Cap&iacute;tulo 2. Criando um documento b&aacute;sico em Latex"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/SVG"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="/mathjax/MathJax.js"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="pre.prefacio.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 1. Introdu&ccedil;&atilde;o</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="cha.estrutura_basica.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="cha.introducao"></a>Cap&iacute;tulo 1. Introdu&ccedil;&atilde;o</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="section"><a href="cha.introducao.html#sec.historia">1.1. Hist&oacute;ria</a></span></dt><dt><span class="section"><a href="cha.introducao.html#sec.funcionamento">1.2. Funcionamento</a></span></dt><dd><dl><dt><span class="section"><a href="cha.introducao.html#vantagens_desvantagens">1.2.1. Vantagens e Desvantagens</a></span></dt></dl></dd><dt><span class="section"><a href="cha.introducao.html#sec.instalacao">1.3. Instala&ccedil;&atilde;o</a></span></dt><dd><dl><dt><span class="section"><a href="cha.introducao.html#sec.instalacao.windows">1.3.1. Instala&ccedil;&atilde;o no Windows</a></span></dt><dt><span class="section"><a href="cha.introducao.html#sec.instalacao.ubuntu">1.3.2. Instala&ccedil;&atilde;o no Ubuntu</a></span></dt></dl></dd></dl></div>
+    
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.historia"></a>1.1. Hist&oacute;ria</h2></div></div></div>
+      
+      
+      <p>O $\textrm{\LaTeX}$ &eacute; um conjunto de macros que visa processar textos dando origem a um documento com alta qualidade tipogr&aacute;fica, atrav&eacute;s de um sistema tipogr&aacute;fico chamado <span class="emphasis"><em>TeX</em></span>, onde o usu&aacute;rio cria seus textos atrav&eacute;s de comandos, sem qualquer preocupa&ccedil;&atilde;o com formata&ccedil;&atilde;o visual, dando mais aten&ccedil;&atilde;o para o conte&uacute;do do seu texto.</p>
+      <p>A cria&ccedil;&atilde;o do processador de texto <span class="emphasis"><em>TeX</em></span> teve inicio no ano de 1978 pelo professor da universidade de Stanford chamado <span class="personname"><span class="firstname">Donald</span> <span class="othername">E.</span> <span class="surname">Knuth</span></span>, depois de ter se decepcionado com a baixa qualidade na editora&ccedil;&atilde;o de seus livros. Por&eacute;m, s&oacute; no ano de 1985 o matem&aacute;tico <span class="personname"><span class="firstname">Leslie</span> <span class="surname">Lamport</span></span> em busca de mais praticidade na cria&ccedil;&atilde;o de textos em <span class="emphasis"><em>TeX</em></span> criou um conjunto de macros (agrupamento de comandos em TeX) para agilizar o processo de desenvolvimento de textos. Este conjunto de recursos veio a se chamar de $\textrm{\LaTeX}$ e &eacute; utilizado no meio acad&ecirc;mico at&eacute; hoje por possuir alta qualidade tipogr&aacute;fica e belos desenhos para f&oacute;rmulas matem&aacute;ticas, sendo amplamente usados em artigos, relat&oacute;rios, livros, posters e <span class="foreignphrase"><em class="foreignphrase">slides</em></span>.</p>
+    </div>
+
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.funcionamento"></a>1.2. Funcionamento</h2></div></div></div>
+      
+      <p>O processador de texto <span class="bold"><strong>TeX</strong></span>, diferentemente de outras solu&ccedil;&otilde;es como <span class="bold"><strong> Word ou LibreOffice</strong></span>, n&atilde;o &eacute; voltado para edi&ccedil;&atilde;o gr&aacute;fica do tipo <a class="ulink" href="http://pt.wikipedia.org/wiki/WYSIWYG" target="_top">WYSIWYG</a> (<span class="foreignphrase"><em class="foreignphrase"> What You See Is What You Get</em></span> - <span class="bold"><strong>O que voc&ecirc; v&ecirc; &eacute; o que voc&ecirc; obt&eacute;m</strong></span>), onde o seu documento recebe os moldes da formata&ccedil;&atilde;o enquanto &eacute; criado pelo usu&aacute;rio. No <span class="bold"><strong>LaTeX</strong></span>, s&oacute; ser&aacute; poss&iacute;vel visualizar como o documento ficar&aacute; formatado ap&oacute;s o texto ser processado atrav&eacute;s de um processo de compila&ccedil;&atilde;o realizado em um ambiente de desenvolvimento espec&iacute;fico.</p>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="vantagens_desvantagens"></a>1.2.1. Vantagens e Desvantagens</h3></div></div></div>
+	
+	<p>$\textrm{\LaTeX}$ &eacute; considerado pela comunidade cient&iacute;fica como uma das melhores solu&ccedil;&otilde;es para cria&ccedil;&atilde;o de literatura t&eacute;cnica, dada a versatilidade oferecida para cria&ccedil;&atilde;o de textos recheados de equa&ccedil;&otilde;es, refer&ecirc;ncias cruzadas e refer&ecirc;ncias bibliogr&aacute;ficas. Embora possa ser utilizado para cria&ccedil;&atilde;o de textos em geral, a forma como LaTeX funciona pode oferecer alguns contratempos para determinados usos.</p>
+	<div class="orderedlist"><p class="title"><b>Vantagens</b></p><ol class="orderedlist" type="1"><li class="listitem">
+	    <p>Documentos criados em <span class="bold"><strong>TeX</strong></span> geram textos com qualidade visual superior, dadas as fontes e recursos de processamento tipogr&aacute;fico dispon&iacute;veis.</p>
+	  </li><li class="listitem">
+	    <p>O fato do TeX ser um processador de texto sem pr&eacute;via formata&ccedil;&atilde;o visual faz com que o usu&aacute;rio possa se concentrar na cria&ccedil;&atilde;o de seu texto, deixando a tarefa de estrutura&ccedil;&atilde;o visual a cargo dos algoritmos internos do TeX.</p>
+	  </li><li class="listitem">
+	    <p>Baixo investimento para a cria&ccedil;&atilde;o de textos, dado que excelentes distribui&ccedil;&otilde;es do LaTeX s&atilde;o disponibilizadas gratuitamente para a comunidade.</p>
+	  </li><li class="listitem">
+	    <p>Pode ser utilizado em uma ampla gama de sistemas operacionais, permitindo a cria&ccedil;&atilde;o do mesmo documento formatado a partir de um mesmo c&oacute;digo fonte.</p>
+	  </li><li class="listitem">
+	    <p>A informa&ccedil;&atilde;o que se deseja apresentar geralmente pode ser criada com poucos comandos.</p>
+	  </li><li class="listitem">
+	    <p>Cria&ccedil;&atilde;o de f&oacute;rmulas matem&aacute;ticas com simplicidade (quando comparada a editores WYSIWYG) e alto padr&atilde;o visual.</p>
+	  </li><li class="listitem">
+	    <p>Documentos de textos leves, mesmo com grande quantidade de p&aacute;ginas.</p>
+	  </li><li class="listitem">
+	    <p>Tipografia de elevado padr&atilde;o visual.</p>
+	  </li></ol></div>
+	<div class="orderedlist"><p class="title"><b>Desvantagens</b></p><ol class="orderedlist" type="1"><li class="listitem">
+	    <p>A cria&ccedil;&atilde;o de novos estilos pode ser complexa e requerer muito tempo e dedica&ccedil;&atilde;o.</p>
+	  </li><li class="listitem">
+	    <p>Dificuldade de aprendizado no primeiro contato.</p>
+	  </li><li class="listitem">
+	    <p>Literatura auxiliar para descobrir comandos pode ser necess&aacute;ria.</p>
+	  </li></ol></div>
+      </div>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.instalacao"></a>1.3. Instala&ccedil;&atilde;o</h2></div></div></div>
+      
+      <p>O ambiente de cria&ccedil;&atilde;o de texto que iremos utilizar no Windows e no Ubuntu &eacute; o <span class="emphasis"><em>TexMaker</em></span>.</p>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec.instalacao.windows"></a>1.3.1. Instala&ccedil;&atilde;o no Windows</h3></div></div></div>
+	
+	<p>S&atilde;o necess&aacute;rios 2 simples passos para a instala&ccedil;&atilde;o:</p>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="sec.intalacao.windows.texlive"></a>1.3.1.1. Instalando o TeX Live 2013:</h4></div></div></div>
+	  
+	  <p>Para baixar o <span class="emphasis"><em>Tex Live 2013</em></span> <a class="ulink" href="http://mirror.ctan.org/systems/texlive/tlnet/install-tl.exe" target="_top">clique aqui</a>, em seguida execute-o e a seguinte janela representada na <a class="xref" href="cha.introducao.html#fig.instalacao.windows.texlive.tipo_de_instalacao" title="Figura 1.1. Tipo de instala&ccedil;&atilde;o">Figura&nbsp;1.1</a> se abrir&aacute;.</p>
+	  <div class="figure"><a name="fig.instalacao.windows.texlive.tipo_de_instalacao"></a><p class="title"><b>Figura 1.1. Tipo de instala&ccedil;&atilde;o</b></p><div class="figure-contents">	 
+	    
+	    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/tipo_de_instalacao_texlive_windows.svg">images/tipo_de_instalacao_texlive_windows.svg</object></div></div>
+	  </div></div><br class="figure-break">
+	  <p>Selecione <span class="emphasis"><em>&#8220;simple install (big)&#8221;</em></span> e clique em <span class="emphasis"><em>&#8220;Next&#8221;</em></span>, ira aparecer a janela da <a class="xref" href="cha.introducao.html#fig.instalacao.windows.texlive.descompactando" title="Figura 1.2. Descompactando o TeX Live">Figura&nbsp;1.2</a>.</p>
+	  <div class="figure"><a name="fig.instalacao.windows.texlive.descompactando"></a><p class="title"><b>Figura 1.2. Descompactando o TeX Live</b></p><div class="figure-contents">
+	      
+	    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/descompactando_texlive_windows.svg">images/descompactando_texlive_windows.svg</object></div></div>
+	  </div></div><br class="figure-break">
+	  <p>Clique em <span class="emphasis"><em>&#8220;Install&#8221;</em></span>, logo abrir&aacute; a seguinte janela (<a class="xref" href="cha.introducao.html#fig.instalacao.windows.texlive.recomendacoes_de_instalacao" title="Figura 1.3. Recomenda&ccedil;&otilde;es de instala&ccedil;&atilde;o">Figura&nbsp;1.3</a>).</p>
+	  <div class="figure"><a name="fig.instalacao.windows.texlive.recomendacoes_de_instalacao"></a><p class="title"><b>Figura 1.3. Recomenda&ccedil;&otilde;es de instala&ccedil;&atilde;o</b></p><div class="figure-contents">
+	    
+	    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/recomendacoes_de_instalacao_texlive_windows.svg">images/recomendacoes_de_instalacao_texlive_windows.svg</object></div></div>
+	  </div></div><br class="figure-break">
+	  <p>Siga as recomenda&ccedil;&otilde;es do programa Clique em <span class="emphasis"><em>&#8220;pr&oacute;ximo&#8221;</em></span>, ent&atilde;o aparecer&aacute; a proxima janela (<a class="xref" href="cha.introducao.html#fig.instalacao.windows.texlive.alterar_diretorio" title="Figura 1.4. Alterar diret&oacute;rio de instala&ccedil;&atilde;o">Figura&nbsp;1.4</a>).</p>
+	  <div class="figure"><a name="fig.instalacao.windows.texlive.alterar_diretorio"></a><p class="title"><b>Figura 1.4. Alterar diret&oacute;rio de instala&ccedil;&atilde;o</b></p><div class="figure-contents">
+	    
+	    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/alterar_diretorio_texlive_windows.svg">images/alterar_diretorio_texlive_windows.svg</object></div></div>
+	  </div></div><br class="figure-break">
+	  <p>Nessa janela voc&ecirc; poder&aacute; alterar o local onde ser&aacute; instalado o TeX Live clicando em <span class="emphasis"><em>&#8220;alterar&#8221;</em></span>, caso n&atilde;o queira alterar o local de instala&ccedil;&atilde;o &eacute; s&oacute; clicar em <span class="emphasis"><em>&#8220;pr&oacute;ximo&#8221;</em></span> para passarmos para a pr&oacute;xima janela (<a class="xref" href="cha.introducao.html#fig.instalacao.windows.texlive.tamanho_padrao_do_papel" title="Figura 1.5. Tamanho padr&atilde;o do papel">Figura&nbsp;1.5</a>).</p>
+	  <div class="figure"><a name="fig.instalacao.windows.texlive.tamanho_padrao_do_papel"></a><p class="title"><b>Figura 1.5. Tamanho padr&atilde;o do papel</b></p><div class="figure-contents">
+	    
+	    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/tamanho_padrao_papel_texlive_windows.svg">images/tamanho_padrao_papel_texlive_windows.svg</object></div></div>
+	  </div></div><br class="figure-break">
+	  <p>Nesse passo voc&ecirc; deve escolher qual vai ser o tamanho padr&atilde;o do papel, os tamanhos s&atilde;o <span class="emphasis"><em>&#8220;A4&#8221;</em></span> ou <span class="emphasis"><em>&#8220;carta&#8221;</em></span>, feita sua escolha, agora marque a op&ccedil;&atilde;o <span class="emphasis"><em>&#8220;Adicionar atalho de menu&#8221;</em></span> e deixe desmarcado a op&ccedil;&atilde;o <span class="emphasis"><em>&#8220;Instalar o editor TeXworks&#8221;</em></span>, caso esteja marcado desmarque-o, pois instalaremos na <a class="xref" href="cha.introducao.html#sec.instalacao.windows.texmaker" title="1.3.1.2. Instalando o TexMaker:">Se&ccedil;&atilde;o&nbsp;1.3.1.2</a> o <span class="emphasis"><em>TexMaker</em></span>, agora clique em <span class="emphasis"><em>&#8220;Pr&oacute;ximo&#8221;</em></span>, e a janela da <a class="xref" href="cha.introducao.html#fig.intalacao.windows.texlive.baixando_instalando" title="Figura 1.6. Baixando e instalando o TeX Live">Figura&nbsp;1.6</a> abrir&aacute;.</p>
+	  <div class="figure"><a name="fig.intalacao.windows.texlive.baixando_instalando"></a><p class="title"><b>Figura 1.6. Baixando e instalando o TeX Live</b></p><div class="figure-contents">
+	    
+	    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/baixando_instalando_texlive_windows.svg">images/baixando_instalando_texlive_windows.svg</object></div></div>
+	  </div></div><br class="figure-break">
+	  <p>Nesse momento o TeX Live estar&aacute; baixando e instalando os arquivos necess&aacute;rios podendo levar cerca de 1 a 3 horas dependendo da velocidade da sua internet, ao terminar de baixar e instalar a seguinte janela abrir&aacute; (<a class="xref" href="cha.introducao.html#fig.instalacao.windows.texlive.finalizando_instalacao" title="Figura 1.7. Finalizando a instala&ccedil;&atilde;o">Figura&nbsp;1.7</a>).</p>
+	  <div class="figure"><a name="fig.instalacao.windows.texlive.finalizando_instalacao"></a><p class="title"><b>Figura 1.7. Finalizando a instala&ccedil;&atilde;o</b></p><div class="figure-contents">
+	    
+	    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/finalizando_instalacao_texlive_windows.svg">images/finalizando_instalacao_texlive_windows.svg</object></div></div>
+	  </div></div><br class="figure-break">
+	  <p>Clique em <span class="emphasis"><em>&#8220;close&#8221;</em></span> e pronto a primeira parte foi conclu&iacute;da.</p>
+	</div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="sec.instalacao.windows.texmaker"></a>1.3.1.2. Instalando o TexMaker:</h4></div></div></div>
+	  
+	  <p>Nessa parte iremos instalar o <span class="emphasis"><em>TexMaker</em></span>, um editor de textos em <span class="emphasis"><em>TeX</em></span>. Para come&ccedil;armos <a class="ulink" href="http://www.xm1math.net/texmaker/texmakerwin32_install.exe" target="_top">clique aqui</a> para baixar o programa, depois de baix&aacute;-lo execute-o e a janela da <a class="xref" href="cha.introducao.html#fig.instalacao.windows.texmaker.termos_de_licenca" title="Figura 1.8. Termos de licen&ccedil;a">Figura&nbsp;1.8</a> se abrir&aacute;.</p>
+	  <div class="figure"><a name="fig.instalacao.windows.texmaker.termos_de_licenca"></a><p class="title"><b>Figura 1.8. Termos de licen&ccedil;a</b></p><div class="figure-contents">
+	    
+	    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/termos_de_licenca_texmaker_windows.svg">images/termos_de_licenca_texmaker_windows.svg</object></div></div>
+	  </div></div><br class="figure-break">
+	  <p>Clique em <span class="emphasis"><em>&#8220;I Agree&#8221;</em></span>, e a pr&oacute;xima janela abrir&aacute; (<a class="xref" href="cha.introducao.html#fig.instalacao.windows.texmaker.diretorio_instalacao" title="Figura 1.9. Diret&oacute;rio de instala&ccedil;&atilde;o">Figura&nbsp;1.9</a>).</p>
+	  <div class="figure"><a name="fig.instalacao.windows.texmaker.diretorio_instalacao"></a><p class="title"><b>Figura 1.9. Diret&oacute;rio de instala&ccedil;&atilde;o</b></p><div class="figure-contents">
+	    	
+	    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/diretorio_instalacao_texmaker_windows.svg">images/diretorio_instalacao_texmaker_windows.svg</object></div></div>
+	  </div></div><br class="figure-break">
+	  <p>Em seguida escolha o local de destino da instala&ccedil;&atilde;o e clique em <span class="emphasis"><em>&#8220;Install&#8221;</em></span>, ao terminar a instala&ccedil;&atilde;o a janela representada na <a class="xref" href="cha.introducao.html#fig.instalacao.windows.texmaker.finalizando_instalacao" title="Figura 1.10. Finalizando a instala&ccedil;&atilde;o">Figura&nbsp;1.10</a> abrir&aacute;.</p>
+	  <div class="figure"><a name="fig.instalacao.windows.texmaker.finalizando_instalacao"></a><p class="title"><b>Figura 1.10. Finalizando a instala&ccedil;&atilde;o</b></p><div class="figure-contents">
+	    
+	    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/finalizando_instalacao_texmaker_windows.svg">images/finalizando_instalacao_texmaker_windows.svg</object></div></div>
+	  </div></div><br class="figure-break">
+	  <p> Clique em <span class="emphasis"><em>&#8220;close&#8221;</em></span>. Pronto a segunda parte terminou, agora voc&ecirc; pode avan&ccedil;ar para o <a class="xref" href="cha.estrutura_basica.html" title="Cap&iacute;tulo 2. Criando um documento b&aacute;sico em Latex">Cap&iacute;tulo&nbsp;2</a>.</p>
+	</div>
+      </div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec.instalacao.ubuntu"></a>1.3.2. Instala&ccedil;&atilde;o no Ubuntu</h3></div></div></div>
+	
+	<p>No Ubuntu o processo &eacute; mais simples, basta instalar o <span class="emphasis"><em>TexMaker</em></span> e o pacote Tex Live: Portuguese.</p>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="sec.intalacao.ubuntu.texmaker"></a>1.3.2.1. Instalando o TexMaker:</h4></div></div></div>
+	  
+	  <p>V&aacute; at&eacute; a <span class="emphasis"><em>&#8220;Central de programas do Ubuntu&#8221;</em></span>, procure a barra de pesquisa e digite <span class="emphasis"><em>TexMaker</em></span>, como mostra a <a class="xref" href="cha.introducao.html#fig.instalacao.ubuntu.texmaker.procurando" title="Figura 1.11. Procurando TexMaker">Figura&nbsp;1.11</a>.</p>
+	  <div class="figure"><a name="fig.instalacao.ubuntu.texmaker.procurando"></a><p class="title"><b>Figura 1.11. Procurando TexMaker</b></p><div class="figure-contents">
+	    
+	    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/procurando_texmaker_ubuntu.svg">images/procurando_texmaker_ubuntu.svg</object></div></div>
+	  </div></div><br class="figure-break">
+	  <p>Ao clicar no <span class="emphasis"><em>TexMaker</em></span> aparecer&aacute; o nome <span class="emphasis"><em>&#8220;Instalar&#8221;</em></span> como na <a class="xref" href="cha.introducao.html#fig.instalacao.ubuntu.texmaker.instalar" title="Figura 1.12. Instalar TexMaker">Figura&nbsp;1.12</a>.</p>
+	  <div class="figure"><a name="fig.instalacao.ubuntu.texmaker.instalar"></a><p class="title"><b>Figura 1.12. Instalar TexMaker</b></p><div class="figure-contents">
+	    
+	    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/instalar_texmaker_ubuntu.svg">images/instalar_texmaker_ubuntu.svg</object></div></div>
+	  </div></div><br class="figure-break">
+	  <p>Clique-o, ser&aacute; requisitado sua senha, digite-a e espere a instala&ccedil;&atilde;o ser conclu&iacute;da. Pronto o TexMaker foi instalado.</p>
+	</div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="sec.instalacao.ubuntu.pacote_texlive"></a>1.3.2.2. Instalando Pacote TeX Live: Portuguese</h4></div></div></div>
+	  
+	  <p>O pacote Tex Live: Portuguese, &eacute; um pacote de suporte a linguagem portuguesa que configura o estilo do documento.</p>
+	  <p>Para instala-lo v&aacute; ate a "Central de programas do Ubuntu" e digite na barra de pesquisa "texlive portuguese", aparecer&aacute; as seguintes op&ccedil;&otilde;es mostradas na <a class="xref" href="cha.introducao.html#fig.instalacao.ubuntu.pacote_texlive.instalando_pacote" title="Figura 1.13. Instalando Pacote">Figura&nbsp;1.13</a></p>
+	  <div class="figure"><a name="fig.instalacao.ubuntu.pacote_texlive.instalando_pacote"></a><p class="title"><b>Figura 1.13. Instalando Pacote</b></p><div class="figure-contents">
+	    
+	    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/instalando_pacote_texlive_ubuntu.svg">images/instalando_pacote_texlive_ubuntu.svg</object></div></div>
+	  </div></div><br class="figure-break">
+	  <p>Clique em "Tex Live: Potuguese", em seguida clique em instalar, digite sua senha quando requisitado e espere a conclus&atilde;o da instala&ccedil;&atilde;o. Pronto voc&ecirc; j&aacute; pode avan&ccedil;ar para o <a class="xref" href="cha.estrutura_basica.html" title="Cap&iacute;tulo 2. Criando um documento b&aacute;sico em Latex">Cap&iacute;tulo&nbsp;2</a>.</p>
+	</div>
+	<div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="sec.instalacao.ubuntu.ambiente_emacs"></a>1.3.2.3. Instalando o emacs como editor de textos em Tex (opcional)</h4></div></div></div>
+	  
+	  <p>Se voc&ecirc; gosta ou j&aacute; esta familiarizado com <span class="bold"><strong>emacs</strong></span> ent&atilde;o aqui vai uma boa dica, podemos fazer com que o <span class="bold"><strong>emacs</strong></span> reconhe&ccedil;a a linguagem $\textrm{\LaTeX}$, nessa se&ccedil;&atilde;o iremos ver o procedimento de instala&ccedil;&atilde;o do ambiente <span class="bold"><strong>emacs</strong></span> e uma ferramenta chamada <span class="bold"><strong>auctex</strong></span> utilizada para reconhecimento de comandos de $\textrm{\LaTeX}$.</p>
+	  <div class="section"><div class="titlepage"><div><div><h5 class="title"><a name="sec.instalacao.ubuntu.ambiente_emacs.emacs"></a>1.3.2.3.1. Instalando o emacs</h5></div></div></div>
+	    
+	    <p>Para instalarmos o emacs abra primeiramente a <span class="bold"><strong>Central de programas do Ubuntu</strong></span>, localize a barra de pesquisa e em seguida digite <span class="emphasis"><em>emacs</em></span> como mostra a <a class="xref" href="cha.introducao.html#fig.instalacao.ubuntu.ambiente_emacs.procurando_emacs" title="Figura 1.14. Procurando o emacs">Figura&nbsp;1.14</a>.</p>
+	    <div class="figure"><a name="fig.instalacao.ubuntu.ambiente_emacs.procurando_emacs"></a><p class="title"><b>Figura 1.14. Procurando o emacs</b></p><div class="figure-contents">
+	      
+	      <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/procurando_emacs_ubuntu.svg">images/procurando_emacs_ubuntu.svg</object></div></div>
+	    </div></div><br class="figure-break">
+	    <p>Clique em <span class="bold"><strong>GNU Emacs 23</strong></span> e aparecer&aacute; a op&ccedil;&atilde;o <span class="bold"><strong>Instalar</strong></span> como na <a class="xref" href="cha.introducao.html#fig.instalacao.ubuntu.ambiente_emacs.instalando_emacs" title="Figura 1.15. Instalando o emacs">Figura&nbsp;1.15</a>.</p>
+	    <div class="figure"><a name="fig.instalacao.ubuntu.ambiente_emacs.instalando_emacs"></a><p class="title"><b>Figura 1.15. Instalando o emacs</b></p><div class="figure-contents">
+	      
+      <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/instalando_emacs_ubuntu.svg">images/instalando_emacs_ubuntu.svg</object></div></div>
+	    </div></div><br class="figure-break">
+	    <p>Clique-a em seguida digite sua senha e espere a instala&ccedil;&atilde;o ser conclu&iacute;da, ao concluir passe para a <a class="xref" href="cha.introducao.html#sec.instalacao.ubuntu.ambiente_emacs.auctex" title="1.3.2.3.2. Instalando a ferramenta auctex">Se&ccedil;&atilde;o&nbsp;1.3.2.3.2</a>.</p>
+	  </div>
+	  <div class="section"><div class="titlepage"><div><div><h5 class="title"><a name="sec.instalacao.ubuntu.ambiente_emacs.auctex"></a>1.3.2.3.2. Instalando a ferramenta auctex</h5></div></div></div>
+	    
+	    <p>Ainda na <span class="bold"><strong>Central de programas do Ubuntu</strong></span>, v&aacute; at&eacute; a barra de pesquisa e digite <span class="emphasis"><em>auctex</em></span> (<a class="xref" href="cha.introducao.html#fig.instalacao.ubuntu.ambiente_emacs.procurando_auctex" title="Figura 1.16. Pesquisando auctex">Figura&nbsp;1.16</a>).</p>
+	    <div class="figure"><a name="fig.instalacao.ubuntu.ambiente_emacs.procurando_auctex"></a><p class="title"><b>Figura 1.16. Pesquisando auctex</b></p><div class="figure-contents">
+	    
+	    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/procurando_auctex_emacs_ubuntu.svg">images/procurando_auctex_emacs_ubuntu.svg</object></div></div>
+	  </div></div><br class="figure-break">
+	  <p>Agora clique nessa op&ccedil;&atilde;o e ser&aacute; exibida a op&ccedil;&atilde;o de instalar como mostrado na <a class="xref" href="cha.introducao.html#fig.instalacao.ubuntu.ambiente_emacs.instalando_auctex" title="Figura 1.17. Instalando auctex">Figura&nbsp;1.17</a>.</p>
+	  <div class="figure"><a name="fig.instalacao.ubuntu.ambiente_emacs.instalando_auctex"></a><p class="title"><b>Figura 1.17. Instalando auctex</b></p><div class="figure-contents">
+	    
+	    <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/instalando_auctex_ubuntu.svg">images/instalando_auctex_ubuntu.svg</object></div></div>
+	  </div></div><br class="figure-break">
+	  <p>Ao clicar em <span class="emphasis"><em>instalar</em></span> ser&aacute; requisitado sua senha, digite-a e aguarde a conclus&atilde;o da instala&ccedil;&atilde;o. Pronto! agora voc&ecirc; tem um ambiente de edi&ccedil;&atilde;o de $\textrm{\LaTeX}$ no emacs.</p>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="pre.prefacio.html">&laquo;&nbsp;Pref&aacute;cio</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="cha.estrutura_basica.html">Cap&iacute;tulo 2. Criando um documento b&aacute;sico em Latex&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2014 Maykon Ricardo</p></td></tr></table></div></body></html>

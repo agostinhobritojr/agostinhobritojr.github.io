@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/botao">
+        <file>imagem/refresh65.png</file>
+    </qresource>
+</RCC>

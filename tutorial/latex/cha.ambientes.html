@@ -1,0 +1,92 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 3. Ambientes</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Tutorial de LaTeX"><link rel="up" href="index.html" title="Tutorial de LaTeX"><link rel="prev" href="cha.estrutura_basica.html" title="Cap&iacute;tulo 2. Criando um documento b&aacute;sico em Latex"><link rel="next" href="cha.ambiente_matematico.html" title="Cap&iacute;tulo 4. Ambiente Matem&aacute;tico"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/SVG"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="/mathjax/MathJax.js"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="cha.estrutura_basica.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 3. Ambientes</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="cha.ambiente_matematico.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="cha.ambientes"></a>Cap&iacute;tulo 3. Ambientes</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="section"><a href="cha.ambientes.html#sec.ambiente.listas">3.1. Listas</a></span></dt><dt><span class="section"><a href="cha.ambientes.html#cha.ambientes.tabelas">3.2. Tabelas</a></span></dt></dl></div>
+  
+  <p>Agora apresentaremos os ambientes existentes no $\textrm{\LaTeX}$ e como s&atilde;o utilizados.</p>
+  <p>Um ambiente &eacute; criado ao usarmos os comandos </p><pre class="programlisting">\begin{<span class="emphasis"><em>ambiente</em></span>} texto aqui \end{<span class="emphasis"><em>ambiente</em></span>}</pre><p> onde no campo <span class="bold"><strong>ambiente</strong></span> nos iremos atribuir um dos ambientes que ser&atilde;o mostrados ao decorrer deste cap&iacute;tulo.</p>
+  <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.ambiente.listas"></a>3.1. Listas</h2></div></div></div>
+    
+    <p>Existem tr&ecirc;s ambientes que poderemos utilizar para criar listas, s&atilde;o elas:</p>
+    <div class="variablelist"><dl class="variablelist"><dt><span class="term"><code class="filename">itemize</code></span></dt><dd><p>Esse ambiente &eacute; usado quando queremos criar uma lista simples com qualquer tipo de s&iacute;mbolo.</p>
+	<p>Para criarmos itens nesse ambiente utilizamos o comando </p><pre class="programlisting">\item[s&iacute;mbolo]</pre><p>onde o s&iacute;mbolo pode ser desde letras at&eacute; alguns caracteres especiais.</p></dd><dt><span class="term"><code class="filename">enumerate</code></span></dt><dd><p>Esse outro ambiente &eacute; utilizado quando queremos criar uma lista numerada, assim como o itemize utilizamos o comando </p><pre class="programlisting">\item</pre><p> para criar os itens da lista.</p></dd><dt><span class="term"><code class="filename">description</code></span></dt><dd><p>Esse ambiente utilizamos para criar uma lista com descri&ccedil;&atilde;o, utilizamos o comando </p><pre class="programlisting">\item[t&iacute;tulo]</pre><p> para criar um item com o t&iacute;tulo a ser descrito.</p></dd></dl></div>
+    <p>Vejamos uma aplica&ccedil;&atilde;o desse ambiente no <a class="xref" href="cha.ambientes.html#exa.ambiente.listas" title="Exemplo 3.1. Criando Listas">Exemplo&nbsp;3.1</a>.</p>
+    <div class="example"><a name="exa.ambiente.listas"></a><p class="title"><b>Exemplo 3.1. Criando Listas</b></p><div class="example-contents">
+      
+      <pre class="programlisting">\documentclass[a4paper,<span class="hl-number">12</span>pt]{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\begin{document}
+\begin{itemize}
+\item Esse &eacute; um item sem numera&ccedil;&atilde;o.
+\begin{enumerate}
+\item J&aacute; esse possui numera&ccedil;&atilde;o.
+\item perceba que &eacute; poss&iacute;vel criar um ambiente dentro de outro ambiente.
+\end{enumerate}
+\begin{description}
+\item[T&iacute;tulo]Aqui colocamos a descri&ccedil;&atilde;o desse item.
+\end{description}
+\end{itemize}
+\end{document}</pre>
+    </div></div><br class="example-break">
+    <p>Veja na <a class="xref" href="cha.ambientes.html#fig.ambiente.listas" title="Figura 3.1. Lista">Figura&nbsp;3.1</a> o resultado da compila&ccedil;&atilde;o do codigo do <a class="xref" href="cha.ambientes.html#exa.ambiente.listas" title="Exemplo 3.1. Criando Listas">Exemplo&nbsp;3.1</a></p>
+    <div class="figure"><a name="fig.ambiente.listas"></a><p class="title"><b>Figura 3.1. Lista</b></p><div class="figure-contents">   
+      
+      <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="exemplos/ambiente_listas_numeracao.svg">exemplos/ambiente_listas_numeracao.svg</object></div></div>
+    </div></div><br class="figure-break">
+  </div>
+  <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="cha.ambientes.tabelas"></a>3.2. Tabelas</h2></div></div></div>
+      
+      <p>Para criarmos tabelas no $\textrm{\LaTeX}$ utilizaremos o ambiente </p><pre class="programlisting">\begin{tabular}[posi&ccedil;&atilde;o]{colunas}</pre><p> onde os par&acirc;metros da tabela ser&atilde;o passados nos campos <span class="emphasis"><em>posi&ccedil;&atilde;o</em></span> e <span class="emphasis"><em>colunas</em></span>.</p>
+      <div class="variablelist"><dl class="variablelist"><dt><span class="term"><code class="filename">Posi&ccedil;&atilde;o</code></span></dt><dd><p>Nesse campo colocaremos a posi&ccedil;&atilde;o vertical do conte&uacute;do da tabela com rela&ccedil;&atilde;o a linha da tabela, sendo elas <span class="emphasis"><em>t</em></span>(topo), <span class="emphasis"><em>b</em></span>(baixo) e <span class="emphasis"><em>c</em></span>(centro).</p></dd><dt><span class="term"><code class="filename">Colunas</code></span></dt><dd><p>Esse campo diferente do campo posi&ccedil;&atilde;o, serve n&atilde;o s&oacute; para indicar o alinhamento horizontal do conte&uacute;do da tabela como tamb&eacute;m serve para indicar a quantidade de colunas que queremos na tabela, sendo os alinhamentos, <span class="emphasis"><em>l</em></span>(esquerda), <span class="emphasis"><em>r</em></span>(direita) e <span class="emphasis"><em>c</em></span>(centro).</p>
+	  <p>Para definirmos a quantidade de colunas da tabela, utilizaremos a quantidade de letras que defini o alinhamento, ou seja, se quisermos uma tabela com tr&ecirc;s colunas e alinhamento no centro colocaremos </p><pre class="programlisting">\begin{tabular}{c c c}</pre><p>Fazendo isso dizemos ao $\textrm{\LaTeX}$ que queremos uma tabela com tr&ecirc;s colunas centralizadas e sem bordas verticais, para introduzir as bordas verticais utilizamos as duas barras "| |" e dentro das duas barras colocaremos um dos alinhamentos, podendo colocar cada coluna com alinhamento diferente se preferir. </p>
+	  <p>Podemos tamb&eacute;m definir a largura de uma coluna em cent&iacute;metros, basta colocar <span class="command"><strong>p{largura cm}</strong></span> em vez do alinhamento.</p>
+</dd></dl></div>
+      <p>Dentro do ambiente da tabela iniciaremos colocando o comando </p><pre class="programlisting">\hline</pre><p> que desenha a primeira borda horizontal da tabela em seguida colocaremos o conte&uacute;do de cada coluna separado por um "&amp;", logo ap&oacute;s colocaremos "<span class="command"><strong>\\</strong></span>" para pular para proxima linha da tabela e pra finaliza colocamos novamente o comando <span class="command"><strong>\hline</strong></span> para desenhar a proxima borda vertical. Vejamos o <a class="xref" href="cha.ambientes.html#exa.ambientes.tabela_simples" title="Exemplo 3.2. Criando uma Tabela Simples">Exemplo&nbsp;3.2</a>.</p>
+      <div class="example"><a name="exa.ambientes.tabela_simples"></a><p class="title"><b>Exemplo 3.2. Criando uma Tabela Simples</b></p><div class="example-contents">
+	
+	<pre class="programlisting">\documentclass[a4paper,<span class="hl-number">12</span>pt]{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\begin{document}
+\begin{tabular}{|c|p{<span class="hl-number">2.5</span> cm}|}
+\hline
+\textbf{Nome} &amp; \textbf{Sobrenome}\\\hline
+Fulano &amp; <strong class="hl-keyword">do</strong> Cicranal \\\hline
+Beltrano &amp; Fulanal \\\hline 
+\end{tabular}
+\end{document}</pre>
+      </div></div><br class="example-break">
+      <div class="figure"><a name="fig.ambientes.tabelas_simples"></a><p class="title"><b>Figura 3.2. Criando uma Tabela Simples</b></p><div class="figure-contents">
+	
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="exemplos/ambientes_tabela_simples.svg">exemplos/ambientes_tabela_simples.svg</object></div></div>
+      </div></div><br class="figure-break">
+      <p>No $\textrm{\LaTeX}$ tamb&eacute;m podemos mesclar c&eacute;lulas com o comando </p><pre class="programlisting">\multicolum{n&ordm; de colunas}{alinhamento}{conte&uacute;do}</pre><p> onde no campo <span class="command"><strong>n&ordm; de colunas</strong></span> colocaremos o numero de colunas que queremos mesclar.</p>
+      <p>No campo <span class="command"><strong>alinhamento</strong></span> colocaremos um dos tr&ecirc;s comandos j&aacute; visto (l, c ou r).</p>
+      <p>Outra ferramenta que o $\textrm{\LaTeX}$ nos d&aacute; para formata&ccedil;&atilde;o de tabelas &eacute; a de linhas parciais, ao utilizamos o comando </p><pre class="programlisting">\cline{a-b}</pre><p> onde a e b s&atilde;o os n&uacute;meros das colunas de onde e para onde a linha deve ser desenhada. Vejamos o <a class="xref" href="cha.ambientes.html#exa.ambientes.tabelas" title="Exemplo 3.3. Criando uma Tabela">Exemplo&nbsp;3.3</a></p>
+      <div class="example"><a name="exa.ambientes.tabelas"></a><p class="title"><b>Exemplo 3.3. Criando uma Tabela</b></p><div class="example-contents">
+	
+	<pre class="programlisting">\documentclass[a4paper,<span class="hl-number">12</span>pt]{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\begin{document}
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{<span class="hl-number">2</span>}{|c|}{\textbf{Dados Pessoais}}\\\hline
+\textbf{Nome} &amp; \textbf{Sobrenome}\\\hline
+Fulano &amp; <strong class="hl-keyword">do</strong> Cicranal \\\cline{<span class="hl-number">1</span>-<span class="hl-number">1</span>}
+Beltrano &amp;  \\\hline 
+\end{tabular}
+\end{document}</pre>
+      </div></div><br class="example-break">
+      <div class="figure"><a name="fig.ambientes.tabelas"></a><p class="title"><b>Figura 3.3. Criando uma Tabela</b></p><div class="figure-contents">
+	
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="exemplos/ambientes_tabelas.svg">exemplos/ambientes_tabelas.svg</object></div></div>
+      </div></div><br class="figure-break">
+    </div>
+</div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="cha.estrutura_basica.html">&laquo;&nbsp;Cap&iacute;tulo 2. Criando um documento b&aacute;sico em Latex</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="cha.ambiente_matematico.html">Cap&iacute;tulo 4. Ambiente Matem&aacute;tico&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2014 Maykon Ricardo</p></td></tr></table></div></body></html>

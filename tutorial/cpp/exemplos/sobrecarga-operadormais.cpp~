@@ -1,0 +1,17 @@
+#include <iostream>
+#include <string>
+class Foo{
+  float x;
+  string nome;
+  Foo operator+(Foo b){
+	Foo retorno;
+	retorno.x = x + b.x;
+	retorno.nome= nome + b.nome;
+	return(retorno);
+  }
+};
+
+main(){
+  Foo a, b, c;
+  c = a + b;
+}
