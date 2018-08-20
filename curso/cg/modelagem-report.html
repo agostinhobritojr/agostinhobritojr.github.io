@@ -1,0 +1,1683 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.6.9" />
+<title>Modelagem geométrica</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+/*
+  pygmentize filter
+*/
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f4f4f4; }
+.highlight .c { color: #008800; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #AA22FF; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #008800; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #008800 } /* Comment.Preproc */
+.highlight .c1 { color: #008800; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #008800; font-weight: bold } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #AA22FF; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #AA22FF; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #AA22FF; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #AA22FF } /* Keyword.Pseudo */
+.highlight .kr { color: #AA22FF; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #00BB00; font-weight: bold } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BB4444 } /* Literal.String */
+.highlight .na { color: #BB4444 } /* Name.Attribute */
+.highlight .nb { color: #AA22FF } /* Name.Builtin */
+.highlight .nc { color: #0000FF } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #00A000 } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #B8860B } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BB4444 } /* Literal.String.Backtick */
+.highlight .sc { color: #BB4444 } /* Literal.String.Char */
+.highlight .sd { color: #BB4444; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BB4444 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BB4444 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BB4444 } /* Literal.String.Single */
+.highlight .ss { color: #B8860B } /* Literal.String.Symbol */
+.highlight .bp { color: #AA22FF } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #B8860B } /* Name.Variable.Class */
+.highlight .vg { color: #B8860B } /* Name.Variable.Global */
+.highlight .vi { color: #B8860B } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      extensions: ["tex2jax.js"],
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { availableFonts: ["TeX"] }
+    });
+  </script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Modelagem geométrica</h1>
+<span id="author">Agostinho Brito</span><br />
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_conceitos">Conceitos</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Modelar um objeto significa estabelecer uma representação para esta
+  capaz de ser exibida em um dispositivo apropriado
+</p>
+</li>
+<li>
+<p>
+As técnicas devem ser adequadas ao tipo de aplicação a que se
+  destinam.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+Ex: modelagem da cabeça humana.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+Para um filme
+</p>
+</li>
+<li>
+<p>
+Para um jogo
+</p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+Objetos podem ser sólidos ou não.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+Sólidos: cubo, esfera.
+</p>
+</li>
+<li>
+<p>
+Não sólidos: líquidos, gases, roupas
+</p>
+</li>
+<li>
+<p>
+Podem ser 3D, 2D e 1D. :)
+</p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sólido">Sólido</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Subconjunto fechado e limitado do espaço Euclidiano tridimensional. Pode ser:
+</p>
+<div class="hdlist"><table>
+<tr>
+<td class="hdlist1">
+<strong>fechado</strong>
+<br />
+</td>
+<td class="hdlist2">
+<p style="margin-top: 0;">
+delimitado por um conjunto de pontos que estabelece seu
+   contorno
+</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<strong>limitado</strong>
+<br />
+</td>
+<td class="hdlist2">
+<p style="margin-top: 0;">
+não possui dimensão infinita.
+</p>
+</td>
+</tr>
+</table></div>
+</li>
+<li>
+<p>
+Um sólido é realizável, ou válido, se satisfizer às seguintes propriedades
+</p>
+<div class="hdlist"><table>
+<tr>
+<td class="hdlist1">
+<strong>Rigidez</strong>
+<br />
+</td>
+<td class="hdlist2">
+<p style="margin-top: 0;">
+deve possuir forma invariante a transformações de corpo
+   rígido (rotação, escalamento e translação).
+</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<strong>Finitude</strong>
+<br />
+</td>
+<td class="hdlist2">
+<p style="margin-top: 0;">
+deve estar contido em uma porção finita do espaço.
+</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<strong>Homogeneidade</strong>
+<br />
+</td>
+<td class="hdlist2">
+<p style="margin-top: 0;">
+deve possuir mesmas propriedades em todas as suas
+   porções.
+</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<strong>Determinismo</strong>
+<br />
+</td>
+<td class="hdlist2">
+<p style="margin-top: 0;">
+deve ser possível descreve os limites do objeto,
+   assim como seu interior e exterior.
+</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<strong>Fechamento sobre operações</strong>
+<br />
+</td>
+<td class="hdlist2">
+<p style="margin-top: 0;">
+operações geométricas realizadas sobre
+   um objeto válido deve ser também um objeto válido.
+</p>
+</td>
+</tr>
+</table></div>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_representação_de_objetos">Representação de objetos</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Objetos podem ser representados de diversas maneiras em computação
+  gráfica:
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+Poligonal. Representação facetada das superfícies
+</p>
+</li>
+<li>
+<p>
+Retalhos de funções. Polígonos são substituídos por superfícies curvas.
+</p>
+</li>
+<li>
+<p>
+Geometria construtiva sólida. Objetos são representados pela
+     combinação de estruturas primitivas.
+</p>
+</li>
+<li>
+<p>
+Com subdivisão espacial. Ex: objetos em 3D podem ser
+     representados como cubos elementares denominados voxels.
+</p>
+</li>
+<li>
+<p>
+Representações implícitas. Ex: $x^2+y^2=r^2$ (esfera).
+</p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_representação_poligonal">Representação poligonal</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Objetos podem ser descritos de duas formas possíveis:
+</p>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+<strong>Conjunto de vértices e arestas interligando-os</strong>
+</dt>
+<dd>
+<p>
+Não há garantia da
+   formação de sólidos. Rápido para exibir&#8230; difícil para entender.
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>Conjunto de vértices e faces limitando os contornos</strong>
+</dt>
+<dd>
+<div class="ulist"><ul>
+<li>
+<p>
+Permitem definir interior e exterior
+</p>
+</li>
+<li>
+<p>
+Também denominada B-Rep (Boundary Representation)
+</p>
+</li>
+</ul></div>
+</dd>
+</dl></div>
+</li>
+<li>
+<p>
+Alguns conceitos:
+</p>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+<strong>Variedade (Manifold)</strong>
+</dt>
+<dd>
+<p>
+variedades de dimensão 2 ou 2-manifolds são
+   objetos cujos pontos do contorno são <em>topologicamente</em> equivalentes
+   a um disco plano. Ex: esfera e etiqueta
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>Poliedro</strong>
+</dt>
+<dd>
+<p>
+sólido limitado por um conjunto cujos lados (ou arestas) pertencem a um número par de polígonos.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+Um poliedro é um 2-manifold as arestas do objeto for formada pelas
+   arestas de dois polígonos.
+</p>
+</li>
+</ul></div>
+</dd>
+<dt class="hdlist1">
+<strong>Genus</strong>
+</dt>
+<dd>
+<p>
+número de <em>furos</em> que trespassa o objeto.
+</p>
+</dd>
+</dl></div>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_representação_poligonal_2">Representação poligonal</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Fórmula de Euler para poliedro simples de Genus 0:
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+$V - A + F = 2$
+</p>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+Fórmula de Euler para poliedros tipo 2-manifold com furos:
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+$V - A + F - (L-F) = 2(S-G)$
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+L: número de loops de arestas (interno/externo)
+</p>
+</li>
+<li>
+<p>
+S: número de shells (buraco interno do objeto)
+</p>
+</li>
+<li>
+<p>
+G: Genus do objeto.
+</p>
+</li>
+<li>
+<p>
+L-F: (ou numero de buracos nas faces)
+</p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+Exemplo:
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+V:24
+</p>
+</li>
+<li>
+<p>
+E:36
+</p>
+</li>
+<li>
+<p>
+F:16
+</p>
+</li>
+<li>
+<p>
+G:1
+</p>
+</li>
+<li>
+<p>
+L:18
+</p>
+</li>
+<li>
+<p>
+S:2
+</p>
+</li>
+<li>
+<p>
+24-36+16-(18-16) = 2(2-1)
+</p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_representação_de_modelos_com_base_em_vértices_e_faces">Representação de modelos com base em vértices e faces</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Modelo é descrito como um conjunto de vértices e índices de faces conectando estes vértices
+</p>
+</li>
+<li>
+<p>
+Exemplo: cubo com centro na origem
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>-0.500000 -0.500000 +0.500000
++0.500000 -0.500000 +0.500000
+-0.500000 +0.500000 +0.500000
++0.500000 +0.500000 +0.500000
+-0.500000 +0.500000 -0.500000
++0.500000 +0.500000 -0.500000
+-0.500000 -0.500000 -0.500000
++0.500000 -0.500000 -0.500000
+4 0 1 3 2
+4 2 3 5 4
+4 4 5 7 6
+4 6 7 1 0
+4 1 7 5 3
+4 6 0 2 4</code></pre>
+</div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_representação_por_enumeração_exaustiva">Representação por enumeração exaustiva</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+O objeto é representado por uma matrix de <em>voxels</em> (equivalente a
+  <em>pixels</em> em uma imagem)
+</p>
+</li>
+<li>
+<p>
+O espaço é então dividido em uma grade tridimensional.
+</p>
+</li>
+<li>
+<p>
+A cada voxel podem ser atribuídas propriedades (como cor,
+  transparência, existência, etc)
+</p>
+</li>
+<li>
+<p>
+Ex: cubo com esfera no seu interior.
+</p>
+</li>
+<li>
+<p>
+Vantagens:
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+Fácil de determinar se um ponto pertence a algum objeto
+</p>
+</li>
+<li>
+<p>
+Fácil de realizar operações booleanas (uniao, interseção,
+   diferença, &#8230;)
+</p>
+</li>
+<li>
+<p>
+Fácil de calcular propriedades físicas como massa ou volume
+</p>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+Desvantagens:
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+Glutão de memória.
+</p>
+</li>
+<li>
+<p>
+Dificuldade de representação de detalhes.
+</p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_representação_baseada_em_arestas">Representação baseada em arestas</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Para o objeto, armazena-se:
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+Lista de vértices
+</p>
+</li>
+<li>
+<p>
+Lista de faces indicando a sequência de arestas
+</p>
+</li>
+<li>
+<p>
+Lista de arestas indicando a interligação de vértices
+</p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_representação_baseada_em_arestas_orientadas">Representação baseada em arestas orientadas</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Informações das faces vizinhas e arestas próximas são adicionadas
+</p>
+</li>
+<li>
+<p>
+Exemplo
+</p>
+</li>
+</ul></div>
+<div class="imageblock" style="text-align:center;">
+<div class="content">
+<img alt="figs/winged.svg" width="400"
+src="data:image/svg+xml;base64,
+PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjwh
+LS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoK
+PHN2ZwogICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgIHht
+bG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiCiAgIHhtbG5zOnJkZj0iaHR0
+cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIKICAgeG1sbnM6c3ZnPSJo
+dHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIw
+MDAvc3ZnIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5l
+dC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3Nj
+YXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB3aWR0aD0iMTg2LjczMzU0bW0iCiAgIGhl
+aWdodD0iMTc4LjQ4NTZtbSIKICAgdmlld0JveD0iMCAwIDY2MS42NTQyNiA2MzIuNDI5MjciCiAg
+IGlkPSJzdmcyIgogICB2ZXJzaW9uPSIxLjEiCiAgIGlua3NjYXBlOnZlcnNpb249IjAuOTEgcjEz
+NzI1IgogICBzb2RpcG9kaTpkb2NuYW1lPSJ3aW5nZWQuc3ZnIj4KICA8ZGVmcwogICAgIGlkPSJk
+ZWZzNCI+CiAgICA8bWFya2VyCiAgICAgICBpbmtzY2FwZTpzdG9ja2lkPSJBcnJvdzFMZW5kIgog
+ICAgICAgb3JpZW50PSJhdXRvIgogICAgICAgcmVmWT0iMC4wIgogICAgICAgcmVmWD0iMC4wIgog
+ICAgICAgaWQ9Im1hcmtlcjI1MTk2IgogICAgICAgc3R5bGU9Im92ZXJmbG93OnZpc2libGU7Igog
+ICAgICAgaW5rc2NhcGU6aXNzdG9jaz0idHJ1ZSI+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJw
+YXRoMjUxOTgiCiAgICAgICAgIGQ9Ik0gMC4wLDAuMCBMIDUuMCwtNS4wIEwgLTEyLjUsMC4wIEwg
+NS4wLDUuMCBMIDAuMCwwLjAgeiAiCiAgICAgICAgIHN0eWxlPSJmaWxsLXJ1bGU6ZXZlbm9kZDtz
+dHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MXB0O3N0cm9rZS1vcGFjaXR5OjE7ZmlsbDojMDAw
+MDAwO2ZpbGwtb3BhY2l0eToxIgogICAgICAgICB0cmFuc2Zvcm09InNjYWxlKDAuOCkgcm90YXRl
+KDE4MCkgdHJhbnNsYXRlKDEyLjUsMCkiIC8+CiAgICA8L21hcmtlcj4KICAgIDxtYXJrZXIKICAg
+ICAgIGlua3NjYXBlOnN0b2NraWQ9IkFycm93MUxlbmQiCiAgICAgICBvcmllbnQ9ImF1dG8iCiAg
+ICAgICByZWZZPSIwLjAiCiAgICAgICByZWZYPSIwLjAiCiAgICAgICBpZD0iQXJyb3cxTGVuZCIK
+ICAgICAgIHN0eWxlPSJvdmVyZmxvdzp2aXNpYmxlOyIKICAgICAgIGlua3NjYXBlOmlzc3RvY2s9
+InRydWUiPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDQxNzciCiAgICAgICAgIGQ9Ik0g
+MC4wLDAuMCBMIDUuMCwtNS4wIEwgLTEyLjUsMC4wIEwgNS4wLDUuMCBMIDAuMCwwLjAgeiAiCiAg
+ICAgICAgIHN0eWxlPSJmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lk
+dGg6MXB0O3N0cm9rZS1vcGFjaXR5OjE7ZmlsbDojMDAwMDAwO2ZpbGwtb3BhY2l0eToxIgogICAg
+ICAgICB0cmFuc2Zvcm09InNjYWxlKDAuOCkgcm90YXRlKDE4MCkgdHJhbnNsYXRlKDEyLjUsMCki
+IC8+CiAgICA8L21hcmtlcj4KICAgIDxtYXJrZXIKICAgICAgIGlua3NjYXBlOnN0b2NraWQ9IkFy
+cm93MUxlbmQiCiAgICAgICBvcmllbnQ9ImF1dG8iCiAgICAgICByZWZZPSIwIgogICAgICAgcmVm
+WD0iMCIKICAgICAgIGlkPSJBcnJvdzFMZW5kLTUiCiAgICAgICBzdHlsZT0ib3ZlcmZsb3c6dmlz
+aWJsZSIKICAgICAgIGlua3NjYXBlOmlzc3RvY2s9InRydWUiPgogICAgICA8cGF0aAogICAgICAg
+ICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICAgICAgICBpZD0icGF0aDQxNzct
+NiIKICAgICAgICAgZD0iTSAwLDAgNSwtNSAtMTIuNSwwIDUsNSAwLDAgWiIKICAgICAgICAgc3R5
+bGU9ImZpbGw6IzAwMDAwMDtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6
+IzAwMDAwMDtzdHJva2Utd2lkdGg6MXB0O3N0cm9rZS1vcGFjaXR5OjEiCiAgICAgICAgIHRyYW5z
+Zm9ybT0ibWF0cml4KC0wLjgsMCwwLC0wLjgsLTEwLDApIiAvPgogICAgPC9tYXJrZXI+CiAgICA8
+bWFya2VyCiAgICAgICBpbmtzY2FwZTpzdG9ja2lkPSJBcnJvdzFMZW5kIgogICAgICAgb3JpZW50
+PSJhdXRvIgogICAgICAgcmVmWT0iMCIKICAgICAgIHJlZlg9IjAiCiAgICAgICBpZD0iQXJyb3cx
+TGVuZC05IgogICAgICAgc3R5bGU9Im92ZXJmbG93OnZpc2libGUiCiAgICAgICBpbmtzY2FwZTpp
+c3N0b2NrPSJ0cnVlIj4KICAgICAgPHBhdGgKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1
+cnZhdHVyZT0iMCIKICAgICAgICAgaWQ9InBhdGg0MTc3LTIiCiAgICAgICAgIGQ9Ik0gMCwwIDUs
+LTUgLTEyLjUsMCA1LDUgMCwwIFoiCiAgICAgICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7ZmlsbC1v
+cGFjaXR5OjE7ZmlsbC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjFw
+dDtzdHJva2Utb3BhY2l0eToxIgogICAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgtMC44LDAsMCwt
+MC44LC0xMCwwKSIgLz4KICAgIDwvbWFya2VyPgogICAgPG1hcmtlcgogICAgICAgaW5rc2NhcGU6
+c3RvY2tpZD0iQXJyb3cxTGVuZCIKICAgICAgIG9yaWVudD0iYXV0byIKICAgICAgIHJlZlk9IjAi
+CiAgICAgICByZWZYPSIwIgogICAgICAgaWQ9IkFycm93MUxlbmQtOCIKICAgICAgIHN0eWxlPSJv
+dmVyZmxvdzp2aXNpYmxlIgogICAgICAgaW5rc2NhcGU6aXNzdG9jaz0idHJ1ZSI+CiAgICAgIDxw
+YXRoCiAgICAgICAgIGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiCiAgICAgICAgIGlk
+PSJwYXRoNDE3Ny03IgogICAgICAgICBkPSJNIDAsMCA1LC01IC0xMi41LDAgNSw1IDAsMCBaIgog
+ICAgICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpldmVu
+b2RkO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxcHQ7c3Ryb2tlLW9wYWNpdHk6MSIKICAg
+ICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoLTAuOCwwLDAsLTAuOCwtMTAsMCkiIC8+CiAgICA8L21h
+cmtlcj4KICAgIDxtYXJrZXIKICAgICAgIGlua3NjYXBlOnN0b2NraWQ9IkFycm93MUxlbmQiCiAg
+ICAgICBvcmllbnQ9ImF1dG8iCiAgICAgICByZWZZPSIwIgogICAgICAgcmVmWD0iMCIKICAgICAg
+IGlkPSJBcnJvdzFMZW5kLTIiCiAgICAgICBzdHlsZT0ib3ZlcmZsb3c6dmlzaWJsZSIKICAgICAg
+IGlua3NjYXBlOmlzc3RvY2s9InRydWUiPgogICAgICA8cGF0aAogICAgICAgICBpbmtzY2FwZTpj
+b25uZWN0b3ItY3VydmF0dXJlPSIwIgogICAgICAgICBpZD0icGF0aDQxNzctMCIKICAgICAgICAg
+ZD0iTSAwLDAgNSwtNSAtMTIuNSwwIDUsNSAwLDAgWiIKICAgICAgICAgc3R5bGU9ImZpbGw6IzAw
+MDAwMDtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6IzAwMDAwMDtzdHJv
+a2Utd2lkdGg6MXB0O3N0cm9rZS1vcGFjaXR5OjEiCiAgICAgICAgIHRyYW5zZm9ybT0ibWF0cml4
+KC0wLjgsMCwwLC0wLjgsLTEwLDApIiAvPgogICAgPC9tYXJrZXI+CiAgICA8bWFya2VyCiAgICAg
+ICBpbmtzY2FwZTpzdG9ja2lkPSJBcnJvdzFMZW5kIgogICAgICAgb3JpZW50PSJhdXRvIgogICAg
+ICAgcmVmWT0iMCIKICAgICAgIHJlZlg9IjAiCiAgICAgICBpZD0iQXJyb3cxTGVuZC05LTQiCiAg
+ICAgICBzdHlsZT0ib3ZlcmZsb3c6dmlzaWJsZSIKICAgICAgIGlua3NjYXBlOmlzc3RvY2s9InRy
+dWUiPgogICAgICA8cGF0aAogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIw
+IgogICAgICAgICBpZD0icGF0aDQxNzctMi0xIgogICAgICAgICBkPSJNIDAsMCA1LC01IC0xMi41
+LDAgNSw1IDAsMCBaIgogICAgICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO2ZpbGwtb3BhY2l0eTox
+O2ZpbGwtcnVsZTpldmVub2RkO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxcHQ7c3Ryb2tl
+LW9wYWNpdHk6MSIKICAgICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoLTAuOCwwLDAsLTAuOCwtMTAs
+MCkiIC8+CiAgICA8L21hcmtlcj4KICAgIDxtYXJrZXIKICAgICAgIGlua3NjYXBlOnN0b2NraWQ9
+IkFycm93MUxlbmQiCiAgICAgICBvcmllbnQ9ImF1dG8iCiAgICAgICByZWZZPSIwIgogICAgICAg
+cmVmWD0iMCIKICAgICAgIGlkPSJBcnJvdzFMZW5kLTgtMCIKICAgICAgIHN0eWxlPSJvdmVyZmxv
+dzp2aXNpYmxlIgogICAgICAgaW5rc2NhcGU6aXNzdG9jaz0idHJ1ZSI+CiAgICAgIDxwYXRoCiAg
+ICAgICAgIGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiCiAgICAgICAgIGlkPSJwYXRo
+NDE3Ny03LTEiCiAgICAgICAgIGQ9Ik0gMCwwIDUsLTUgLTEyLjUsMCA1LDUgMCwwIFoiCiAgICAg
+ICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOmV2ZW5vZGQ7
+c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjFwdDtzdHJva2Utb3BhY2l0eToxIgogICAgICAg
+ICB0cmFuc2Zvcm09Im1hdHJpeCgtMC44LDAsMCwtMC44LC0xMCwwKSIgLz4KICAgIDwvbWFya2Vy
+PgogIDwvZGVmcz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9ImJhc2UiCiAgICAgcGFn
+ZWNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcmNvbG9yPSIjNjY2NjY2IgogICAgIGJvcmRlcm9w
+YWNpdHk9IjEuMCIKICAgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMC4wIgogICAgIGlua3NjYXBl
+OnBhZ2VzaGFkb3c9IjIiCiAgICAgaW5rc2NhcGU6em9vbT0iMC45ODk5NDk0OSIKICAgICBpbmtz
+Y2FwZTpjeD0iNDczLjU5MzY5IgogICAgIGlua3NjYXBlOmN5PSI0MDIuMjU4NzQiCiAgICAgaW5r
+c2NhcGU6ZG9jdW1lbnQtdW5pdHM9InB4IgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9Imxh
+eWVyMSIKICAgICBzaG93Z3JpZD0iZmFsc2UiCiAgICAgZml0LW1hcmdpbi10b3A9IjAiCiAgICAg
+Zml0LW1hcmdpbi1sZWZ0PSIwIgogICAgIGZpdC1tYXJnaW4tcmlnaHQ9IjAiCiAgICAgZml0LW1h
+cmdpbi1ib3R0b209IjAiCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSIxODcxIgogICAgIGlu
+a3NjYXBlOndpbmRvdy1oZWlnaHQ9IjEwNTYiCiAgICAgaW5rc2NhcGU6d2luZG93LXg9IjQ5Igog
+ICAgIGlua3NjYXBlOndpbmRvdy15PSIyNCIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVk
+PSIxIiAvPgogIDxtZXRhZGF0YQogICAgIGlkPSJtZXRhZGF0YTciPgogICAgPHJkZjpSREY+CiAg
+ICAgIDxjYzpXb3JrCiAgICAgICAgIHJkZjphYm91dD0iIj4KICAgICAgICA8ZGM6Zm9ybWF0Pmlt
+YWdlL3N2Zyt4bWw8L2RjOmZvcm1hdD4KICAgICAgICA8ZGM6dHlwZQogICAgICAgICAgIHJkZjpy
+ZXNvdXJjZT0iaHR0cDovL3B1cmwub3JnL2RjL2RjbWl0eXBlL1N0aWxsSW1hZ2UiIC8+CiAgICAg
+ICAgPGRjOnRpdGxlIC8+CiAgICAgIDwvY2M6V29yaz4KICAgIDwvcmRmOlJERj4KICA8L21ldGFk
+YXRhPgogIDxnCiAgICAgaW5rc2NhcGU6Z3JvdXBtb2RlPSJsYXllciIKICAgICBpZD0ibGF5ZXIy
+IgogICAgIGlua3NjYXBlOmxhYmVsPSJDYW1hZGEgMiIKICAgICBzdHlsZT0iZGlzcGxheTppbmxp
+bmUiCiAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQ1LjA3MzIzMSwtODEuMjY4NDEpIj4KICAg
+IDxwYXRoCiAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICAgICAgaWQ9
+InBhdGg0MTkzIgogICAgICAgc3R5bGU9ImZpbGw6IzhhODMxNjtmaWxsLW9wYWNpdHk6MTtmaWxs
+LXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgIGQ9Ik0gNTAyLjIyMTI1LDU1Mi4zMTcx
+NiA0MjQuOTMyNSw4MS4yNjg0MSBsIDI4MS43OTUsMzQyLjI2IiAvPgogICAgPHBhdGgKICAgICAg
+IGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiCiAgICAgICBpZD0icGF0aDQxOTciCiAg
+ICAgICBzdHlsZT0iZmlsbDojZTBkODQ3O2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJv
+O3N0cm9rZTpub25lIgogICAgICAgZD0iTSA2Ni43OTg4NzksNDI2LjE2OTY2IDQyNC45MzI1LDgx
+LjI2ODQxIDUwMi4yMjEyNSw1NTIuMzE3MTYiIC8+CiAgICA8cGF0aAogICAgICAgaW5rc2NhcGU6
+Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIKICAgICAgIGlkPSJwYXRoNDE4OSIKICAgICAgIHN0eWxl
+PSJmaWxsOiM4YTgzMTY7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5v
+bmUiCiAgICAgICBkPSJtIDUwMi4yMjEyNSw1NTIuMzE3MTYgLTExMS44MzUsMTYxLjM4MDUgLTMy
+My41ODczNzEsLTI4Ny41MjgiIC8+CiAgICA8cGF0aAogICAgICAgaW5rc2NhcGU6Y29ubmVjdG9y
+LWN1cnZhdHVyZT0iMCIKICAgICAgIGlkPSJwYXRoNDE4NSIKICAgICAgIHN0eWxlPSJmaWxsOiNl
+MGQ4NDc7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAg
+ICBkPSJtIDcwNi43Mjc1LDQyMy41Mjg0MSAtMzE2LjM0MTI1LDI5MC4xNjkyNSAxMTEuODM1LC0x
+NjEuMzgwNSIgLz4KICA8L2c+CiAgPGcKICAgICBpbmtzY2FwZTpsYWJlbD0iQ2FtYWRhIDEiCiAg
+ICAgaW5rc2NhcGU6Z3JvdXBtb2RlPSJsYXllciIKICAgICBpZD0ibGF5ZXIxIgogICAgIHRyYW5z
+Zm9ybT0idHJhbnNsYXRlKC00NS4wNzMyMzEsLTgxLjI2ODQxKSI+CiAgICA8dGV4dAogICAgICAg
+eG1sOnNwYWNlPSJwcmVzZXJ2ZSIKICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250
+LXdlaWdodDpub3JtYWw7Zm9udC1zaXplOjM3LjVweDtsaW5lLWhlaWdodDoxMjUlO2ZvbnQtZmFt
+aWx5OlNhbnM7bGV0dGVyLXNwYWNpbmc6MHB4O3dvcmQtc3BhY2luZzowcHg7ZmlsbDojMDAwMDAw
+O2ZpbGwtb3BhY2l0eToxO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDoxcHg7c3Ryb2tlLWxpbmVj
+YXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICAgIHg9
+IjYxLjQyODU3IgogICAgICAgeT0iNTQwLjkzMzY1IgogICAgICAgaWQ9InRleHQ0MjcwIgogICAg
+ICAgc29kaXBvZGk6bGluZXNwYWNpbmc9IjEyNSUiPjx0c3BhbgogICAgICAgICBzb2RpcG9kaTpy
+b2xlPSJsaW5lIgogICAgICAgICBpZD0idHNwYW40MjcyIgogICAgICAgICB4PSI2MS40Mjg1NyIK
+ICAgICAgICAgeT0iNTQwLjkzMzY1IiAvPjwvdGV4dD4KICAgIDx0ZXh0CiAgICAgICB4bWw6c3Bh
+Y2U9InByZXNlcnZlIgogICAgICAgc3R5bGU9ImZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFu
+dDpub3JtYWw7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtc2l6ZToz
+Ny41cHg7bGluZS1oZWlnaHQ6MTI1JTtmb250LWZhbWlseTpTYW5zOy1pbmtzY2FwZS1mb250LXNw
+ZWNpZmljYXRpb246J1NhbnMsIEJvbGQnO3RleHQtYWxpZ246c3RhcnQ7bGV0dGVyLXNwYWNpbmc6
+MHB4O3dvcmQtc3BhY2luZzowcHg7d3JpdGluZy1tb2RlOmxyLXRiO3RleHQtYW5jaG9yOnN0YXJ0
+O2ZpbGw6IzAwMDAwMDtmaWxsLW9wYWNpdHk6MTtzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MXB4
+O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1vcGFjaXR5
+OjEiCiAgICAgICB4PSI0NS40Mzk0NDIiCiAgICAgICB5PSI0MDguODcxMzEiCiAgICAgICBpZD0i
+dGV4dDQyNzQiCiAgICAgICBzb2RpcG9kaTpsaW5lc3BhY2luZz0iMTI1JSI+PHRzcGFuCiAgICAg
+ICAgIHNvZGlwb2RpOnJvbGU9ImxpbmUiCiAgICAgICAgIGlkPSJ0c3BhbjQyNzYiCiAgICAgICAg
+IHg9IjQ1LjQzOTQ0MiIKICAgICAgICAgeT0iNDA4Ljg3MTMxIj5ZPC90c3Bhbj48L3RleHQ+CiAg
+ICA8dGV4dAogICAgICAgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIKICAgICAgIHN0eWxlPSJmb250LXN0
+eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zdHJl
+dGNoOm5vcm1hbDtmb250LXNpemU6MzcuNXB4O2xpbmUtaGVpZ2h0OjEyNSU7Zm9udC1mYW1pbHk6
+U2FuczstaW5rc2NhcGUtZm9udC1zcGVjaWZpY2F0aW9uOidTYW5zLCBCb2xkJzt0ZXh0LWFsaWdu
+OnN0YXJ0O2xldHRlci1zcGFjaW5nOjBweDt3b3JkLXNwYWNpbmc6MHB4O3dyaXRpbmctbW9kZTps
+ci10Yjt0ZXh0LWFuY2hvcjpzdGFydDtmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tl
+Om5vbmU7c3Ryb2tlLXdpZHRoOjFweDtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9p
+bjptaXRlcjtzdHJva2Utb3BhY2l0eToxIgogICAgICAgeD0iNTExLjQyODUzIgogICAgICAgeT0i
+NTI4LjU5NjQ0IgogICAgICAgaWQ9InRleHQ0Mjc4IgogICAgICAgc29kaXBvZGk6bGluZXNwYWNp
+bmc9IjEyNSUiPjx0c3BhbgogICAgICAgICBzb2RpcG9kaTpyb2xlPSJsaW5lIgogICAgICAgICBp
+ZD0idHNwYW40MjgwIgogICAgICAgICB4PSI1MTEuNDI4NTMiCiAgICAgICAgIHk9IjUyOC41OTY0
+NCI+WDwvdHNwYW4+PC90ZXh0PgogICAgPHRleHQKICAgICAgIHhtbDpzcGFjZT0icHJlc2VydmUi
+CiAgICAgICBzdHlsZT0iZm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDtmb250
+LXdlaWdodDpib2xkO2ZvbnQtc3RyZXRjaDpub3JtYWw7Zm9udC1zaXplOjM3LjVweDtsaW5lLWhl
+aWdodDoxMjUlO2ZvbnQtZmFtaWx5OlNhbnM7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjon
+U2FucywgQm9sZCc7dGV4dC1hbGlnbjpzdGFydDtsZXR0ZXItc3BhY2luZzowcHg7d29yZC1zcGFj
+aW5nOjBweDt3cml0aW5nLW1vZGU6bHItdGI7dGV4dC1hbmNob3I6c3RhcnQ7ZmlsbDojMDAwMGZm
+O2ZpbGwtb3BhY2l0eToxO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDoxcHg7c3Ryb2tlLWxpbmVj
+YXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICAgIHg9
+IjMxNy40NTk3NSIKICAgICAgIHk9IjM1NC42NTczNSIKICAgICAgIGlkPSJ0ZXh0NDI4MiIKICAg
+ICAgIHNvZGlwb2RpOmxpbmVzcGFjaW5nPSIxMjUlIj48dHNwYW4KICAgICAgICAgc29kaXBvZGk6
+cm9sZT0ibGluZSIKICAgICAgICAgaWQ9InRzcGFuNDI4NCIKICAgICAgICAgeD0iMzE3LjQ1OTc1
+IgogICAgICAgICB5PSIzNTQuNjU3MzUiPjE8L3RzcGFuPjwvdGV4dD4KICAgIDx0ZXh0CiAgICAg
+ICB4bWw6c3BhY2U9InByZXNlcnZlIgogICAgICAgc3R5bGU9ImZvbnQtc3R5bGU6bm9ybWFsO2Zv
+bnQtdmFyaWFudDpub3JtYWw7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LXN0cmV0Y2g6bm9ybWFsO2Zv
+bnQtc2l6ZTozNy41cHg7bGluZS1oZWlnaHQ6MTI1JTtmb250LWZhbWlseTpTYW5zOy1pbmtzY2Fw
+ZS1mb250LXNwZWNpZmljYXRpb246J1NhbnMsIEJvbGQnO3RleHQtYWxpZ246c3RhcnQ7bGV0dGVy
+LXNwYWNpbmc6MHB4O3dvcmQtc3BhY2luZzowcHg7d3JpdGluZy1tb2RlOmxyLXRiO3RleHQtYW5j
+aG9yOnN0YXJ0O2ZpbGw6IzAwMDBmZjtmaWxsLW9wYWNpdHk6MTtzdHJva2U6bm9uZTtzdHJva2Ut
+d2lkdGg6MXB4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9r
+ZS1vcGFjaXR5OjEiCiAgICAgICB4PSIzMTIuODU3MTUiCiAgICAgICB5PSI1ODUuMjE5MyIKICAg
+ICAgIGlkPSJ0ZXh0NDI4NiIKICAgICAgIHNvZGlwb2RpOmxpbmVzcGFjaW5nPSIxMjUlIj48dHNw
+YW4KICAgICAgICAgc29kaXBvZGk6cm9sZT0ibGluZSIKICAgICAgICAgaWQ9InRzcGFuNDI4OCIK
+ICAgICAgICAgeD0iMzEyLjg1NzE1IgogICAgICAgICB5PSI1ODUuMjE5MyI+MjwvdHNwYW4+PC90
+ZXh0PgogICAgPHRleHQKICAgICAgIHhtbDpzcGFjZT0icHJlc2VydmUiCiAgICAgICBzdHlsZT0i
+Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDtmb250LXdlaWdodDpib2xkO2Zv
+bnQtc3RyZXRjaDpub3JtYWw7Zm9udC1zaXplOjM3LjVweDtsaW5lLWhlaWdodDoxMjUlO2ZvbnQt
+ZmFtaWx5OlNhbnM7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjonU2FucywgQm9sZCc7dGV4
+dC1hbGlnbjpzdGFydDtsZXR0ZXItc3BhY2luZzowcHg7d29yZC1zcGFjaW5nOjBweDt3cml0aW5n
+LW1vZGU6bHItdGI7dGV4dC1hbmNob3I6c3RhcnQ7ZmlsbDojZmYzMjMyO2ZpbGwtb3BhY2l0eTox
+O3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDoxcHg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2Ut
+bGluZWpvaW46bWl0ZXI7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICAgIHg9IjI3Mi4yOTUxNCIKICAg
+ICAgIHk9IjQ4Mi42NzkxNCIKICAgICAgIGlkPSJ0ZXh0NDI5MCIKICAgICAgIHNvZGlwb2RpOmxp
+bmVzcGFjaW5nPSIxMjUlIj48dHNwYW4KICAgICAgICAgc29kaXBvZGk6cm9sZT0ibGluZSIKICAg
+ICAgICAgaWQ9InRzcGFuNDI5MiIKICAgICAgICAgeD0iMjcyLjI5NTE0IgogICAgICAgICB5PSI0
+ODIuNjc5MTQiPmE8L3RzcGFuPjwvdGV4dD4KICAgIDx0ZXh0CiAgICAgICB4bWw6c3BhY2U9InBy
+ZXNlcnZlIgogICAgICAgc3R5bGU9ImZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3Jt
+YWw7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtc2l6ZTozNy41cHg7
+bGluZS1oZWlnaHQ6MTI1JTtmb250LWZhbWlseTpTYW5zOy1pbmtzY2FwZS1mb250LXNwZWNpZmlj
+YXRpb246J1NhbnMsIEJvbGQnO3RleHQtYWxpZ246c3RhcnQ7bGV0dGVyLXNwYWNpbmc6MHB4O3dv
+cmQtc3BhY2luZzowcHg7d3JpdGluZy1tb2RlOmxyLXRiO3RleHQtYW5jaG9yOnN0YXJ0O2ZpbGw6
+I2ZmMDAwMDtmaWxsLW9wYWNpdHk6MTtzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MXB4O3N0cm9r
+ZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1vcGFjaXR5OjEiCiAg
+ICAgICB4PSI0NDUuMTEzODMiCiAgICAgICB5PSIzMDkuNDYzMDEiCiAgICAgICBpZD0idGV4dDQy
+OTQiCiAgICAgICBzb2RpcG9kaTpsaW5lc3BhY2luZz0iMTI1JSI+PHRzcGFuCiAgICAgICAgIHNv
+ZGlwb2RpOnJvbGU9ImxpbmUiCiAgICAgICAgIGlkPSJ0c3BhbjQyOTYiCiAgICAgICAgIHg9IjQ0
+NS4xMTM4MyIKICAgICAgICAgeT0iMzA5LjQ2MzAxIj5iPC90c3Bhbj48L3RleHQ+CiAgICA8dGV4
+dAogICAgICAgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIKICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5v
+cm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zdHJldGNoOm5v
+cm1hbDtmb250LXNpemU6MzcuNXB4O2xpbmUtaGVpZ2h0OjEyNSU7Zm9udC1mYW1pbHk6U2Fuczst
+aW5rc2NhcGUtZm9udC1zcGVjaWZpY2F0aW9uOidTYW5zLCBCb2xkJzt0ZXh0LWFsaWduOnN0YXJ0
+O2xldHRlci1zcGFjaW5nOjBweDt3b3JkLXNwYWNpbmc6MHB4O3dyaXRpbmctbW9kZTpsci10Yjt0
+ZXh0LWFuY2hvcjpzdGFydDtmaWxsOiNmZjMyMzI7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlOm5vbmU7
+c3Ryb2tlLXdpZHRoOjFweDtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRl
+cjtzdHJva2Utb3BhY2l0eToxIgogICAgICAgeD0iMjUxLjkwNjQ1IgogICAgICAgeT0iMjY2LjA2
+NDkxIgogICAgICAgaWQ9InRleHQ0Mjk4IgogICAgICAgc29kaXBvZGk6bGluZXNwYWNpbmc9IjEy
+NSUiPjx0c3BhbgogICAgICAgICBzb2RpcG9kaTpyb2xlPSJsaW5lIgogICAgICAgICBpZD0idHNw
+YW40MzAwIgogICAgICAgICB4PSIyNTEuOTA2NDUiCiAgICAgICAgIHk9IjI2Ni4wNjQ5MSI+Yzwv
+dHNwYW4+PC90ZXh0PgogICAgPHRleHQKICAgICAgIHhtbDpzcGFjZT0icHJlc2VydmUiCiAgICAg
+ICBzdHlsZT0iZm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDtmb250LXdlaWdo
+dDpib2xkO2ZvbnQtc3RyZXRjaDpub3JtYWw7Zm9udC1zaXplOjM3LjVweDtsaW5lLWhlaWdodDox
+MjUlO2ZvbnQtZmFtaWx5OlNhbnM7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjonU2Fucywg
+Qm9sZCc7dGV4dC1hbGlnbjpzdGFydDtsZXR0ZXItc3BhY2luZzowcHg7d29yZC1zcGFjaW5nOjBw
+eDt3cml0aW5nLW1vZGU6bHItdGI7dGV4dC1hbmNob3I6c3RhcnQ7ZmlsbDojZmYzMjMyO2ZpbGwt
+b3BhY2l0eToxO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDoxcHg7c3Ryb2tlLWxpbmVjYXA6YnV0
+dDtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICAgIHg9IjIxNy41
+NjEyOCIKICAgICAgIHk9IjYxNi42Nzc2NyIKICAgICAgIGlkPSJ0ZXh0NDMwMiIKICAgICAgIHNv
+ZGlwb2RpOmxpbmVzcGFjaW5nPSIxMjUlIj48dHNwYW4KICAgICAgICAgc29kaXBvZGk6cm9sZT0i
+bGluZSIKICAgICAgICAgaWQ9InRzcGFuNDMwNCIKICAgICAgICAgeD0iMjE3LjU2MTI4IgogICAg
+ICAgICB5PSI2MTYuNjc3NjciPmQ8L3RzcGFuPjwvdGV4dD4KICAgIDx0ZXh0CiAgICAgICB4bWw6
+c3BhY2U9InByZXNlcnZlIgogICAgICAgc3R5bGU9ImZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFy
+aWFudDpub3JtYWw7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtc2l6
+ZTozNy41cHg7bGluZS1oZWlnaHQ6MTI1JTtmb250LWZhbWlseTpTYW5zOy1pbmtzY2FwZS1mb250
+LXNwZWNpZmljYXRpb246J1NhbnMsIEJvbGQnO3RleHQtYWxpZ246c3RhcnQ7bGV0dGVyLXNwYWNp
+bmc6MHB4O3dvcmQtc3BhY2luZzowcHg7d3JpdGluZy1tb2RlOmxyLXRiO3RleHQtYW5jaG9yOnN0
+YXJ0O2ZpbGw6I2ZmMzIzMjtmaWxsLW9wYWNpdHk6MTtzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6
+MXB4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1vcGFj
+aXR5OjEiCiAgICAgICB4PSI0NjAiCiAgICAgICB5PSI2MjguMDc2NDgiCiAgICAgICBpZD0idGV4
+dDQzMDYiCiAgICAgICBzb2RpcG9kaTpsaW5lc3BhY2luZz0iMTI1JSI+PHRzcGFuCiAgICAgICAg
+IHNvZGlwb2RpOnJvbGU9ImxpbmUiCiAgICAgICAgIGlkPSJ0c3BhbjQzMDgiCiAgICAgICAgIHg9
+IjQ2MCIKICAgICAgICAgeT0iNjI4LjA3NjQ4Ij5lPC90c3Bhbj48L3RleHQ+CiAgICA8ZwogICAg
+ICAgaWQ9Imc0Njg2NyI+CiAgICAgIDxwYXRoCiAgICAgICAgIHNvZGlwb2RpOm5vZGV0eXBlcz0i
+Y2MiCiAgICAgICAgIGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiCiAgICAgICAgIGlk
+PSJwYXRoMzA4MTIiCiAgICAgICAgIGQ9Im0gMTI4LjY0NDY2LDQxMC44NDA1NCAyNzcuODU3MTQs
+LTI2MCIKICAgICAgICAgc3R5bGU9ImZpbGw6bm9uZTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6
+IzAwMDAwMDtzdHJva2Utd2lkdGg6MXB4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVq
+b2luOm1pdGVyO3N0cm9rZS1vcGFjaXR5OjE7bWFya2VyLWVuZDp1cmwoI0Fycm93MUxlbmQpIiAv
+PgogICAgICA8cGF0aAogICAgICAgICBzb2RpcG9kaTpub2RldHlwZXM9ImNjIgogICAgICAgICBp
+bmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICAgICAgICBpZD0icGF0aDMwODEyLTYi
+CiAgICAgICAgIGQ9Im0gNDA2LjcxMzMzLDE1MS4yNzAyNiA0OC41MTAxNSwzNTAuMDQwMjUiCiAg
+ICAgICAgIHN0eWxlPSJmaWxsOm5vbmU7ZmlsbC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlOiMwMDAwMDA7
+c3Ryb2tlLXdpZHRoOjFweDtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRl
+cjtzdHJva2Utb3BhY2l0eToxO21hcmtlci1lbmQ6dXJsKCNBcnJvdzFMZW5kLTkpIiAvPgogICAg
+ICA8cGF0aAogICAgICAgICBzb2RpcG9kaTpub2RldHlwZXM9ImNjIgogICAgICAgICBpbmtzY2Fw
+ZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICAgICAgICBpZD0icGF0aDMwODEyLTIiCiAgICAg
+ICAgIGQ9Ik0gNDU1LjY0MTksNTAxLjYyNzQgMTI5LjU3MDQ3LDQxMC45MTMxMiIKICAgICAgICAg
+c3R5bGU9ImZpbGw6bm9uZTtmaWxsLXJ1bGU6ZXZlbm9kZDtzdHJva2U6IzAwMDAwMDtzdHJva2Ut
+d2lkdGg6MXB4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9r
+ZS1vcGFjaXR5OjE7bWFya2VyLWVuZDp1cmwoI0Fycm93MUxlbmQtOCkiIC8+CiAgICA8L2c+CiAg
+ICA8ZwogICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoLTEsMCwwLC0xLDU3Mi40MDc1Miw5NTQuMTg5
+ODgpIgogICAgICAgaWQ9Imc0Njg2Ny02Ij4KICAgICAgPHBhdGgKICAgICAgICAgc29kaXBvZGk6
+bm9kZXR5cGVzPSJjYyIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIK
+ICAgICAgICAgaWQ9InBhdGgzMDgxMi0zIgogICAgICAgICBkPSJNIDk4LjM0MDA4NCwzOTQuNjc4
+MSAxODguMzA4ODUsMjc0LjA3OTE1IgogICAgICAgICBzdHlsZT0iZmlsbDpub25lO2ZpbGwtcnVs
+ZTpldmVub2RkO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxcHg7c3Ryb2tlLWxpbmVjYXA6
+YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW9wYWNpdHk6MTttYXJrZXItZW5kOnVy
+bCgjQXJyb3cxTGVuZC0yKSIgLz4KICAgICAgPHBhdGgKICAgICAgICAgc29kaXBvZGk6bm9kZXR5
+cGVzPSJjYyIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIKICAgICAg
+ICAgaWQ9InBhdGgzMDgxMi02LTIiCiAgICAgICAgIGQ9Ik0gMTg5LjY0MjU3LDI3My4wMTkwMiA0
+NTUuMjIzNDgsNTAxLjMxMDUxIgogICAgICAgICBzdHlsZT0iZmlsbDpub25lO2ZpbGwtcnVsZTpl
+dmVub2RkO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxcHg7c3Ryb2tlLWxpbmVjYXA6YnV0
+dDtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW9wYWNpdHk6MTttYXJrZXItZW5kOnVybCgj
+QXJyb3cxTGVuZC05LTQpIiAvPgogICAgICA8cGF0aAogICAgICAgICBzb2RpcG9kaTpub2RldHlw
+ZXM9ImNjIgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICAgICAg
+ICBpZD0icGF0aDMwODEyLTItNyIKICAgICAgICAgZD0iTSA0NTUuNjQxOSw1MDEuNjI3NCA5Ny4z
+NTc2MjksMzk1LjA0NjU0IgogICAgICAgICBzdHlsZT0iZmlsbDpub25lO2ZpbGwtcnVsZTpldmVu
+b2RkO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxcHg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtz
+dHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW9wYWNpdHk6MTttYXJrZXItZW5kOnVybCgjQXJy
+b3cxTGVuZC04LTApIiAvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+Cg==" />
+</div>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Edge</p></td>
+<td colspan="2" align="center" valign="top"><p class="table">Vertices</p></td>
+<td colspan="2" align="center" valign="top"><p class="table">Faces</p></td>
+<td colspan="2" align="center" valign="top"><p class="table">Left  Traverse</p></td>
+<td colspan="2" align="center" valign="top"><p class="table">Right Traverse</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Name</p></td>
+<td align="left" valign="top"><p class="table">Start</p></td>
+<td align="left" valign="top"><p class="table">End</p></td>
+<td align="left" valign="top"><p class="table">Left</p></td>
+<td align="left" valign="top"><p class="table">Right</p></td>
+<td align="left" valign="top"><p class="table">Pred</p></td>
+<td align="left" valign="top"><p class="table">Succ</p></td>
+<td align="left" valign="top"><p class="table">Pred</p></td>
+<td align="left" valign="top"><p class="table">Succ</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">a</p></td>
+<td align="left" valign="top"><p class="table">X</p></td>
+<td align="left" valign="top"><p class="table">Y</p></td>
+<td align="left" valign="top"><p class="table">1</p></td>
+<td align="left" valign="top"><p class="table">2</p></td>
+<td align="left" valign="top"><p class="table">b</p></td>
+<td align="left" valign="top"><p class="table">c</p></td>
+<td align="left" valign="top"><p class="table">d</p></td>
+<td align="left" valign="top"><p class="table">e</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_representação_baseada_em_geometria_construtiva_sólida">Representação baseada em geometria construtiva sólida</h2>
+<div class="sectionbody">
+</div>
+</div>
+</div>
+<div id="footnotes"><hr /></div>
+<div id="footer">
+<div id="footer-text">
+Last updated
+ 2015-09-21 17:14:48 BRT
+</div>
+</div>
+</body>
+</html>

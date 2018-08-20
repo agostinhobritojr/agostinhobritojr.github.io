@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>645</width>
+    <height>433</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QTextEdit" name="textEdit">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Sunken</enum>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>BottomToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="separator"/>
+   <addaction name="actionCheckable"/>
+   <addaction name="separator"/>
+   <addaction name="actionOpcao3"/>
+   <addaction name="separator"/>
+   <addaction name="actionOpcao4"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>645</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMenu_1">
+    <property name="title">
+     <string>Menu 1</string>
+    </property>
+    <addaction name="actionCheckable"/>
+    <addaction name="separator"/>
+    <addaction name="actionOpcao1"/>
+    <addaction name="actionOpcao2"/>
+   </widget>
+   <widget class="QMenu" name="menuMenu_2">
+    <property name="title">
+     <string>Menu 2</string>
+    </property>
+    <addaction name="actionOpcao3"/>
+    <addaction name="actionOpcao4"/>
+   </widget>
+   <addaction name="menuMenu_1"/>
+   <addaction name="menuMenu_2"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionOpcao1"/>
+   <addaction name="separator"/>
+   <addaction name="actionOpcao2"/>
+  </widget>
+  <action name="actionCheckable">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Checkable</string>
+   </property>
+  </action>
+  <action name="actionOpcao1">
+   <property name="text">
+    <string>opcao1</string>
+   </property>
+   <property name="toolTip">
+    <string>Dica opcao1</string>
+   </property>
+  </action>
+  <action name="actionOpcao2">
+   <property name="text">
+    <string>opcao2</string>
+   </property>
+   <property name="toolTip">
+    <string>Dica opcao2</string>
+   </property>
+  </action>
+  <action name="actionOpcao3">
+   <property name="text">
+    <string>opcao3</string>
+   </property>
+   <property name="toolTip">
+    <string>Dica opcao3</string>
+   </property>
+  </action>
+  <action name="actionOpcao4">
+   <property name="text">
+    <string>opcao4</string>
+   </property>
+   <property name="toolTip">
+    <string>Dica opcao4</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionCheckable</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>cliqueCheckable()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>322</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOpcao1</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>cliqueOp1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>322</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOpcao2</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>cliqueOp2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>322</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>cliqueCheckable()</slot>
+  <slot>cliqueOp1()</slot>
+  <slot>cliqueOp2()</slot>
+ </slots>
+</ui>

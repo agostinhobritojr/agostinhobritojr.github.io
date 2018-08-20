@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2 Patchlevel 5e -->
+
+<!-- CreationDate: Fri Aug  7 09:31:49 2015 -->
+
+<!-- Magnification: 1.050 -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="3.1276505in"
+   height="1.260023in"
+   viewBox="827 638 3696.4919 1463.5652"
+   id="svg4155"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="boundingbox.svg">
+  <metadata
+     id="metadata4173">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4171" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1871"
+     inkscape:window-height="1056"
+     id="namedview4169"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="4"
+     inkscape:cx="145.71259"
+     inkscape:cy="36.442539"
+     inkscape:window-x="49"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g4157" />
+  <g
+     style="fill:none;stroke-width:0.025in"
+     id="g4157"
+     transform="translate(-12.242866,-20.731654)">
+    <polygon
+       points="2551,661 1937,1464 1559,1464 1417,944 1417,944 850,2125 3354,1842 "
+       style="fill:#ffff00;stroke:#ff0000;stroke-width:13.13194466;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="polygon4159" />
+    <!-- Line -->
+    <!-- Line -->
+    <polyline
+       points="3401,1370 3921,1086 "
+       style="stroke:#0000ff;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4161" />
+    <!-- Text -->
+    <text
+       xml:space="preserve"
+       x="3496"
+       y="1039"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4163"
+       sodipodi:linespacing="125%"
+       style="font-style:normal;font-weight:normal;font-size:152px;line-height:125%;font-family:Times;text-anchor:start;fill:#000000"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:152.00061035px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+         id="tspan4179">Bounding box</tspan></text>
+    <!-- Line: box -->
+    <rect
+       x="845.80884"
+       y="652.07892"
+       width="2516.1123"
+       height="1476.0577"
+       rx="0"
+       style="stroke:#0000ff;stroke-width:13.13194466;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:39.39583267, 13.13194422;stroke-dashoffset:0"
+       id="rect4165"
+       ry="0" />
+    <!-- Text -->
+    <text
+       xml:space="preserve"
+       x="2173"
+       y="1653"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4167"
+       sodipodi:linespacing="125%"
+       style="font-style:normal;font-weight:normal;font-size:152px;line-height:125%;font-family:Times;text-anchor:start;fill:#000000"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:152.00061035px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+         id="tspan4185">Polígono</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:525.277771px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1954.4417"
+       y="219.51369"
+       id="text4175"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4177"
+         x="1954.4417"
+         y="219.51369" /></text>
+  </g>
+</svg>

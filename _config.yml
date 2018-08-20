@@ -7,11 +7,11 @@ relative_permalinks: false
 encoding: utf-8
 
 # Setup
-title:               Ajuste Técnico
+title:               Agostinho Brito
 #tagline:             'foo's website
-description:         Divulgação de habilidades em Engenharia de Computação
+description:         Blog pessoal de Agostinho Brito
 #
-#url: http://ajustetecnico.github.io
+#url: http://agostinhobritojr.github.io
 url: ""
 baseurl: ""
 urlimg: "/images/"
@@ -42,7 +42,7 @@ gems:
 jekyll-mentions:
   base_url: https://twitter.com
 
-include: [".htaccess"]
+include: [".htaccess", "curso", "tutorial"]
 exclude: ["lib", "config.rb", "Gemfile", "Capfile", "Gemfile.lock", "config", "log", "Rakefile", "Rakefile.rb", "rakefile", "README.md", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "LICENSE", "vendor", "assets", "_plugins", "public/dormant"]
 
 # About/contact

@@ -1,0 +1,147 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{epsfig}
+\usepackage{multicol}
+%\usepackage{noitemsep}
+\usepackage[latin1]{inputenc}
+\usepackage[portuges]{babel}
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{ulem}
+
+% As margens
+\setlength{\textheight}{24.0cm}
+\setlength{\textwidth}{17.5cm}
+\setlength{\oddsidemargin}{2.0cm}         % Margens reais desejadas
+\setlength{\evensidemargin}{2.0cm}        % 2+17.5+1.5=21cm (largura A4)
+\setlength{\topmargin}{1.5cm}             % 1.5+1.6+1.0+24.0+1.6=29.7cm
+\setlength{\headheight}{1.6cm}            % (altura A4)
+\setlength{\headsep}{1.0cm}
+\setlength{\columnsep}{1.5cm}             % Coluna = 8cm ((17.5-1.5)/2)
+\addtolength{\oddsidemargin}{-1in}
+\addtolength{\evensidemargin}{-1in}
+\addtolength{\topmargin}{-1in}
+\setlength{\footskip}{0.0cm}
+
+\pagestyle{fancy}
+
+\newlength{\larg}
+\newcommand{\epsfix}[1]{
+  \settowidth{\larg}{\epsfig{file=#1}}
+  \includegraphics[width=0.80\larg]{#1}
+  }
+
+\lhead{\epsfig{file=/home/ambj/figs/ufrn.eps,height=1.4cm}}
+\rhead{\sc
+Universidade Federal do Rio Grande do Norte\\
+Centro de Tecnologia\\
+Departamento de Engenharia Computação}
+\cfoot{}
+
+\begin{document}
+
+\begin{center}\Large
+ELE435 -- Computação gráfica (2\raisebox{0.5ex}{\small a} avaliação - 2000.2)\\
+\end{center}
+\noindent Aluno:\hrulefill \vspace{2mm} Matrícula: \rule{2.5cm}{0.4pt}
+
+\vspace{1cm}
+{\bf\large A Interpretação das questões faz parte da prova.}
+\vspace{1cm}
+
+\newcounter{questao}
+\renewcommand{\theenumi}{\Roman{enumi}}
+%\begin{list}{\Roman{questao}.}{%
+%\usecounter{questao}%
+%\setlength{\leftmargin}{0cm}}
+\begin{enumerate}
+\item (2,5 pontos) Responda às seguintes questões:
+  \begin{enumerate}
+  \item (0,5 pontos) O que é e para que serve uma projeção geométrica? Como é determinada?
+  \item (0,5 pontos) Compare os três principais tipos de projeções paralelas, mostrando as vantagens e desvantagens de cada uma.
+  \item (0,5 pontos) Como é formada uma projeção axonométrica? descreva os três principais tipos de projeções axononométricas.
+  \item (0,5 pontos) O que é uma transformação de perspectiva? Quais as vantagens e desvantagens desta em relação a outros tipos de projeção?
+  \item (0,5 pontos) Cite três vantagens de uma curva paramétrica quando comparada a uma curva não-paramétrica.
+  \end{enumerate}
+
+\item (2,5 pontos) \uline{Deduza} a matriz de projeção isométrica para uma das quatro projeções isométricas possíveis.
+
+\item (2,5 pontos) Descreva o processo de construção de uma curva de Hermite. Quais são as principais propriedades desta curva. Mostre exemplos para ilustrar a sua resposta.
+
+\item (2,5 pontos) Discuta a importância dos vetores de nós na construção de B-Splines, mostrando os três tipos de vetores existentes e as suas propriedades principais. Mostre como ficariam estes 3 tipos vetores de nós para curvas de 4 ordem com seis vértices no polígono de controle.
+
+\end{enumerate}
+
+\begin{flushright}
+{\it ``Que a força esteja com você''}\\
+Obi-Wan Kenobi
+\end{flushright}
+\newpage
+\begin{center}
+  {\bf\Large Formulário}
+\end{center}
+\begin{equation*}
+  \begin{bmatrix}
+    1 & 0 & 0 & dx \\
+    0 & 1 & 0 & dy \\
+    0 & 0 & 1 & dz \\
+    0 & 0 & 0 & 1\\
+  \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+  \begin{bmatrix}
+    cos\psi & -sen\psi & 0 & 0 \\
+    sen\psi & cos\psi & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1\\
+  \end{bmatrix}
+  \quad
+  \begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & cos\theta & -sen\theta & 0 \\
+    0 & sen\theta & cos\theta & 0 \\
+    0 & 0 & 0 & 1\\
+  \end{bmatrix}
+  \quad
+  \begin{bmatrix} 
+    cos\phi & 0 & sen\phi & 0 \\
+    0 & 1 & 0 & 0 \\
+    -sen\phi & 0 & cos\phi & 0 \\
+    0 & 0 & 0 & 1\\
+  \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+  \begin{bmatrix}
+    sx & 0 & 0 & 0 \\
+    0 & sy & 0 & 0 \\
+    0 & 0 & sz & 0 \\
+    0 & 0 & 0 & 1\\
+  \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+  \begin{bmatrix}
+    0 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1\\
+  \end{bmatrix}
+  \quad
+  \begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1\\
+  \end{bmatrix}
+  \quad
+  \begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 1\\
+  \end{bmatrix}
+\end{equation*}
+
+\end{document}

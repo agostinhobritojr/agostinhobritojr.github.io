@@ -1,0 +1,594 @@
+%!PS-Adobe-3.0  EPSF-3.0
+%%BoundingBox:  0 0 342 342
+%%Creator:      Gernot Hoffmann
+%%Title:        CieSuperCT
+%%CreationDate: May 17 2004
+%%DocumentNeededResources: font Helvetica
+%%+ Helvetica-Bold
+
+% Disable setpagedevice
+/setpagedevice {pop} bind def
+
+%-Variables
+
+/mm {2.834646 mul} def % points per mm
+
+/ci [ 380 0.1741 0.0050
+      385 0.1740 0.0050 
+      390 0.1738 0.0049 
+      395 0.1736 0.0049
+      400 0.1733 0.0048
+      405 0.1730 0.0048
+      410 0.1726 0.0048
+      415 0.1721 0.0048 
+      420 0.1714 0.0051
+      425 0.1703 0.0058
+      430 0.1689 0.0069
+      435 0.1669 0.0086
+      440 0.1644 0.0109
+      445 0.1611 0.0138
+      450 0.1566 0.0177
+      455 0.1510 0.0227
+      460 0.1440 0.0297 
+      465 0.1355 0.0399
+      470 0.1241 0.0578
+      475 0.1096 0.0868
+      480 0.0913 0.1327
+      485 0.0686 0.2007
+      490 0.0454 0.2950
+      495 0.0235 0.4127
+      500 0.0082 0.5384
+      505 0.0039 0.6548
+      510 0.0139 0.7502
+      515 0.0389 0.8120  
+      520 0.0743 0.8338
+      525 0.1142 0.8262
+      530 0.1547 0.8059
+      535 0.1929 0.7816
+      540 0.2296 0.7543
+      545 0.2658 0.7243
+      550 0.3016 0.6923
+      555 0.3373 0.6589 
+      560 0.3731 0.6245
+      565 0.4087 0.5896
+      570 0.4441 0.5547
+      575 0.4788 0.5202
+      580 0.5125 0.4866
+      585 0.5448 0.4544
+      590 0.5752 0.4242
+      595 0.6029 0.3965
+      600 0.6270 0.3725
+      605 0.6482 0.3514      
+      610 0.6658 0.3340
+      615 0.6801 0.3197
+      620 0.6915 0.3083
+      625 0.7006 0.2993
+      630 0.7079 0.2920
+      635 0.7140 0.2859
+      640 0.7190 0.2809
+      645 0.7230 0.2770
+      650 0.7260 0.2740
+      655 0.7283 0.2717 
+      660 0.7300 0.2700
+      665 0.7311 0.2689
+      670 0.7320 0.2680
+      675 0.7327 0.2673
+      680 0.7334 0.2666
+      685 0.7340 0.2660
+      690 0.7344 0.2656
+      695 0.7346 0.2654 
+      700 0.7347 0.2653 ] def
+
+/ck [ 380 460 470 475 480 485 490 495 500 
+      505 510 515 520 525 530 535 540 545
+      550 555 560 565 570 575 580 585 590
+      595 600 605 610 620 635 700 ] def
+
+/cp [ 435.8  0.1665 0.0090 
+      546.1  0.2738 0.7173
+      700.0  0.7347 0.2653 ] def
+      
+/ct [ 2000 0.52669 0.41331   1.33101
+      2105 0.51541 0.41465   1.39021
+      2222 0.50338 0.41525   1.45962
+      2353 0.49059 0.41498   1.54240
+      2500 0.47701 0.41368   1.64291
+      2677 0.463   0.41121   1.76811 % error in table, estimated values
+      2857 0.446   0.40742   1.92863
+      3077 0.43156 0.40216   2.14300
+      3333 0.41502 0.39535   2.44455
+      3636 0.39792 0.38690   2.90309
+      4000 0.38045 0.37676   3.68730
+      4444 0.36276 0.36496   5.34398
+      5000 0.34510 0.35162  11.17883
+      5714 0.32775 0.33690 -39.34888
+      6667 0.31101 0.32116  -6.18336
+      8000 0.29518 0.30477  -3.08425
+     10000 0.28063 0.28828  -1.93507 ] def           
+
+/cw [ 50  0.3457 0.3585 
+      65  0.3127 0.3290
+      93  0.2857 0.2941 ] def
+
+
+/sx 100 mm def 
+/sy 100 mm def
+/bx 140 mm def 
+/by 120 mm def
+
+/x0  10 mm def 
+/y0  10 mm def
+
+/xa  x0 def    
+/xe  x0 sx add def
+/ya  y0 def    
+/ye  y0 sy add def  
+
+/gam 1 2.2 div def
+  
+%-Procedures
+
+/setgray
+{/g exch def
+  0 0 0 1 g sub setcmykcolor 
+} bind def 
+
+/gx 0 def /gy 0 def
+/fu 0 def /mi 0 def /re 0 def /yy 0 def /xx 0 def
+/n 0 def /hd6 0 def /hm6 0 def /h6h 0 def
+/R 0 def /G 0 def /B 0 def 
+/x 0 def /y 0 def /z 0 def 
+/X 0 def /Y 0 def /Z 0 def /max 0 def
+/mult 0 def /fp 0 def /spl 0 def /spa 0 def /vecx 0 def /vecy 0 def   
+/t 0 def /r 0 def /s 0 def /c 0 def
+/e 0 def /ra 0 def /lam 0 def /col 0 def
+/tx0 0 def /ty0 0 def /tfw 0 def /tna 0 def /tdec 0 def /tchr 0 def
+/tk 0 def /tmm 0 def
+/num 0 def /tx 0 def /fh 0 def /xtxt 0 def /ytxt 0 def 
+/i 0 def /j 0 def /k 0 def
+
+/Grid
+{ newpath
+  0.5 setgray
+  0.2 mm sx div setlinewidth
+ /gx 0 def  /gdx 0.1 def
+ /gy 0 def  /gdy 0.1 def 
+ { gx gy moveto 
+   gx 1 add gy lineto stroke 
+  /gy gy gdy add def gy 1.01 gt {exit}if } loop   
+ /gy 0 def 
+ { gx gy moveto 
+   gx gy 1 add lineto stroke 
+  /gx gx gdx add def gx 1.01 gt {exit}if } loop   
+0 setlinecap
+%---axes
+newpath
+0 0 moveto 1 0 lineto 0 0 moveto 0 1 lineto
+0.3 mm sx div setlinewidth
+0.0 setgray
+stroke
+} bind def
+
+/MakeSpline 
+{/fu  spa array def /mi spa array def /re spa array def /yy spa array def /xx spa array def
+ /n fp 1 sub def /hh mult def /hd6 hh 6 div def /hm6 hh 6 mul def /h6h -6 hh dup mul div def 
+  pxy 1 eq {0 1 fp {/k exch def fu k hh mul ci k 3 mul 1 add get put} for} if 
+  pxy 2 eq {0 1 fp {/k exch def fu k hh mul ci k 3 mul 2 add get put} for} if 
+  mi 1 0.25 put 
+  1 1 n 1 sub {/j exch def mi j 1 add 1 4 mi j get sub div put} for    
+  1 1 n {/j exch def /jh j hh mul def re j fu jh hh add get fu jh get 2 mul sub fu jh hh sub get add h6h mul put} for
+  yy 1 re 1 get put
+  2 1 n {/j exch def yy j re j get yy j 1 sub get mi j 1 sub get mul sub put} for
+  xx 0 0 put xx n yy n get mi n get mul neg put xx n 1 add 0 put
+  n 1 sub -1 1{/j exch def xx j yy j get xx j 1 add get add mi j get mul neg put} for
+  /i 0 def
+  0 1 n
+  {/j exch def /jh j hh mul def 
+   /a3 xx j 1 add get xx j get sub hm6 div def /a2 xx j get 0.5 mul def
+   /a1 fu jh hh add get fu jh get sub hh div xx j 1 add get xx j get 2 mul add hd6 mul sub def /a0 fu jh get def
+    1 1 hh 1 sub {/k exch def /i i 1 add def fu i a3 k mul a2 add k mul a1 add k mul a0 add put} for
+   /i i 1 add def} for
+  pxy 1 eq {fu vecx copy} if pxy 2 eq {fu vecy copy} if    
+} bind def
+
+/CieHorse  
+{/mult 5 def  
+ /fp   ci length 3 idiv 1 sub def    
+ /spl  fp mult mul def   
+ /spa  spl 1 add def
+ /vecx spa array def   
+ /vecy spa array def   
+  newpath
+ /pxy 1 def MakeSpline
+ /pxy 2 def MakeSpline
+  vecx 0 get vecy 0 get moveto
+  1 1 spl 
+  {/k exch def
+    vecx k get vecy k get lineto } for
+  closepath
+  clip
+} bind def
+
+/XyzRgb
+{ /z 1 x sub y sub def
+  /X Y x mul y div def
+  /Z Y z mul y div def  
+  /R X  2.3647 mul Y -0.8965 mul add Z -0.4681 mul add def
+  /G X -0.5152 mul Y  1.4264 mul add Z  0.0888 mul add def
+  /B X  0.0052 mul Y -0.0144 mul add Z  1.0092 mul add def  
+  /max R def 
+   G max gt {/max G def } if 
+   B max gt {/max B def } if
+  /R R max div def
+  /G G max div def
+  /B B max div def
+   R 0 lt {/R 0 def } if 
+   G 0 lt {/G 0 def } if
+   B 0 lt {/B 0 def } if
+  /R R gam exp def    
+  /G G gam exp def
+  /B B gam exp def
+   R G B setrgbcolor
+} bind def
+
+/CieArea
+{ newpath
+ /e 1 n div def
+ /Y 1.0 def
+ /y 0.000001 def
+  1 1 n 0.85 mul round
+{ pop
+ /x 0 def
+  1 1 n 1 y sub mul round  
+{ pop 
+  XyzRgb
+  x y  moveto e 0 rlineto 0 e rlineto e neg 0 rlineto
+  closepath fill
+ /x x e add def } for
+ /y y e add def } for
+} bind def
+
+
+
+
+/CieDots % draw circle for ck lambdas{ /col { 0.5 setgray } def
+  0.2 mm sx div setlinewidth
+ /ra 0.5 mm sx div def
+ /k 0 def
+ /i 0 def
+  1 1 ck length 
+ {  pop
+   /lam ck k get def 
+   { ci i get lam eq 
+     { /x ci i 1 add get def 
+       /y ci i 2 add get def
+        x y ra 0 360 arc 
+        gsave 1 setgray fill grestore col stroke 
+        exit }
+     {/i i 3 add def } ifelse   } loop
+  /k k 1 add def
+ } for
+} bind def 
+
+/CieList % write list for ck lambdas{ 0.3 0.3 1 setrgbcolor
+ /fh 9 sx div def  
+ /Helvetica findfont fh scalefont setfont 
+ /txt 3 string def 
+ /x 1.1 def
+ /y 1.0 fh sub def
+ /dy fh 1.2 mul def
+ /k 0 def
+ /i 0 def
+  1 1 ck length 
+ { pop
+   /lam ck k get def 
+   { ci i get lam eq 
+     { x y moveto
+       lam txt cvs txt show    
+       /y y dy sub def 
+       exit }
+     {/i i 3 add def } ifelse   } loop
+  /k k 1 add def
+ } for
+} bind def 
+
+
+/CieNote % write notation for ck lambdas{ /col { 0 setgray } def
+ /fh 6 sx div def  
+ /Helvetica findfont fh scalefont setfont 
+ /txt 3 string def 
+ /dx fh 2.0 mul def
+ /dy fh def
+ /k 0 def
+ /i 0 def
+  1 1 ck length 
+ { pop
+   /lam ck k get round def 
+   { ci i get round lam eq 
+     { /x ci i 1 add get fh 0.40 mul add def 
+       /y ci i 2 add get fh 0.18 mul sub def
+       newpath
+       x fh 0.1 mul sub y 0.15 fh mul sub moveto
+       dx 0 rlineto
+       0 dy rlineto
+       dx neg 0 rlineto
+       closepath 
+         1 setgray
+       % fill
+       col      
+       x y moveto
+       lam txt cvs txt show    
+       exit }
+     {/i i 3 add def } ifelse   } loop
+  /k k 1 add def
+ } for
+} bind def 
+
+/CiePrim % primaries cp
+{/col { 1 0 1 setrgbcolor } def
+ /ra 0.4 mm sx div def
+ /k 0 def
+  1 1 3  
+ {  pop
+  /x  cp k 1 add get def /y cp k 2 add get def
+   x y ra 0 360 arc 
+   col fill  
+  /k k 3 add def } for
+} bind def 
+
+/Shownum  
+% Draw number by string  
+%  Global  
+%  xtxt   Actual position not overwritten
+%  ytxt                    
+%  nu     Input number    not overwritten  nu =+-999999
+%  fh     Font height     not overwritten
+%  tms    Mantissa number of characters    tms=0...6
+%  tms=3  Example
+%  input  -23.56789  -999.99    0.4567  9999.123456
+%  result -23.568    -999.990   0.467   9999.123
+%  Postscript number to string is not well defined
+%  e.g. 1E-5 instead of 0.00001
+%  We use a straightforward BCD conversion. 
+%  This is always affected by round-off errors 
+%  because of 32-bit arithmetic
+%  The procedure itself does not round
+%  Results are different, depending on the interpreter
+ 
+{ /tx0 xtxt def
+  /ty0 ytxt def
+  /tfw fh 0.6 mul def                   % character distance
+  /tna nu abs 0.5E-6 add def            % abs value 
+
+  /tdec 1E5 def                          
+  /tchr 1 string def
+ 
+   tna 999999.1 lt                      % larger number replaced by #  
+  /tmm true def                         % sign 
+  {/tx0 tx0 tfw 6 mul sub def
+   /tz 0 def  
+  1 1 5                                 % first 5 digits, no leading 0 
+  { pop
+   /tk 0 def  
+   { tna tdec gt {/tna tna tdec sub def /tk tk 1 add def}{exit} ifelse 
+   } loop
+    tk 0 ne {/tz tz 1 add def} if
+    tz 0 ne
+    { tx0 ty0 moveto tk tchr cvs show
+    } if
+    tz 1 eq nu 0 lt and                 % minus 
+    { tx0 tfw 0.7 mul sub ty0 moveto (-) show
+      /tmm false def
+    } if 
+   /tdec tdec 0.1 mul def
+   /tx0 tx0 tfw add def
+  } for
+  
+   /tk 0 def                            % leading 0 
+   { tna tdec gt {/tna tna tdec sub def /tk tk 1 add def}{exit} ifelse 
+   } loop
+     tmm nu 0 lt and                    % minus 
+    { tx0 tfw 0.7 mul sub ty0 moveto (-) show
+    } if   
+    tx0 ty0 moveto tk tchr cvs show
+   /tdec tdec 0.1 mul def
+   /tx0 tx0 tfw add def
+  
+  tms 0 gt                              % for float
+  { tx0 ty0 moveto (.) show
+   /tx0 tx0 tfw 0.5 mul add def 
+  1 1 tms 
+  { pop
+   /tk 0 def  
+   { tna tdec gt {/tna tna tdec sub def /tk tk 1 add def}{exit} ifelse 
+   } loop
+     tx0 ty0 moveto tk tchr cvs show
+   /tdec tdec 0.1 mul def
+   /tx0 tx0 tfw add def
+  } for
+  } if
+ }{ tx0 tfw sub ty0 moveto (#) show} ifelse
+} def  
+
+/CieText
+{/num [0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 ] def
+ /tx  3 string def 
+ /fh  8 sx div def
+ /Helvetica findfont fh scalefont setfont
+ /xtxt fh -0.1 mul def
+ /ytxt fh 1.2 mul neg def 
+ /tms 1 def 
+  0 setgray
+  0 1 10
+ {/k exch def 
+  /nu num k get def 
+   Shownum
+  /xtxt xtxt 0.1 add def
+ } for
+ /xtxt fh 1.3 mul neg def
+ /ytxt fh 0.2 mul neg def
+ 0 1 10
+ {/k exch def
+  /nu num k get def
+   Shownum
+  /ytxt ytxt 0.1 add def
+ } for
+ /Helvetica-Bold findfont fh scalefont setfont
+  0.945 fh 1.2 mul neg moveto (x) show  
+ -0.04 0.95 moveto (y) show 
+ } def
+
+/CTCurve
+{/fh  6 sx div def
+ /Helvetica findfont fh scalefont setfont
+ /buf 10 string def
+ /r 0.02 def 
+  0 setgray
+  0.2 mm sx div setlinewidth
+  newpath
+ /k 0 def
+ /x ct k 1 add get def
+ /y ct k 2 add get def 
+  x y moveto
+ 0 1 ct length 4 idiv 1 sub
+ {/k exch 4 mul def
+ /x ct k 1 add get def
+ /y ct k 2 add get def
+  x y lineto
+ /t ct k 3 add get def
+ /w t dup mul 1 add sqrt def
+ /c 1 w div def
+ /s t w div def
+  t 0 gt
+  {/dx r c mul def /dy r s mul def }
+  {/dx r c mul neg def /dy r s mul neg def } ifelse
+  x dx add y dy add lineto
+ gsave
+  90 rotate
+  x y 0.1 sub moveto ct k get buf cvs show
+ grestore
+ x y moveto 
+ } for
+ stroke
+
+} bind def
+
+/CTCurve
+{/fh  6 sx div def
+ /Helvetica findfont fh scalefont setfont
+ /buf 10 string def
+ /r 0.02 def 
+  0 setgray
+  0.1 mm sx div setlinewidth
+  newpath
+ /k 0 def
+ /x ct k 1 add get def
+ /y ct k 2 add get def 
+  x y moveto
+ 0 1 ct length 4 idiv 1 sub
+ {/k exch 4 mul def
+ /x ct k 1 add get def
+ /y ct k 2 add get def
+  x y lineto
+ /t ct k 3 add get def
+ /w t dup mul 1 add sqrt def
+ /c 1 w div def
+ /s t w div def
+  t 0 gt
+  {/dx r c mul def /dy r s mul def }
+  {/dx r c mul neg def /dy r s mul neg def } ifelse
+  x dx add y dy add lineto
+  x y moveto 
+ } for
+ stroke
+} bind def 
+
+/CTText
+{/fh 4.5 sx div def
+ /Helvetica findfont fh scalefont setfont
+ /buf 10 string def
+ /r 0.02 def 
+  0 setgray
+ /k 0 def
+ /x ct k 1 add get def
+ /y ct k 2 add get def 
+  x y moveto
+ 0 1 ct length 4 idiv 1 sub
+ {/k exch 4 mul def
+ /x ct k 1 add get def
+ /y ct k 2 add get def
+ /t ct k get def
+  x 0.007 add t 2000 eq {0.001 add} if y 0.044 sub t 10000 eq { 0.007 sub } if moveto
+  90 rotate
+  t buf cvs show
+ -90 rotate
+  x y moveto 
+ } for
+} bind def
+
+
+/WDots % draw circle for white points{/fh 5 sx div def
+ /Helvetica findfont fh scalefont setfont
+ /buf 10 string def
+  0.1 mm sx div setlinewidth
+ /ra 0.5 mm sx div def
+ /k 0 def
+ /i 0 def
+  0 1 cw length 3 idiv 1 sub 
+ { /k exch 3 mul def
+   /x cw k 1 add get def 
+   /y cw k 2 add get def
+    x ra add y moveto
+    x y ra 0 360 arc 
+    gsave 1 setgray fill grestore 0 setgray stroke 
+    0 setgray
+    x 0.033 sub y 0.022 add moveto (D) show
+    x 0.033 sub 0.013 add y 0.022 add moveto cw k get buf cvs show 
+  } for
+} bind def 
+
+/Bbox
+{/bb 340 def 
+  newpath 
+  0 0 moveto bb 0 rlineto 0 bb rlineto bb neg  0 rlineto 
+  closepath stroke
+} def  
+
+
+%-Begin
+
+%Bbox
+
+true setstrokeadjust
+gsave
+
+x0 y0 translate
+sx sy scale
+
+Grid
+CieHorse
+/n 17 def
+CieArea
+/n 200 def
+CieArea
+
+grestore
+x0 y0 translate
+sx sy scale
+
+CieDots
+CiePrim
+CieNote
+CieText
+
+%CieList
+
+CTCurve
+
+CTText
+
+WDots
+
+showpage
+
+%%EndDocument
