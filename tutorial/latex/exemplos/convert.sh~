@@ -1,1 +1,0 @@
-gs -dTextAlphaBits=4 -dGraphicsAlphaBits=2 -dMaxBitmap=500000000 -dNOPLATFONTS -dNOPROMPT -dNOPAUSE -sDEVICE=jpeg -dFirstPage=1 -dLastPage=237 -sOutputFile=image%d.jpg -dJPEGQ=100 -r300x300 -q estrut_basica_sem_pacotes.pdf -c quit

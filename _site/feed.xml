@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Agostinho Brito</title>
+    <description>Blog pessoal de Agostinho Brito</description>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    <updated>2018-08-20T20:53:19-03:00</updated>
+    <id></id>
+    <author>
+      <name>Agostinho Brito</name>
+    </author>
+    
+      <item>
+        <title>Blogs contribuintes</title>
+        
+          <description>&lt;p&gt;O seguintes autores e seus respectivos projetos estarão contribuindo para o editorial do ajustetecnico:&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://danielaraujorn.github.io/blog&quot;&gt;Daniel Araújo&lt;/a&gt; descrevendo um sistema que facilita o desenvolvimento de dispositivos de internet das coisas. Mostrará como uma aplicação em tempo real pode ser desenvolvida com módulos de visualização de dados, controle, sensoriamento e verificação de regras.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://teonacio.github.io/&quot;&gt;Bruno Teonácio&lt;/a&gt;, com seu algoritmo para detecção de assinaturas em folhas A4 utilizadas para marcação de presenças.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blogpedro048.github.io&quot;&gt;Pedro Victor&lt;/a&gt; e o jogo Snake em C++, mostrando como o desenvolvimento de funcionalidades de uma implementação jogo Snake no intuito de treinar, de uma forma divertida, variados conceitos da linguagem C++.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://deangelacgn.github.io&quot;&gt;Deangela Neves&lt;/a&gt;, apresentando O TEDFinder, uma mini search engine que utiliza técnicas de processamento de linguagem natural para rankear as palestras do TED mais relacionadas a uma dada query.&lt;/li&gt;
+  &lt;li&gt;Mateus Eloi Bastos e o housekeeper robotic, um robô que limpa os ambientes e compartilha informações sobre a situação da casa via internet para o seu dispositivo móvel ou computador.&lt;/li&gt;
+  &lt;li&gt;Matheus Pessoa stema de Secagem de Grãos com Supervisório	Sistema desenvolvido usando o microcontrolador Atmega328p, realizando a leitura de sensores de luminosidade e temperatura para executar uma curva de secagem de grãos. Para acompanhar o processo foi desenvolvido um aplicativo Android que se comunica por bluetooth com o sistema e plota um gráfico em tempo real.&lt;/li&gt;
+  &lt;li&gt;Alex Barros e programação de Trilhos de LED, ilustrando a representação de quatro trilhos de trem através de fitas de LED sem haver “choque” entre eles. Para isso, é feito uso de temporizadores e sistema de prioridade usando a linguagem de programação C++. A velocidade de cada “trem” também pode ser alterada através de potenciômetros.&lt;/li&gt;
+  &lt;li&gt;Mariaelena apresentando um POV rotativo, um display de led, onde a imagem é formada pela rotação dos leds.&lt;/li&gt;
+  &lt;li&gt;Daniel Menescal Jales e o Find-Travel-Type, um projeto de Inteligencia Artificial utilizando MLP.&lt;/li&gt;
+  &lt;li&gt;Luccas Bonato e a criação de um braço robótico para desenhar imagens através da técnica de pontilhismo.&lt;/li&gt;
+  &lt;li&gt;Gabriel Signoretti e um moderno sistema de monitoramento de alimentação canina, para plugar na Internet uma tigela de alimentação convencional. A tigela será turbinada com um Raspberry pi, usando a API REST para controle e monitoramento (Django ou Flask), OpenCV para analisar o conteúdo presente na tigela. Esforços estão sendo feitos de modo a permitir o controle remoto do sistema.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;&lt;a href=&quot;https://twitter.com/share?text=Blogs contribuintes&amp;url=/blog/2018/08/20/editorial/&amp;via=&quot; target=&quot;_blank&quot; title=&quot;tweet author @&quot;&gt;tweet author&lt;/a&gt; | &lt;a href=&quot;https://plus.google.com/share?url=/blog/2018/08/20/editorial/&quot; target=&quot;_blank&quot; title=&quot;Share on Google+&quot;&gt;share on Google+&lt;/a&gt;
+</description>
+        
+        <pubDate>Mon, 20 Aug 2018 00:00:00 -0300</pubDate>
+        <link>/blog/2018/08/20/editorial/</link>
+        <guid isPermaLink="true">/blog/2018/08/20/editorial/</guid>
+      </item>
+    
+      <item>
+        <title>Instalando Jekyll...</title>
+        
+          <description>&lt;p&gt;A criação de um blog com Jekyll pode ser feito com passos simples,
+como será mostrado nesse post. Funciona que é uma maravilha, mas é
+necessário que o sistema tenha disponível todo o aparato que o Jekyll
+precisa para operar e, normalmente, esse aparato não vem instalado por
+default num &lt;em&gt;fresh install&lt;/em&gt; do sistema.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;Os passos seguintes foram testados em um sistema GNU Linux Ubuntu,
+versão 18.04 &lt;em&gt;fresh install&lt;/em&gt;, ou seja, num sistema recém-instalado,
+sem nenhuma das ferramentas necessárias para uma execução adequada de
+um blog com Jekyll.&lt;/p&gt;
+
+&lt;p&gt;O primeiro passo foi a instalação é do próprio Jekyll. Basta digitar o comando&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt install jekyll
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;que praticamente todo o ferramental que necessário será
+instalado. Como o Jekyll é feito em ruby, todas as dependências para
+que funcione também são instaladas, como o próprio interpretador ruby,
+bibliotecas para a criação de um pequeno servidor web e formatadores de
+conteúdo, entre outras coisas.&lt;/p&gt;
+
+&lt;p&gt;O &lt;em&gt;ruby bundler&lt;/em&gt; também deve ser instalado. Trata-se de uma ferramenta
+que permite a instalação automática de pacotes em ruby que podem ser
+necessários para personalização da página &lt;em&gt;default&lt;/em&gt; que criada pelo
+Jekyll. Não necessariamente sua presença é necessária, mas vários
+temas criados para o Jekyll usam &lt;em&gt;gemas&lt;/em&gt; do ruby para melhorar
+aspectos visuais e introduzir elementos nas páginas. A incorporação
+dessa gemas é justamente tratada pelo &lt;code class=&quot;highlighter-rouge&quot;&gt;bundler&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt install bundler
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Daqui para frente a criação de um repositório local para o blog pode
+ser feita com comandos adaptados diretamento do próprio site
+&lt;a href=&quot;http://jekyllrb.com&quot;&gt;jekyllrb.com&lt;/a&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;jekyll new meublog
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;meublog
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Ou quase… Essa última instrução nem sempre funciona. No Ubuntu o
+bundler exige a presença de um arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; no diretório onde o
+blog foi criado (no caso, o diretório &lt;code class=&quot;highlighter-rouge&quot;&gt;meublog&lt;/code&gt;) e esse arquivo não é
+criado por default pelo Jekyll. Basta criar um arquivo vazio com
+qualquer editor de texto e nomeá-lo como &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; ou fazer isso na
+própria shell com o comando &lt;code class=&quot;highlighter-rouge&quot;&gt;touch&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;touch Gemfile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Agora é só repetir a instrução que invoca o bundler que o sistema será
+preparado sem erros.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Se a instalação tiver sido feita corretamente as seguintes mensagems
+deverão ser apresentadas no terminal:&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Configuration file: /home/user/meublog/_config.yml
+            Source: /home/user/meublog
+       Destination: /home/user/meublog/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+                    &lt;span class=&quot;k&quot;&gt;done in &lt;/span&gt;0.225 seconds.
+ Auto-regeneration: enabled &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/home/user/meublog'&lt;/span&gt;
+    Server address: http://127.0.0.1:4000/
+  Server running... press ctrl-c to stop.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;O Jekyll deverá processar as páginas criadas localmente,
+convertendo-as para HTML e hospedando-as no diretório _site, de onde
+as páginas são dispensadas para o navegador.&lt;/p&gt;
+
+&lt;p&gt;Agora é só acessar o endereço
+&lt;a href=&quot;http://127.0.0.1:4000/&quot;&gt;http://127.0.0.1:4000&lt;/a&gt; no seu navegador e o
+esqueleto do blog deverá ser mostrado.&lt;/p&gt;
+
+&lt;p&gt;Mantenha o terminal onde o comando &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle&lt;/code&gt; foi lançado, para não
+finalizar o processo que executa o pequeno servidor web e ainda poder
+acompanhar todas as alterações realizadas no desenvolvimento dos
+posts.&lt;/p&gt;
+
+&lt;p&gt;Caso a página hospedada no GitHub pages já esteja sendo usada para
+outros fins, é possível também hospedá-la em um subdiretório. Para
+isso, os seguintes passos devem ser realizados:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Criar um repositório com um nome específico no GitHub. Ex: &lt;code class=&quot;highlighter-rouge&quot;&gt;blog&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Clonar o repositório remoto na máquina local. Ex: &lt;code class=&quot;highlighter-rouge&quot;&gt;git clone
+git@github.com:usuario/blog.git&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Criar o blog nesse diretório usando Jekyll. Ex: &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll new blog&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Entre no diretório criado e execute o comando &lt;code class=&quot;highlighter-rouge&quot;&gt;git checkout -b
+gh-pages&lt;/code&gt;. Todas as páginas do GitHub são lançadas nesse branch
+denominado &lt;code class=&quot;highlighter-rouge&quot;&gt;gh-pages&lt;/code&gt;. Logo, mais uma página ficará disponível para
+acesso pelo GitHub pages.&lt;/li&gt;
+  &lt;li&gt;Atualize o arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;, incluindo as seguintes linhas:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;baseurl: &quot;/blog&quot;
+production_url : http://usuario.github.io.com/blog
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Os procedimentos descritos aqui servem apenas para criar um esqueleto
+bem rudimentar para um blog baseado em Jekyll. A criação de um blog
+com qualidade visual diferenciada é possível e será fruto de um post
+futuro.&lt;/p&gt;
+
+&lt;p&gt;Para os curiosos, é possível trabalhar com temas em Jekyll, como
+sugerem sites como &lt;a href=&quot;https://jekyllthemes.io/&quot;&gt;jekyllthemes.io/&lt;/a&gt;. O
+próprio &lt;a href=&quot;https://github.com&quot;&gt;github.com&lt;/a&gt; suporta Jekyll e, inclusive,
+ajuda a criação de blogs com alguns temas sugeridos.&lt;/p&gt;
+&lt;hr&gt;&lt;a href=&quot;https://twitter.com/share?text=Instalando Jekyll...&amp;url=/blog/2018/08/01/install-jekyll-blog/&amp;via=&quot; target=&quot;_blank&quot; title=&quot;tweet author @&quot;&gt;tweet author&lt;/a&gt; | &lt;a href=&quot;https://plus.google.com/share?url=/blog/2018/08/01/install-jekyll-blog/&quot; target=&quot;_blank&quot; title=&quot;Share on Google+&quot;&gt;share on Google+&lt;/a&gt;
+</description>
+        
+        <pubDate>Wed, 01 Aug 2018 00:00:00 -0300</pubDate>
+        <link>/blog/2018/08/01/install-jekyll-blog/</link>
+        <guid isPermaLink="true">/blog/2018/08/01/install-jekyll-blog/</guid>
+      </item>
+    
+      <item>
+        <title>Alô, mundo!</title>
+        
+          <description>&lt;p&gt;Blog são bastante dinâmicos e dão trabalho para escrever e manter. Por
+sorte, existem iniciativas que facilitam o trabalho dos autores para
+criar seus posts e manter páginas elegantes para todos apreciarem (e
+criticarem).&lt;/p&gt;
+
+&lt;p&gt;Quando me refiro a iniciativas, trato de ferramentas apropriadas
+que foram criadas especificamente para escrita de blogs.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;Já usei algumas delas: blogspot, wordpress, alguns ensaios com
+asciidoctor, mas este blog foi construído usando
+&lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;. Em suma, jekyll é uma ferramenta
+simples que visa transformar texto simples em websites. É feito em
+ruby, é de uso livre e é suportado pelo serviço &lt;a href=&quot;https://pages.github.com/&quot;&gt;Github
+Pages&lt;/a&gt;. O próprio Github possui ferramentas
+online para ajudar a dar os primeiros passos na criação de um blog
+pessoal.&lt;/p&gt;
+
+&lt;p&gt;Jekyll vai além, suportando a criação de temas que embelezam as
+páginas e que podem ser adaptados para gostos pessoais.&lt;/p&gt;
+
+&lt;p&gt;Esse site foi feito com um fork do tema &lt;a href=&quot;https://github.com/dyndna/lanyon-plus&quot;&gt;Lanyon
+Plus&lt;/a&gt;. O tema, junto com o
+conjunto de páginas de layouts pré-definidos permitem criar posts que
+são naturalmente suportados pelo Github pages e tornam a edição dos
+posts algo bem tranquilo de fazer.&lt;/p&gt;
+
+&lt;p&gt;Os posts são escritos em Markdown, uma espécie de forma de marcar o
+texto simples para que, quando processado, as marcações signifiquem
+coisas especiais para serem exibidas. Com Markdown, espera-se que o
+processador escrito em Jekyll interprete as marcações e formate belas
+páginas nos posts, enquanto o processo de escrita é facilitado.&lt;/p&gt;
+
+&lt;p&gt;Tem uma lista de dicas
+&lt;a href=&quot;https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet&quot;&gt;Aqui&lt;/a&gt;
+com as marcações mais comuns. Dando uma olhada rápida dá para se
+compreender como faz.&lt;/p&gt;
+
+&lt;p&gt;Vamos procurar fazer alguns exemplos em outros posts para mostrar
+dicas de uso.&lt;/p&gt;
+
+&lt;p&gt;Valeu!&lt;/p&gt;
+&lt;hr&gt;&lt;a href=&quot;https://twitter.com/share?text=Alô, mundo!&amp;url=/blog/2018/06/12/alo-mundo/&amp;via=&quot; target=&quot;_blank&quot; title=&quot;tweet author @&quot;&gt;tweet author&lt;/a&gt; | &lt;a href=&quot;https://plus.google.com/share?url=/blog/2018/06/12/alo-mundo/&quot; target=&quot;_blank&quot; title=&quot;Share on Google+&quot;&gt;share on Google+&lt;/a&gt;
+</description>
+        
+        <pubDate>Tue, 12 Jun 2018 00:00:00 -0300</pubDate>
+        <link>/blog/2018/06/12/alo-mundo/</link>
+        <guid isPermaLink="true">/blog/2018/06/12/alo-mundo/</guid>
+      </item>
+    
+  </channel>
+</rss>

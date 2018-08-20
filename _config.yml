@@ -47,28 +47,28 @@ exclude: ["lib", "config.rb", "Gemfile", "Capfile", "Gemfile.lock", "config", "l
 
 # About/contact
 author:
-  name:              Ajuste Técnico
-  url:               http://ajustetecnico.github.io
+  name:              Agostinho Brito
+  url:               http://agostinhobritojr.github.io
   avatar:         foo.png
   #email:           
 
 # Owner/author information
 owner:
-  name:           Ajuste Técnico
+  name:           Agostinho Brito Jr.
   avatar:         foo.png
   #email:          
   # Use the coder's toolbox at http://coderstoolbox.net/string/#!encoding=xml&action=encode&charset=us_ascii to encode your description into XML string
   description:
   # Social networking links used in footer. Update and remove as you like.
-  twitter:        ajustetecnico
-  facebook:       ajuste.tecnico.75
-  github:         ajustetecnico
+#  twitter:        ajustetecnico
+#  facebook:       ajus.75
+  github:         agostinhobritojr
   stackexchange:  
   linkedin:       
   instagram:      
   flickr:
   tumblr:  
-  google_plus:    https://plus.google.com/+ajustetecnico
+  google_plus:    https://plus.google.com/+agostinhobritojr
   # orcid and google scholar IDs are different than standard username.
   orcid: 0000-0002-2054-2339
   gscholar: agostinhobritojr
@@ -80,16 +80,20 @@ links:
     url: /
   - title: <i class="iconside iconm-user"></i> About
     url: /about/
+  - title: <i class="fa fa-graduation-cap"></i> Cursos
+    url: /cursos/
+  - title: <i class="fa fa-leanpub"></i> Tutoriais
+    url: /tutoriais/
 
 # Google Custom Search:
-google_search:  013706804520974097595:ygbbmrheava
+# google_search:  013706804520974097595:ygbbmrheava
 
 # Twitter stream widget:
 # Replace xyz123abc with your twitter widget id from https://twitter.com/settings/widgets
-twitter_widget_id: ajustetecnico
+twitter_widget_id: agostinhobritojr
 
 # Add disqus username for Disqus comment board:
-disqus_shortname: ajustetecnico
+disqus_shortname: agostinhobritojr
 
 # Analytics and webmaster tools stuff goes here
 #google_analytics:   xyz123abc
