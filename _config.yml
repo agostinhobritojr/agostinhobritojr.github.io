@@ -80,6 +80,10 @@ links:
     url: /
   - title: <i class="iconside iconm-user"></i> About
     url: /about/
+  - title: <i class="fa fa-graduation-cap"></i> Cursos
+    url: /cursos/
+  - title: <i class="fa fa-leanpub"></i> Tutoriais
+    url: /tutoriais/
 
 # Google Custom Search:
 google_search:  013706804520974097595:ygbbmrheava
