@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2 Patchlevel 5e -->
+
+<!-- CreationDate: Sun Aug  9 09:00:20 2015 -->
+
+<!-- Magnification: 1.050 -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="3.5733154in"
+   height="2.6444445in"
+   viewBox="834 125 4341.5783 3200.4076"
+   id="svg4155"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="activeedge.svg">
+  <metadata
+     id="metadata4331">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4329">
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5712"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         id="path5714"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5708"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         id="path5710"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5704"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         id="path5706"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker5700"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path5702"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path5443"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1871"
+     inkscape:window-height="1056"
+     id="namedview4327"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="3.5205688"
+     inkscape:cx="107.66561"
+     inkscape:cy="183.5847"
+     inkscape:window-x="49"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4155" />
+  <rect
+     id="rect4159"
+     style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+     rx="0"
+     height="236"
+     width="377"
+     y="2352.6304"
+     x="2189.3486" />
+  <rect
+     id="rect4161"
+     style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+     rx="0"
+     height="236"
+     width="377"
+     y="2352.6304"
+     x="2567.3486" />
+  <rect
+     id="rect4163"
+     style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+     rx="0"
+     height="236"
+     width="377"
+     y="2352.6304"
+     x="2945.3486" />
+  <rect
+     id="rect4165"
+     style="fill:#ffbfbf;fill-opacity:1;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+     rx="0"
+     height="236"
+     width="377"
+     y="2352.6304"
+     x="3323.3486" />
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in"
+     id="text4221"
+     font-size="152"
+     font-weight="normal"
+     font-style="normal"
+     y="2527.2964"
+     x="2662.3486"
+     xml:space="preserve"
+     sodipodi:linespacing="125%">dx</text>
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in"
+     id="text4223"
+     font-size="152"
+     font-weight="normal"
+     font-style="normal"
+     y="2512.1929"
+     x="2331.3486"
+     xml:space="preserve"
+     sodipodi:linespacing="125%">x</text>
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in"
+     id="text4225"
+     font-size="152"
+     font-weight="normal"
+     font-style="normal"
+     y="2512.564"
+     x="3040.3486"
+     xml:space="preserve"
+     sodipodi:linespacing="125%">dy</text>
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in"
+     id="text4245"
+     font-size="152"
+     font-weight="normal"
+     font-style="normal"
+     y="810.70386"
+     x="1913.5781"
+     xml:space="preserve"
+     sodipodi:linespacing="125%">Aresta P4P5</text>
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in"
+     id="text4247"
+     font-size="152"
+     font-weight="normal"
+     font-style="normal"
+     y="810.70386"
+     x="3755.5781"
+     xml:space="preserve"
+     sodipodi:linespacing="125%">Aresta P5P1</text>
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in"
+     id="text4253"
+     font-size="152"
+     font-weight="normal"
+     font-style="normal"
+     y="2305.6304"
+     x="2331.3486"
+     xml:space="preserve"
+     sodipodi:linespacing="125%">Aresta PaPb</text>
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in"
+     id="text4279"
+     font-size="152"
+     font-weight="normal"
+     font-style="normal"
+     y="2494.6304"
+     x="4173.3486"
+     xml:space="preserve"
+     sodipodi:linespacing="125%">Próxima</text>
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in"
+     id="text4281"
+     font-size="152"
+     font-weight="normal"
+     font-style="normal"
+     y="2683.6304"
+     x="4079.3486"
+     xml:space="preserve"
+     sodipodi:linespacing="125%">intersecção</text>
+  <g
+     id="g5884"
+     transform="translate(-23.421868,-1058.2962)">
+    <rect
+       x="1086"
+       y="1181"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffff00;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4167" />
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="850"
+       y="1354.3301"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4227"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">8</text>
+    <polyline
+       points="1086,1181 1464,1417 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4283" />
+    <polyline
+       points="1464,1181 1086,1417 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4285" />
+  </g>
+  <g
+     id="g5878"
+     transform="translate(-23.421868,-1159.1715)">
+    <rect
+       x="1086"
+       y="1653"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffff00;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4169" />
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="850"
+       y="1826.4043"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4229"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">7</text>
+    <polyline
+       points="1086,1653 1464,1889 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4287" />
+    <polyline
+       points="1464,1653 1086,1889 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4289" />
+  </g>
+  <g
+     id="g5740"
+     transform="translate(-23.421868,-1462.9909)">
+    <rect
+       x="1086"
+       y="3070"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffff00;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4171" />
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="850"
+       y="3243.9043"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4235"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">4</text>
+    <polyline
+       points="1086,3070 1464,3307 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4291" />
+    <polyline
+       points="1464,3070 1086,3307 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4293" />
+  </g>
+  <g
+     id="g5716"
+     transform="translate(-23.421868,-1564.6711)">
+    <rect
+       x="1086"
+       y="3543"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffff00;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4173" />
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="850"
+       y="3716.3301"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4237"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">3</text>
+    <polyline
+       points="1086,3543 1464,3779 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4295" />
+    <polyline
+       points="1464,3543 1086,3779 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4297" />
+  </g>
+  <g
+     id="g5722"
+     transform="translate(-23.421868,-1665.5462)">
+    <rect
+       x="1086"
+       y="4015"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffff00;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4175" />
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="850"
+       y="4189.4062"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4239"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">2</text>
+    <polyline
+       points="1086,4015 1464,4251 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4299" />
+    <polyline
+       points="1464,4015 1086,4251 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4301" />
+  </g>
+  <g
+     id="g5728"
+     transform="translate(-23.421868,-1767.4213)">
+    <rect
+       x="1086"
+       y="4488"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffff00;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4177" />
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="850"
+       y="4661.4043"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4241"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">1</text>
+    <polyline
+       points="1086,4488 1464,4724 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4303" />
+    <polyline
+       points="1464,4488 1086,4724 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4305" />
+  </g>
+  <g
+     id="g5734"
+     transform="translate(-23.421868,-1868.2962)">
+    <rect
+       x="1086"
+       y="4960"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffff00;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4179" />
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="850"
+       y="5133.3301"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4243"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">0</text>
+    <polyline
+       points="1086,4960 1464,5196 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4307" />
+    <polyline
+       points="1464,4960 1086,5196 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4309" />
+  </g>
+  <polyline
+     id="polyline4323"
+     style="fill:none;stroke:#000000;stroke-width:8.00549984;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#Arrow1Lend)"
+     points="3543,425 4092,425 "
+     transform="translate(-77.651408,2045.6303)" />
+  <g
+     id="g5812"
+     transform="translate(-23.421868,-1260.0461)">
+    <rect
+       x="1086"
+       y="2125"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffbfbf;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4185" />
+    <polyline
+       transform="translate(0,23)"
+       points="1275,2220 1842,2220 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#marker5708)"
+       id="polyline4213" />
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="850"
+       y="2298.3301"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4231"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">6</text>
+    <rect
+       x="1842"
+       y="2125"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4189" />
+    <rect
+       x="2220"
+       y="2125"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4191" />
+    <rect
+       x="2598"
+       y="2125"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4193" />
+    <rect
+       x="2976"
+       y="2125"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffbfbf;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4217" />
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="2362"
+       y="2298.4043"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4255"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">1</text>
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="2740"
+       y="2298.3301"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4257"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">3</text>
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="1889"
+       y="2297.3281"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4259"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">1.5</text>
+    <polyline
+       transform="translate(0,23)"
+       points="3118,2220 3685,2220 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#marker5712)"
+       id="polyline4319" />
+    <rect
+       x="4818"
+       y="2125"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffff00;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4181" />
+    <rect
+       x="3685"
+       y="2125"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4201" />
+    <rect
+       x="4062"
+       y="2125"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4203" />
+    <rect
+       x="4440"
+       y="2125"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4205" />
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="3826"
+       y="2298.4043"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4267"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">1</text>
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="4582"
+       y="2297.3281"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4275"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">5</text>
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="4204"
+       y="2298.3301"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4277"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">0</text>
+    <polyline
+       transform="translate(0,-0.5)"
+       points="4818,2125 5196,2362 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4311" />
+    <polyline
+       transform="translate(0,-0.5)"
+       points="5196,2125 4818,2362 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4313" />
+  </g>
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in"
+     id="text4249"
+     font-size="152"
+     font-weight="normal"
+     font-style="normal"
+     y="1641.6504"
+     x="1913.0215"
+     xml:space="preserve"
+     sodipodi:linespacing="125%">Aresta P2P3</text>
+  <text
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in"
+     id="text4251"
+     font-size="152"
+     font-weight="normal"
+     font-style="normal"
+     y="1641.6504"
+     x="3752.832"
+     xml:space="preserve"
+     sodipodi:linespacing="125%">Aresta P3P4</text>
+  <g
+     id="g5856"
+     transform="translate(-23.421868,-1361.9211)">
+    <rect
+       x="1086"
+       y="2598"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffbfbf;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4187" />
+    <polyline
+       transform="translate(0,24)"
+       points="1275,2692 1842,2692 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#marker5704)"
+       id="polyline4215" />
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="850"
+       y="2787"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4233"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">5</text>
+    <rect
+       x="1842"
+       y="2598"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4195" />
+    <rect
+       x="2220"
+       y="2598"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4197" />
+    <rect
+       x="2598"
+       y="2598"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4199" />
+    <rect
+       x="2976"
+       y="2598"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffbfbf;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4219" />
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="1984"
+       y="2771.3301"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4261"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">8</text>
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="2362"
+       y="2771.3301"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4263"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">0</text>
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="2740"
+       y="2771.4043"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4265"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">4</text>
+    <polyline
+       transform="translate(0,24)"
+       points="3118,2692 3685,2692 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;marker-end:url(#marker5700)"
+       id="polyline4321" />
+    <rect
+       x="4818"
+       y="2598"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffff00;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4183" />
+    <rect
+       x="3685"
+       y="2598"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4207" />
+    <rect
+       x="4062"
+       y="2598"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4209" />
+    <rect
+       x="4440"
+       y="2598"
+       width="377"
+       height="236"
+       rx="0"
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect4211" />
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="3779"
+       y="2770.3281"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4269"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">7.5</text>
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="4157"
+       y="2771.4043"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4271"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">-1</text>
+    <text
+       sodipodi:linespacing="125%"
+       xml:space="preserve"
+       x="4582"
+       y="2772.4062"
+       font-style="normal"
+       font-weight="normal"
+       font-size="152"
+       id="text4273"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:151.99986267px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:0.025in">2</text>
+    <polyline
+       points="4818,2598 5196,2834 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4315" />
+    <polyline
+       points="5196,2598 4818,2834 "
+       style="fill:none;stroke:#000000;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter"
+       id="polyline4317" />
+  </g>
+</svg>

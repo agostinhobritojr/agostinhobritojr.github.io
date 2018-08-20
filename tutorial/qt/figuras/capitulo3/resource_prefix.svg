@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="250"
+   height="250"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="New document 1">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="195.59163"
+     inkscape:cy="143.39834"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="975"
+     inkscape:window-height="744"
+     inkscape:window-x="49"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-802.36218)">
+    <g
+       id="g3910"
+       transform="matrix(1.0271415,0,0,1.2062785,-32.501403,-9.1965684)">
+      <rect
+         transform="translate(0,652.36218)"
+         y="20.714285"
+         x="32.142857"
+         height="206.42857"
+         width="109.28571"
+         id="rect3804"
+         style="color:#000000;fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <rect
+         y="673.25763"
+         x="165.18755"
+         height="206.42857"
+         width="109.28571"
+         id="rect3804-1"
+         style="color:#000000;fill:#666666;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <text
+         transform="scale(0.654329,1.5282832)"
+         sodipodi:linespacing="125%"
+         id="text3826"
+         y="455.93732"
+         x="51.05019"
+         style="font-size:19.08286476px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+         xml:space="preserve"><tspan
+           y="455.93732"
+           x="51.05019"
+           id="tspan3828"
+           sodipodi:role="line">Prefixo: Botões</tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path3830"
+         d="m 141.67389,700.55625 -109.531033,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <text
+         transform="scale(0.7321706,1.3658019)"
+         sodipodi:linespacing="125%"
+         id="text3832"
+         y="533.92377"
+         x="58.961235"
+         style="font-size:20.11603165px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:TeX Gyre Cursor;-inkscape-font-specification:TeX Gyre Cursor"
+         xml:space="preserve"><tspan
+           y="533.92377"
+           x="58.961235"
+           id="tspan3834"
+           sodipodi:role="line">Salvar.png</tspan></text>
+      <text
+         transform="scale(0.7321706,1.3658019)"
+         sodipodi:linespacing="125%"
+         id="text3832-1"
+         y="563.63025"
+         x="64.361168"
+         style="font-size:20.11603165px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:TeX Gyre Cursor;-inkscape-font-specification:TeX Gyre Cursor"
+         xml:space="preserve"><tspan
+           y="563.63025"
+           x="64.361168"
+           id="tspan3834-8"
+           sodipodi:role="line">Abrir.png</tspan></text>
+      <text
+         transform="scale(0.7321706,1.3658019)"
+         sodipodi:linespacing="125%"
+         id="text3832-2"
+         y="594.05798"
+         x="82.241402"
+         style="font-size:20.11603165px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:TeX Gyre Cursor;-inkscape-font-specification:TeX Gyre Cursor"
+         xml:space="preserve"><tspan
+           y="594.05798"
+           x="82.241402"
+           id="tspan3834-85"
+           sodipodi:role="line">OK.jpg</tspan></text>
+      <text
+         transform="scale(0.56425871,1.7722367)"
+         sodipodi:linespacing="125%"
+         id="text3826-8"
+         y="392.6062"
+         x="295.21646"
+         style="font-size:16.45605278px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+         xml:space="preserve"><tspan
+           y="392.6062"
+           x="295.21646"
+           id="tspan3828-9"
+           sodipodi:role="line">Prefixo: <tspan
+   id="tspan3908"
+   style="font-style:italic;-inkscape-font-specification:Sans Bold Italic">Background</tspan></tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path3830-0"
+         d="m 274.55491,699.546 -109.53103,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <text
+         transform="scale(0.7321706,1.3658019)"
+         sodipodi:linespacing="125%"
+         id="text3832-8"
+         y="550.75635"
+         x="234.98723"
+         style="font-size:20.11603165px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:TeX Gyre Cursor;-inkscape-font-specification:TeX Gyre Cursor"
+         xml:space="preserve"><tspan
+           y="550.75635"
+           x="234.98723"
+           id="tspan3834-82"
+           sodipodi:role="line">Bck_red.png</tspan></text>
+      <text
+         transform="scale(0.7321706,1.3658019)"
+         sodipodi:linespacing="125%"
+         id="text3832-1-7"
+         y="581.92712"
+         x="226.72916"
+         style="font-size:20.11603165px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:TeX Gyre Cursor;-inkscape-font-specification:TeX Gyre Cursor"
+         xml:space="preserve"><tspan
+           y="581.92712"
+           x="226.72916"
+           id="tspan3834-8-1"
+           sodipodi:role="line">Bck_blue.png</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:20.11603165px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:TeX Gyre Cursor;-inkscape-font-specification:TeX Gyre Cursor"
+       x="263.73059"
+       y="593.3183"
+       id="text3832-2-4"
+       sodipodi:linespacing="125%"
+       transform="scale(0.7321706,1.3658019)"><tspan
+         sodipodi:role="line"
+         id="tspan3834-85-8"
+         x="263.73059"
+         y="593.3183" /></text>
+  </g>
+</svg>

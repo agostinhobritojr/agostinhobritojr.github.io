@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="300"
+   height="65"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="rss_diagrama.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.0000001"
+     inkscape:cx="247.80042"
+     inkscape:cy="42.372618"
+     inkscape:document-units="px"
+     inkscape:current-layer="g3038"
+     showgrid="false"
+     inkscape:window-width="1375"
+     inkscape:window-height="876"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     showborder="true" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-987.36218)">
+    <g
+       id="g3038"
+       transform="matrix(1.021446,0,0,1.1125807,-33.407289,-29.863711)">
+      <g
+         transform="translate(287.01,-57.063889)"
+         id="g2993" />
+      <g
+         id="g3090"
+         transform="matrix(0.99337337,0,0,1,-153.4403,0)">
+        <g
+           id="g3081">
+          <g
+             transform="translate(287.01,-57.063914)"
+             id="g3072">
+            <rect
+               y="972.07892"
+               x="64.089371"
+               height="56.939163"
+               width="131.1395"
+               id="rect2985"
+               style="fill:none;stroke:#000000;stroke-width:1.39442956px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+            <text
+               transform="scale(0.75550607,1.3236161)"
+               sodipodi:linespacing="125%"
+               id="text2989"
+               y="761.76288"
+               x="126.47433"
+               style="font-size:15.63455296px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+               xml:space="preserve"><tspan
+                 y="761.76288"
+                 x="126.47433"
+                 id="tspan2991"
+                 sodipodi:role="line">Módulo RSS</tspan></text>
+          </g>
+          <g
+             transform="matrix(1.136088,0,0,0.61471132,212.29932,359.94376)"
+             id="g3030">
+            <path
+               style="fill:none;stroke:#000000;stroke-width:2.2079401px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+               d="m 118.20561,952.16704 -73.993669,0"
+               id="path3022"
+               inkscape:connector-curvature="0" />
+            <path
+               sodipodi:type="star"
+               style="fill:#000000"
+               id="path3028"
+               sodipodi:sides="3"
+               sodipodi:cx="62.25"
+               sodipodi:cy="923.98718"
+               sodipodi:r1="11.125702"
+               sodipodi:r2="5.562851"
+               sodipodi:arg1="0"
+               sodipodi:arg2="1.0471976"
+               inkscape:flatsided="true"
+               inkscape:rounded="0"
+               inkscape:randomized="0"
+               d="m 73.375702,923.98718 -16.688553,9.63514 0,-19.27028 z"
+               inkscape:transform-center-x="-2.7814256"
+               transform="translate(47.5,28.125)" />
+          </g>
+        </g>
+        <text
+           xml:space="preserve"
+           style="font-size:15.51149559px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           x="204.56096"
+           y="867.45404"
+           id="text3034"
+           sodipodi:linespacing="125%"
+           transform="scale(0.91239643,1.0960148)"><tspan
+             sodipodi:role="line"
+             id="tspan3036"
+             x="204.56096"
+             y="867.45404">atualizar()</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

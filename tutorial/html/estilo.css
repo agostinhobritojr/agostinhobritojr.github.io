@@ -1,0 +1,410 @@
+/* CSS2 Stylesheet for _DocBook: The Definitive Guide_
+ * Copyright (C) 1999, 2000, 2001, 2002 O'Reilly & Associates, Inc.
+ *
+ * $Id: defguide.css,v 1.3 2005/11/01 14:17:52 nwalsh Exp $
+ */
+
+A{ 
+    text-decoration:none; 
+    font-weight: normal;
+    -o-transition:color 1s ease-out, background 1s ease-in;
+    -ms-transition:color 1s ease-out, background 1s ease-in;
+    -moz-transition:color 1s ease-out, background 1s ease-in;
+    -webkit-transition:color 1s ease-out, background 1s ease-in;
+    /* ...and now override with proper CSS property */
+    transition:color 1s ease-out, background 1s ease-in;
+}
+
+A.navheader{
+    color: #808080;
+    font-size: 14pt;
+}
+
+p.copyright,
+A.navfoot{
+    color: #808080;
+    font-size: 12pt;
+}
+A:hover {
+    color: red;
+}
+
+A:visited{
+   /* color: #00ccff; */
+}
+
+table{
+    border-width:2px;
+}
+
+table.navfoot{
+    border-width:2px;
+    color: white;
+}
+
+div.example-output {
+    border-style: solid;
+    border-width: px;
+    border-left-width: 2px;
+    border-color: black;
+}
+
+.figure {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    text-align: center;
+}
+
+
+/*.prompt{
+    margin-left:-30px;
+}*/
+
+.programlisting {
+  padding: 10px;
+    font-size: 18px;
+//  font-weight: 200;
+  line-height: 30px;
+  color: inherit;
+  background-color: #eeeeee;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+/*
+.programlisting {
+    padding-left: 15px;    
+    margin-left: 2em;
+    padding: 0.5em;
+    font-family: "Courier 10 pitch", courier;
+    background-color: #EEEEEE;
+    border-left: solid #009999 2px;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+}
+*/
+
+pre.screen {
+    border: solid #009999 1px;
+    padding: 10px;
+    background: #E8E8E8;
+    font-family: "Courier 10 pitch", courier;
+    font-size: 18px;
+  //  font-weight: 200;
+    line-height: 30px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.token{
+    font-family: "Courier 10 pitch", courier;
+    font-weight: bold;
+}
+
+code{
+    font-family: "Courier 12 pitch", courier;
+    font-weight: bold;
+}
+
+.filename, .literal{
+    font-family: "Courier 10 pitch", courier;
+}
+
+.function{
+    font-family: "Courier 10 pitch", courier;
+}
+
+hl-comment{
+    color: yellow;
+}
+.computeroutput{
+    font-family: "Courier 10 pitch", courier;
+}
+pre.programlisting {
+    background: #E8E8E8;
+}
+
+div.example-source {
+    background: #E8E8E8;
+}
+
+/*
+p{ 
+    margin-left, margin-right: 10px;
+    text-indent: 30px;
+}*/
+
+dt.term{
+    font-weight: bold;
+}
+sect1{ 
+    margin-left, margin-right: 10px;
+}
+p.publisher {
+    text-align: center;
+}
+body{
+    font-family: "Helvetica Neue", Helvetica, sans-serif, arial;
+    font-size: 14pt;
+    line-height: 25px;
+    color: #333333;
+    background-color: #ffffff;
+
+}
+body.book {
+/*  background-image: url(figures/htmltitlepage.gif); */
+/*  background-repeat: no-repeat; */
+/*  background-position: top center; */
+    text-align: justify;
+}
+
+div.component-title {
+    text-align: right;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: sans-serif;
+}
+
+h1.label {
+    font-size: 150pt;
+    font-weight: normal;
+    font-family: sans-serif;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+div.component-title h1.title {
+    font-family: sans-serif;
+    margin-top: 0px;
+    padding-top: 0px;
+    margin-right: 20px;
+    font-size: 36pt;
+}
+
+p.alpha-version {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+hr.component-separator {
+    height: 1px;
+}
+
+.table{
+  text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+    
+}
+
+div.refentry div.titlepage {
+    margin-left: 20px;
+}
+
+div.refentry div.titlepage h1.title {
+    margin-left: -20px;
+    margin-bottom: 0px;
+    font-size: 36pt;
+}
+
+body {
+    margin-top: 0px;
+    padding-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+
+}
+
+th.navheader{
+    color: #808080;
+    font-size: 14pt;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-decoration: none;
+    font-weight: 200;
+    min-height: 40px;
+}
+
+/*th.navheader:hover{
+    color: gray;
+}*/
+
+div.navheader {
+    padding-top: 2px;
+    background-color: black;
+    padding-right: 0px;
+    *position: relative;
+    *z-index: 2;
+    margin-bottom: 20px;
+    overflow: visible;
+    margin-bottom: 20px;
+    margin-left: 0;
+    list-style: none;
+}
+
+hr{
+    height: 0px;
+    border-top: 0px dashed #f00;
+    border-bottom: 0px solid #f00;
+}
+
+th.navfoot,
+div.navfooter {
+    background-color: black;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    font-decoration: none;
+    font-size: 14px;
+    line-height: 20px;
+    padding-top: 0px;
+    color: #808080;
+    font-size: 14px;
+    font-weight: 200;
+}
+
+div.copyrightfooter {
+    background-color: #85caca;
+    margin-top: 0px;
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 2px;
+}
+
+div.copyrightfooter p {
+    margin-top: 0px;
+    padding-top: 10px;
+}
+
+div.refentry,
+div.preface,
+div.chapter,
+div.appendix,
+div.reference,
+div.part,
+div.bibliography,
+div.glossary,
+div.index,
+div.colophon,
+div.legalnotice {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+div.book {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+thead {
+    background-color: black;
+    color: white;
+}
+
+table,
+tbody,thead,tfoot,
+tr,td {
+    border-color: #8F8F8F;
+}
+
+div.informaltable{
+    padding-bottom: 1em;
+}
+
+.pattern { font-size: small; }
+
+dt {
+    padding-left: 1in;
+    text-indent: -1in;
+}
+
+/* ======================================================================
+   Annotations
+   */
+
+div.annotation-list{
+    visibility: hidden;
+}
+
+div.annotation-nocss { 
+    position: absolute;
+    visibility: hidden;
+}
+
+div.annotation-popup {
+    position: absolute;
+    z-index: 4;
+    background-color: white;
+    visibility: hidden;
+    padding: 0px;
+    margin: 2px;
+    border: solid black 1px;
+    width: 200px
+}
+
+div.annotation-title { 
+    padding: 1px;
+    background-color: #afcfcf;
+    font-weight: bold;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+
+div.annotation-body{
+    padding: 2px;
+                     }
+
+div.annotation-body p { 
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+div.annotation-close { 
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}
+
+div.orderedlist{
+    margin:0;
+    text-indent:0px;
+}
+
+li{
+    margin-left: 0;
+    padding-left: 0
+    list-style-position: outside;
+}
+
+ul ol {
+  padding: 0;
+  margin: 0 0 10px 25px;
+  list-style-position: outside;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-bottom: 0;
+}
+
+ul.unstyled,
+ol.unstyled {
+  margin-left: 0;
+//  list-style: none;
+}
+

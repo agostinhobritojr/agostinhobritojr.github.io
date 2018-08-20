@@ -1,0 +1,85 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 4. Marca&ccedil;&atilde;o basica de texto</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Tutorial de HTML"><link rel="up" href="index.html" title="Tutorial de HTML"><link rel="prev" href="cha.marcacao.html" title="Cap&iacute;tulo 3. Marca&ccedil;o&#7869;s de documentos"><link rel="next" href="ancora.html" title="Cap&iacute;tulo 5. Cria&ccedil;&atilde;o de &acirc;ncora (links)"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/SVG"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="/mathjax/MathJax.js"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="cha.marcacao.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 4. Marca&ccedil;&atilde;o basica de texto</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="ancora.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="cha.marcacao.basica"></a>Cap&iacute;tulo 4. Marca&ccedil;&atilde;o  basica de texto</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="section"><a href="cha.marcacao.basica.html#sec.cabecalho">4.1. Cabe&ccedil;alho</a></span></dt><dt><span class="section"><a href="cha.marcacao.basica.html#sec.paragrafos.linha">4.2.  Par&aacute;grafos e quebras de linha </a></span></dt></dl></div>
+    
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.cabecalho"></a>4.1. Cabe&ccedil;alho</h2></div></div></div>
+      
+      <p>Os cabe&ccedil;alhos s&atilde;o normalmente usados para defini&ccedil;&atilde;o de t&iacute;tulos e subt&iacute;tulos em uma p&aacute;gina, ou seja, para a divis&atilde;o do documento em se&ccedil;&otilde;es. Existem seis n&iacute;veis de cabe&ccedil;alhos, numerados de 1 a 6, sendo o de n&uacute;mero 1 o n&iacute;vel de maior destaque, considerado o cabe&ccedil;alho principal e geralmente usado no topo do documento. O de n&uacute;mero 6 &eacute; o menor de todos e raramente &eacute; usado. Os cabe&ccedil;alhos s&atilde;o exibidos em letras maiores e em negrito. As marca&ccedil;&otilde;es relativas aos cabe&ccedil;alhos s&atilde;o definidas da forma:</p>
+
+      <pre class="programlisting"><span class="command"><strong>&lt;Hy&gt; texto do cabe&ccedil;alho &lt;/Hy&gt;</strong></span></pre>
+
+      <p>Neste caso, y &eacute; um n&uacute;mero entre 1 e 6, especificando o n&iacute;vel de cabe&ccedil;alho. Quanto menor o n&uacute;mero, maior o tamanho da fonte do cabe&ccedil;alho a ser desenhado. Experimente agora Colocar o seu nome em destaque utilizando o marcador <span class="command"><strong>&lt;Hy&gt;</strong></span>, como mostra o exemplo a seguir. Aproveite tamb&eacute;m e acrescente mais informa&ccedil;&otilde;es pessoais &agrave; sua homepage.</p>
+      <div class="example"><a name="exemplo4"></a><p class="title"><b>Exemplo 4.1.  Cabe&ccedil;alho </b></p><div class="example-contents">
+	
+	<pre class="programlisting">&lt;HTML&gt; 
+	  &lt;!-- este &eacute; meu cabe&ccedil;alho --&gt;
+	  &lt;HEAD&gt; 
+	  &lt;TITLE&gt; Homepage de Jos&eacute; &lt;/TITLE&gt; 
+	  &lt;/HEAD&gt; 
+	  &lt;!-- aqui come&ccedil;a o corpo da homepage --&gt;
+	  &lt;BODY&gt;  
+	  &lt;H1&gt; Homepage de Jos&eacute; Ferreira da Silva &lt;/H1&gt; 
+	  &lt;H2&gt; Dados Pessoais &lt;/H2&gt;
+	  Nacionalidade: Brasileira.
+	  Naturalidade: Natal/RN.
+	  Idade: <span class="hl-number">25</span> anos.
+	  Profiss&atilde;o: Engenheiro.
+	  Estado Civil: Solteiro.
+	  &lt;H4&gt; Prefer&ecirc;ncias Pessoais &lt;/H4&gt; 
+	  M&uacute;sica
+	  Computa&ccedil;&atilde;o
+	  Automobilismo
+	  Nata&ccedil;&atilde;o
+	  &lt;/BODY&gt; 
+	  &lt;/HTML&gt;</pre>
+      </div></div><br class="example-break">
+
+      <p>Se o trecho de c&oacute;digo acima for interpretado por um navegador, voc&ecirc; poder&aacute; notar que os caracteres em branco e quebras de linhas s&atilde;o descartados pelo, exceto quando s&atilde;o empregadas marca&ccedil;&otilde;es especiais.</p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.paragrafos.linha"></a>4.2.  Par&aacute;grafos e quebras de linha </h2></div></div></div>
+      
+      <p>Quebras de linha em um texto HTML s&atilde;o inseridas atrav&eacute;s do marcador <span class="command"><strong>&lt;BR&gt;</strong></span>. Par&aacute;grafos s&atilde;o inseridos com a marca&ccedil;&atilde;o <span class="command"><strong>&lt;P&gt;</strong></span> no final do par&aacute;grafo (opcionalmente <span class="command"><strong>&lt;P&gt;</strong></span> no in&iacute;cio e <span class="command"><strong>&lt;/P&gt;</strong></span> no final do par&aacute;grafo).</p>
+
+      <p>Quando <span class="command"><strong>&lt;P&gt;</strong></span> &eacute; usado, &eacute; deixada uma linha em branco entre o par&aacute;grafo corrente e o seguinte. Coloque agora no final de cada linha a ser quebrada na sua homepage o marcador <span class="command"><strong>&lt;P&gt;</strong></span>, como mostrado a seguir, e observe o efeito na tela do navegador.</p>
+
+      <div class="example"><a name="exemplo5"></a><p class="title"><b>Exemplo 4.2.  Quebra de linha </b></p><div class="example-contents">
+	
+	<pre class="programlisting">&lt;HTML&gt; 
+	  &lt;!-- este &eacute; meu cabe&ccedil;alho --&gt;
+	  &lt;HEAD&gt; 
+	  &lt;TITLE&gt; Homepage de Jos&eacute; &lt;/TITLE&gt; 
+	  &lt;/HEAD&gt; 
+	  &lt;!-- aqui come&ccedil;a o corpo da homepage --&gt;
+	  &lt;BODY&gt;  
+	  &lt;H1&gt; Homepage de Jos&eacute; Ferreira da Silva &lt;/H1&gt; 
+	  &lt;H2&gt; Dados Pessoais&lt;/H2&gt;
+	  Nacionalidade: Brasileira.&lt;P&gt;
+	  Naturalidade: Natal/RN.&lt;P&gt;
+	  Idade: <span class="hl-number">25</span> anos.&lt;P&gt;
+	  Profiss&atilde;o: Engenheiro.&lt;P&gt;
+	  Estado Civil: Solteiro.&lt;P&gt;
+	  &lt;H4&gt; Prefer&ecirc;ncias Pessoais&lt;/H4&gt; 
+	  M&uacute;sica&lt;P&gt;
+	  Computa&ccedil;&atilde;o&lt;P&gt;
+	  Automobilismo&lt;P&gt;
+	  Nata&ccedil;&atilde;o&lt;P&gt;
+	  &lt;/BODY&gt; 
+	  &lt;/HTML&gt;</pre>
+      </div></div><br class="example-break">
+
+      <p>Substitua agora os marcadores <span class="command"><strong>&lt;P&gt;</strong></span> por marcadores <span class="command"><strong>&lt;BR&gt;</strong></span> e observe a diferen&ccedil;a. O fato de o marcador <span class="command"><strong>&lt;BR&gt;</strong></span> conseguir realizar o mesmo efeito proporcionado pelo marcador <span class="command"><strong>&lt;P&gt;</strong></span> (dois <span class="command"><strong>&lt;BR&gt;</strong></span> consecutivos) n&atilde;o implica que este &uacute;ltimo seja in&uacute;til. A sua fun&ccedil;&atilde;o vai al&eacute;m de uma simples quebra de linha. Par&acirc;metros especiais passados ao marcador <span class="command"><strong>&lt;P&gt;</strong></span> realizam alinhamento no texto. Por exemplo,</p>
+
+      <div class="example"><a name="exemplo6"></a><p class="title"><b>Exemplo 4.3.  Alinhamento </b></p><div class="example-contents">
+	
+	<pre class="programlisting">&lt;P ALIGN=JUSTIFY&gt;
+	  Texto <strong class="hl-keyword">do</strong> texto <strong class="hl-keyword">do</strong> teste <strong class="hl-keyword">do</strong> texto
+	  &lt;/P&gt;</pre>
+      </div></div><br class="example-break">
+    </div>
+  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="cha.marcacao.html">&laquo;&nbsp;Cap&iacute;tulo 3. Marca&ccedil;o&#7869;s de documentos</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="ancora.html">Cap&iacute;tulo 5. Cria&ccedil;&atilde;o de &acirc;ncora (links)&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2012 Agostinho Brito</p></td></tr></table></div></body></html>
