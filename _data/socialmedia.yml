@@ -1,10 +1,10 @@
 - name: Twitter
-  url: https://twitter.com/agostinhobritojr
+  url: https://twitter.com/agostinhobritoj
   class: fa fa-twitter-square
   title: "Follow me @foo"
 
 - name: Google Plus
-  url: https://plus.google.com/+Agostinhobritojr
+  url: https://plus.google.com/+AgostinhoBrito
   class: fa fa-google-plus-square
   title: "Follow me +foo"
 
