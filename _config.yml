@@ -42,7 +42,7 @@ gems:
 jekyll-mentions:
   base_url: https://twitter.com
 
-include: [".htaccess", "tutorial"]
+include: [".htaccess", "tutorial", "apps"]
 exclude: ["lib", "config.rb", "Gemfile", "Capfile", "Gemfile.lock", "config", "log", "Rakefile", "Rakefile.rb", "rakefile", "README.md", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "LICENSE", "vendor", "assets", "_plugins", "public/dormant"]
 
 # About/contact
