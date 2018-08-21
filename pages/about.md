@@ -6,7 +6,7 @@ show_meta: true
 # imagefeature path is relative to images/ directory.
 # imagefeature: logo.png
 published: true
-description: "Sobre ajustetecnico.github.io ...."
+description: "Sobre agostinhobritojr.github.io ...."
 category: views
 comments: false
 mathjax: false
@@ -21,8 +21,6 @@ tags:
   - ""
 ---
 
-Poderia ser gambiarra, mas Ajuste Técnico fica melhor...
-
-Um blog para publicações de habilidades em Engenharia de Computação.
+Site pessoal de Agostinho Brito. Publicações de cursos, tutoriais, curiosidades e alguns eventuais posts atrevidos.
 
 *[volutpat]: Tooltip for abbreviation.
