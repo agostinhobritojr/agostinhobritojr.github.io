@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.7">
+<meta name="generator" content="Asciidoctor 1.5.7.1">
 <meta name="author" content="Agostinho Brito">
 <title>Introdução ao uso de terminais no Linux</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -198,7 +198,7 @@ body.toc2.toc-right{padding-left:0;padding-right:20em}}
 .admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
 table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .paragraph.lead>p,#preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
-table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
+table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:inherit}
 .admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
 .admonitionblock>table td.icon{text-align:center;width:80px}
 .admonitionblock>table td.icon img{max-width:none}
@@ -520,8 +520,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_acesso_ao_hardware">2.1. Acesso ao hardware</a></li>
 <li><a href="#_processos">2.2. Processos</a></li>
 <li><a href="#_arquivos">2.3. Arquivos</a></li>
-<li><a href="#_diretórios_de_usuários">2.4. Diretórios de usuários ==</a></li>
-<li><a href="#_usuários_do_sistema_unix">2.5. Usuários do sistema Unix ==</a></li>
+<li><a href="#_diretórios_de_usuários">2.4. Diretórios de usuários</a></li>
+<li><a href="#_usuários_do_sistema_unix">2.5. Usuários do sistema Unix</a></li>
 </ul>
 </li>
 <li><a href="#_conceitos_iniciais">3. Conceitos iniciais</a>
@@ -646,7 +646,7 @@ sistemas operacionais que usam FAT como sistema de arquivos.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_diretórios_de_usuários">2.4. Diretórios de usuários ==</h3>
+<h3 id="_diretórios_de_usuários">2.4. Diretórios de usuários</h3>
 <div class="paragraph">
 <p>Cada usuário tem liberdade para atuar dentro de diretórios próprios
 chamados de <em>home directory</em>, ou <em>home dir</em>.  Neste diretório, o
@@ -658,7 +658,7 @@ personalização de programas de uso geral dos usuários do sistema.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_usuários_do_sistema_unix">2.5. Usuários do sistema Unix ==</h3>
+<h3 id="_usuários_do_sistema_unix">2.5. Usuários do sistema Unix</h3>
 <div class="paragraph">
 <p>Ao contrário de um sistema MS-DOS tradicional, onde todos os usuários
 podem enxergar, alterar e instalar os arquivos que quiserem ao seu
@@ -727,8 +727,8 @@ usuário, tal como mostram as linhas a seguir:</p>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell"><span></span>maquina login: aluno
 password:
-Last login: Mon Mar <span class="tok-m">31</span> <span class="tok-m">12</span>:31:13 from localhost
-Linux <span class="tok-m">2</span>.0.35.
+Last login: Mon Mar 31 12:31:13 from localhost
+Linux 2.0.35.
 maquina:~$</code></pre>
 </div>
 </div>
@@ -777,7 +777,7 @@ ser repetida, como mostra o exemplo a seguir.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell"><span></span>maquina:~$ passwd
-Changing password <span class="tok-k">for</span> aluno
+Changing password for aluno
 Enter old password:
 Enter new password:
 Re-type new password:
@@ -795,7 +795,7 @@ também podem ser executados em seqüência, como em</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell"><span></span>maquina:~$ ls<span class="tok-p">;</span> pwd<span class="tok-p">;</span> finger aluno<span class="tok-p">;</span> whoami</code></pre>
+<pre class="pygments highlight"><code data-lang="shell"><span></span>maquina:~$ ls; pwd; finger aluno; whoami</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -812,7 +812,7 @@ indicado com o caracter <kbd>|</kbd>, como mostra o exemplo a seguir.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell"><span></span>maquina:~$ ls <span class="tok-p">|</span> grep txt
+<pre class="pygments highlight"><code data-lang="shell"><span></span>maquina:~$ ls | grep txt
 exemplo1.txt
 exemplo2.txt
 faq.txt
@@ -874,7 +874,7 @@ section :: seção do manual que o usuário deseja visualizar.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell"><span></span> maquina:~$ man man
- maquina:~$ man <span class="tok-m">3</span> <span class="tok-nb">printf</span></code></pre>
+ maquina:~$ man 3 printf</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -907,7 +907,7 @@ de dois comandos no Unix: <code>who</code> e <code>whoami</code>.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell"><span></span>maquina:~$ who
-aluno     tty0    Feb  <span class="tok-m">4</span> <span class="tok-m">11</span>:52 <span class="tok-o">(</span>:0.0<span class="tok-o">)</span>
+aluno     tty0    Feb  4 11:52 (:0.0)
 maquina:~$</code></pre>
 </div>
 </div>
@@ -934,7 +934,7 @@ seguido do nome do usuário, como mostra o exemplo a seguir.</p>
 <pre class="pygments highlight"><code data-lang="shell"><span></span>maquina:~$ finger aluno
 Login: aluno                             Name: aluno
 Directory: /home/aluno                   Shell: /bin/bash
-Last login Tue Feb  <span class="tok-m">4</span> <span class="tok-m">14</span>:09 <span class="tok-o">(</span>EDT<span class="tok-o">)</span> on tty0 from localhost
+Last login Tue Feb  4 14:09 (EDT) on tty0 from localhost
 No mail.
 No Plan.
 maquina:~$</code></pre>
@@ -956,9 +956,9 @@ seguir.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell"><span></span>maquina:~$ <span class="tok-nb">logout</span>
+<pre class="pygments highlight"><code data-lang="shell"><span></span>maquina:~$ logout
 
-Welcome to Linux <span class="tok-m">2</span>.2.14.
+Welcome to Linux 2.2.14.
 maquina login:</code></pre>
 </div>
 </div>
@@ -989,8 +989,8 @@ sintaxe é <code>cd nome_do_diretório</code>.</p>
 <div class="listingblock">
 <div class="title">Listagem 1. Uso do comando cd.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell"><span></span>maquina:~$ <span class="tok-nb">cd</span> /usr/bin
-maquina:/usr/bin$ <span class="tok-nb">cd</span>
+<pre class="pygments highlight"><code data-lang="shell"><span></span>maquina:~$ cd /usr/bin
+maquina:/usr/bin$ cd
 maquina:~$</code></pre>
 </div>
 </div>
@@ -1085,18 +1085,18 @@ a saída do comando <code>ls</code> são:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="shell"><span></span>maquina:~$ ls -la
-total <span class="tok-m">121</span>
-drwxr-xr-x   <span class="tok-m">4</span> aluno    users        <span class="tok-m">1024</span> Mar <span class="tok-m">31</span> <span class="tok-m">13</span>:27 ./
-drwxr-xr-x   <span class="tok-m">7</span> root     root         <span class="tok-m">1024</span> Mar <span class="tok-m">31</span> <span class="tok-m">12</span>:53 ../
--rw-r--r--   <span class="tok-m">1</span> aluno    users          <span class="tok-m">26</span> Mar <span class="tok-m">31</span> <span class="tok-m">13</span>:08 .bash_history
--rw-r--r--   <span class="tok-m">1</span> aluno    users          <span class="tok-m">34</span> Nov <span class="tok-m">23</span>  <span class="tok-m">1993</span> .less
--rw-r--r--   <span class="tok-m">1</span> aluno    users         <span class="tok-m">114</span> Nov <span class="tok-m">23</span>  <span class="tok-m">1993</span> .lessrc
-drwxr-xr-x   <span class="tok-m">2</span> aluno    users        <span class="tok-m">1024</span> Mar <span class="tok-m">31</span> <span class="tok-m">13</span>:15 documentos/
--rw-r--r--   <span class="tok-m">1</span> aluno    users          <span class="tok-m">43</span> Mar <span class="tok-m">31</span> <span class="tok-m">12</span>:58 exemplo1.txt
--rw-r--r--   <span class="tok-m">1</span> aluno    users          <span class="tok-m">41</span> Mar <span class="tok-m">31</span> <span class="tok-m">12</span>:58 exemplo2.txt
-drwxr-xr-x   <span class="tok-m">2</span> aluno    users        <span class="tok-m">1024</span> Mar <span class="tok-m">31</span> <span class="tok-m">13</span>:28 financas/
--rw-r--r--   <span class="tok-m">1</span> aluno    users      <span class="tok-m">108111</span> Mar <span class="tok-m">31</span> <span class="tok-m">13</span>:00 faq.txt
--rw-r--r--   <span class="tok-m">1</span> aluno    users        <span class="tok-m">5041</span> Mar <span class="tok-m">31</span> <span class="tok-m">12</span>:58 linux1.gif
+total 121
+drwxr-xr-x   4 aluno    users        1024 Mar 31 13:27 ./
+drwxr-xr-x   7 root     root         1024 Mar 31 12:53 ../
+-rw-r--r--   1 aluno    users          26 Mar 31 13:08 .bash_history
+-rw-r--r--   1 aluno    users          34 Nov 23  1993 .less
+-rw-r--r--   1 aluno    users         114 Nov 23  1993 .lessrc
+drwxr-xr-x   2 aluno    users        1024 Mar 31 13:15 documentos/
+-rw-r--r--   1 aluno    users          43 Mar 31 12:58 exemplo1.txt
+-rw-r--r--   1 aluno    users          41 Mar 31 12:58 exemplo2.txt
+drwxr-xr-x   2 aluno    users        1024 Mar 31 13:28 financas/
+-rw-r--r--   1 aluno    users      108111 Mar 31 13:00 faq.txt
+-rw-r--r--   1 aluno    users        5041 Mar 31 12:58 linux1.gif
 maquina:~$</code></pre>
 </div>
 </div>
@@ -1186,9 +1186,9 @@ para o usuário que é proprietário do arquivo.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell"><span></span>maquina:~$ <span class="tok-nb">pwd</span> /home/aluno maquina:~$
-mkdir curso maquina:~$ <span class="tok-nb">cd</span> curso
-maquina:~/curso$ <span class="tok-nb">pwd</span> /home/aluno/curso
+<pre class="pygments highlight"><code data-lang="shell"><span></span>maquina:~$ pwd /home/aluno maquina:~$
+mkdir curso maquina:~$ cd curso
+maquina:~/curso$ pwd /home/aluno/curso
 maquina:~/curso$</code></pre>
 </div>
 </div>
@@ -1201,10 +1201,10 @@ maquina:~/curso$</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="shell"><span></span>maquina:~$ <span class="tok-nb">pwd</span> /home/aluno/curso
-maquina:~$ <span class="tok-nb">cd</span> ..
+<pre class="pygments highlight"><code data-lang="shell"><span></span>maquina:~$ pwd /home/aluno/curso
+maquina:~$ cd ..
 maquina:~$ rmdir curso
-maquina:~$ <span class="tok-nb">cd</span> curso
+maquina:~$ cd curso
 bash: curso: No such file or directory
 maquina:~$</code></pre>
 </div>
@@ -1230,7 +1230,7 @@ maquina:~$</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2018-06-25 07:55:03 -03
+Última atualização 2018-08-21 08:02:26 -03
 </div>
 </div>
 <script type="text/x-mathjax-config">
