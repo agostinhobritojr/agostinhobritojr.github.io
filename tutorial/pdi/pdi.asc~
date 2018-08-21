@@ -1,0 +1,1892 @@
+:numbered:
+:author: Agostinho Brito
+:data-uri:
+:icons:
+:experimental:
+:stem:
+:imagesdir: ./figs
+:toc: left
+:doctype: book
+:source-highlighter: pygments
+:caution-caption: Cuidado
+:important-caption: Importante
+:note-caption: Nota
+:tip-caption: Dica
+:warning-caption: Aviso
+:appendix-caption: Apêndice
+:example-caption: Exemplo
+:figure-caption: Figura
+:listing-caption: Listagem
+:table-caption: Tabela
+:toc-title: Sumário
+:preface-title: Prefácio
+:version-label: Versão
+:last-update-label: Última atualização
+= Introdução ao processamento digital de imagens com OpenCV =
+Agostinho Brito <ambj@dca.ufrn.br>
+(C) 2015 Agostinho Brito.
+Ver link:licenca.html[licença de uso] para detalhes.
+
+[preface]
+== Prefácio ==
+
+Esse tutorial visa apresentar alguns conceitos de processamento
+digital de imagens usando a biblioteca de visão artificial OpenCV. Foi
+concebido como material acessório da disciplina processamento digital
+de imagens e, neste contexto, assume que o leitor possui fundamentação
+teórica suficiente para acompanhar as lições. Dominar adequadamente
+conceitos de programação em C++ e da matemática explorada em cursos de
+Análise de Sinais e Sistemas são requisitos necessários para uma boa
+compreensão do texto.
+
+Tutoriais de programação OpenCV em inglês são bastante numerosos e a
+documentação provida pela equipe de desenvolvimento é, sem dúvida,
+excelente. Entretanto, material de estudo online em língua portuguesa
+ainda é carente de investimento e resolvemos oferecer essa pequena
+contribuição. O foco do tutorial é ensino de graduação, de sorte que
+funcionalidades mais aprofundadas não serão exploradas por enquanto.
+
+Toda e qualquer sugestão e/ou contribuição visando melhorar e evoluir
+este tutorial será bemvinda. Pode mandá-la diretamente via e-mail para
+ambj@dca.ufrn.br
+
+Os exemplos descritos no tutorial foram desenvolvidos usando a API C++
+do OpenCV. Foram testados em um ambiente executando sistema
+operacional Linux, mas devem funcionar corretamente em outras
+plataformas.
+
+[[conceitos]]
+== Conceitos iniciais ==
+=== O que é OpenCV ===
+
+OpenCV (Open Source Computer Vision Library:
+link:http://www.opencv.org[http://www.opencv.org]) é uma 
+biblioteca (ou conjunto de bibliotecas) disponível para algumas
+linguagens de programação que visa oferecer um vasto ferramental para
+tratamento de imagens, visão computacional e reconhecimento de
+padrões.
+
+A biblioteca é organizada na forma de módulos, cada um agregando um
+conjunto de funções. Entre os módulos disponíveis pela biblioteca,
+destacam-se:
+
+- Estruturas de núcleo, como tipos de dados comuns, matrizes e vetores,
+  para armazenamento de informações de forma conveniente para os
+  demais módulos.
+- Processamento de imagens, para realizar transformações geométricas,
+  filtragem linear e não linear, tratamento de cor, entre outras coisas.
+- Vídeo, para avaliação de movimento (ex: análise de fluxo ótico) e
+  rastreio de objetos.
+- Calibração de câmeras.
+- Extração de características.
+- Deteção de objetos.
+- Highgui, para tratamento facilitado de criação de interfaces
+  gráficas.
+
+Neste tutorial, alguns desses módulos serão explorados na forma de
+exemplos e exercícios de fixação.
+
+Detalhes acerca da instalação da biblioteca OpenCV não são descritos
+aqui. Cada sistema operacional possui uma forma de instalação
+distinta, que pode ser consultatada no
+link:http://opencv.org/quickstart.html[quickstart] oferecido no
+_website_ do projeto.
+
+=== Hello, OpenCV ===
+
+O primeiro exemplo que será apresentado visa mostrar como compilar e
+executar um pequeno usando OpenCV em um ambiente Linux. Em suma, será
+necessário o arquivo contendo o código-fonte a ser compilado e um
+arquivo contendo regras de compilação na forma de um _Makefile_.
+
+As tarefas de compilação foram automatizadas com o utilitário
+_make_. O _make_ determina automaticamente que partes de um grande
+programa necessitam ser recompiladas e os comandos necessários para
+recompilá-las, a partir da leitura das regras definidas em um arquivo
+_Makefile_. Assim, para efetuar a compilação do programa, basta
+executar o comando _make_, ao invés de digitar dezenas de comandos no
+prompt do Unix.
+
+O arquivo da listagem <<exemplo_makefile>> da foi utilizado para
+compilar os exemplos desse curso. Para obter uma cópia deste arquivo
+clique link:exemplos/Makefile[aqui].
+
+[[exemplo_makefile, Makefile]]
+[source,Makefile]
+.Makefile
+----
+include::exemplos/Makefile[]
+----
+
+As regras contidas neste arquivo `Makefile` incluem opções de compilação
+para incluir as dependências da biblioteca OpenCV para o programa que
+será compilado. Este `Makefile` possibilita que programas simples possam
+ser facilmente compilados. Como foi testado em um sistema Linux, poderá
+carecer de modificações em outros sistemas.
+
+O seu ambiente de desenvolvimento poderá ser testado com programa
+link:exemplos/hello.cpp[] , mostrada Listagem <<exa_hello>>, cuja
+única funcionalidade apresentar na tela uma imagem fornecida via linha
+de comando.
+    
+[[exa_hello, Hello]]
+[source,cpp]
+.hello.cpp
+----
+include::exemplos/hello.cpp[]
+----
+
+Para compilar e executar o programa
+link:exemplos/hello.cpp[hello.cpp], salve-o juntamente com o arquivo
+link:exemplos/Makefile[Makefile] e a imagem
+link:figs/biel.png[biel.png] em um diretório e execute a seguinte
+seqüência de comandos:
+
+[source,shell]
+----
+$ make hello
+$ ./hello biel.png
+----
+
+A saída do programa _hello_ é mostrado na Figura <<fig_hello>>
+
+[[fig_hello, Hello]]
+//[.text-center]
+.Saída do programa hello
+image::hello.png[Saida do programa hello, title="Saída do programa hello"]
+
+Caso o programa funcione conforme o exemplo, provavelmente seu
+ambiente de testes estará operacional para os exemplos do tutorial.
+
+Neste tutorial, geralmente imagens armazenada no formato PNG serão
+usadas. Este formato suporta representação de imagens de diversas
+formas, como em tons de cinza, coloridas e preto-e-branco. Imagens em
+outros formatos tais como JPEG podem oferecer algumas limitações para
+os casos que serão abordados. Por exemplo, arquivos JPEG armazenam
+apenas imagens em formato colorido e, durante a o processo de gravação
+das imagens, o algoritmo de compressão com perdas pode modificar o
+conteúdo da imagem original a ser gravada.
+
+== Manipulando pixels em uma imagem ==
+
+O objetivo dessa lição é mostra como manipular os pixels de uma
+imagem, mudando a cor de uma pequena região retangular de uma imagem
+fornecida para processamento.
+
+Alguns conceitos importantes serão abordados neste contexto:
+
+* Alguns tipos de dados comuns mais usados no OpenCV.
+* Funções para realizar entrada/saída de dados.
+* Funções para acessar os pixels de uma imagem.
+* Funções para realizar interações na interface gráfica.
+
+Para evoluir nesses conceitos, realize o download do programa
+link:exemplos/pixels.cpp[pixels.cpp], mostrado na Listagem
+<<exa_pixels>>, e a imagem link:figs/bolhas.png[bolhas.png]. Salve
+ambos os arquivos que contém o _Makefile_. O programa irá abrir a
+imagem `bolhas.png` (interpretando-a em escala de cinza), deverá
+exibi-la em uma janela e desenhar um quadrado preto em uma região
+pré-estabelecida.
+
+Após isso, ele irá aguardar que o usuário pressione alguma tecla. Uma
+vez pressionada a tecla, o programa reabrirá o arquivo da imagem
+interpretando-a em escala de cores e passará a desenhar um quadrado
+vermelho na mesma região que foi pré-estabelecida.
+
+[[exa_pixels, Pixels]]
+[source,cpp]
+.pixels.cpp
+----
+include::exemplos/pixels.cpp[]
+----
+
+Para compilar e executar o programa
+link:exemplos/pixels.cpp[pixels.cpp], salve-o juntamente com o arquivo
+link:exemplos/Makefile[Makefile] em um diretório e execute a seguinte
+seqüência de comandos:
+
+[source,shell]
+----
+$ make pixels
+$ ./pixels
+----
+
+A saída do programa _pixels_ é mostrado na Figura <<fig_pixels>>
+
+[[fig_pixels, Pixels]]
+//[.text-center]
+//[.right.text-center]
+.Saída do programa pixels
+image::pixels.png[Pixels]
+
+=== Descrição do programa `pixels.cpp` ===
+
+[source,cpp]
+----
+#include <iostream>
+#include <opencv2/opencv.hpp>
+
+using namespace cv;
+using namespace std;
+----
+
+Em geral, a maior parte das funcionalidades da biblioteca é definida
+no arquivo de cabeçalho `opencv.hpp`. Nesse arquivo, são definidos
+tipos básicos da biblioteca, bem como os protótipos de várias funções
+usadas para tratamento de imagens. Ele agrega as definições de funções
+que são usadas para entrada e saída de dados, criação de e manipulação
+de janelas e seus eventos, além de _widgets_ para permitir interação
+com o usuário.
+
+Todas as clases e funções do OpenCV normalmente estão definidas no
+_namespace_ `cv`. Portanto, declarar o uso do _namespace_ no início do
+código pode ser conveniente para o programador. Isso evita que a
+invocação das funções e tipos seja sempre precedido por `cv::`. A
+convivência com o _namespace_ `std` geralmente é harmoniosa.
+
+[source,cpp]
+----
+Mat image;
+----
+
+A interface em C++ do OpenCV provê um tipo básico de estrutura para
+armazenar imagems: a classe `Mat`. Dependendo da forma como é criado,
+um objeto dessa classe é capaz de armazenar imagens (matrizes) de
+diversos tipos diferentes, tais como inteiros, floats, doubles, etc.
+
+Dezenas de métodos são providos para essa classe, métodos estes que
+serão apresentados ao longo do tutorial, conforme a demanda se
+dê. Nesta lição, apenas o método `at` será utilizado.
+
+Outros tipos também são predefinidos no OpenCV, tal como o tipo
+Vec3b. A classe `Vec` é definida no OpenCV para abrigar diversas
+formas de vetores curtos. A classe é definida por gabaritos e provê
+armazenamento de uma quantidade de valores de um dado tipo fornecido
+na instanciação do gabarito.
+
+Para ilustrar o uso da classe `Vec`, são mostrados em seguida, alguns
+dos tipos predefinidos internamente no OpenCV.
+
+[source,cpp]
+----
+typedef Vec<uchar, 2> Vec2b;
+typedef Vec<uchar, 3> Vec3b;
+typedef Vec<uchar, 4> Vec4b;
+
+typedef Vec<short, 2> Vec2s;
+typedef Vec<short, 3> Vec3s;
+typedef Vec<short, 4> Vec4s;
+
+typedef Vec<int, 2> Vec2i;
+typedef Vec<int, 3> Vec3i;
+typedef Vec<int, 4> Vec4i;
+
+typedef Vec<float, 2> Vec2f;
+typedef Vec<float, 3> Vec3f;
+typedef Vec<float, 4> Vec4f;
+typedef Vec<float, 6> Vec6f;
+
+typedef Vec<double, 2> Vec2d;
+typedef Vec<double, 3> Vec3d;
+typedef Vec<double, 4> Vec4d;
+typedef Vec<double, 6> Vec6d;
+----
+
+Neste caso, o tipo Vec3b usado no exemplo representa um vetor de três
+componentes, cada uma do tipo `unsigned char`, ocupando apenas um
+byte na memória.
+
+[source,cpp]
+----
+image= imread("bolhas.png",CV_LOAD_IMAGE_GRAYSCALE);
+if(!image.data)
+  cout << "nao abriu bolhas.png" << endl;
+----
+
+Esse trecho de código usa a função `imread()` para ler uma imagem
+presente em um arquivo e armazená-la no objeto `image`. A função
+`imread()` recebe dois parâmetros: o primeiro é o caminho para o arquivo
+a ser aberto; o segundo é a forma como a imagem será
+interpretada. Neste casso, independentemente do formato da imagem
+presente no arquivo `bolhas.png`, ela será imediatamente transformada
+em uma imagem em tons de cinza antes de ser guardada no objeto
+`image`.
+
+Caso o arquivo não seja aberto (ex: o arquivo não foi encontrado, ou o
+usuário não possui permissão de leitura ativado), o campo `data` do
+objeto `image` deverá ter valor nulo, sinalizando o erro.
+
+Algo importante a ser observado nesse momento é que, embora a
+estrutura para armazenamento de imagens seja provida por uma classe -
+a classe `Mat` - algumas das estruturas internas são públicas. Isso
+ajuda a não haver degradação de desempenho com o uso excessivo de
+chamadas de métodos.
+
+[source,cpp]
+----
+namedWindow("janela", WINDOW_AUTOSIZE);
+----
+
+Cria uma janela para que o usuário possa referenciá-la pelo nome que é
+fornecido. O parâmetro `WINDOW_AUTOSIZE` permitirá que a janela se
+ajuste automaticamente para o tamanho da imagen que for fornecida para
+exibição. 
+
+[source,cpp]
+----
+for(int i=200;i<210;i++){
+  for(int j=10;j<200;j++){
+    image.at<uchar>(i,j)=0;
+  }
+}
+----
+
+Este trecho de código desenha um retângulo preto na imagem. Neste
+caso, assumindo que a primeira dimensão representa a coordenada _x_ e
+a segunda dimensão da matriz representa a coordenada _y_, será
+desenhado um retângulo do ponto stem:[(200,10)] até o ponto
+stem:[(210,200)].
+
+Os pixels da região são acessados ou modificados com o método
+`at`. Observe que este método sofre o efeito de um gabarito, que deve
+receber um tipo correspondente o tipo de dado que está armazenado no
+objeto `image`. Como a leitura foi feita assumindo uma imagem em tons
+de cinza, o tipo de dado necessário será, neste caso, `unsigned
+char`. Tipos diferentes poderão gerar resultados incorretos, posto que
+a função `at()` interpretará a sequência de bytes da matriz `image` de
+forma inapropriada.
+
+Para manter os sistema referencial do tipo destrógiro, assume-se que
+os eixos _x_ e _y_ ficarão organizados conforme apresenta a Figura
+<<fig_eixos>>, com a origem no canto superior esquerdo da imagem.
+
+[[fig_eixos, Eixos]]
+//[.text-center]
+.Sistema referencial adotado no OpenCV.
+image::eixos.svg[]
+
+
+[source,cpp]
+----
+imshow("janela", image);	
+waitKey();
+----
+
+A imagem `image` é mostrada na janela "_janela_" e o programa aguarda
+até que o usuário digite alguma tecla.
+
+[source,cpp]
+----
+image= imread("bolhas.png",CV_LOAD_IMAGE_COLOR);
+----
+
+O procedimento que segue repete os passos anteriores, só que agora a
+imagem interpretada com três componentes de cor. A matriz `image`
+agora guardará, para cada pixel, um conjunto de 3 bytes para armazenar
+as contribuições de vermelho, verde e amarelo que este possui.
+
+[source,cpp]
+----
+val[0] = 0;   //B
+val[1] = 0;   //G
+val[2] = 255; //R
+----
+
+As cores em um pixel são ordenadas na sequência B->G->R (Azul, Verde,
+Vermelho), podendo os pixels da matriz serem interpretados como um
+conjunto de elementos do tipo `Vec3b`.
+
+[source,cpp]
+----
+for(int i=200;i<210;i++){
+  for(int j=10;j<200;j++){
+    image.at<Vec3b>(i,j)=val;
+  }
+}
+----
+
+Agora, a função `at()` interpreta a sequência de bytes usada para
+armazenar a matriz `image` como sendo formadas por pixels do tipo
+`Vec3b`, sendo às posições correspondentes atribuídas a cor vermelha
+predefinida na variável `val`.
+
+=== Exercícios ===
+* Utilizando o programa link:exemplos/pixels.cpp[] como referência,
+  implemente um programa `regions.cpp`. Esse programa deverá solicitar
+  ao usuário as coordenadas de dois pontos stem:[P_1] e stem:[P_2]
+  localizados dentro dos limites do tamanho da imagem e exibir que lhe
+  for fornecida. Entretanto, a região definida pelo retângulo de
+  vértices opostos definidos pelos pontos stem:[P_1] e stem:[P_2] será
+  exibida com o negativo da imagem na região correspondente. O efeito
+  é ilustrado na Figura <<fig_regions>>.
+  
+[[fig_regions, Regiões]]
+//[.text-center]
+.Exemplo de saída do programa regions.cpp
+image::regions.png[]
+
+* Utilizando o programa link:exemplos/pixels.cpp[] como referência,
+  implemente um programa `trocaregioes.cpp`. Seu programa deverá
+  trocar os quadrantes em diagonal na imagem. Explore o uso da classe
+  `Mat` e seus construtores para criar as regiões que serão
+  trocadas. O efeito é ilustrado na Figura <<fig_trocaregioes>>.
+
+[[fig_trocaregioes,Troca de regiões]]
+//[.text-center]
+.Exemplo de saída do programa trocaregioes.cpp
+image::trocaregioes.png[]
+
+== Preenchendo regiões ==
+
+Uma tarefa bastante comum em processamento de imagens e visão
+artificial é contar a quantidade de objetos presentes em uma cena.
+
+Para contar os objetos é necessário identificar os aglomerados de
+pixels associados a cada um. Neste exemplo, assume-se que a imagem é
+do tipo binária, ou seja, cada pixel assume apenas dois valores - 0 ou
+255 - indicando que o pixel pertence ao fundo da imagem ("0") ou a
+algum objeto presente ("255"). Assume-se também que cada aglomerado de
+pixels será interpretado como um objeto individual. Esse é o processo
+mais comum para operações de contagem de objetos em uma imagem.
+
+Uma das maneiras de identificar as regiões de forma única é através de
+rotulação. A rotulação de regiões é o processo pelo qual regiões com
+características comuns recebem um identificador comum (rótulo).
+
+Em geral, um algoritmo de rotulação de imagens binárias recebe como
+entrada uma imagem binária e fornece como saída uma imagem em tons de
+cinza, com as várias regiões representativas de objetos rotuladas com
+um tom de cinza diferente.
+
+No exemplo dessa lição será mostrado como rotular uma imagem binária,
+utilizando o algoritmo _floodfill_ (ou _seedfill_) para descobrir os
+aglomerados de pixels. A imagem usada para teste será a presente no arquivo
+link:figs/bolhas.png[bolhas.png] mostrada na Figura <<fig_bolhas>>.
+
+[[fig_bolhas, Bolhas]]
+//[.text-center]
+.Imagem bolhas.png
+image::bolhas.png[]
+
+O programa de referência utilizado para essa tarefa,
+link:exemplos/labeling.cpp[labeling.cpp], é mostrado na Listagem
+<<exa_labeling>>.
+
+[[exa_labeling,Labeling]]
+[source,cpp]
+.labeling.cpp
+----
+include::exemplos/labeling.cpp[]
+----
+
+Para compilar e executar o programa link:exemplos/labeling.cpp[labeling.cpp],
+salve-o juntamente com os arquivo link:exemplos/Makefile[Makefile] e
+link:figs/bolhas.png[bolhas.png] em um diretório e execute a seguinte seqüência de comandos:
+
+[source,shell]
+----
+$ make labeling
+$ ./labeling bolhas.png
+----
+
+A saída do programa _labeling_ é mostrado na Figura <<fig_labeling>>
+
+[[fig_labeling, Labeling]]
+.Saída do programa labeling
+image::labeling.png[]
+
+=== Descrição do programa `labeling.cpp` ===
+
+[source,cpp]
+----
+CvPoint p;
+----
+
+A estrutura `CvPoint` define um ponto na segunda dimensão que permite
+acesso às suas coordenadas x e y. Ele será usado no exemplo para
+indicar a semente de preenchimento que é usada pelo algoritmo _floodfill_.
+
+[source,cpp]
+----
+image = imread(argv[1],CV_LOAD_IMAGE_GRAYSCALE);
+----
+
+Independentemente do formato da imagem de entrada, ela será convertida
+para tons de cinza, uma vez que o exemplo assume essa condição.
+
+[source,cpp]
+----
+p.x=0;
+p.y=0;
+----
+
+Nesta fase tem início o processo de rotulação das várias regiões da
+imagem. Assumindo que os pixels do objeto possuem tom de cinza igual a
+255, o algoritmo percorre toda a imagem, linha após linha, de cima a
+baixo, da esquerda para direita por pixels que tenham tom igual
+a 255.
+
+Quando um elemento da matriz é encontrado com tom de cinza igual a
+255, o algoritmo _floodfill_ é executado utilizando as coordenadas
+desse ponto como semente.
+
+A operação do algoritmo _floodfill_ é bem simples: dado um ponto
+semente, o algoritmo sai procurando os 4- ou 8-vizinhos desse ponto
+(conforme configuração estabelecida) que possuem a mesma propriedade
+do ponto semente (geralmente o tom de cinza). Para cada ponto
+encontrado, muda-se sua propriedade para uma nova propriedade
+fornecida. Para cada ponto encontrado, também, realiza-se a busca de
+vizinhança para os seus 4- ou 8-vizinhos que contenham a mesma
+propriedade da semente. Esse processo é repetido até que não restem
+mais pontos com propriedade alterada na componente conectada (ou
+região conectada).
+
+[source,cpp]
+----
+nobjects=0;
+----
+
+Inicia a contagem de objetos (inicialmente, zero objetos estão
+presentes)
+
+[source,cpp]
+----
+for(int i=0; i<height; i++){
+  for(int j=0; j<width; j++){
+    if(image.at<uchar>(i,j) == 255){
+      nobjects++;
+      p.x=j;
+      p.y=i;
+      floodFill(image,p,nobjects);
+    }
+  }
+}
+----
+
+A contagem funciona percorrendo as linhas e colunas da matriz `image`
+em busca de elementos com tom de cinza igual a `255` (pixel de
+objeto). Quando encontrado, incrementa-se o contador de objeto e
+executa-se o algoritmo _floodfill_ na imagem utilizando o pixel
+encontrado como semente. Observe que a região à qual o pixel pertence
+será rotulada com tom de cinza igual ao número de contagem de objetos
+atual.
+
+O processo continua até que toda a imagem tenha sido rotulada.
+
+[source,cpp]
+----
+imshow("image", image);
+imwrite("labeling.png", image);
+waitKey();
+----
+
+Finalmente, a imagem `image` é mostrada (já completamente rotulada) e
+então gravada no arquivo `labeling.png`.
+
+=== Exercícios ===
+
+* Observando-se o programa link:exemplos/labeling.cpp[labeling.cpp] como
+  exemplo, é possível verificar que caso existam mais de 255 objetos
+  na cena, o processo de rotulação poderá ficar
+  comprometido. Identifique a situação em que isso ocorre e proponha
+  uma solução para este problema.
+* Aprimore o algoritmo de contagem apresentado para identificar
+  regiões com ou sem buracos internos que existam na cena. Assuma que
+  objetos com mais de um buraco podem existir. Inclua suporte no seu
+  algoritmo para não contar bolhas que tocam as bordas da imagem. Não
+  se pode presumir, a priori, que elas tenham buracos ou não.
+
+== Manipulação de histogramas ==
+
+O objetivo dessa lição é mostrar como tratar histogramas de imagens usando
+OpenCV. Histogramas são ferramentas interessantes para avaliar
+características de uma imagem ou de atributos que dela são extraídos.
+
+Um histograma é uma contagem de dados onde se organiza as ocorrências
+por faixas de valores predefinidos. Em se tratando de imagens digitais
+em tons de cinza, por exemplo, costuma-se associar um histograma com a
+contagem de ocorrências de cada um dos possíveis tons em uma imagem. A
+grosso modo, o histograma oferece uma estimativa da probabilidade de
+ocorrência dos tons de cinza na imagem.
+
+Exemplos típicos do uso de histogramas podem ser encontrados na
+segmentação automática de imagens, detecção de movimento e
+granulometria.
+
+Além disso, a lição deverá explorar o uso dos recursos de captura de
+vídeo disponíveis no OpenCV para lidar com câmeras conectadas ao
+sistema.
+
+O exemplo da Listagem <<exa_histogram>> mostra o processo de capturar
+imagens de uma _webcam_ instalada no computador, calcular os
+histogramas das componentes de cor das imagens e desenhá-los no canto
+superior esquerdo da imagem capturada.
+
+[[exa_histogram, Histograma]]
+[source,cpp]
+.histogram.cpp
+----
+include::exemplos/histogram.cpp[]
+----
+
+Para compilar e executar o programa
+link:exemplos/histogram.cpp[histogram.cpp], salve-o juntamente com o arquivo
+link:exemplos/Makefile[Makefile] em um diretório e execute a seguinte
+seqüência de comandos:
+
+[source,shell]
+----
+$ make histogram
+$ ./histogram
+----
+
+A saída do programa _histogram_ é mostrado na Figura <<fig_histogram>>
+
+[[fig_histogram, Histogram]]
+//[.text-center]
+.Saída do programa histogram
+image::histogram.png[]
+
+=== Descrição do programa `histogram.cpp` ===
+
+[source,cpp]
+----
+VideoCapture cap;
+----
+
+Fontes de captura de vídeo são acessadas no OpenCV através da classe
+`VideoCapture`. Com ela, o usuário pode abrir um fluxo de vídeo
+oriundo de um arquivo de vídeo, sequência de imagens ou de um
+dispositivo de captura. Neste último caso, os dispositivos são
+identificados por um índice que inicia em `0`.
+
+As imagens capturadas nesse exemplo serão extraídas de um fluxo de
+vídeo que será conectado ao objeto `cap`.
+
+[source,cpp]
+----
+vector<Mat> planes;
+Mat histR, histG, histB;
+int nbins = 64;
+----
+
+O cálculo do histograma será realizado para cada uma das componentes
+de cor de forma independente. Logo, a separação das componentes em
+matrizes independentes será feita no vetor de matrizes
+`planes`. Assim, `planes[0]`, `planes[1]` e `planes[2]` armazenarão as
+componentes de cor Vermelho, Verde e Azul, respectivamente.
+
+As três matrizes `histR`, `histG` e `histB` guardarão os histogramas
+de suas respectivas componentes de cor.
+
+A variável `nbins` define o tamanho do vetor utilizado para armazenar
+os histogramas. O tamanho do histograma não precisa ser
+necessariamente o mesmo do ton de cinza máximo previsto para uma
+componente de cor (ex: 256 para imagens RGB). É possível especificar a
+quantidade de faixas (ou _bins_) que serão usadas para quantificar
+as ocorrências dos tons.
+
+No exemplo, usa-se um total de 64 faixas para um tom de cinza máximo
+igual a 255. No cálculo, portanto, as ocorrências de tom de cinza na
+faixa stem:[[0,3]] serão contabilizadas no primeiro elemento do array
+com o histograma; as ocorrências na faixa stem:[[4,7]] contarão no
+segundo elemento do histograma, e assim por diante.
+
+[source,cpp]
+----
+float range[] = {0, 256};
+const float *histrange = { range };
+----
+
+É preparada na variável `histrange` a faixa de valores (mínimo e
+máximo) presentes na imagem cujo histograma será calculado. Essa
+variável, da forma como é definida, é usada pela função de cálculo de
+histograma.
+
+[source,cpp]
+----
+bool uniform = true;
+bool acummulate = false;
+----
+
+[source,cpp]
+----
+cap.open(0);
+  
+if(!cap.isOpened()){
+  cout << "cameras indisponiveis";
+  return -1;
+}
+  
+width  = cap.get(CV_CAP_PROP_FRAME_WIDTH);
+height = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
+----
+
+Abre-se a conexão com o primeiro dispositivo de captura de vídeo
+disponível. Os dispositivos são identificados em sequência. Logo, se
+um sistema dispõe de duas câmeras, por exemplo, a primeira será
+associada ao identificador "0" e a segunda ao identificador "1".
+
+Uma vez chamado o método `open()`, verifica-se se o dispositivo de
+captura está devidamente conectado para proceder com o restante das
+tarefas.
+
+Finalmente, lê-se a largura (_width_) e altura(_height_) dos quadros
+que serão disponíveis pelo dispositivo. A classe `VideoCapture` possui
+diversos métodos para ajustar os parâmetros de captura para o
+dispositivo conectado. Entretanto, na versão do OpenCV em que foram
+feitos os testes aqui descritos, alguns podem não funcionar
+corretamente dependendo do tipo de dispositivo utilizado.
+
+[source,cpp]
+----
+int histw = nbins, histh = nbins/2;
+Mat histImgR(histh, histw, CV_8UC3, Scalar(0,0,0));
+Mat histImgG(histh, histw, CV_8UC3, Scalar(0,0,0));
+Mat histImgB(histh, histw, CV_8UC3, Scalar(0,0,0));
+----
+
+Define-se a largura e altura das imagens que serão usadas para
+desenhar os histogramas de cada uma das componentes de cor. Note que a
+altura da imagem é igual à metade da largura para fins de exibição. As
+imagens são criadas com o tipo `CV_8UC3`, ou seja, com 8 bits por
+pixel, com tipo de dados `unsigned char` contendo 3 canais de cor. A
+cor, nesse caso, servirá apenas para que o histograma seja desenhado
+na cor respectiva de sua componente.
+
+[source,cpp]
+----
+cap >> image;
+split (image, planes);
+----
+
+Em um loop infinito, as imagens são capturadas, quadro a quadro, do
+dispositivo de entrada conectado e armazenadas no objeto
+`image`. Dispositivos de captura normalmente disponibilizam imagens
+com suporte a cor, ou seja, cada matriz possui normalmente três planos
+de cor. Logo, os histogramas deverão ser calculados para cada um
+desses planos, de modo que a função `split()` faz a separação adequada
+para que se proceda com o cálculo.
+
+Histogramas hiperdimensionais que contabilizam as ocorrências das
+combinações R,G e B dos pixels de uma imagem são possíveis de serem
+calculados. Entretanto, normalmente são usadas matrizes esparças para
+isso. Considerando imagens com 8 bits por pixel para cada plano de
+cor, seria necessário uma matriz com 256 x 256 x 256 elementos para
+guardar o histograma até mesmo de uma imagem pequena. Esse processo é
+dispendioso e, normalmente, não possui muita utilidade.
+
+Na análise de histograma, portanto, geralmente se avalia cada
+componente de cor de forma independente.
+
+[source,cpp]
+----
+calcHist(&planes[0], 1, 0, Mat(), histR, 1,
+         &nbins, &histrange,
+         uniform, acummulate);
+calcHist(&planes[1], 1, 0, Mat(), histG, 1,
+         &nbins, &histrange,
+         uniform, acummulate);
+calcHist(&planes[2], 1, 0, Mat(), histB, 1,
+         &nbins, &histrange,
+         uniform, acummulate);
+----
+
+Os histogramas são então calculados para cada uma das componentes
+de cor. A função `calcHist()` do OpenCV recebe, na sequência, os
+seguintes argumentos:
+
+- Uma referência para imagem que se deseja processar;
+- A quantidade de imagens para se calcular o histograma (uma, neste
+  caso);
+- Um ponteiro para o array de canais das imagens. Para apenas um
+  canal, o endereço `0` deve ser repassado;
+- Uma máscara opcional marcando a região onde se deseja calcular o
+  histograma. Considerando a imagem inteira, fornece-se uma matriz
+  vazia;
+- O array que irá armazenar o histograma;
+- A dimensionalidade do histograma (no exemplo, existe apenas uma
+  dimensão);
+- O endereço da variável que armazena a quantidade de divisões; e
+- Variáveis informando se o histograma é uniforme (divisões de tamanho
+  igual) ou acumulado.
+
+[source,cpp]
+----
+normalize(histR, histR, 0, histImgR.rows, NORM_MINMAX, -1, Mat());
+normalize(histG, histB, 0, histImgR.rows, NORM_MINMAX, -1, Mat());
+normalize(histB, histB, 0, histImgR.rows, NORM_MINMAX, -1, Mat());
+----
+
+Cada histograma é normalizado em uma faixa de valores que vai de `0`
+até a quantidade de linhas da imagem onde este será desenhado. A
+normalização é feita linearmente entre os valores máximo e mínimo
+encontrados na componente de cor.
+
+[source,cpp]
+----
+histImgR.setTo(Scalar(0));
+histImgG.setTo(Scalar(0));
+histImgB.setTo(Scalar(0));
+    
+for(int i=0; i<nbins; i++){
+  line(histImgR, Point(i, histh),
+       Point(i, cvRound(histR.at<float>(i))),
+       Scalar(0, 0, 255), 1, 8, 0);
+  line(histImgG, Point(i, histh),
+       Point(i, cvRound(histG.at<float>(i))),
+       Scalar(0, 255, 0), 1, 8, 0);
+  line(histImgB, Point(i, histh),
+       Point(i, cvRound(histB.at<float>(i))),
+       Scalar(255, 0, 0), 1, 8, 0);
+}
+----
+
+As imagens com os desenhos dos histogramas são então
+geradas. Inicialmente, todas são preenchidas com `0` (cor preta). Em
+seguida, os histogramas são desenhados na forma de um gráfico de
+barras usando a função `line()`.
+
+[source,cpp]
+----
+histImgR.copyTo(image(Rect(0, 0       ,nbins, histh)));
+histImgG.copyTo(image(Rect(0, histh   ,nbins, histh)));
+histImgB.copyTo(image(Rect(0, 2*histh ,nbins, histh)));
+----
+
+Finalmente, as imagens dos histogramas são copiadas, uma abaixo da
+outra, para o canto superior esquerdo da imagem capturada na câmera.
+
+=== Exercícios ===
+* Utilizando o programa link:exemplos/histogram.cpp[] como referência,
+  implemente um programa `equalize.cpp`. Este deverá, para cada
+  imagem capturada, realizar a equalização do histogram antes de
+  exibir a imagem. Teste sua implementação apontando a câmera para
+  ambientes com iluminações variadas e observando o efeito
+  gerado. Assuma que as imagens processadas serão em tons de cinza.
+* Utilizando o programa link:exemplos/histogram.cpp[] como referência,
+  implemente um programa `motiondetector.cpp`. Este deverá
+  continuamente calcular o histograma da imagem (apenas uma componente
+  de cor é suficiente) e compará-lo com o último histograma
+  calculado. Quando a diferença entre estes ultrapassar um limiar
+  pré-estabelecido, ative um alarme. Utilize uma função de comparação
+  que julgar conveniente.
+
+== Filtragem no domínio espacial I ==
+
+A convolução é um processo pelo qual duas funções se combinam para
+formar uma terceira função no domínio espacial. Tal processo resulta
+do deslocamento de uma função sobre a outra e do cálculo de uma
+combinação linear entre ambas em cada ponto do deslocamento.
+
+Em se tratando de uma imagem digital, a convolução é chamada de
+convolução digital. Sua principal aplicação é na filtragem de sinais,
+permitindo que características de uma dada imagem sejam alteradas
+conforme o tipo de efeito que se deseja impor.
+
+A convolução discreta entre duas imagens pode ser definida como
+
+stem:[h(x,y) = f(x,y)*g(x,y) = \frac{1}{MN}
+\sum_{m=0}^{M-1}\sum_{n=0}^{N-1}f(m,n) g(x-m, y-n)]
+
+As funções stem:[f(x,y)] e stem:[g(x,y)] normalmente estão associadas
+à imagem a ser filtrada e ao filtro digital associado.
+
+Existem dois tipos de convolução: a 'convolução linear' e a
+'convolução circular'. Na primeira, assume-se que os sinais
+stem:[f(x,y)] e stem:[g(x,y)] existem em duas regiões com M e N
+amostras consecutivas, respectivamente, sendo zero fora desssas
+regiões. A região resultante da convolução terá suporte de tamanho
+stem:[M+N-1]. Fora desta, o resultado da convolução será nulo. Na
+segunda, assume-se que as sequências stem:[f(x,y)] e stem:[g(x,y)] são
+periódicas e com um mesmo período stem:[M=N]. O resultado da
+convolução, stem:[h(x,y)] possuirá também o mesmo período stem:[M]. 
+
+Costuma-se simplificar essa equação e calcular os tons de cinza da
+imagem filtrada realizando o produto entre os coeficientes de uma
+pequena matriz comumente denominada 'máscara' e as intensidades dos
+pixels sobre uma posição específica na imagem. 
+
+As máscaras normalmente possuem dimensões de tamanho ímpar (stem:[3
+\times 3] elementos , stem:[5 \times 5] elementos, stem:[7 \times 7]
+elementos, etc), dependendo da intensidade da filtragem que se deseja
+realizar.
+
+Considere uma imagem digital denotada por stem:[f(x,y)], uma matriz de
+máscara denotada por stem:[w(s,t)] e uma image filtrada denotada por
+stem:[g(x,y)]. Para uma máscara de tamanho stem:[3 \times 3]
+elementos, o processo de filtragem no domínio espacial é ilustrado na
+figura <<fig_filtragemespacial>>.
+
+[[fig_filtragemespacial, Filtragem espacial]]
+.Filtragem espacial
+image::filtragemespacial.svg[]
+
+No processo, a imagem da máscara é deslocada (pixel a pixel) sobre a
+imagem a ser filtrada. Para cada deslocamento, calcula-se o somatório
+do produto entre os valores dos elementos da máscara e os tons de
+cinza dos pixels que esta sobrepõe e atribui-se o resultado ao pixel
+respectivo na imagem filtrada.
+
+Muitos efeitos de filtragem são possíveis de se obter modificando os
+valores da imagem da máscara: borramento, aguçamento e detecção de
+bordas são os principais deles.
+
+O programa de referência utilizado para essa tarefa,
+link:exemplos/filtroespacial.cpp[filtroespacial.cpp], é mostrado na
+Listagem <<exa_filtroespacial>>. 
+
+[[exa_filtroespacial,Filtroespacial]]
+[source,cpp]
+.filtroespacial.cpp
+----
+include::exemplos/filtroespacial.cpp[]
+----
+
+Para compilar e executar o programa link:exemplos/filtroespacial.cpp[filtroespacial.cpp],
+salve-o juntamente com o arquivo link:exemplos/Makefile[Makefile]
+em um diretório e execute a seguinte seqüência de comandos:
+
+[source,shell]
+----
+$ make filtroespacial
+$ ./filtroespacial
+----
+
+A saída do programa _filtroespacial_ apresentará duas janelas: uma com
+a imagem original capturada e outra com o resultado da filtragem. O
+filtro inicial escolhido no exemplo é o da média.
+
+=== Descrição do programa `filtroespacial.cpp` ===
+
+[source,cpp]
+----
+float media[] = {1,1,1,
+                 1,1,1,
+                 1,1,1};
+float gauss[] = {1,2,1,
+                 2,4,2,
+                 1,2,1};
+float horizontal[]={-1,0,1,
+                    -2,0,2,
+                    -1,0,1};
+float vertical[]={-1,-2,-1,
+                  0,0,0,
+                  1,2,1};
+float laplacian[]={0,-1,0,
+                   -1,4,-1,
+                   0,-1,0};
+----
+
+Os filtros usados no exemplo (determinados pelas matrizes de máscara)
+são de tamanho stem:[3 \times 3] pixels. Cinco tipos de filtros são
+testados: média, gaussiano, detector de bordas horizontais, detector de
+bordas verticais e laplaciano. Os coeficientes de cada filtro são
+armazenados em arrays unidimensionais que serão repassados ao
+construtor da matriz do filtro.
+
+[source,cpp]
+----
+mask = Mat(3, 3, CV_32F, media); 
+scaleAdd(mask, 1/9.0, Mat::zeros(3,3,CV_32F), mask1);
+swap(mask, mask1);
+----
+
+Esse trecho de código mostra o procedimento padrão para construção da
+matriz que será usada como máscara de filtragem. A variável `mask`
+recebe uma matriz de tamanho stem:[3 \times 3] em ponto flutuante
+(`CV_32F`) com valores iniciais iguais ao do array `media` que é
+repassado. Repare que o tipo da matriz precisa ser estabelecido em
+ponto flutuante, posto que as operações de cálculo contarão com a
+presença de números fracionários.
+
+O uso da função `scaleAdd()` serve para dar o ganho de stem:[1/9] nos
+coeficientes do filtro da média. A operação multiplica o primeiro
+argumento pelo segundo, soma com o terceiro argumento (neste caso, uma
+matriz de zeros) e armazena o resultado no terceiro argumento,
+`mask1`. Logo em seguida, a troca entre as matrizes `mask` e `mask1`
+ocorre para que use apenas a matriz `mask` no cálculo da convolução
+digital. 
+
+[source,cpp]
+----
+video >> cap; 
+cvtColor(cap, frame, CV_BGR2GRAY);
+flip(frame, frame, 1);
+----
+
+Em loop infinito, imagens coloridas são capturadas constantemente na
+matriz `cap` e convertidas em equivalentes em tons de cinza usando a
+função `cvtColor()`. A imagem então é invertida horizontalmente com a
+função `flip()`. A inversão é feita apenas para fins de tornar a
+interação com o programa exemplo semelhante à de um espelho.
+
+[source,cpp]
+----
+frame.convertTo(frame32f, CV_32F);
+filter2D(frame32f, frameFiltered, frame32f.depth(), mask, Point(1,1), 0);
+----
+
+Este trecho é responsável pelo cálculo da filtragem espacial. Cada
+imagem em tom de cinza armazenada na variável `frame` é convertida
+para outra equivalente com representação em ponto flutuante -
+`frame32f`. A conversão é necessária devido aos tipos de operação que
+serão realizados pela função `filter2D()`. Observe apenas que OpenCV
+replica os pixels na borda ('ao invés de preencher de zeros') durante
+o processo de filtragem.
+
+A função `filter2d()` recebe então a matriz da imagem em ponto
+flutuante - `frame32f` - e produz a matriz `frameFiltered`, de acordo
+com o tipo do elemento da matriz de entrada - neste caso, CV_32F (ou
+float). O objeto `Point(1,1)` que é repassado como próximo argumento
+identifica a origem do sistema de coordenadas atribuído para a
+máscara que, neste caso, é o ponto central da matriz.
+
+[source,cpp]
+----
+if(absolut){
+  frameFiltered=abs(frameFiltered);
+}
+frameFiltered.convertTo(result, CV_8U);
+----
+
+Caso a opção de módulo esteja selecionada, o cálculo é então
+procedido. A imagem filtrada é então convertida para tons de cinza
+para posterior exibição na tela.
+
+O restante do código trata apenas da adaptação da matriz `mask`
+conforme o filtro escolhido pelo usuário para ser aplicado à imagem
+capturada.
+
+=== Exercícios ===
+
+* Utilizando o programa link:exemplos/filtroespacial.cpp[] como
+  referência, implemente um programa `laplgauss.cpp`. O programa
+  deverá acrescentar mais uma funcionalidade ao exemplo fornecido,
+  permitindo que seja calculado o laplaciano do gaussiano das imagens
+  capturadas. Compare o resultado desse filtro com a simples aplicação
+  do filtro laplaciano.
+
+== Filtragem no domínio espacial II ==
+
+Este capítulo visa explorar um pouco mais do uso de filtragem espacial
+aplicando seus princípios para simular uma técnica de fotografia denominada
+_tilt-shift_.
+
+A técnica fotográfica de _tilt-shift_ envolve o uso de deslocamentos e
+rotações entre a lente e o plano de projeção (onde fica filme
+fotográfico ou o sensor da câmera) de modo a desfocar seletivamente
+regiões do assunto.
+
+O princípio básico dessa técnica é ilustrado na figura
+<<fig_tiltshift>>.
+
+[[fig_tiltshift, Tilt-shift]]
+.Princípio de funcionamento do _tilt shift_
+image::tiltshift.svg[]
+
+Na lente normal, o plano de projeção é paralelo ao plano de foco com o
+assunto que se deseja registrar. Quando a lente é submetida a uma
+inclinação (_tilt_), o plano de foco forma um ângulo diferente de zero
+com o plano de projeção, mudando assim a região que ficará em foco na
+imagem registrada pela câmera. Se a lente for deslocada para cima ou
+para baixo (_shift_), é possível também escolher seletivamente a
+região que ficará em foco, complementando o uso da técnica.
+
+A técnica de _tilt-shift_ consegue criar belos efeitos fotográficos,
+simulando miniaturas. O foco seletivo que a lente produz engana o olho
+humano, dando a impressão que a imagem foi registrada de uma cena em
+miniatura. Tomando a imagem usando ângulos e proporções adequadas do
+assunto, dá para se produzir versões em minatura de cenas reais que
+podem ser bastante convincentes.
+
+Lentes que produzem esse efeito não são baratas quando comparadas a
+lentes normais. Entrentanto, o efeito produzido por estas lentes pode
+ser reproduzido usando técnicas simples de processamento digital de
+imagens.
+
+O princípio utilizado para simular a lente _tilt-shift_ é combinar a
+imagem original com sua versão filtrada com filtro passa-baixas, de
+sorte a produzir nas proximidades da borda o efeito do borramento
+enquanto se mantém na região central a imagem sem borramento.
+
+Uma forma de combinar pode ser realizada com a função `addWeighted()` do
+OpenCV. Ela opera calculando a combinação linear de duas imagens
+stem:[f_0(x,y)] e stem:[f_1(x,y)] pela
+equação stem:[g(x,y) = (1 - \alpha)f_0(x,y) + \alpha f_1(x,y)], para um
+dado valor de stem:[\alpha] fornecido.
+
+O programa de referência utilizado para exemplificar o uso da função sugerida,
+link:exemplos/addweighted.cpp[addweighted.cpp], é mostrado na
+Listagem <<exa_addweighted>>. 
+
+[[exa_addweighted,Addweighted]]
+[source,cpp]
+.addweighted.cpp
+----
+include::exemplos/addweighted.cpp[]
+----
+
+Para compilar e executar o programa
+link:exemplos/addweighted.cpp[addweighted.cpp], salve-o juntamente com
+o arquivo link:exemplos/Makefile[Makefile] em um diretório juntamente
+com as imagens link:exemplos/blend1.jpg[] e link:exemplos/blend2.jpg[]
+e execute a seguinte seqüência de comandos:
+
+[source,shell]
+----
+$ make addweighted
+$ ./addweighted
+----
+
+A saída do programa _addweighted_ apresentará uma janela com duas
+barras de controle: uma que regula o valor de stem:[alpha] e outra que
+indica a região que será copiada de uma das imagens de entrada na
+imagem da composição.
+
+Utilizando os recursos do exemplo, é possível conceber uma função de
+ponderação para combinar a imagem original com sua versão borrada por
+um filtro da média. Entretanto, o desfoque não deve alterar a região
+central da imagem final para que o efeito do `tiltshift` funcione.
+
+Tal processo pode ser modelado usando uma função que define a região
+de desfoque ao longo do eixo vertical da imagem. Uma possível função
+que modela esse efeito é dada por
+
+stem:[\alpha (x) = \frac{1}{2} ( \tanh \frac{x-l1}{d}-tanh\frac{x-l2}{d} )]
+
+Onde stem:[l1] e stem:[l2] são as linhas cujo valor de
+stem:[\alpha] assume valor em torno de 0.5, caso os dois valores
+possuam uma distância adequada um do outro, e stem:[d]
+indica a força do decaimento da região totalmente oriunda da imagem
+original para a região totalmente oriunda da imagem borrada.
+
+Para valores stem:[l1 = -20 ], stem:[l2 = 30], e
+stem:[d = 6], por exemplo, a função de ponderação se
+comportaria como ilustrado na Figura <<fig_tiltshiftfunction>>.
+
+[[fig_tiltshiftfunction, Função Tiltshift]]
+//[.text-center]
+//[.right.text-center]
+.Exemplo de função de ponderação para tiltshift
+image::tiltshift-function.svg[]
+
+Assumindo que stem:[\alpha(x)] pondere a imagem original (denotada por
+stem stem:[f(x,y)]) e stem:[1-\alpha(x)] pondere a imagem borrada
+(denotada por stem:[bf(x,y)]), a composição stem:[g(x,y) = \alpha(x)
+f(x,y) + (1-\alpha(x)) bf(x,y)] produzirá o efeito de `tiltshift`
+desejado.
+
+O processo de ponderação pode ser realizado por intermédio da função
+`multiply()` do OpenCV, destinada à multiplicação de matrizes
+elemento-a-elemento. Cria-se a imagem que irá ponderar as linhas da
+imagem original e seu negativo irá ponderar as linhas da imagem
+borrada. A combinação linear dessas duas imagens fara o efeito
+simulado de `tiltshift`. A Figura <<fig_tiltshiftfunctionpondera>> ilustra
+possíveis imagens que poderiam ser usadas para ponderação no
+processo. A da esquerda ponderaria a imagem original e a da direita a
+imagem borrada.
+
+[[fig_tiltshiftfunctionpondera, Imagens para multiplicação]]
+//[.text-center]
+//[.right.text-center]
+.Exemplo de imagens geradas para ponderação no `tiltshift`
+image::tiltshift-weight.jpg[]
+
+=== Exercícios ===
+* Utilizando o programa link:exemplos/addweighted.cpp[] como referência,
+  implemente um programa `tiltshift.cpp`. Três ajustes deverão ser
+  providos na tela da interface:
+** um ajuste para regular a altura da região central que entrará em foco;
+** um ajuste para regular a força de decaimento da região borrada;
+** um ajuste para regular a posição vertical do centro da região que
+   entrará em foco.
+  Finalizado o programa, a imagem produzida deverá ser salva em
+   arquivo.
+
+* Utilizando o programa link:exemplos/addweighted.cpp[] como referência,
+  implemente um programa `tiltshiftvideo.cpp`. Tal programa deverá ser
+  capaz de processar um arquivo de vídeo, produzir o efeito de
+  tilt-shift nos quadros presentes e escrever o resultado em outro
+  arquivo de vídeo. A ideia é criar um efeito de miniaturização de
+  cenas. Descarte quadros em uma taxa que julgar conveniente para
+  evidenciar o efeito de
+  link:https://pt.wikipedia.org/wiki/Stop_motion[stop motion], comum
+  em vídeos desse tipo. 
+
+== Filtragem no domínio da frequência ==
+
+O objetivo desse capítulo é entender como se dá o uso da filtragem no
+domínio da frequência usando a Transformada Discreta de Fourier
+bidimensional.
+
+A Transformada de Fourier é uma transformada capaz de expressar um
+sinal contínuo como uma combinação de funções de base senoidais
+ponderadas por coeficientes. A Transformada Discreta de Fourier, por
+sua vez, é aplicada a sinais discretos, tais como imagens digitais.
+
+Para uma imagem digital, a Transformada Discreta de Fourier (ou DFT),
+é capaz de fornecer uma representação alternativa dessa imagem,
+evidenciando degradações que não são facilmente tratadas no domínio
+espacial. Exemplos de problemas dessa natureza são as interferências
+senoidais nas transmissões de sinais analógicos ou padrões moiré
+presentes em figuras antigas ou fotos de jornais. Um exemplo de
+fotografia corrompida por um padrão moiré é mostrada na Figura
+<<fig_moire>>. Note uma espécie de grade de pontos presentes nessa
+imagem.
+
+[[fig_moire, Interferências senoidais]]
+.Exemplo de imagem corrompida por um padrão moiré
+image::moire.png[]
+
+[[fig_dftmoire, Interferências senoidais]]
+.Transformada Discreta de Fourier da imagem da Figura <<fig_moire>>
+image::dftmoire.png[]
+
+
+A Transformada Discreta de Fourier da imagem na Figura
+<<fig_dftmoire>> é mostrada na Figura <<fig_dftmoire>>. Perceba um
+conjunto de impulsos simétricos que surgem longe dos eixos,
+destacando-se do restante do sinal transformado. São essas
+contribuições as causadoras da grade de pontos.
+
+Estabelecendo filtros especiais, é possível remover essas
+contribuições da imagem transformada e, realizando a transformação
+inversa, obter uma versão filtrada da imagem original.
+
+A filtragem no domínio da Transformada de Fourier pode ser usada de
+diversas formas. Nesta lição, mostra-se como criar um filtro ideal
+passa baixas que remove as componentes de alta frequência de uma
+sequência de vídeo. Nota-se que a imagem resultante do processo de
+filtragem é borrada, dada a preservação apenas das componentes de
+baixa frequência. Além disso, o exemplo simula uma interferência
+senoidal (ruído coerente) adicionando à imagem transformada impulsos
+simétricos na região de altas frequências.
+
+Duas características de manipulação de imagens no domínio da
+frequência são trabalhadas então: o projeto e uso de filtros
+frequenciais e a manipulação direta do sinal transformado.
+
+Para ilustrar o uso da Transformada Discreta de Fourier, considere o
+exemplo mostrado na Listagem <<exa_dft>>
+
+[[exa_dft, DFT]]
+[source,cpp]
+.dft.cpp
+----
+include::exemplos/dft.cpp[]
+----
+
+=== Descrição do programa `dft.cpp` ===
+
+O programa funciona capturando continuamente quadros da primeira
+câmera disponível, calcula a Transformada de Fourier e realiza duas
+operações:
+
+* Filtragem no domínio da frequência usando filtro ideal passa-baixas
+  com frequência de corte de 20 pixels.
+* Inserção de ruído coerente com frequência ajustável pela variável
+  _freq_ , nas posições latexmath:[F(freq, freq)] e latexmath:[F(-freq,-freq)].
+
+Para aplicar o filtro, é necessário que o sinal transformado seja
+deslocado de modo que a origem do sinal fique posicionada no centro da
+imagem, como ilustra a Figura <<fig_dftshift>>. 
+
+[[fig_dftshift, Deslocamento da imagem transformada]]
+.Deslocamento da imagem transformada
+image::dftshift.svg[]
+
+A operação de deslocamento é realizada pela função `deslocaDft()`. Ela
+recebe a referência para a matriz que contém a imagem transformada e
+troca seus quadrantes. Caso a imagem possua tamanho *ímpar*, ela é
+diminuída de tamanho em *um pixel* para que a troca dos quadrantes
+seja feita usando tamanhos imagens de iguais. Normalmente, trata-se a
+imagem que será submetida ao cálculo da DFT para que possua dimensões
+de ordem par, de sorte que essa linha não deverá alterar o tamanho das
+imagens usualmente fornecidas.
+
+[source,cpp]
+----
+// habilita/desabilita ruido
+int noise=0;
+// frequencia do ruido
+int freq=10;
+// ganho inicial do ruido
+float gain=1;
+----
+
+Essa são variáveis que regulam um ruído coerente que pode ser
+adicionado ao sinal filtrado para simular uma inteferência. A variável
+`noise` pode assumir os valores `0` ou `1`, indicando se a
+inteferência será aplicada ou não, respectivamente. Essa variável é
+alterada de `0->1` ou `1->0` quando a tecla kbd:[e] é pressionada.
+
+As variáveis `freq` e `gain` regulam a frequência do ruído coerente e
+sua intensidade. Esta última é adicionada à imagem transformada como
+uma proporção ao valor de latexmath:[F(0,0)], valor médio dos tons de cinza
+da imagem capturada. Escolheu-se o valor de latexmath:[F(0,0)] para que a
+ponderação da inteferência ficasse atrelada a cada imagem, causando um
+efeito visual mais convincente.
+
+[source,cpp]
+----
+dft_M = getOptimalDFTSize(image.rows);
+dft_N = getOptimalDFTSize(image.cols);
+----
+
+A função `getOptimalDFTSize()` identifica os melhores valores com base
+no tamanho fornecido para acelerar o processo de cálculo da DFT com
+base em algum algoritmo otimizado. Segundo a documentação do OpenCV,
+valores múltiplos de dois, três e cinco produzem resultados
+melhores. Os valores de tamanho ideal para a quantidade de linhas e
+colunas da imagem são armazenados nas variáveis `dft_M` e `dft_N`,
+respectivamente. 
+
+[source,cpp]
+----
+copyMakeBorder(image, padded, 0,
+               dft_M - image.rows, 0,
+               dft_N - image.cols,
+               BORDER_CONSTANT, Scalar::all(0));
+----
+
+A função `copyMakeBorder()` cria uma versão da imagem fornecida com
+uma borda preenchida com _zeros_ e ajustada ao tamanho ótimo para
+cálculo da DFT, conforme indicado pelo uso da função
+`getOptimalDFTSize()`. Para uma imagem `image` fornecida, a saída é
+produzida na imagem `padded`. Perceba que, caso a imagem fornecida já
+possua dimensões apropriadas, a imagem de saída será igual à de
+entrada.
+
+[source,cpp]
+----
+// parte imaginaria da matriz complexa (preenchida com zeros)
+zeros = Mat_<float>::zeros(padded.size());
+
+// prepara a matriz complexa para ser preenchida
+complexImage = Mat(padded.size(), CV_32FC2, Scalar(0));
+----
+
+Esse trecho de código constrói a matriz uma matriz de zeros tipo float
+e uma matriz complexa que serão necessárias para o cálculo da DFT. A
+matriz de zeros é usada para compor, juntamente com a imagem
+capturada, a componente complexa que será fornecida à função que
+calcula a Tranformada de Fourier.
+
+[source,cpp]
+----
+// a função de transferência (filtro frequencial) deve ter o
+// mesmo tamanho e tipo da matriz complexa
+filter = complexImage.clone();
+
+// cria uma matriz temporária para criar as componentes real
+// e imaginaria do filtro ideal
+tmp = Mat(dft_M, dft_N, CV_32F);
+
+// prepara o filtro passa-baixas ideal
+for(int i=0; i<dft_M; i++){
+ for(int j=0; j<dft_N; j++){
+    if((i-dft_M/2)*(i-dft_M/2)+(j-dft_N/2)*(j-dft_N/2) < RADIUS*RADIUS){
+      tmp.at<float> (i,j) = 1.0;
+    }
+  }
+}
+
+// cria a matriz com as componentes do filtro e junta
+// ambas em uma matriz multicanal complexa
+Mat comps[]= {tmp, tmp};
+merge(comps, 2, filter);
+----
+
+O filtro ideal passa baixas é preparado com base na matriz complexa
+`complexImage` previamente montada. Esse filtro, armazenado na matriz
+`filter` *DEVE SER DO MESMO TAMANHO E TIPO DA IMAGEM COMPLEXA* para
+que a função de filtragem funcione corretamente. O filtro ideal é
+criado desenhando-se no centro da imagem complexa um círculo de raio
+igual a `RADIUS` com todos os valores preenchidos com `1`. Fora desse
+raio, o valor do filtro é igual a `0`.
+
+Como as duas componentes da imagem do filtro - real e complexa -
+precisam ter exatamente os mesmos valores, uma matriz temporária `tmp`
+armazena os valores do filtro, que em seguida são combinadas com a
+função `merge()` para montar a matriz do filtro.
+
+[source,c]
+----
+// limpa o array de matrizes que vao compor a
+// imagem complexa
+planos.clear();
+// cria a compoente real
+realInput = Mat_<float>(padded);
+// insere as duas componentes no array de matrizes
+planos.push_back(realInput);
+planos.push_back(zeros);
+// combina o array de matrizes em uma unica
+// componente complexa
+merge(planos, complexImage);
+----
+
+Em cada passada no _loop_ infinito do programa, uma imagem capturada
+da câmera é redimensionada (quando necessário) e preparada para o
+cálculo da DFT.
+
+Um vetor auxiliar `planos` é usado para montar a matriz
+complexa. Inicialmente, o vetor é limpo para armazenar as novas
+contribuições. Cria-se uma matriz `realInput` do tipo `float`, com
+base na imagem resultante da operação de _padding_. Tanto essa quanto
+a matriz de zeros são inseridas no array de planos. O array é, então,
+combinado usando a função `merge()` para montar a matriz complexa.
+
+[source,cpp]
+----
+// calcula o dft
+dft(complexImage, complexImage);
+
+// realiza a troca de quadrantes
+deslocaDFT(complexImage);
+----
+
+O cálculo do DFT é realizado. Perceba que tanto a matriz de entrada
+quanto a de saída passadas como parâmetro podem ser a
+mesma. Finalizado o cálculo da DFT, a função `deslocaDFT()` realiza a
+troca de quadrantes.
+
+[source,cpp]
+----
+// aplica o filtro frequencial
+mulSpectrums(complexImage,filter,complexImage,0);
+----
+
+Agora, o processo de filtragem no domínio da frequência é propriamente
+realizado. A função `mulSpectrums()` recebe pelo menos quatro
+argumentos: a imagem a ser filtrada, o filtro, a imagem onde deverá
+ser lançada a saída (que pode ser a mesma matriz de entrada), e flags
+de operação. Normalmente, esse flag não é usado, adicionando-se
+simplesmente `0` ao seu valor.
+
+[source,cpp]
+----
+// limpa o array de planos
+planos.clear();
+// separa as partes real e imaginaria para modifica-las
+split(complexImage, planos);
+
+// usa o valor medio do espectro para dosar o ruido 
+mean = abs(planos[0].at<float> (dft_M/2,dft_N/2));
+// insere ruido coerente, se habilitado
+if(noise){
+  // F(u,v) recebe ganho proporcional a F(0,0)
+  planos[0].at<float>(dft_M/2 +freq, dft_N/2 +freq) +=
+   gain*mean;
+
+  planos[1].at<float>(dft_M/2 +freq, dft_N/2 +freq) +=
+    gain*mean;
+  
+  // F*(-u,-v) = F(u,v)
+  planos[0].at<float>(dft_M/2 -freq, dft_N/2 -freq) =
+    planos[0].at<float>(dft_M/2 +freq, dft_N/2 +freq);
+  
+  planos[1].at<float>(dft_M/2 -freq, dft_N/2 -freq) =
+    -planos[1].at<float>(dft_M/2 +freq, dft_N/2 +freq);
+}
+----
+
+Esse trecho realiza a simulação da inteferência por ruído
+coerente. Inicialmente, o array de planos é limpo para receber as
+partes real e imaginária da imagem filtrada. Ele é preenchido pela
+função `split()` que realiza a divisão da imagem complexa em dois
+arrays reais. Estes arrays ficam contidos em `planos[0]` (componente
+real) e `planos[1]` (componente imaginária).
+
+O trecho seguinte introduz o ruído nas posições da imagem localicadas
+em latexmath:[F(freq, freq)] e latexmath:[F(-freq,-freq)]. Veja que
+nas equações é dado um deslocamento adicional nos índices dos arrays
+igual a `(dft_M/2, dft_N/2)`, já que a origem da Transformada de Fourier
+está posicionada no centro da imagem. Observe também que as
+ponderações são realizadas utilizando as propriedades de simetria.
+
+[source,cpp]
+----
+// recompoe os planos em uma unica matriz complexa
+merge(planos, complexImage);
+
+// troca novamente os quadrantes
+deslocaDFT(complexImage);
+
+// calcula a DFT inversa
+idft(complexImage, complexImage);
+----
+
+Uma vez inserida a interferência, os planos reais são novamente
+fundidos em uma matriz complexa. Essa matriz deve ter seus quadrantes
+trocados para que seja realizado cálculo da Transformada de Fourier
+inversa usando a função `idft()`.
+
+[source,cpp]
+----
+// limpa o array de planos
+planos.clear();
+
+// separa as partes real e imaginaria da
+// imagem filtrada
+split(complexImage, planos);
+
+// normaliza a parte real para exibicao
+normalize(planos[0], planos[0], 0, 1, CV_MINMAX);
+imshow("filtrada", planos[0]);
+----
+
+A imagem complexa é separada em suas componentes real e imaginária nos
+elementos do array `planos`. A matriz `planos[0]` conterá a imagem
+processada. Ela tem seus valores normalizados na faixa stem:[[0,1]]
+para exibição na tela.
+
+A sequência do programa apenas trata opções de menu que realizam
+modificações no ganho e na frequência de corte da interferência
+simulada. As opções do menu são descritas na tabela seguinte:
+
+|===
+|Opção | funcionalidade
+
+|kbd:[q]
+|aumenta a frequência da interferência
+
+|kbd:[a]
+|diminui a frequência da interferência
+
+|kbd:[x]
+|aumenta o ganho da inteferência
+
+|kbd:[z]
+|diminui o ganho da interferência
+
+|kbd:[e]
+|habilita/desabilita o efeito da interferência
+|===
+
+=== Exercícios ===
+* Utilizando o programa link:exemplos/dft.cpp[] como referência,
+  implemente o filtro homomórfico para melhorar imagens com iluminação
+  irregular. Crie uma cena mal iluminada e ajuste os parâmetros do
+  filtro homomórfico para corrigir a iluminação da melhor forma
+  possível. Assuma que a imagem fornecida é em tons de cinza.
+
+== Detecção de bordas com o algoritmo de Canny ==
+
+O detector de bordas de Canny é sabidamente reconhecido como um dos
+mais rápidos e eficientes algoritmos para encontrar descontinuidades
+em uma imagem. Ele produz como resultado uma imagem binária contendo
+os pontos de borda obtidos a partir de uma imagem, para um conjunto de
+parâmetros de configuração.
+
+Em linhas gerais, o algoritmo de Canny procura descobrir bordas situadas
+em máximos locais do gradiente de uma image, e pode ser sumarizado
+pelos seguintes passos:
+
+. Convolução com o filtro Gaussiano, cálculo da magnitude e ângulo do
+gradiente.
+. Afinação das cristas largas do gradiente.
+.. Classificação dos pontos quanto às orientações Horizontal,
+Vertical, latexmath:[+45^\text{o}], e latexmath:[-45^\text{o}]
+(intervalos de latexmath:[\pm 22.5^\text{o}]).
+.. Para os vizinhos na orientação determinada para o pixel, verificar
+os seus gradientes.
+.. Supressão de não máximos: se o valor da magnitude do gradiente
+latexmath:[M(x,y)] for inferior a pelo menos um de seus vizinhos, faça
+latexmath:[g_N(x,y)=0]; caso contrário, faça latexmath:[g_N(x,y) =
+M(x,y)]. A imagem latexmath:[g_N(x,y)] é a imagem com supressão.
+. Limiarização com histerese é usada para a quebra do contorno (borda
+tracejada).
+.. Dois limiares latexmath:[T_1] e latexmath:[T_2]. latexmath:[T_1 > T_2] são usados. 
+.. Se o pixel é tal que latexmath:[g_N(x,y) \ge T_1], é assumido como ponto de borda forte.
+.. Para os pixels restantes, aqueles em que latexmath:[g_N(x,y) \ge T_2], são assumidos como ponto de borda fraco.
+
+.. Para todos os vizinhos dos pontos de borda fraco, procurar nos seus
+8-vizinhos se há algum ponto de borda forte. Caso haja, este é marcado
+como parte da fronteira.
+.. Sugestão de Canny: latexmath:[T_H/T_L = 3/1], ou latexmath:[T_H/T_L =2/1]
+
+Um exemplo de aplicação desse algoritmo na imagem da Figura
+<<fig_canny_exemplo>> é mostrado na Figura <<fig_canny>>. Observe que
+as bordas encontradas são bem localizadas e geralmente possuem
+espessura igual a 1.
+
+
+[[fig_canny_exemplo, Exemplo para o detector de Canny]]
+.Exemplo para o detector de Canny
+image::biel.png[]
+
+[[fig_canny, Detecção de bordas usando o filtro de Canny]]
+.Detecção de bordas usando o filtro de Canny
+image::canny.png[]
+
+O programa que gerou essa imagem é mostrado no Exemplo <<exa_canny>>.
+
+[[exa_canny, Canny]]
+[source,cpp]
+.canny.cpp
+----
+include::exemplos/canny.cpp[]
+----
+
+Para compilar e executar o programa
+link:exemplos/canny.cpp[canny.cpp], salve-o juntamente com os arquivo
+link:exemplos/Makefile[Makefile] e a imagem
+link:figs/biel.png[biel.png] em um diretório e execute a seguinte
+seqüência de comandos:
+
+[source,shell]
+----
+$ make canny
+$ ./canny biel.png
+----
+
+O programa disponibilizará uma _scrollbar_ que regula o valor do
+limiar latexmath:[T_1]. O valor do limiar latexmath:[T_2] é
+determinado automaticamente usando a proporção latexmath:[T_1 = 3
+T_1]. Ao ser finalizado - quando uma tecla é pressionada - o programa
+escreve a imagem de bordas no arquivo de nome `cannyborders.png`.
+
+Valores diferentes para o limiar escolhido produzem imagens de bordas
+diferentes.
+
+A função de destaque nesse programa exemplo é apenas a função
+`Canny()`.
+
+[source,cpp]
+----
+Canny(image, border, top_slider, 3*top_slider);
+----
+
+Os dois primeiros argumentos indicam a imagem a ser processada, a
+matriz onde a imagem de bordas será escrita, e os limiares
+latexmath:[T_1] e latexmath:[T_2], neste caso representado pelas
+quantidades  `top_slider` e `3*top_slider`.
+
+=== Canny e a arte com pontilhismo ===
+
+O algoritmo de Canny de fato é útil para diversas aplicações em
+processamento de imagens e visão artificial. Informações de bordas
+podem ser usadas para melhorar algoritmos de segmentação automática ou
+para encontrar objetos em cenas e pontos de interesse.
+
+Entretanto, nesta lição, a proposta de uso do algoritmo é para
+desenvolver arte digital. A ideia é usar uma imagem de referência para
+criar uma nova imagem usando efeitos artísticos pontilhistas.
+
+O pontilhismo é uma técnica de desenho impressionista onde o quadro é
+pintado usando apenas pontos. Um dos artistas pioneiros nessa técnica
+foi link:https://en.wikipedia.org/wiki/Georges_Seurat[George
+Seurat]. Vários dos seus trabalhos podem ser vistos _online_ no site
+link:http://www.georgesseurat.org/[georgesseurat.org].
+
+Simular no computador um efeito pontilhista não é muito
+trabalhoso. Uma estratégia simples é utilizar uma imagem de referência
+e criar uma outra imagem desenhada usando pequenos círculos. Em suma,
+percorre-se a imagem de referência e para cada pixel, desenha-se um
+círculo com a mesma cor na posição correspondente na imagem
+pontilhista.
+
+Efeitos pontilhistas interessantes podem ser criados com variantes
+simples dessa técnica. Exemplo: pular sequências de pixels na imagem
+de referência para dar a impressão de que os pontos estão separados na
+tela - isso é bastante comum na arte pontilhista. Outro efeito
+interessante é realizar deslocamentos aleatórios nos centros dos
+círculos, para que a imagem gerada permaneca menos
+artificial. Finalmente, é razoável percorrer a matriz de referência
+usando uma sequência aleatória, principalmente quando a técnica
+pontilhista realiza a sobreposição de círculos.
+
+Um exemplo de imagem pontilhista é mostrada na Figura <<fig_pontilhismo>>.
+
+[[fig_pontilhismo, Pontilhismo]]
+.Imagem pontilhista
+image::pontos.png[Pontos]
+
+
+O programa que gerou essa imagem é mostrado no Exemplo <<exa_pontilhismo>>.
+
+[[exa_pontilhismo, Pontilhismo]]
+[source,cpp]
+.pontilhismo.cpp
+----
+include::exemplos/pontilhismo.cpp[]
+----
+
+Para compilar e executar o programa
+link:exemplos/pontilhismo.cpp[pontilhismo.cpp], salve-o juntamente com
+o arquivo link:exemplos/Makefile[Makefile] e a imagem
+link:figs/biel.png[biel.png] em um diretório e execute a seguinte
+seqüência de comandos:
+
+[source,shell]
+----
+$ make pontilhismo
+$ ./pontilhismo biel.png
+----
+
+=== Descrição do programa `pontilhismo.cpp` ===
+
+O programa `pontilhismo.cpp` não introduz novas funcionalidades da
+biblioteca de programação OpenCV. Entretanto, algumas classes da
+link:http://www.cplusplus.com/reference/stl/[STL], a biblioteca padrão
+de gabaritos do C++ estão presentes no código para facilitar a criação
+de alguns efeitos. Logo, é conveniente discorrer um pouco sobre seu
+uso no exemplo.
+
+[source,cpp]
+----
+vector<int> yrange;
+vector<int> xrange;
+----
+
+Define-se dois arrays de índices que servirão para identificar
+elementos da imagem de referência. Os tamanhos dos arrays `xrange` e
+`yrange` são determinados como frações da altura e da largura da
+imagem, respectivamente. Isso é feito para que na geração da imagem
+pontilhista, apenas alguns pontos sejam amostrados na imagem de
+referência, evitando sobrecarga visual.
+
+A grandeza `STEP` define o passo usado para varrer a imagem de
+referência. No exemplo, usamos `STEP` igual a 5 pixels, ou seja,
+considerando as duas dimensões da imagem, apenas 1 em cada
+latexmath:[5 \times 5 = 25] pixels de uma janela é usado para criar um
+círculo.
+
+[source,cpp]
+----
+iota(xrange.begin(), xrange.end(), 0); 
+iota(yrange.begin(), yrange.end(), 0);
+
+for(uint i=0; i<xrange.size(); i++){
+  xrange[i]= xrange[i]*STEP+STEP/2;
+}
+
+for(uint i=0; i<yrange.size(); i++){
+  yrange[i]= yrange[i]*STEP+STEP/2;
+}
+----
+
+Os arrays `xrange` e `yrange` são preenchidos com valores sequenciais
+iniciando em `0` e, em seguida, esses valores recebem um ganho igual a
+`STEP` e um deslocamento `STEP/2`, para que o processo de amostragem
+na imagem de referência se dê no centro da janela.
+
+[source,cpp]
+----
+random_shuffle(xrange.begin(), xrange.end());
+----
+
+A função `random_shuffle()` recebe como parâmetros 2 iteradores: uma
+para o início do array e outro para o final. Como resultado, a função
+embaralha aleatoriamente todos seus elementos. Se observado, esse
+processo é feito uma vez para o array de índices das linhas -
+`xrange` - e, para cada linha, embaralha-se o array de índices das
+colunas - `yrange`.
+
+Os loops descritos por `for(auto i : xrange)` e `for(auto j : yrange)`
+são construções na especificação `C++11` e servem para fazer as
+variáveis `i` e `j` assumirem, a cada passada no loop, os valores dos
+arrays `xrange` e `yrange` de forma consecutiva.
+
+[source,cpp]
+----
+x = i+rand()%(2*JITTER)-JITTER+1;
+y = j+rand()%(2*JITTER)-JITTER+1;
+----
+
+O valor das coordenadas do ponto cujo tom de cinza será amostrado na
+imagem de referência é determinado pela posição do centro da janela
+mais um deslocamento aleatório em ambas as direções. Esse deslocamento
+é determinado pela grandeza `JITTER` (igual a 3 pixels).
+
+Variações das grandezas `STEP` e `JITTER` podem ser modificadas para
+uso em imagens de tamanhos diferentes.
+
+[source,cpp]
+----
+circle(points, cv::Point(y,x), RAIO, CV_RGB(gray,gray,gray), -1, CV_AA);
+----
+
+A função `circle()` é usada para traçar um círculo de raio
+especificado em um ponto determinado pelo usuário. O círculo é
+desenhado usando preenchimento sólido e, dada a presença do parâmetro
+`CV_AA`, este será desenhado usando técnicas de _antialiasing_. Assim,
+o círculo terá bordas não serrilhadas, produzindo um efeito visual
+agradável na imagem pontilhista.
+
+=== Exercícios ===
+* Utilizando os programas link:exemplos/canny.cpp[] e
+  link:exemplos/pontilhismo.cpp[] como referência, implemente um
+  programa `cannypoints.cpp`. A idéia é usar as bordas produzidas pelo
+  algoritmo de Canny para melhorar a qualidade da imagem pontilhista
+  gerada. A forma como a informação de borda será usada é
+  livre. Entretanto, são apresentadas algumas sugestões de técnicas
+  que poderiam ser utilizadas:
+** Desenhar pontos grandes na imagem pontilhista básica;
+** Usar a posição dos pixels de borda encontrados pelo algoritmo de
+   Canny para desenhar pontos nos respectivos locais na imagem gerada.
+** Experimente ir aumentando os limiares do algoritmo de Canny e, para
+   cada novo par de limiares, desenhar círculos cada vez menores nas
+   posições encontradas. A Figura <<fig_lenapontilhista>> foi
+   desenvolvida usando essa técnica.
+* Escolha uma imagem de seu gosto e aplique a técnica que você
+  desenvolveu.
+* Descreva no seu relatório detalhes do procedimento usado para criar
+  sua técnica pontilhista.
+
+[[fig_lenapontilhista, Pontilhismo aplicado à imagem Lena]]
+.Pontilhismo aplicado à imagem Lena
+image::lenapontilhista.png[]
+
+== Quantização vetorial com k-means ==
+
+Dá-se o nome de quantização ao grupo de técnicas usadas para mapear os
+dados presentes em um conjunto grande em um conjunto menor de
+elementos. É normalmente usada para fins de compressão de
+dados. Quando um grande conjunto de pontos (vetores) é dividido em
+em grupos de tamanho menor, diz-se que tem uma quantização
+vetorial, onde cada grupo é representado por um centróide.
+
+Dos vários algoritmos de quantização vetorial que podem ser
+encontrados na literatura, o k-means está entre os mais populares. É
+um algoritmo simples que particiona o espaço N-dimensional em células
+de Voronoi, onde cada célula é determinada por um centro. O conjunto
+de todos os pontos no espaço cuja distância para um dado centro é
+menor que para todos os outros centros define a célula.
+
+O algoritmo k-means funciona conforme os seguintes passos:
+
+. Escolha stem:[k] como o número de classes para os vetores
+  stem:[\mathbf{x}_i] de stem:[N] amostras,
+  stem:[i=1,2,\cdots,N].
+. Escolha stem:[\mathbf{m}_1, \mathbf{m}_2,\cdots,\mathbf{m}_k] como
+    aproximações iniciais para os centros das classes.
+. Classifique cada amostra stem:[\mathbf{x}_i] usando, por exemplo,
+    um classificador de distância mínima (distância euclideana).
+. Recalcule as médias stem:[\mathbf{m}_j] usando o resultado do
+    passo anterior.
+. Se as novas médias são consistentes (não mudam consideravelmente),
+    finalize o algoritmo. Caso contrário, recalcule os centros e
+    refaça a classificação.
+
+Algo que se percebe do algoritmo k-means é que cada execução leva a um
+resultado diferente do resultado anterior. Embora o algoritmo
+normalmente estabilize, algumas execuções podem criar aglomerações
+melhores que outras. Logo, é comum executar o algoritmo algumas vezes
+e verificar qual execução gera melhor compactação dos dados. Uma
+das medidas de compactação - a usada pelo OpenCV - verifica a soma dos
+quadrados das distâncias dos pontos da amostra para seus respectivos
+centros.
+
+
+O programa de referência utilizado para essa tarefa,
+link:exemplos/kmeans.cpp[kmeans.cpp], é mostrado na Listagem
+<<exa_kmeans>>.
+
+[[exa_kmeans,Kmeans]]
+[source,cpp]
+.kmeans.cpp
+----
+include::exemplos/kmeans.cpp[]
+----
