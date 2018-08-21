@@ -1,7 +1,7 @@
 /* TEAM */
 Primary Contact: foo
 Site: /about/
-Twitter: https://twitter.com/
+Twitter: https://twitter.com/ajustetecnico
 
 /* THANKS */
 Design Contributors: /disclosure/

@@ -27,7 +27,7 @@ Credits: /disclosure
 <meta name="robots" content="noindex">
 <meta name="robots" content="nofollow">
 
-<meta name="twitter:creator" content="@">
+<meta name="twitter:creator" content="@ajustetecnico">
 
 <!-- Fonts -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400%7CTangerine%7CInconsolata">
@@ -64,7 +64,7 @@ Credits: /disclosure
 <!-- 192x192 (precomposed) for Android -->
 <link rel="icon" type="image/png" sizes="192x192" href="/images/icons/android-icon-192x192.png">
 
-<link rel="author" href="https://plus.google.com/+agostinhobritojr?rel=author">
+<link rel="author" href="https://plus.google.com/+ajustetecnico?rel=author">
 
 <!-- RSS -->
 <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
@@ -115,7 +115,14 @@ Credits: /disclosure
 <hr class="gh">
 
 
-Search box will show up here if Google Custom Search key is set in <code>_config.yml</code>
+<div id="searchbox2" style="margin:0 auto; display: table;">
+<div class="searchcont2">
+    <!-- span class="searchicon2"><i class="fa fa-search fa-2x"></i></span -->
+    <form role="search" method="get" action="/cse/">
+        <input id="searchString2" name="searchString2" placeholder=" Search" type="text">
+    </form>
+</div>
+</div>
 
 
 </div>
@@ -149,7 +156,32 @@ function goBack() {
 }
 </script>
 
-<p>This page will serve search results if Google Custom Search key is set in <code class="highlighter-rouge">_config.yml</code></p>
+<hr class="gh">
+
+<div id="searchbox2" align="center">
+<div class="searchcont2">
+    <!-- span class="searchicon2"><i class="fa fa-search fa-2x"></i></span -->
+    <form role="search" method="get" action="/cse/">
+        <input id="searchString2" name="searchString2" placeholder=" Search" type="text">
+    </form>
+</div>
+</div>
+
+<script>
+  (function() {
+    var cx = '013706804520974097595:ygbbmrheava';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<searchresults-only queryparametername="searchString2" enableautocomplete="true" autocompletematchtype="any" autocompletemaxcompletions="5" autocompletemaxpromotions="1"></searchresults-only>
+<!-- <gcse:searchbox-only resultsUrl="/cse/" queryParameterName="searchString"></gcse:searchbox-only> -->
 
 
                     <div class="custom-footer" style="display: block;">
