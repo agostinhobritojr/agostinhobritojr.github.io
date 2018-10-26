@@ -904,7 +904,8 @@ tratar e gerar o desenho conforme os códigos utilizados na tabela <a href="#tab
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>line x0 y0 x1 y1 brush</code></strong></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>define uma linha do ponto \$(x0,y0)\$ para \$(x1, y1)\$
-  usando o caractere <code>brush</code>.</p>
+  usando o caractere <code>brush</code>. Caso não haja caractere no final da
+  linha, o caractere de desenho será o espaço.</p>
 </div>
 <div class="paragraph">
 <p>Ex: <code>line 5 5 10 8</code></p>
@@ -914,9 +915,10 @@ tratar e gerar o desenho conforme os códigos utilizados na tabela <a href="#tab
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>rectangle x0 y0 largura altura fillmode brush</code></strong></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>define um retângulo com ponto superior esquerdo em \$(x0,y0)\$ e
-  dimensões <code>largura x altura</code>. Se fillmode maior que
+  dimensões <code>largura x altura</code> usando o caractere <code>brush</code>. Se fillmode maior que
   zero, o retângulo será totalmente preenchido. Caso contrário, apenas o
-  contorno será desenhado.</p>
+  contorno será desenhado. Caso não haja caractere no final da
+  linha, o caractere de desenho será o espaço.</p>
 </div>
 <div class="paragraph">
 <p>Ex: <code>rectangle 5 6 10 20 1 @</code> (retângulo preenchido)</p>
@@ -929,15 +931,18 @@ tratar e gerar o desenho conforme os códigos utilizados na tabela <a href="#tab
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>circle x0 y0 raio fillmode brush</code></strong></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>define um círculo com centro no ponto \$(x0, y0)\$, raio
-  especificado e sua forma de preenchimento. Se fillmode maior que
-  zero, o círculo será totalmente preenchido. Caso contrário, apenas o
-  contorno será desenhado.</p>
+  especificado e sua forma de preenchimento usando o caractere
+  <code>brush</code>. Se fillmode for igual a um, o círculo será totalmente
+  preenchido. Caso contrário, apenas o contorno será desenhado. Caso
+  não haja caractere no final da linha, o caractere de desenho será o
+  espaço.</p>
 </div>
 <div class="paragraph">
-<p>Ex: <code>circle 10 10 5 1</code> (circulo preenchido)</p>
+<p>Ex: <code>circle 10 10 5 1</code> (circulo preenchido com o caractere espaço)</p>
 </div>
 <div class="paragraph">
-<p>Ex: <code>circle 10 10 5 0 @</code> (apenas contorno do círculo)</p>
+<p>Ex: <code>circle 10 10 5 0</code> (apenas a circunferência com o caractere espaço)
+Ex: <code>circle 10 10 5 0 @</code> (apenas contorno do círculo com o caractere <code>@</code>)</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -975,7 +980,7 @@ ser salva em outro arquivo usando um dos métodos da classe <code>Screen</code>.
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2018-10-24 07:13:47 -03
+Última atualização 2018-10-26 07:20:47 -03
 </div>
 </div>
 <script type="text/x-mathjax-config">

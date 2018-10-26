@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Low-pass & High-pass filter</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="sbAdmin1.0.3/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="sbAdmin1.0.3/css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="sbAdmin1.0.3/css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="sbAdmin1.0.3/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="bootstrapToggleMaster/css/bootstrap-toggle.css" rel="stylesheet">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="sbAdmin1.0.3/web/html5shiv.js"></script>
+    <script src="sbAdmin1.0.3/web/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- FFT -->
+    <script src="MyJs/fftFunctions.js"></script>
+
+
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img src="imagesdecoration/UFRN-PNG.png" width="120" height="30" /> </a>
+        </div>
+        <!-- Top Menu Items -->
+
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li class="active">
+                    <a href="home.html">Home</a>
+                </li>
+
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo">Frequency Domain<i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo" class="collapse">
+                        <li>
+                            <a href="editableSpectrum.html">Editable Spectrum</a>
+                        </li>
+                        <li>
+                            <a href="LowHighPassFilter.html">Low-pass & High-pass filter</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">Convolution</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+
+    <div id="page-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Low-pass & High-pass filter
+                    </h1>
+
+                </div>
+            </div>
+            <!-- /.row -->
+
+
+
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"></i>File</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-9 col-md-5">
+
+                                <div class="form-group">
+                                    <input type="file" name="imageLoader"  id="imageLoader" class="btn btn-default" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"></i>Filtrring</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-xs-9 col-md-5">
+                                    <table  width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td width="30%">
+                                                <input id = "filterType" onchange="setFilterType()" type="checkbox" checked data-toggle="toggle" data-on="Low-pass" data-off="High-pass" data-onstyle="primary" data-offstyle="danger">
+                                            </td>
+                                            <td width="50%">
+                                                <input type="range" max="128" min="0" defaultValue="0" id="filterRadius" oninput="setFilterRadius()">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <canvas id="imagemInput" width="256" height="256" style="border:1px solid #d3d3d3;"></canvas>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                            <canvas id="imageOutput" width="256" height="256" style="border:1px solid #d3d3d3;"></canvas>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <canvas id="spectrumInput" width="256" height="256" style="border:1px solid #d3d3d3;"></canvas>
+                                        </td>
+                                        <td>
+                                            <canvas id="spectrumFilter" width="256" height="256" style="border:1px solid #d3d3d3;"></canvas>
+                                        </td>
+                                        <td>
+                                            <canvas id="spectrumOutput" width="256" height="256" style="border:1px solid #d3d3d3;"></canvas>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<script src="sbAdmin1.0.3/js/jquery.js"></script>
+
+<script>
+    var canvasAreaWidth = 256;
+    var canvasAreaHeight = 256;
+    var isImageLoaded = false;
+
+
+    var imageLoader = document.getElementById('imageLoader');
+    imageLoader.addEventListener('change', handleImage, false);
+
+    var canvasInputImage = document.getElementById('imagemInput');
+    var contextCanvasImageUploadedArea = canvasInputImage.getContext('2d');
+
+    var canvasSpectrumInput = document.getElementById('spectrumInput');
+    var contextCanvasSpectrumInput = canvasSpectrumInput.getContext('2d');
+
+    var canvasSpectrumFilter = document.getElementById('spectrumFilter');
+    var contextCanvasSpectrumFilter = canvasSpectrumFilter.getContext('2d');
+
+    var canvasSpectrumOutput = document.getElementById('spectrumOutput');
+    var contextCanvasSpectrumOutput = canvasSpectrumOutput.getContext('2d');
+
+
+    function handleImage(e){
+        var reader = new FileReader();
+        reader.onload = function(event){//toda vez quando uma imagem for enviada e estiver sendo carregada
+            var img = new Image();
+            img.onload = function(){
+                contextCanvasImageUploadedArea.drawImage(img,0,0, img.width, img.height, 0 ,0, canvasAreaWidth, canvasAreaHeight);
+                contextCanvasSpectrumInput.drawImage(img,0,0, img.width, img.height, 0 ,0, canvasAreaWidth, canvasAreaHeight);
+                contextCanvasSpectrumFilter.drawImage(img,0,0, img.width, img.height, 0 ,0, canvasAreaWidth, canvasAreaHeight);
+                contextCanvasSpectrumOutput.drawImage(img,0,0, img.width, img.height, 0 ,0, canvasAreaWidth, canvasAreaHeight);
+                FFT('spectrumInput');
+                computeLowPassFilter();
+                filtringImageSpectrum();
+                fftCopyData(fftSpectrumOriginal,fftSpectrumModified);
+                organizeDataToIFFT();
+                IFFT(fftSpectrumModified,'imageOutput',contextCanvasImageUploadedArea.getImageData(0,0,canvasAreaWidth,canvasAreaHeight).data);
+                //computeHighPassFilter(canvasAreaHeight,canvasAreaWidth,64);
+                isImageLoaded = true;
+            }
+            img.src = event.target.result;
+
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+
+
+</script>
+
+
+
+<!-- Bootstrap Core JavaScript -->
+<script src="sbAdmin1.0.3/js/bootstrap.min.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<script src="sbAdmin1.0.3/js/plugins/morris/raphael.min.js"></script>
+
+<!-- JavaScript -->
+<script src="bootstrapToggleMaster/js/bootstrap-toggle.js"></script>
+<script src="MyJs/filters.js"></script>
+
+</body>
+
+</html>

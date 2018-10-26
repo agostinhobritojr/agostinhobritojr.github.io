@@ -1,0 +1,242 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 2. Criando um documento b&aacute;sico em Latex</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Tutorial de LaTeX"><link rel="up" href="index.html" title="Tutorial de LaTeX"><link rel="prev" href="cha.introducao.html" title="Cap&iacute;tulo 1. Introdu&ccedil;&atilde;o"><link rel="next" href="cha.ambientes.html" title="Cap&iacute;tulo 3. Ambientes"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/SVG"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="/mathjax/MathJax.js"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="cha.introducao.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 2. Criando um documento b&aacute;sico em Latex</th><td width="20%" align="right">&nbsp;<a accesskey="n" class="navheader" href="cha.ambientes.html">&raquo;</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="cha.estrutura_basica"></a>Cap&iacute;tulo 2. Criando um documento b&aacute;sico em Latex</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="section"><a href="cha.estrutura_basica.html#sec.compilacao">2.1. Compila&ccedil;&atilde;o</a></span></dt><dt><span class="section"><a href="cha.estrutura_basica.html#d5e303">2.2. Avaliando a estrutura b&aacute;sica do documento</a></span></dt><dd><dl><dt><span class="section"><a href="cha.estrutura_basica.html#sec.comandos_basicos">2.2.1. Comandos B&aacute;sicos</a></span></dt></dl></dd><dt><span class="section"><a href="cha.estrutura_basica.html#d5e395">2.3. Incrementando o documento b&aacute;sico</a></span></dt><dt><span class="section"><a href="cha.estrutura_basica.html#sec.estrutura_basica.comandos_editoracao">2.4. Comandos para editora&ccedil;&atilde;o</a></span></dt><dt><span class="section"><a href="cha.estrutura_basica.html#sec.comandos_basicos.comandos_configuracao_fonte">2.5. Comando para configurar fonte</a></span></dt><dt><span class="section"><a href="cha.estrutura_basica.html#sec.comandos_basicos.comandos_estilos_pagina">2.6. Comandos para estilo de p&aacute;ginas</a></span></dt><dt><span class="section"><a href="cha.estrutura_basica.html#cha.estrutura_basica.aplicacoes_na_engenharia">2.7. Aplica&ccedil;&otilde;es na Engenharia</a></span></dt></dl></div>
+    
+    <p>Nesse cap&iacute;tulo mostraremos como criar uma documento em $\textrm{\LaTeX}$, come&ccedil;ando da estrutura bem simples e evoluindo at&eacute; a cria&ccedil;&atilde;o de um documento mais elaborado. Essa estrutura &eacute; apresentada no <a class="xref" href="cha.estrutura_basica.html#exa.estrutura_basica" title="Exemplo 2.1. Estrutura B&aacute;sica">Exemplo&nbsp;2.1</a>.</p>
+   <div class="example"><a name="exa.estrutura_basica"></a><p class="title"><b>Exemplo 2.1. Estrutura B&aacute;sica</b></p><div class="example-contents">
+     
+    <pre class="programlisting">\documentclass[a4paper,<span class="hl-number">12</span>pt]{article}
+\begin{document}
+Esse &eacute; um exemplo de como se usa alguns comandos b&aacute;sicos para cria&ccedil;&atilde;o de documentos em \LaTeX.
+\end{document}</pre>
+   </div></div><br class="example-break">
+   <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.compilacao"></a>2.1. Compila&ccedil;&atilde;o</h2></div></div></div>
+     
+     <p>Documentos em $\textrm{\LaTeX}$ necessitam ser compilados para que se possa produzir algum documento com formata&ccedil;&atilde;o visual. Este processo pode ser feito de maneira transparente se o usu&aacute;rio estiver utilizando alguma ferramenta de editora&ccedil;&atilde;o visual, como o <span class="bold"><strong>Texmaker</strong></span>, ou atrav&eacute;s da execu&ccedil;&atilde;o de uma linha de comando em um terminal.  basta voc&ecirc; clicar na setinha azul na barra superior do lado esquerdo do nome <span class="bold"><strong>compilar</strong></span> como mostrado na <a class="xref" href="cha.estrutura_basica.html#fig.compilar" title="Figura 2.1. Compila&ccedil;&atilde;o">Figura&nbsp;2.1</a> (salve o arquivo antes de compilar).</p>
+     <div class="figure"><a name="fig.compilar"></a><p class="title"><b>Figura 2.1. Compila&ccedil;&atilde;o</b></p><div class="figure-contents">	 
+       
+       <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/compilar.svg">images/compilar.svg</object></div></div>
+     </div></div><br class="figure-break">
+     <p>No terminal tamb&eacute;m &eacute; poss&iacute;vel compilar, basta usar o comando <span class="command"><strong>$ pdflatex nome_do_documento</strong></span>. Lembrando que antes de compilar voc&ecirc; tem que definir o diret&oacute;rio onde esta localizado o arquivo <span class="emphasis"><em>.tex</em></span></p>
+     <div class="orderedlist"><p class="title"><b>Arquivos gerados ao compilar</b></p><p>Ao compilar o arquivo <span class="emphasis"><em>.tex</em></span> ser&atilde;o gerados tr&ecirc;s arquivos sendo eles <span class="emphasis"><em>nome_do_documento.pdf, nome_do_documento.aux e nome_do_documento.log</em></span>.</p><ol class="orderedlist" type="1"><li class="listitem">
+	 <p><span class="bold"><strong>nome_do_arquivo.pdf:</strong></span></p>
+	 <p>Esse &eacute; o documento final gerado pelo $\textrm{\LaTeX}$  e j&aacute; formatado.</p>
+       </li><li class="listitem">
+	 <p><span class="bold"><strong>nome_do_documento.aux:</strong></span></p>
+	 <p>Esse arquivo armazena informa&ccedil;&otilde;es sobre as refer&ecirc;ncias cruzadas usadas no documento.</p>
+       </li><li class="listitem">
+	 <p><span class="bold"><strong>nome_do_documento.log:</strong></span></p>
+	 <p>Nesse arquivo s&atilde;o armazenado as informa&ccedil;&otilde;es sobre a compila&ccedil;&atilde;o.</p>
+       </li></ol></div>
+   </div>
+   <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e303"></a>2.2. Avaliando a estrutura b&aacute;sica do documento</h2></div></div></div>
+     
+    <p>Este exemplo &eacute; composto de quatro linhas e quando compilado uma &uacute;nica p&aacute;gina &eacute; produzida no documento de sa&iacute;da, como mostra a <a class="xref" href="cha.estrutura_basica.html#fig.documento_simples" title="Figura 2.2. Primeiro Documento em LaTeX">Figura&nbsp;2.2</a>, mas antes de compilar vamos entender o que cada comando significa.</p>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="sec.comandos_basicos"></a>2.2.1. Comandos B&aacute;sicos</h3></div></div></div>
+      
+      <p>A primeira linha do documento cont&eacute;m as declara&ccedil;&otilde;es</p>
+      <pre class="programlisting">\documentclass[a4paper,<span class="hl-number">12</span>pt]{article}</pre>
+      
+      <p>Nesse comando definimos que tipo de documento queremos criar e as configura&ccedil;&otilde;es fundamentais do documento, tais como o tamanho do papel e o tamanho da fonte. Neste caso, poss&iacute;veis classes e op&ccedil;&otilde;es a serem passadas para esse comando <span class="command"><strong>documentclass</strong></span> s&atilde;o:</p>
+      <div class="variablelist"><p class="title"><b>Classes</b></p><dl class="variablelist"><dt><span class="term"><code class="filename">article</code></span></dt><dd>
+	  <p>Essa classe configurar o documento para forma de um artigo.</p>
+	</dd><dt><span class="term"><code class="filename">report</code></span></dt><dd>
+	  <p>Essa classe &eacute; usada para relat&oacute;rios longos.</p>
+	</dd><dt><span class="term"><code class="filename">book</code></span></dt><dd>
+	  <p>Essa classe deve ser utilizada quando se quer criar livro.</p>
+	</dd><dt><span class="term"><code class="filename">beamer</code></span></dt><dd>
+	  <p>Essa classe configura seu documento como um Slide.</p>
+	</dd><dt><span class="term"><code class="filename">letter</code></span></dt><dd>
+	    <p>Essa classe &eacute; ideal para cria&ccedil;&atilde;o de carta.</p>
+	</dd></dl></div>
+      <div class="orderedlist"><p class="title"><b>Op&ccedil;&otilde;es</b></p><ol class="orderedlist" type="1"><li class="listitem">
+	  <p><span class="bold"><strong>Tipo de Papel:</strong></span> essa op&ccedil;&atilde;o nos dar v&aacute;rios tipos de papeis para configurar nosso documento, s&atilde;o elas <span class="bold"><strong>letterpaper</strong></span> (formato de carta) (215,9mm X 279,4mm), <span class="bold"><strong>legalpaper</strong></span> (formato legal) esse &eacute; um tipo de papel encontrado no EUA (216mm X 356mm), <span class="bold"><strong>executivepaper</strong></span> (formato executivo) usado para cartas oficiais (184mm X 267mm), <span class="bold"><strong>a4paper</strong></span> (formato A4) dimens&otilde;es (210mm X 297mm) e <span class="bold"><strong>a5paper</strong></span> (formato A5) dimens&otilde;es (148mm X 210mm), entre outros tipos, por&eacute;m nesse tutorial utilizaremos o formato <span class="bold"><strong>a4paper</strong></span>.</p>
+	</li><li class="listitem">
+	  <p><span class="bold"><strong>Tamanho da Fonte:</strong></span> nessa op&ccedil;&atilde;o podemos alterar o tamanho da fonte de todo o documento, sendo dispon&iacute;vel somente tr&ecirc;s tamanhos <span class="bold"><strong>10pt, 11pt e 12pt</strong></span>. obs: para alterar o tamanho de uma determinada palavra, frase ou at&eacute; mesmo um texto usa-se outra tag que mostraremos mais a adiante.</p>
+	</li><li class="listitem">
+	  <p><span class="bold"><strong>Orienta&ccedil;&atilde;o do Documento:</strong></span> com essa op&ccedil;&atilde;o podemos alterar a orienta&ccedil;&atilde;o da p&aacute;gina do documento da vertical para horizontal usando a op&ccedil;&atilde;o <span class="bold"><strong>landscape</strong></span>.</p>
+	</li><li class="listitem">
+	  <p><span class="bold"><strong>Impress&atilde;o:</strong></span> com essa op&ccedil;&atilde;o definimos como vai ser a impress&atilde;o do documento se &eacute; em um lado (<span class="bold"><strong>oneside</strong></span>) da folha ou nos dois lados (<span class="bold"><strong>twoside</strong></span>), caso n&atilde;o seja declarada a impress&atilde;o ser&aacute; definida como <span class="bold"><strong>oneside</strong></span> com exce&ccedil;&atilde;o da classe <span class="bold"><strong>book</strong></span> que usa como padr&atilde;o o <span class="bold"><strong>twoside</strong></span>.</p>
+	</li><li class="listitem">
+	  <p><span class="bold"><strong>Colunas:</strong></span> essa op&ccedil;&atilde;o nos dar a alternativa de dividir a p&aacute;gina em duas colunas usando o <span class="bold"><strong>twocolumn</strong></span> exceto na classe <span class="bold"><strong>slides</strong></span>.</p>
+	</li><li class="listitem">
+	  <p><span class="bold"><strong>Equa&ccedil;&otilde;es:</strong></span> exite uma op&ccedil;&atilde;o que faz com que as equa&ccedil;&otilde;es apresentadas no documento fiquem alinhadas &agrave; esquerda (<span class="bold"><strong>fleqn</strong></span>) em vez do centro e uma op&ccedil;&atilde;o que coloca a numera&ccedil;&atilde;o das equa&ccedil;&otilde;es tamb&eacute;m &agrave; esquerda (<span class="bold"><strong>leqno</strong></span>) ao inv&eacute;s da direita.</p>
+	</li></ol></div>
+      <p> Existem outras op&ccedil;&otilde;es al&eacute;m dessas, por&eacute;m essas s&atilde;o as principais op&ccedil;&otilde;es que iremos utilizar durante o tutorial.</p>
+      <p>Na segunda e quarta linha do <a class="xref" href="cha.estrutura_basica.html#exa.estrutura_basica" title="Exemplo 2.1. Estrutura B&aacute;sica">Exemplo&nbsp;2.1</a> temos os respectivos comandos </p><pre class="programlisting">\begin{document}</pre><p> </p><pre class="programlisting">\end{document}</pre><p> &Eacute; entre esses dois comandos que criaremos o nosso texto.</p>
+      <p>Agora que j&aacute; conhecemos os comandos b&aacute;sicos para cria&ccedil;&atilde;o de um documento podemos compilar o <a class="xref" href="cha.estrutura_basica.html#exa.estrutura_basica" title="Exemplo 2.1. Estrutura B&aacute;sica">Exemplo&nbsp;2.1</a> (caso voc&ecirc; n&atilde;o lembre como compilar o <span class="emphasis"><em>arquivo.tex</em></span> reveja a <a class="xref" href="cha.estrutura_basica.html#sec.compilacao" title="2.1. Compila&ccedil;&atilde;o">Se&ccedil;&atilde;o&nbsp;2.1</a>), para isso abra o <span class="bold"><strong>Texmaker</strong></span>, clique no bot&atilde;o <span class="emphasis"><em>"Novo"</em></span> copie e cole o codigo do <a class="xref" href="cha.estrutura_basica.html#exa.estrutura_basica" title="Exemplo 2.1. Estrutura B&aacute;sica">Exemplo&nbsp;2.1</a> na &aacute;rea &aacute; direita do programa e compile-o, logo o seguinte documento ser&aacute; gerado em PDF (<a class="xref" href="cha.estrutura_basica.html#fig.documento_simples" title="Figura 2.2. Primeiro Documento em LaTeX">Figura&nbsp;2.2</a>). </p>
+      <div class="figure"><a name="fig.documento_simples"></a><p class="title"><b>Figura 2.2. Primeiro Documento em LaTeX</b></p><div class="figure-contents">
+	
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="exemplos/documento_simples.svg">exemplos/documento_simples.svg</object></div></div>
+      </div></div><br class="figure-break">
+    </div>
+  </div>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d5e395"></a>2.3. Incrementando o documento b&aacute;sico</h2></div></div></div>
+      
+       <p>Se observada a figura, &eacute; f&aacute;cil concluir que alguma coisa est&aacute; incorreta. No caso, as acentua&ccedil;&otilde;es que s&atilde;o comuns &agrave; l&iacute;ngua portuguesa. Para entender melhor os recursos que ser&atilde;o necess&aacute;rios para que o texto fique correto, &eacute; importante compreender que recursos s&atilde;o esses e o que fazem no seu documento.</p>
+      <p>Os recursos que utilizaremos ser&atilde;o os <span class="bold"><strong>Pacotes</strong></span> </p><pre class="programlisting">\usepackage[op&ccedil;&atilde;o]{pacote}</pre><p> Eles devem ser declarados logo ap&oacute;s o comando </p><pre class="programlisting">\documentclass[]{}</pre><p> e antes do comando </p><pre class="programlisting">\begin{document}</pre><p> Com esse comando voc&ecirc; pode importar pacotes espec&iacute;ficos para configura&ccedil;&atilde;o do seu documento, mostraremos alguns pacotes mais utilizados.</p>
+      <div class="orderedlist"><p class="title"><b>Pacotes</b></p><ol class="orderedlist" type="1"><li class="listitem"><pre class="programlisting">\usepackage[brazil]{babel}</pre><p> Esse pacote configura seu texto para a forma brasileira, reconhecendo hifeniza&ccedil;&atilde;o e outras coisas.</p>
+	</li><li class="listitem"><pre class="programlisting">\usepackage[utf8]{inputenc}</pre><p> Com esse pacote o $\textrm{\LaTeX}$ reconhece acentos e caracteres especiais no seu texto.</p>
+	</li><li class="listitem"><pre class="programlisting">\usepackage{color}</pre><p> Esse pacote disponibiliza a op&ccedil;&atilde;o de mudar as cores das fontes do seu texto.</p>
+	</li><li class="listitem"><pre class="programlisting">\usepackage{graphicx}</pre><p> Esse pacote &eacute; utilizado quando voc&ecirc; precisar adicionar imagens ao seu documento.</p>
+	</li><li class="listitem"><pre class="programlisting">\usepackage{amsfonts}</pre><p> Ao incluir esse pacote voc&ecirc; pode alterar o estilo das fontes utilizadas no ambiente matem&aacute;tico.</p>
+	</li><li class="listitem"><pre class="programlisting">\usepackage{fancyhdr}</pre><p> Com esse pacote voc&ecirc; pode personalizar o cabe&ccedil;alho e o rodap&eacute; do seu documento.</p>
+	</li><li class="listitem"><pre class="programlisting">\usepackage[normalem]{ulem}</pre><p> Esse pacote &eacute; usado quando precisa de sublinha alguma palavra.</p>
+	</li><li class="listitem"><pre class="programlisting">\usepackage{indentfirst}</pre><p> Com esse pacote a primeira linha de todas as se&ccedil;&otilde;es e subse&ccedil;&otilde;es s&atilde;o recuadas para o par&aacute;grafo usual.</p>
+	</li></ol></div>
+      <p>Voc&ecirc; pode encontrar mais pacotes clicando nesse <a class="ulink" href="http://en.wikibooks.org/wiki/LaTeX/Package_Reference" target="_top">link</a>.</p>
+      <p>Agora que j&aacute; obtemos mais conhecimentos sobre o $\textrm{\LaTeX}$ vamos configurar o arquivo do <a class="xref" href="cha.estrutura_basica.html#exa.estrutura_basica" title="Exemplo 2.1. Estrutura B&aacute;sica">Exemplo&nbsp;2.1</a>, fazendo as modifica&ccedil;&otilde;es mostradas no <a class="xref" href="cha.estrutura_basica.html#exa.estrutura_basica_configurada" title="Exemplo 2.2. Reconhecendo Acentos">Exemplo&nbsp;2.2</a>.</p>
+      <div class="example"><a name="exa.estrutura_basica_configurada"></a><p class="title"><b>Exemplo 2.2. Reconhecendo Acentos</b></p><div class="example-contents">
+	
+	<pre class="programlisting">\documentclass[a4paper,<span class="hl-number">12</span>pt]{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\begin{document}
+Esse &eacute; um exemplo de como se usa alguns comandos b&aacute;sicos para cria&ccedil;&atilde;o de documentos em \LaTeX. 
+\end{document}</pre>
+      </div></div><br class="example-break">
+      <p>Ao compilar o codigo do <a class="xref" href="cha.estrutura_basica.html#exa.estrutura_basica_configurada" title="Exemplo 2.2. Reconhecendo Acentos">Exemplo&nbsp;2.2</a> o seguinte resultado (<a class="xref" href="cha.estrutura_basica.html#fig.documento_simples_configurado" title="Figura 2.3. Reconhecendo Acentos">Figura&nbsp;2.3</a>) ser&aacute; gerado:</p>
+      <div class="figure"><a name="fig.documento_simples_configurado"></a><p class="title"><b>Figura 2.3. Reconhecendo Acentos</b></p><div class="figure-contents">	
+	
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="exemplos/documento_simples_configurado.svg">exemplos/documento_simples_configurado.svg</object></div></div>
+      </div></div><br class="figure-break">
+      <p>Perceba que agora os acentos e os caracteres especiais est&atilde;o sendo mostrados e que voc&ecirc; criou seu primeiro documento em $\textrm{\LaTeX}$.</p>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.estrutura_basica.comandos_editoracao"></a>2.4. Comandos para editora&ccedil;&atilde;o</h2></div></div></div>
+      
+      <p>Agora veremos por ordem hier&aacute;rquica alguns comandos necess&aacute;rios para organiza&ccedil;&atilde;o do documento em cap&iacute;tulos, se&ccedil;&otilde;es, subse&ccedil;&otilde;es e etc.</p>
+      <p>O primeiro comando da hierarquia &eacute; o </p><pre class="programlisting">\chapter{t&iacute;tulo}</pre><p> ao usa esse comando voc&ecirc; cria cap&iacute;tulos numerados.</p>
+       <div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Warning"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Aten&ccedil;&atilde;o]" src="images/warning.png"></td><th align="left">Aten&ccedil;&atilde;o</th></tr><tr><td align="left" valign="top"><p>o comando <span class="command"><strong>\chapter{t&iacute;tulo}</strong></span> &eacute; exclusivo para as classes <span class="emphasis"><em>book e report</em></span>, j&aacute; os comandos listado abaixo serve tanto para <span class="emphasis"><em>book e report</em></span> como para as demais classes.</p></td></tr></table></div>
+      <p>Em seguida temos o comando </p><pre class="programlisting">\part{t&iacute;tulo}</pre><p> Com ele criaremos textos particionados como por exemplo: <span class="bold"><strong>Parte I, Parte II e etc</strong></span>.</p>
+      <p>Logo ap&oacute;s temos </p><pre class="programlisting">\section{t&iacute;tulo}</pre><p> Esse comando cria se&ccedil;&otilde;es numeradas.</p>
+      <p>Para criarmos uma subse&ccedil;&atilde;o numerada utilizamos </p><pre class="programlisting">\subsection{t&iacute;tulo}</pre>
+      <p>Se quisermos criar uma subse&ccedil;&atilde;o numerada dentro de outra subse&ccedil;&atilde;o, utilizamos o </p><pre class="programlisting">\subsubsection{t&iacute;tulo}</pre>
+      <p>Temos tamb&eacute;m o comando </p><pre class="programlisting">\paragraph{t&iacute;tulo}</pre><p> usado para criar par&aacute;grafos.</p>
+      <p>E por &uacute;ltimo na hierarquia temos o </p><pre class="programlisting">\subparagraph{t&iacute;tulo}:</pre><p> que cria subpar&aacute;grafos.</p>
+      <div class="important" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Important"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Importante]" src="images/important.png"></td><th align="left">Importante</th></tr><tr><td align="left" valign="top"><p>Voc&ecirc; pode retirar as numera&ccedil;&otilde;es e deixar s&oacute; os t&iacute;tulos colocando um <span class="emphasis"><em>"*"</em></span> entre o comando e o abre chaves <span class="emphasis"><em>"{"</em></span> como mostrado abaixo.</p></td></tr></table></div>
+      <pre class="screen"><span class="command"><strong>\section*{titulo}</strong></span></pre>
+      <p>Depois de utilizado os comandos de se&ccedil;&atilde;o, subse&ccedil;&atilde;o e os demais, podemos agora criar uma s&uacute;mario usando o </p><pre class="programlisting">\tableofcontents</pre><p> onde ele cria automaticamente o s&uacute;mario de acordo com a utiliza&ccedil;&atilde;o de <span class="command"><strong>\section{t&iacute;tulo}, \subsection{t&iacute;tulo}, \subsubsection{t&iacute;tulo}, \part{t&iacute;tulo}</strong></span> e <span class="command"><strong>\chapter{t&iacute;tulo}</strong></span> que voc&ecirc; estiver fazendo.</p>
+      <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Tip"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Dica]" src="images/tip.png"></td><th align="left">Dica</th></tr><tr><td align="left" valign="top"><p>&Eacute; recomend&aacute;vel voc&ecirc; colocar o comando <span class="command"><strong>\newpage</strong></span> logo ap&oacute;s o comando <span class="command"><strong>\tableofcontents</strong></span>, para que o s&uacute;mario fique separado do inicio do texto.</p></td></tr></table></div> 
+      <p>Agora que conhecemos mais alguns comandos do $\textrm{\LaTeX}$ vamos colocar em pr&aacute;tica o que aprendemos como mostra o <a class="xref" href="cha.estrutura_basica.html#exa.estrutura_basica.documento_editoracao" title="Exemplo 2.3. Documento com se&ccedil;&otilde;es e etc.">Exemplo&nbsp;2.3</a>.</p>
+      <div class="example"><a name="exa.estrutura_basica.documento_editoracao"></a><p class="title"><b>Exemplo 2.3. Documento com se&ccedil;&otilde;es e etc.</b></p><div class="example-contents">
+	
+	<pre class="programlisting">\documentclass[a4paper,<span class="hl-number">12</span>pt]{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\begin{document}
+\tableofcontents
+\newpage
+\part{t&iacute;tulo}
+\section{Comandos para editora&ccedil;&atilde;o <strong class="hl-keyword">do</strong> texto}
+Nesse exemplo mostraremos como usar os comandos para editora&ccedil;&atilde;o <strong class="hl-keyword">do</strong> texto, como por exemplo essa se&ccedil;&atilde;o.
+\subsection{Subse&ccedil;&atilde;o}
+Agora criamos uma subse&ccedil;&atilde;o.
+\subsubsection{Subse&ccedil;&atilde;o dentro de uma subse&ccedil;&atilde;o} 
+Agora temos uma subse&ccedil;&atilde;o dentro de outra.
+\paragraph{Par&aacute;grafo}
+Aqui temos um par&aacute;grafos.
+\subparagraph{Subpar&aacute;grafo}
+E para finalizar temos um subpar&aacute;grafo.
+\end{document}</pre>
+      </div></div><br class="example-break">
+      <p>Ao compilar <a class="xref" href="cha.estrutura_basica.html#exa.estrutura_basica.documento_editoracao" title="Exemplo 2.3. Documento com se&ccedil;&otilde;es e etc.">Exemplo&nbsp;2.3</a> o documento da <a class="xref" href="cha.estrutura_basica.html#fig.documento_editoracao" title="Figura 2.4. Documento com se&ccedil;&otilde;es e etc">Figura&nbsp;2.4</a> ser&aacute; gerado.</p>
+      <div class="figure"><a name="fig.documento_editoracao"></a><p class="title"><b>Figura 2.4. Documento com se&ccedil;&otilde;es e etc</b></p><div class="figure-contents">
+	
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="exemplos/documento_secoes_subsecoes-0.svg">exemplos/documento_secoes_subsecoes-0.svg</object></div></div>
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="exemplos/documento_secoes_subsecoes-1.svg">exemplos/documento_secoes_subsecoes-1.svg</object></div></div>
+      </div></div><br class="figure-break">    
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td><th align="left">Nota</th></tr><tr><td align="left" valign="top"><p>Os comandos de par&aacute;grafos e subpar&aacute;grafos n&atilde;o s&atilde;o muito utilizados, uma vez que pode-se criar par&aacute;grafos sem a necessidade de comandos.</p></td></tr></table></div>
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td><th align="left">Nota</th></tr><tr><td align="left" valign="top"><p>Talvez na primeira compila&ccedil;&atilde;o do seu documento o s&uacute;mario n&atilde;o apare&ccedil;a por completo, para resolver este problema &eacute; s&oacute; compilar novamente e ele aparecera.</p></td></tr></table></div>
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.comandos_basicos.comandos_configuracao_fonte"></a>2.5. Comando para configurar fonte</h2></div></div></div>
+      
+      <p>Assim como qualquer outro processador de texto o $\textrm{\LaTeX}$ tamb&eacute;m da suporte a diferentes tipos e tamanhos de fontes, atrav&eacute;s de comandos como </p><pre class="programlisting">\textbl{texto}</pre><p> onde no campo <span class="emphasis"><em>texto</em></span> voc&ecirc; coloca o texto que voc&ecirc; quer modificar.</p>
+      <p>Abaixo na <a class="xref" href="cha.estrutura_basica.html#tab.tipo_fonte" title="Tabela 2.1. Tipos de fontes">Tabela&nbsp;2.1</a> e <a class="xref" href="cha.estrutura_basica.html#tab.tamanho_fonte" title="Tabela 2.2. Tamanhos das fontes">Tabela&nbsp;2.2</a> temos respectivamente os comandos que configura os tipos de fontes e os comando que configura os tamanhos das fontes e as demonstra&ccedil;&otilde;es de cada comando.</p>
+      <div class="table"><a name="tab.tipo_fonte"></a><p class="title"><b>Tabela 2.1. Tipos de fontes</b></p><div class="table-contents">
+	
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/tabela_tipos_fontes.svg">images/tabela_tipos_fontes.svg</object></div></div>
+      </div></div><br class="table-break">
+      <div class="table"><a name="tab.tamanho_fonte"></a><p class="title"><b>Tabela 2.2. Tamanhos das fontes</b></p><div class="table-contents">
+	
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/tabela_tamanhos_fontes.svg">images/tabela_tamanhos_fontes.svg</object></div></div>
+      </div></div><br class="table-break">
+      <p>Outros tipos de formata&ccedil;&atilde;o de fonte que o $\textrm{\LaTeX}$ disponibiliza &eacute; o sublinhado e a mudan&ccedil;a de cor da fonte, mas para utiliz&aacute;-los &eacute; necess&aacute;rio importar alguns pacotes j&aacute; vistos nesse cap&iacute;tulo, s&atilde;o eles:</p><pre class="programlisting">\usepackage[normalem]{ulem}</pre><p> para utiliza&ccedil;&atilde;o do sublinhado e o </p><pre class="programlisting">\usepackage{color}</pre><p> para utiliza&ccedil;&atilde;o de cor.</p>
+      <p>Observe na <a class="xref" href="cha.estrutura_basica.html#tab.sublinhado_fonte" title="Tabela 2.3. Tipos de sublinhado">Tabela&nbsp;2.3</a> e <a class="xref" href="cha.estrutura_basica.html#tab.cor_fonte" title="Tabela 2.4. Cores das fontes">Tabela&nbsp;2.4</a> os comando bem como suas demonstra&ccedil;&otilde;es de sublinhado e altera&ccedil;&atilde;o de cor respectivamente.</p>
+      <div class="table"><a name="tab.sublinhado_fonte"></a><p class="title"><b>Tabela 2.3. Tipos de sublinhado</b></p><div class="table-contents">
+	
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/tabela_sublinhados_fontes.svg">images/tabela_sublinhados_fontes.svg</object></div></div>
+      </div></div><br class="table-break">
+      <div class="table"><a name="tab.cor_fonte"></a><p class="title"><b>Tabela 2.4. Cores das fontes</b></p><div class="table-contents">
+	
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="images/tabela_cores_fontes.svg">images/tabela_cores_fontes.svg</object></div></div>
+      </div></div><br class="table-break">
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td><th align="left">Nota</th></tr><tr><td align="left" valign="top"><p>O pacote <span class="command"><strong>\usepackage{color}</strong></span> al&eacute;m de nos fornecer comandos para mudan&ccedil;a de cor da fonte, ele tamb&eacute;m nos d&aacute; um comando para alterar a cor da p&aacute;gina <span class="command"><strong>\pagecolor{cor}</strong></span> e um comando para alterar a cor no fundo do texto <span class="command"><strong>\colorbox{cor}{texto}</strong></span> onde no campo cor voc&ecirc; utiliza uma das oito cores apresentadas na <a class="xref" href="cha.estrutura_basica.html#tab.cor_fonte" title="Tabela 2.4. Cores das fontes">Tabela&nbsp;2.4</a>.</p></td></tr></table></div>
+      <p>Agora vejamos como utilizar alguns comandos no <a class="xref" href="cha.estrutura_basica.html#exa.comandos_basicos.comandos_configurar_fontes" title="Exemplo 2.4. Configurando o texto">Exemplo&nbsp;2.4</a></p>
+      <div class="example"><a name="exa.comandos_basicos.comandos_configurar_fontes"></a><p class="title"><b>Exemplo 2.4. Configurando o texto</b></p><div class="example-contents">
+	
+	<pre class="programlisting">\documentclass[a4paper,<span class="hl-number">12</span>pt]{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[normalem]{ulem}
+\usepackage{color}
+\begin{document}
+\color{red}{Esse &eacute; um \uline {simples} exemplo de como utilizamos {\Huge alguns} dos \emph{comando}
+apresentados nessa se&ccedil;&atilde;o.}
+\end{document}</pre>
+      </div></div><br class="example-break">
+      <p>Quando compilado o c&oacute;digo do <a class="xref" href="cha.estrutura_basica.html#exa.comandos_basicos.comandos_configurar_fontes" title="Exemplo 2.4. Configurando o texto">Exemplo&nbsp;2.4</a> resultar&aacute; no texto da <a class="xref" href="cha.estrutura_basica.html#fig.comandos_basicos.comandos_configurar_fontes" title="Figura 2.5. Configurando o texto">Figura&nbsp;2.5</a>.</p>
+      <div class="figure"><a name="fig.comandos_basicos.comandos_configurar_fontes"></a><p class="title"><b>Figura 2.5. Configurando o texto</b></p><div class="figure-contents">
+	
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="exemplos/comandos_basicos_configurar_fontes.svg">exemplos/comandos_basicos_configurar_fontes.svg</object></div></div>
+      </div></div><br class="figure-break">
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec.comandos_basicos.comandos_estilos_pagina"></a>2.6. Comandos para estilo de p&aacute;ginas</h2></div></div></div>
+      
+      <p>O comando para estilo das p&aacute;ginas diz respeito a como queremos configurar a numera&ccedil;&atilde;o de todas as p&aacute;ginas do documento, seja ela no cabe&ccedil;alho ou no rodap&eacute;.</p>
+      <p>O comando que utilizaremos &eacute; o </p><pre class="programlisting">\pagestyle{estilo}</pre><p> onde no campo <span class="emphasis"><em>estilo</em></span> utilizaremos um dos tr&ecirc;s tipos de estilos, s&atilde;o eles.</p>
+      <div class="variablelist"><p class="title"><b>Estilos</b></p><dl class="variablelist"><dt><span class="term"><code class="filename">plain</code></span></dt><dd>
+	  <p>Esse estilo &eacute; o default, ele deixa a numera&ccedil;&atilde;o da p&aacute;gina centralizado no rodap&eacute;.</p>
+	</dd><dt><span class="term"><code class="filename">headings</code></span></dt><dd>
+	  <p>J&aacute; esse estilo n&atilde;o s&oacute; coloca a numera&ccedil;&atilde;o da p&aacute;gina, como adiciona tamb&eacute;m o n&uacute;mero do cap&iacute;tulo, ambos no cabe&ccedil;alho.</p>
+	</dd><dt><span class="term"><code class="filename">empty</code></span></dt><dd>
+	  <p>Com esse estilo o cabe&ccedil;alho e o rodap&eacute; ficar&atilde;o vazios.</p>
+	</dd></dl></div>
+      <p>Caso voc&ecirc; queira modificar somente o estilo da p&aacute;gina atual utilize o comando </p><pre class="programlisting">\thispagestyle{estilo}</pre><p> usando um dos tr&ecirc;s estilos listados acima.</p>
+      <p>Outro comando bem &uacute;til &eacute; o de notas de rodap&eacute; </p><pre class="programlisting">\footnote{nota}</pre><p>utilizado quando queremos colocar uma nota de rodap&eacute; na p&aacute;gina atual.</p>
+      <p>E para concluirmos essa se&ccedil;&atilde;o o comando que veremos agora &eacute; o de intitula um documento, o comando utilizado para esse fim &eacute; o </p><pre class="programlisting">\maketitle</pre><p> mas para que ele funcione &eacute; necess&aacute;rio que voc&ecirc; defina antes o t&iacute;tulo do documento com o comando </p><pre class="programlisting">\title{t&iacute;tulo}</pre><p> e em seguida o nome do autor </p><pre class="programlisting">\author{nome}</pre>
+      <div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Warning"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Aten&ccedil;&atilde;o]" src="images/warning.png"></td><th align="left">Aten&ccedil;&atilde;o</th></tr><tr><td align="left" valign="top"><p>O comando <span class="command"><strong>\maketitle</strong></span> deve ser definido entre os comando <span class="command"><strong>\begin{document}</strong></span> e <span class="command"><strong>\end{document}</strong></span>, j&aacute; os comandos <span class="command"><strong>\title</strong></span> e <span class="command"><strong>\author</strong></span> pode ser definidos tanto entre esses comandos como antes do <span class="command"><strong>\begin{document}</strong></span> contanto que eles estejam antes do comando <span class="command"><strong>\maketitle</strong></span>.</p></td></tr></table></div>
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td><th align="left">Nota</th></tr><tr><td align="left" valign="top"><p>Voc&ecirc; pode atribuir mais de um autor no seu t&iacute;tulo utilizando o comando <span class="command"><strong>\and</strong></span> entre um nome e outro.</p></td></tr></table></div>
+      <p>Vejamos agora no <a class="xref" href="cha.estrutura_basica.html#exa.comandos_basicos.comandos_estilos_paginas" title="Exemplo 2.5. Documento com t&iacute;tulo, nota de rodap&eacute; e estilo">Exemplo&nbsp;2.5</a> a utiliza&ccedil;&atilde;o dos comandos mostrados nessa se&ccedil;&atilde;o</p>
+      <div class="example"><a name="exa.comandos_basicos.comandos_estilos_paginas"></a><p class="title"><b>Exemplo 2.5. Documento com t&iacute;tulo, nota de rodap&eacute; e estilo</b></p><div class="example-contents">
+	
+	<pre class="programlisting">\documentclass[a4paper,<span class="hl-number">12</span>pt]{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\title{Exemplo de T&iacute;tulo em \LaTeX}
+\author{Maykon Ricardo de Morais}
+\pagestyle{headings}
+\begin{document}
+\maketitle
+\newpage
+Perceba que estilo da p&aacute;gina utilizado nesse exemplo &eacute; o headings\footnote{define a numera&ccedil;&atilde;o da 
+p&aacute;gina no cabe&ccedil;alho com exce&ccedil;&atilde;o da p&aacute;gina de t&iacute;tulo}.
+\end{document}</pre>
+      </div></div><br class="example-break">
+      <p>Na <a class="xref" href="cha.estrutura_basica.html#fig.comandos_basicos.comandos_estilos_paginas" title="Figura 2.6. Documento com t&iacute;tulo, nota de rodap&eacute; e estilo">Figura&nbsp;2.6</a> mostra o resultado que obtemos ao compilar o <a class="xref" href="cha.estrutura_basica.html#exa.comandos_basicos.comandos_estilos_paginas" title="Exemplo 2.5. Documento com t&iacute;tulo, nota de rodap&eacute; e estilo">Exemplo&nbsp;2.5</a>.</p>
+      <div class="figure"><a name="fig.comandos_basicos.comandos_estilos_paginas"></a><p class="title"><b>Figura 2.6. Documento com t&iacute;tulo, nota de rodap&eacute; e estilo</b></p><div class="figure-contents">
+	
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="exemplos/comandos_basicos_estilos_paginas-0.svg">exemplos/comandos_basicos_estilos_paginas-0.svg</object></div></div>
+	<div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="exemplos/comandos_basicos_estilos_paginas-1.svg">exemplos/comandos_basicos_estilos_paginas-1.svg</object></div></div>
+      </div></div><br class="figure-break">
+    </div>
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="cha.estrutura_basica.aplicacoes_na_engenharia"></a>2.7. Aplica&ccedil;&otilde;es na Engenharia</h2></div></div></div>
+      
+      <p>A desenvolver...</p>
+    </div>
+  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="cha.introducao.html">&laquo;&nbsp;Cap&iacute;tulo 1. Introdu&ccedil;&atilde;o</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;<a accesskey="n" class="navfoot" href="cha.ambientes.html">Cap&iacute;tulo 3. Ambientes&nbsp;&raquo;</a></th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2014 Maykon Ricardo</p></td></tr></table></div></body></html>

@@ -1,0 +1,86 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 4. Fontes e anima&ccedil;&otilde;es aos Programas.</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; programa&ccedil;&atilde;o em Qt"><link rel="up" href="index.html" title="Introdu&ccedil;&atilde;o &agrave; programa&ccedil;&atilde;o em Qt"><link rel="prev" href="cha.reforcando.html" title="Cap&iacute;tulo 3. Refor&ccedil;o de conceitos essenciais."><link rel="next" href="cha.aplicacaoWeb.html" title="Cap&iacute;tulo 5. Desenvolvendo aplica&ccedil;&otilde;es para Web."><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="http://www.dca.ufrn.br/~ambj/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Cap&iacute;tulo 4. Fontes e anima&ccedil;&otilde;es aos Programas.</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="cha.reforcando.html">Anterior</a>&nbsp;</td><th width="60%" align="center">&nbsp;</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="cha.aplicacaoWeb.html">Pr&oacute;xima</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="cha.fontesAnimacao"></a>Cap&iacute;tulo 4. Fontes e anima&ccedil;&otilde;es aos Programas.</h1></div></div></div><div class="toc"><p><b>&Iacute;ndice</b></p><dl class="toc"><dt><span class="sect1"><a href="cha.fontesAnimacao.html#sec1.fontesAnimacao.fontes">4.1. Fontes.</a></span></dt><dd><dl><dt><span class="sect2"><a href="cha.fontesAnimacao.html#sec2.fontesAnimacao.fontes.ComoUtilizar">4.1.1. O que &eacute; e como utilizar.</a></span></dt></dl></dd><dt><span class="sect1"><a href="cha.fontesAnimacao.html#sec1.fontesAnimacao.animacao">4.2. Anima&ccedil;&atilde;o aos programas.</a></span></dt><dd><dl><dt><span class="sect2"><a href="cha.fontesAnimacao.html#sec2.fontesAnimacao.animacao.objetivo">4.2.1. Objetivo das anima&ccedil;&otilde;es.</a></span></dt><dt><span class="sect2"><a href="cha.fontesAnimacao.html#sec2.fontesAnimacao.animacao.exemplos">4.2.2. Exemplo.</a></span></dt></dl></dd></dl></div>
+    
+
+    <p>Nesta cap&iacute;tulo ser&atilde;o explanados os conceitos b&aacute;sicos sobre gerenciamento de fontes em aplica&ccedil;&otilde;es desenvolvidas no Qt SDK. Tamb&eacute;m desenvolveremos uma pr&aacute;tica de anima&ccedil;&atilde;o para programa&ccedil;&atilde;o implementadas atrav&eacute;s de temporizadores (<span class="foreignphrase"><em class="foreignphrase">timers</em></span>).</p>
+    
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec1.fontesAnimacao.fontes"></a>4.1. Fontes.</h2></div></div></div>
+      
+      <p>Atrav&eacute;s das fontes podemos definir como os textos ser&atilde;o exibidos aos usu&aacute;rios dos nossos programas, se ser&atilde;o em <span class="foreignphrase"><em class="foreignphrase">it&aacute;lico</em></span> ou <span class="command"><strong>negrito</strong></span>, pequeno ou grande e etc. Est&aacute; parte parece ser um pouco simples por&eacute;m quando implementada oferece bastante qualidade ao programa. Um programa com uma fonte inovadora com certeza se candidata a ser popular pois se torna diferente dos demais.</p>
+
+      <div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="sec2.fontesAnimacao.fontes.ComoUtilizar"></a>4.1.1. O que &eacute; e como utilizar.</h3></div></div></div>
+	
+	<p>Em c&oacute;digo, as fontes podem ser adicionadas e modificadas em componentes que possuem texto, isto &eacute;, <code class="classname">Labels</code>, <code class="classname">Buttons</code>, <code class="classname">Item Views</code> e etc. Podemos mesclar fontes diferentes em componentes diferentes e assim oferecer ao usu&aacute;rio um programa graficamente bonito e bem leg&iacute;vel.</p>
+	
+	<div class="figure"><a name="fig.fontesAnimacao.fontes.exemplos"></a><p class="title"><b>Figura 4.1. Alguns exemplos de fontes aplic&aacute;veis as aplica&ccedil;&otilde;es.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo4/fontes_exemplos.svg">figuras/capitulo4/fontes_exemplos.svg</object></div></div>
+	</div></div><br class="figure-break">
+	<p>&Eacute; poss&iacute;vel definir as fontes dos componentes atrav&eacute;s de c&oacute;digo ou graficamente. Com o aux&iacute;lio do <span class="application">Qt Designer</span> definimos as fontes de maneira bastante simples. Primeiramente selecione o componente ao qual deseja alterar a fonte e procure na tabela de propriedades do objeto a op&ccedil;&atilde;o <code class="option">font</code>, a partir de ent&atilde;o &eacute; poss&iacute;vel escolher como queremos a fonte do texto naquele componente.</p>
+	
+	<div class="figure"><a name="fig.fontesAnimacao.fontes.painel"></a><p class="title"><b>Figura 4.2. Tabela de propriedades do objeto selecionado.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo4/fontes_painel.svg">figuras/capitulo4/fontes_painel.svg</object></div></div>
+	</div></div><br class="figure-break">
+	<p>Via c&oacute;digo, utilizamos o m&eacute;todo <code class="function">setFont(QFont)</code> para alterar a fonte de um determinado objeto.</p>
+	<p><code class="classname">QFont</code> &eacute; uma classe que permite definir os atributos/configura&ccedil;&atilde;o de como algum texto ser&aacute; escrito, para isto est&aacute; classe possui alguns m&eacute;todos como: <code class="function">setBold(bool enable)</code>, <code class="function">setItalic(bool enable)</code>, <code class="function">setOverline(bool enabled)</code> e <code class="function">setUnderline(bool enabled)</code> e possui o construtor onde recebe como par&acirc;metro o nome da fonte: <code class="function">QFont(const QString &amp; family)</code>.</p>
+	<p>A seguir o <span class="foreignphrase"><em class="foreignphrase">link</em></span> de um exemplo que demonstra as poss&iacute;veis fontes do <span class="application">Qt SDK</span>.</p>
+	<p><a class="ulink" href="exemplos/programa_fontes.zip" target="_top">Download</a></p>
+      </div>
+    </div>
+
+    <div class="sect1"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec1.fontesAnimacao.animacao"></a>4.2. Anima&ccedil;&atilde;o aos programas.</h2></div></div></div>
+      
+      <p></p>
+      <div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="sec2.fontesAnimacao.animacao.objetivo"></a>4.2.1. Objetivo das anima&ccedil;&otilde;es.</h3></div></div></div>
+	
+	<p>Implementando anima&ccedil;&otilde;es ao programa oferecemos ao usu&aacute;rio uma aplica&ccedil;&atilde;o mais din&acirc;mica e ao mesmo tempo mais simplificada, isto &eacute;, com anima&ccedil;&otilde;es podemos reduzir drasticamente o tamanho do programa (visual), de forma que pequenas telas j&aacute; ser&atilde;o necess&aacute;rias para executar a aplica&ccedil;&atilde;o com padr&otilde;es &oacute;timos.</p>
+
+      </div>
+
+      <div class="sect2"><div class="titlepage"><div><div><h3 class="title"><a name="sec2.fontesAnimacao.animacao.exemplos"></a>4.2.2. Exemplo.</h3></div></div></div>
+	
+	<p>Desenvolvemos um componente e o chamamos de Letreiro (<code class="classname">FormLetreiro</code>), tal componente &eacute; um <code class="classname">QLabel</code> modificado, onde o texto a ser exibido &eacute; deslocado periodicamente para esquerda possibilitando a leitura de grandes texto e ao mesmo tempo reduzindo o espa&ccedil;o consumido. Tal ferramenta ser&aacute; bastante &uacute;til para o projeto final deste tutorial.</p>
+	<p>Internamente o componente &eacute; formado por um <code class="classname">QLabel</code> regido por um temporizador. Tal <code class="classname">QLabel</code> tem seu texto modificado periodicamente de forma que sub cadeias de um texto original s&atilde;o definidas ao <code class="classname">QLabel</code> dando impress&atilde;o ao usu&aacute;rio de que o texto est&aacute; sendo deslocado. O temporizador &eacute; o grande respons&aacute;vel por tal anima&ccedil;&atilde;o, com ele definimos o que o componente far&aacute; periodicamente. No nosso caso ele ir&aacute; atualizar a sub cadeia a ser exibida no <code class="classname">QLabel</code>.</p>
+	<p>Veja a seguir o link de download de um projeto utilizando o Letreiro.</p>
+	<p><a class="ulink" href="exemplos/programa_animacao.zip" target="_top">Download</a></p>
+	<p>O <code class="classname">FormLetreiro</code> possui o <span class="foreignphrase"><em class="foreignphrase">Slot</em></span> <code class="function">setLabel(QString)</code> que pode ser utilizado para alterar o texto a ser exibido no Letreiro. Outros par&acirc;metros como velocidade, pausa inicial e n&uacute;mero de caracteres vis&iacute;veis podem ser modificados internamente na classe <code class="classname">FormLetreiro</code> atrav&eacute;s das vari&aacute;veis <code class="varname">timer</code>, <code class="varname">offset</code> e <code class="varname">largura</code> respectivamente.</p>
+
+	<p>Para utilizar o Letreiro em outro projeto basta adicionar os arquivos <code class="filename">formletreiro.cpp</code>, <code class="filename">formletreiro.h</code> e <code class="filename">formletreiro.ui</code> ao seu projeto atrav&eacute;s da op&ccedil;&atilde;o <code class="option">Adicionar Arquivos Existentes</code>.</p>
+	<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Nota]" src="images/note.png"></td><th align="left">Nota</th></tr><tr><td align="left" valign="top"><p>&Eacute; aconselh&aacute;vel que antes de adicionar os arquivos ao projeto voc&ecirc; coloque-os manualmente em um subdiret&oacute;rio do seu projeto. Isso facilita a promo&ccedil;&atilde;o de <code class="classname">Widgets</code> por quest&otilde;es de permiss&otilde;es de acesso do <span class="application">Qt SDK</span>.</p></td></tr></table></div>
+
+	
+	<div class="figure"><a name="fig.fontesAnimacao.animacao.arquivosExistentes"></a><p class="title"><b>Figura 4.3. Adicionando arquivos existentes ao projeto.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo4/animacao_arquivosExistentes.svg">figuras/capitulo4/animacao_arquivosExistentes.svg</object></div></div>
+	</div></div><br class="figure-break">
+
+	<p> A partir de ent&atilde;o promova um <code class="classname">QWidget</code> a classe <code class="classname">FormLetreiro</code>. Primeiramente adicione um <code class="classname">QWidget</code> ao seu projeto, clique com o bot&atilde;o direito do mouse sobre o mesmo e ent&atilde;o escolha a op&ccedil;&atilde;o <code class="option">Promover Para</code>.</p>
+	
+	<div class="figure"><a name="fig.fontesAnimacao.animacao.promoteTo"></a><p class="title"><b>Figura 4.4. Promovendo <code class="classname">QWidget</code>.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo4/animacao_promoteTo.svg">figuras/capitulo4/animacao_promoteTo.svg</object></div></div>
+	</div></div><br class="figure-break">
+	
+	<div class="figure"><a name="fig.fontesAnimacao.animacao.janelaPromote"></a><p class="title"><b>Figura 4.5. Promovendo <code class="classname">QWidget</code>.</b></p><div class="figure-contents">
+	  
+	  <div class="mediaobject"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="graphic"><object type="image/svg+xml" data="figuras/capitulo4/animacao_janelaPromote.svg">figuras/capitulo4/animacao_janelaPromote.svg</object></div></div>
+	</div></div><br class="figure-break">
+	<p>Na janela exibida adicione a classe ao qual quer promover, no nosso caso coloque <strong class="userinput"><code>FormLetreiro</code></strong> no campo 1 e clique em <code class="option">Add</code>. Por fim, finalize a promo&ccedil;&atilde;o clicando em <span class="command"><strong>Promote</strong></span>.</p>
+
+	<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Warning"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Aten&ccedil;&atilde;o]" src="images/warning.png"></td><th align="left">Aten&ccedil;&atilde;o</th></tr><tr><td align="left" valign="top"><p>Se o arquivo adicionado estiver um um subdiret&oacute;rio do projeto &eacute; necess&aacute;rio especificar o caminho do arquivo <code class="filename">.h</code> no campo <span class="guilabel">Header File</span>. No nosso caso, se o <strong class="userinput"><code>FormLetreiro</code></strong> estivesse em uma pasta <code class="filename">letreiro</code> dentro do diret&oacute;rio do projeto seria necess&aacute;rio colocar o <span class="guilabel">Header File</span> como <strong class="userinput"><code>letreiro/formletreiro.h</code></strong>.</p></td></tr></table></div>
+	<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Warning"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Aten&ccedil;&atilde;o]" src="images/warning.png"></td><th align="left">Aten&ccedil;&atilde;o</th></tr><tr><td align="left" valign="top"><p>Ap&oacute;s promover um <code class="classname">QWidget</code> &eacute; necess&aacute;rio adicionar <span class="command"><strong>manualmente</strong></span> todos os Signals/Slots da classe promovida atrav&eacute;s da op&ccedil;&atilde;o <code class="option">Change Signal/Slots</code>, desta forma no nosso exemplo devemos adicionar o Slot <code class="function">setLabel(QString)</code>.</p></td></tr></table></div>
+	<p>Feito isto, ser&aacute; poss&iacute;vel utilizar "labels din&acirc;micos" em seu programa bem como qualquer outra classe que voc&ecirc; desenvolva e queira promov&ecirc;-la.</p>
+
+      </div>
+
+    </div>
+
+    </div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="cha.reforcando.html">Anterior</a>&nbsp;</td><td width="20%" align="center">&nbsp;</td><td width="40%" align="right">&nbsp;<a accesskey="n" href="cha.aplicacaoWeb.html">Pr&oacute;xima</a></td></tr><tr><td width="40%" align="left" valign="top">Cap&iacute;tulo 3. Refor&ccedil;o de conceitos essenciais.&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Principal</a></td><td width="40%" align="right" valign="top">&nbsp;Cap&iacute;tulo 5. Desenvolvendo aplica&ccedil;&otilde;es para Web.</td></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2014 Tiago Fernandes</p></td></tr></table></div></body></html>

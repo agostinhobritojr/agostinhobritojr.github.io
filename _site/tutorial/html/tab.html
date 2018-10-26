@@ -1,0 +1,73 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Cap&iacute;tulo 10. Tabelas</title><link rel="stylesheet" type="text/css" href="estilo.css"><meta name="generator" content="DocBook XSL Stylesheets V1.78.1"><link rel="home" href="index.html" title="Tutorial de HTML"><link rel="up" href="index.html" title="Tutorial de HTML"><link rel="prev" href="util.img.html" title="Cap&iacute;tulo 9. Utilizando Imagens"><meta xmlns:fo="http://www.w3.org/1999/XSL/Format" http-equiv="Content-Type" content="text/html; charset=utf-8"><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/SVG"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+    });
+  </script><script xmlns:fo="http://www.w3.org/1999/XSL/Format" type="text/javascript" src="/mathjax/MathJax.js"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><table width="100%" summary="Navigation header"><tr><td width="20%" align="left"><a accesskey="p" class="navheader" href="util.img.html">&laquo;</a></td><th colspan="3" align="center" class="navheader">Cap&iacute;tulo 10. Tabelas</th><td width="20%" align="right">&nbsp;</td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="tab"></a>Cap&iacute;tulo 10. Tabelas</h1></div></div></div>
+    
+
+    <p>Praticamente toda <span class="foreignphrase"><em class="foreignphrase">homepage</em></span> encontrada hoje na Internet possui uma estrutura tabular na sua constru&ccedil;&atilde;o. A maioria delas est&aacute; oculta aos olhos do usu&aacute;rio,servindo apenas como um poderoso instrumento de diagrama&ccedil;&atilde;o dos elementos de texto e imagens dentro de uma <span class="foreignphrase"><em class="foreignphrase">homepage</em></span>.</p> 
+
+    <p>As tabelas s&atilde;o criadas atrav&eacute;s do marcador <span class="command"><strong>&lt;TABLE&gt;</strong></span>. Os principais par&acirc;metros passados para uma tabelas s&atilde;o:</p>
+    <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+	<p><span class="emphasis"><em>WIDTH</em></span>: define a largura da tabela;</p>
+      </li><li class="listitem">
+	<p><span class="emphasis"><em>HEIGHT</em></span>: define a altura da tabela;</p>
+      </li><li class="listitem">
+	<p><span class="emphasis"><em>COLS</em></span>: n&uacute;mero de colunas;</p>
+      </li><li class="listitem">
+	<p><span class="emphasis"><em>ROWS</em></span>: n&uacute;mero de linhas;</p>
+      </li><li class="listitem">
+	<p><span class="emphasis"><em>BORDER</em></span>: indica a largura da borda da tabela;</p>
+      </li><li class="listitem">
+	<p><span class="emphasis"><em>CELLSPACING</em></span>: espa&ccedil;amento, em pixels, entre as c&eacute;lulas da tabela;</p>
+      </li><li class="listitem">
+	<p><span class="emphasis"><em>CELLPADDING</em></span>: espa&ccedil;amento, em pixels, entre a borda de uma c&eacute;lula e o seu conte&uacute;do;</p>
+      </li><li class="listitem">
+	<p><span class="emphasis"><em>BGCOLOR</em></span>: cor de fundo da tabela;</p>
+      </li></ul></div>
+
+    <p>Cada nova linha da tabela &eacute; iniciada com o marcador <span class="command"><strong>&lt;TR&gt;</strong></span>. Os t&iacute;tulos das colunas s&atilde;o definidos com o marcador <span class="token">&lt;TH&gt;</span> e as c&eacute;lulas da tabela s&atilde;o criadas com o marcador <span class="command"><strong>&lt;TD&gt;</strong></span> (O par&acirc;metro <span class="emphasis"><em>BGCOLOR</em></span> tamb&eacute;m &eacute; v&aacute;lido para este marcador). Observe no exemplo abaixo a estrutura de tabela em HTML:</p>
+
+    <div class="example"><a name="exemplo17"></a><p class="title"><b>Exemplo 10.1. Tabela</b></p><div class="example-contents">
+      
+      <pre class="programlisting">&lt;HTML&gt;
+      &lt;HEAD&gt;
+      &lt;TITLE&gt;Teste de tabela&lt;/TITLE&gt;
+      &lt;/HEAD&gt;
+      &lt;BODY&gt;
+      &lt;TABLE BORDER=<span class="hl-number">2</span>&gt;
+      &lt;TR&gt;
+      &lt;TH&gt;SEGUNDA&lt;/TH&gt; 
+      &lt;TH&gt;TER&Ccedil;A&lt;/TH&gt; 
+      &lt;TH&gt;QUARTA&lt;/TH&gt;
+      &lt;/TR&gt; 
+      &lt;TR&gt;
+      &lt;TD&gt;Parte1&lt;/TD&gt;
+      &lt;TD&gt;Parte3&lt;/TD&gt;
+      &lt;TD&gt;Parte5&lt;/TD&gt;
+      &lt;/TR&gt; 
+      &lt;TR&gt;
+      &lt;TD&gt;Intervalo&lt;/TD&gt;
+      &lt;TD&gt;Intervalo&lt;/TD&gt;
+      &lt;TD&gt;Intervalo&lt;/TD&gt;
+      &lt;/TR&gt; 
+      &lt;TR&gt;
+      &lt;TD&gt;Parte2&lt;/TD&gt;
+      &lt;TD&gt;Parte4&lt;/TD&gt;
+      &lt;TD&gt;Final&lt;/TD&gt;
+      &lt;/TR&gt; 
+      &lt;/TABLE&gt; 
+      &lt;/BODY&gt;
+      &lt;/HTML&gt;</pre>
+    </div></div><br class="example-break">
+    <p>A sa&iacute;da gerada para este trecho de c&oacute;digo ser&aacute; da seguinte forma:</p>
+    <div class="table"><a name="d5e375"></a><p class="title"><b>Tabela 10.1. Teste de tabela</b></p><div class="table-contents">
+    <table summary="Teste de tabela" border="1"><colgroup><col width="33%"><col width="33%"><col width="34%"></colgroup><tbody><tr><td align="center"><span class="bold"><strong>Segunda</strong></span></td><td align="center"><span class="bold"><strong>Ter&ccedil;a</strong></span></td><td align="center"><span class="bold"><strong>Quarta</strong></span></td></tr><tr><td align="center">Parte 1</td><td align="center">Parte 3</td><td align="center">Parte 5</td></tr><tr><td align="center">Intervalo</td><td align="center">Intervalo</td><td align="center">Intervalo</td></tr><tr><td align="center">Parte 2</td><td align="center">Parte 4</td><td align="center">Final</td></tr></tbody></table>
+    </div></div><br class="table-break">
+
+    <p>&Eacute; importante lembrar de sempre manter os marcadores aninhados. Sempre que um marcador <span class="command"><strong>&lt;TABLE&gt;</strong></span> for aberto, um marcador <span class="command"><strong>&lt;/TABLE&gt;</strong></span> deve ser fechado logo em seguida. O mesmo vale para os marcadores <span class="command"><strong>&lt;TH;gt;</strong></span>, <span class="command"><strong>&lt;TR&gt;</strong></span> e <span class="command"><strong>&lt;TD&gt;</strong></span>. Uma boa pr&aacute;tica &eacute; primeiro colocar os marcadores de in&iacute;cio e fim de bloco (tipo <span class="command"><strong>&lt;TD&gt;</strong></span> e <span class="command"><strong>&lt;/TD&gt;</strong></span>) e depois come&ccedil;ar a escrever algo dentro deles. Fazendo assim, muitos aborrecimentos poder&atilde;o ser evitados.</p>
+  </div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navfooter"><hr><table width="100%" class="navfoot" summary="Navigation footer"><tr><th width="40%" align="left"><a accesskey="p" class="navfoot" href="util.img.html">&laquo;&nbsp;Cap&iacute;tulo 9. Utilizando Imagens</a>&nbsp;</th><th width="20%" align="center"><a accesskey="h" class="navfoot" href="index.html">&#8657;Principal&#8657;</a></th><th width="40%" align="right">&nbsp;</th></tr></table></div><div xmlns:fo="http://www.w3.org/1999/XSL/Format" class="navheader"><hr><table class="navfoot" width="100%"><tr><td align="center"><p class="copyright">Copyright &copy; 2012 Agostinho Brito</p></td></tr></table></div></body></html>

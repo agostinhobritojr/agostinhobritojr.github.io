@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" baseProfile="full" id="body" width="8in" height="8in" viewBox="0 0 1 1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+<title>SVG drawing</title>
+<desc>This was produced by version 4.4 of GNU libplot, a free library for exporting 2-D vector graphics.</desc>
+<rect id="background" x="0" y="0" width="1" height="1" stroke="none" fill="white"/>
+<g id="content" transform="translate(0.17792,-0.029931) scale(1,-1) scale(0.0017361) " xml:space="preserve" stroke="black" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10.433" stroke-dasharray="none" stroke-dashoffset="0" stroke-opacity="1" fill="none" fill-rule="evenodd" fill-opacity="1" font-style="normal" font-variant="normal" font-weight="normal" font-stretch="normal" font-size-adjust="none" letter-spacing="normal" word-spacing="normal" text-anchor="start">
+<text transform="translate(1.4211e-14) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >Esse</text>
+<text transform="translate(30.591) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >um</text>
+<text transform="translate(50.867) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >exemplo</text>
+<text transform="translate(96.929) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >de</text>
+<text transform="translate(112.76) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >como</text>
+<text transform="translate(143.47) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >se</text>
+<text transform="translate(157.39) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >usa</text>
+<text transform="translate(178.5) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >alguns</text>
+<text transform="translate(215.09) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >comandos</text>
+<text transform="translate(269.32) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >bsicos</text>
+<text transform="translate(303.5) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >para</text>
+<text transform="translate(330.38) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >criao</text>
+<text transform="translate(359.17) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >de</text>
+<text transform="translate(-17.64,-14.4) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >do</text>
+<text transform="translate(-4.925,-14.4) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >cumen</text>
+<text transform="translate(27.7,-14.4) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >tos</text>
+<text transform="translate(46.776,-14.4) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >em</text>
+<text transform="translate(65.731,-14.4) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >L</text>
+<text transform="translate(68.88,-11.76) scale(1,-1) scale(0.39851) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >A</text>
+<text transform="translate(73.44,-14.4) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >T</text>
+<text transform="translate(79.92,-17.04) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >E</text>
+<text transform="translate(86.4,-14.4) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >X.</text>
+<text transform="translate(173.76,-607.68) scale(1,-1) scale(0.59776) " font-family="Helvetica,sans-serif" font-size="20px" stroke="none" fill="black" >1</text>
+</g>
+</svg>

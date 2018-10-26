@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Interative Filtering in Spatial Domain</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../sbAdmin1.0.3/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../sbAdmin1.0.3/css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../sbAdmin1.0.3/css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../sbAdmin1.0.3/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- CSS-->
+    <!-- Bootstrap Core CSS -->
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../bootstrap/css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- Silvio Select-->
+    <link href="../silviomoreto-bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" type="text/css">
+    <link href="../silviomoreto-bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9] >
+    <script src="sbAdmin1.0.3/web/html5shiv.js"></script>
+    <script src="sbAdmin1.0.3/web/respond.min.js"></script>
+    <![endif]-->
+
+
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><img src="../imagesInPage/viewSize.png" width="60" height="30" /> </a>
+            </div>
+        </nav>
+
+
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+
+                    </a>
+                </li>
+                <li>
+                    <a href="../home.html">Home</a>
+                </li>
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo">Frequency Domain<i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo" class="collapse">
+                        <li>
+                            <a href="../editableSpectrum.html">Editable Spectrum</a>
+                        </li>
+                        <li>
+                            <a href="../LowHighPassFilter.html">Low-pass & High-pass filter</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Spatial Domain</a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12 col-xs-12 col-md-12">
+                        <h1 class="page-header">
+                            Interactive Filtering in Spatial Domain
+                        </h1>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="panel panel-default">
+
+                        <div class="panel-heading">
+                            <h3 class="panel-title"></i>Image File</h3>
+                        </div>
+
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                <input type="file" name="imageLoader"  id="imageLoader" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="panel panel-default">
+
+                        <div class="panel-heading">
+                            <h3 class="panel-title"></i>Convolution Options</h3>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="form-group" id="kernelSizeDiv">
+                                <div class="col-md-2">
+                                    <label for="kernelWidth">Kernel size</label>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="number" class="form-control" id="kernelWidth" placeholder="width" value="3" onchange="setWidthKernel()">
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="number" class="form-control" id="kernelHeight" placeholder="height" value="3" onchange="setHeightKernel()" >
+                                </div>
+                            </div>
+
+                            <div class="row"></div>
+                            <div class="form-group" id="filterTypeDiv">
+                                <div class="col-md-2">
+                                    <label for ="filterType">Filter type</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <select class="selectpicker" id="filterType" onchange="setConvolutionType()">
+                                        <option value="mean">Mean</option>
+                                        <option value="median">Median</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row"></div>
+                            <div class="form-group" id="animationSpeedDiv">
+                                <div class="col-md-2">
+                                    <label for ="filterType">Animation speed</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="number" class="form-control" id="animationSpeed" placeholder="pixels/iteration" value="1" onchange="setAnimationSpeed()">
+                                </div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="form-group" id="kernelPosition">
+                                <div class="col-md-2">
+                                    <label for="kernelWidth">Kernel position</label>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="number" class="form-control" id="kernelHorizontalCoordinate" placeholder="horizontal" value = "1" onchange="setHorizontalPosition()">
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="number" class="form-control" id="kernelVerticalCoordinate" placeholder="vertical" value = "1" onchange="setVerticalPosition()" >
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"></i>Interactive Area</h3>
+                        </div>
+
+                        <ul class="nav nav-tabs" >
+                            <li class="active"><a data-toggle="tab" href="#FiltredImage">Filtred image</a></li>
+                            <li><a data-toggle="tab" href="#OriginalImage">Original Image</a></li>
+                        </ul>
+
+                        <div class="form-group">
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td >
+                                            <div class="tab-content" >
+                                            <div id="FiltredImage" class="tab-pane fade in active">
+                                                <canvas id="imageFiltred" width="512" height="512" style="border:1px solid #d3d3d3;" ></canvas>
+                                            </div>
+                                            <div id="OriginalImage" class="tab-pane fade">
+                                                <canvas id="imageUploaded" width="512" height="512" style="border:1px solid #d3d3d3;"></canvas>
+                                            </div>
+                                            </div>
+                                        </td>
+                                        <td style="padding: 5px">
+
+                                            <button id="drawRectangleIcon" onclick="drawRectangleSelectedButton()" type="button">
+                                                <img src="../imagesIcons/drawRectangleIcon.png" title="retangulo" width="32" height="32"/>
+                                            </button>
+
+                                            <!--div class="row"></div>
+
+                                            <button id="mouserPointer" onclick="deslectAllButtonsDrawSelected()" type="button" ">
+                                                <img src="../imagesIcons/mouse_pointer-512.png" title="cursor edit" width="32" height="32"/>
+                                            </button-->
+
+                                            <div class="row"></div>
+
+                                            <br/>
+                                            <p id="TextInfo"></p>
+
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!-- jQuery -->
+    <script src="../sbAdmin1.0.3/js/jquery.js"></script>
+
+    <!-- silvio slector .js -->
+    <script src="../silviomoreto-bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="../silviomoreto-bootstrap-select/dist/js/bootstrap-select.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../sbAdmin1.0.3/js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="../sbAdmin1.0.3/js/plugins/morris/raphael.min.js"></script>
+
+    <script src="js/ImageDataController.js"></script>
+    <script src="js/Kernel.js"></script>
+    <script src="js/Object.js"></script>
+    <script src="js/ObjectManager.js"></script>
+    <script src="js/Rectangle.js"></script>
+    <script src="js/DrawController.js"></script>
+    <script src="js/ConvolutionParameters.js"></script>
+    <script src="js/ButtonActionController.js"></script>
+    <script src="js/MouseEventController.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
+</body>
+</html>

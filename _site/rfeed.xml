@@ -3,12 +3,12 @@
   <channel>
     <title>Agostinho Brito</title>
     <description>Blog pessoal de Agostinho Brito</description>
-    <link>/</link>
-    <atom:link href="/rfeed.xml" rel="self" type="application/rss+xml" />
-    <updated>2018-08-20T21:19:23-03:00</updated>
-    <id></id>
+    <link>http://agostinhobritojr.github.io/</link>
+    <atom:link href="http://agostinhobritojr.github.io/rfeed.xml" rel="self" type="application/rss+xml" />
+    <updated>2018-09-26T07:09:35-03:00</updated>
+    <id>http://agostinhobritojr.github.io</id>
     <author>
-      <name>Ajuste Técnico</name>
+      <name>Agostinho Brito</name>
     </author>
     
   </channel>
