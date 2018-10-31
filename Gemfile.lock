@@ -114,7 +114,7 @@ GEM
     kramdown (1.11.1)
     launchy (2.4.3)
       addressable (~> 2.3)
-    libv8 (3.16.14.19)
+    libv8 (3.16.14.19-x86_64-linux)
     liquid (3.0.6)
     listen (3.0.6)
       rb-fsevent (>= 0.9.3)
