@@ -1,0 +1,532 @@
+:numbered:
+:author: Agostinho Brito
+:data-uri:
+:icons: font
+:experimental:
+:stem:
+:imagesdir: ./figs
+:toc: left
+:doctype: book
+:source-highlighter: pygments
+:caution-caption: Cuidado
+:important-caption: Importante
+:note-caption: Nota
+:tip-caption: Dica
+:warning-caption: Aviso
+:appendix-caption: Appêndice
+:example-caption: Exemplo
+:figure-caption: Figura
+:listing-caption: Listagem
+:table-caption: Tabela
+:toc-title: Sumário
+:preface-title: Prefácio
+:version-label: Versão
+:last-update-label: Última atualização
+
+= Tarefas de programação em C++ (Segunda Unidade) 
+
+[IMPORTANT]
+.Leia com atenção
+====
+As descrições dos projetos devem ser lidas com atenção. Se não estiver
+claro, procure o professor para que o texto seja atualizado.
+====
+
+== Projeto 2 - Escultor 3D
+
+O objetivo desse projeto é construir ferramental em C++ para realizar esculturas em blocos digitais.
+A ideia é disponibilizar para o usuário uma classe que permita seu usuário especificar um bloco digital formado por um conjunto de elementos de volume dispostos nas três dimensões do espaço.
+Para imagens digitais, diz-se que elas são compostas de pixels (picture elements
+). Para volumes digitais, diz-se que eles são compostos de voxels (volume elements
+). Portanto, os elementos do bloco digital poderão ser referidos como os voxels
+ desse bloco. 
+
+O bloco digital seria representado por uma matriz tridimensional, com dimensões de largura, altura e largura especificadas, onde os índices dos elementos nessa matriz coresponderiam às posições dos voxels no espaço.
+A alocação dessa matriz deverá ser feita dinamicamente, para se ajustar às necessidades do usuário escultor.
+As dimensões servirão para especificar o tamanho dos blocos de bytes que deverão ser alocados.
+Por exemplo, para um bloco digital de dimensões 
+, 
+ e 
+, a matriz digital destinada a representá-lo poderia ser declarada da forma `char m[2][3][4];`.
+Essa matriz teria,portanto, 
+ voxels.
+Entretanto, é importante ressaltar que se trata apenas de um exemplo.
+Na implementação, essa matriz seria alocada de forma dinâmica, e não estaticamente.
+
+O processo de escultura é feito modificando os valores da matriz digital.
+Os voxels do volume representados pelos elementos da matriz deverão assumir valores iguais a _1_ ou __0__, simbolizando que a posição correspondente do elemento no bloco digital encontra-se presente ou não na escultura.
+Por exemplo, considere a matriz do exemplo anterior inserida no contexto do seguinte trecho de código:
+
+====
+[source]
+----
+
+	  
+char m[2][3][4];
+for(int x=0; x<2; x++){
+  for(int y=0; y<3; y++){
+    for(int z=0; z<4; z++){
+      m[x][y][z]=1;
+    }
+  }
+}
+m[0][0][0]=0;
+----
+====
+
+
+O bloco digital correspondente à essa matriz é ilustrado na <<_fig.matriz234>>
+.
+Observe que o voxel cuja posição espacial é 
+ é representado na matriz `m` pelos índices 
+
+.Exemplo de bloco digital esculpido com voxels
+image::matriz234.svg[$2\times 3\times 4$]
+
+
+O que espera-se que o desenvolvedor implemente para esse projeto? A proposta é que a classe disponibilize uma série de métodos apropriados para realizar a escultura no bloco digital.
+Por exemplo,  métodos para remover ou acrescentar sub-blocos à estrutura, métodos para remover ou adicionar esferas digitais de um raio dado, métodos para acrescentar ou remover voxels individualmente, métodos para perfurar o bloco de um lado para outro, além de recursos para calcular união, intersecao e diferenca entre blocos.
+
+Em se tratando de um elemento abstrato, a escultura digital precisa de uma ferramenta de visualização para ser exibida no computador.
+Entre os programas que podem ser usados para visualização, destaca-se o geomview (http://www.geomview.org[www.geomview.org]), livremente disponível em sistemas Unix.
+No Ubuntu, por exemplo, a instalação é quase trivial, pois ele se encontra presente na loja virtual de aplicativos.
+Para usuários de outros sistemas operacionais existe o meshlab (http://meshlab.sourceforge.net[meshlab.sourceforge.net]), que também é livre e está disponível para várias plataformas (inclusive android e ios).
+
+Para ser visualizada, a escultura digital deve ser armazenada um arquivo utilizando um formato suportado pela ferramenta de visualização.
+Diversos formatos de armazenamento de modelos tridimensionais podem ser usados, mas optamos pelo uso de dois formatos bastante simples, de fácil criação e entendimento: os formatos VECT e OFF.
+Ambos são suportados pelo geomview, de sorte que primeiro pode ser usado para armazenar matrizes de pontos com cores associadas, enquanto que o segundo pode ser usado para representar malhas tridimensionais na forma de polígonos planares.
+
+[[sec.projetos.escultor.vect]]
+==== O formato de armazenamento VECT
+
+
+Arquivos VECT são normalmente associados à extensão [path]_.vect_
+ possui uma descrição bem simples.
+Para fins desse projeto, podemos resumir o comportamento de um arquivo desse tipo da seguinte forma:
+
+
+[source]
+----
+
+VECT
+NPoligonos  NVertices  NCores 
+Nv[0] ... Nv[NPoligonos-1]    
+Nc[0] ... Nc[NPoligonos-1]
+x[0] y[0] z[0]
+...
+x[NVertices-1] y[NVertices-1] z[NVertices-1]
+r[0] g[0] b[0] a[0]
+...
+r[NCores-1] g[NCores-1] b[NCores-1] a[NCores-1]
+----
+
+A primeira linha contém apenas a palavra VECT, servindo para identificar o tipo do arquivo.
+
+A segunda linha especifica o número de polígonos, vértices e cores que são representados ao todo na figura geométrica.
+Por natureza, o formato VECT foi previsto para armazenar polígonos.
+Entretanto, para nossa comodidade, podemos representar os voxels do bloco digital como sendo polígonos de apenas um vértice (sem arestas!) com uma cor associada.
+Logo, teremos um mesmo valor associado aos três descritores NPoligonos, NVertices e NCores.
+
+A terceira linha contém uma lista de inteiros especificando o número de vértices em cada polígono.
+Haja vista que foi convencionado que cada polígono contém apenas um vértice, esta linha será formada por diversos valores iguais a "__1__", na mesma quantidade que o número de voxels.
+A mesma ideia vale para a terceira linha que, dessa vez, especifica a quantidade de cores em cada polígono (também igual a 1!).
+
+Da quarta linha em diante seguem as coordenadas 
+ dos NVertices presentes no bloco digital, devendo ser colocados um conjunto de coordenadas por linha.
+
+Finalmente, seguem-se NCores linhas contendo as cores R(ed), G(reen) e B(lue) de cada voxel, bem como o valor da componente alpha, que define a transparência desse voxel.
+As cores são especificadas na forma de números reais, assumindo valores entre na faixa 
+.
+
+Para um bloco digital de dimensões 2x2x2 com todos os seus elementos presentes e na cor vermelha, o arquivo VECT correspondente seria o seguinte:
+
+
+Considere agora que se deseje representar o cubo mesmo cubo digital, desta vez, sem estar presente o elemento de coordenadas 
+ e com o elemento de coordenadas 
+ assumindo a cor verde.
+As novas modificações seriam representadas em um arquivo VECT com o seguinte conteúdo:
+
+----
+VECT
+7 7 7
+1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 
+0 0 1
+0 1 0
+0 1 1
+1 0 0
+1 0 1
+1 1 0
+1 1 1
+1 0 0 1
+1 0 0 1
+1 0 0 1
+1 0 0 1
+1 0 0 1
+1 0 0 1
+0 1 0 1
+----
+
+[[sec.projetos.escultor.off]]
+==== O formato de armazenamento OFF
+
+
+O segundo formato de armazenamento é o formato OFF, geralmente associados a arquivos com a extensão [path]_.off_
+.
+Ele prevê a representação de superfícies usando conjuntos de polígonos.
+Para fins do projeto proposto, um arquivo OFF pode ser descrito da seguinte maneira:
+
+----
+OFF
+NVertices  NFaces  NArestas
+x[0]  y[0]  z[0]
+...
+x[NVertices-1]  y[NVertices-1]  z[NVertices-1]
+Nv v[0] v[1] ... v[Nv-1]  r g b a
+Nv v[0] v[1] ... v[Nv-1]  r g b a
+...
+Nv v[0] v[1] ... v[Nv-1]  r g b a
+----
+
+
+A primeira linha contém apenas a palavra OFF, servindo para identificar o tipo do arquivo.
+
+A segunda linha especifica o número de vértices (NVertices), faces (NFaces) e arestas (NArestas) que são representados ao todo na figura geométrica.
+Esta última informação, o número de arestas não é utilizado podendo sempre assumir valor 0.
+
+A partir da terceira linha são apresentadas as coordenadas espaciais tridimensionais 
+ dos NVertices presentes na figura.
+
+Seguindo as coordenadas vêm as especificações das faces.
+Cada face é definida por uma sequência de índices em uma linha do arquivo.
+O primeiro elemento da linha define o número de vértices na referida face.
+Em seguida, são apresentadas os índices dos Nv vértices (na faixa 
+), bem como a cor da face no formato RGBA, tal como descrito para o formato VECT.
+Um fato importante sobre a especificação da face diz respeito à sequência em que os vértices são apresentados.
+O sentido do vetor normal a esta superfície é indicado pela regra da mão direita, onde os dedos acompanham a sequência fornecida (ver <<_fig.projetos.normal>>
+). Cada sequência de pontos produz um polígono planar com duas faces opostas e, nos programas de visualização, a direção e sentido do vetor normal são usados para escolher e iluminar corretamente a face que se deseja exibir.
+
+.Definição da normal à superfície pela regra da mão direita
+image::normal.svg[]
+
+
+Para exemplificar a criação de um arquivo OFF, considere o cubo apresentado na <<_fig.cubo3d>>
+.
+Sua representação deverá ser dada pelas posições dos seus oito vértices 
+ e pelas sequências de vértices que definem suas faces, que derverão ser organizadas de modo às suas normais apontarem para fora do cubo.
+Só assim, as superfícies das faces corretamente iluminadas, proporcionando o efeito visual desejado na ferramenta de exibição.
+
+.Representação de um cubo com centro no ponto .
+image::cubo.svg["$P(x,y,z)$"]
+
+
+As faces deste cubo seriam definidas então pelas seguintes sequências de vértices:
+
+----
+Face 1: P0 P3 P2 P1
+Face 2: P4 P5 P6 P7
+Face 3: P0 P1 P5 P4
+Face 4: P0 P4 P7 P3
+Face 5: P7 P6 P2 P3
+Face 6: P1 P2 P6 P5
+----
+
+
+Para um cubo de lado de tamanho igual a 1, com centro no ponto 
+ e faces opacas desenhadas na cor branca, sua representação no formato OFF seria dada pelo arquivo com o seguinte conteúdo:
+
+
+
+Seu projeto deverá ser capaz de armazenar e realizar operações com
+polígonos formados por conjuntos de pontos em duas dimensões.
+
+Deve ser previsto no projeto a criação de três classes:
+
+* `Ponto`
+* `Poligono`
+* `Retangulo`
+
+=== Etapa 1 - Criação da classe `Ponto` ===
+
+Crie uma classe denominada `Point` para representar pontos no espaço
+bidimensional. Na sua implementação, você deverá encapsular duas
+variáveis x e y do tipo float para guardar a posição do ponto. Apenas
+as funções da classe poderão ter acesso direto a essas variávies, de
+modo que os clientes da classe somente poderão modificá-las usando
+métodos específicos que você definir. Implemente, na sua classe,
+métodos que realizem as seguintes operações:
+
+|====
+|Função | Descrição
+
+|`setX(float)`
+|Define o valor da coordenada stem:[x]do ponto.
+
+|`setY(float)`
+|Define o valor da coordenada stem:[y] do ponto.
+
+|`setXY(float,float)`
+|Define, em uma mesma função, os valores da coordenadas stem:[x] e
+ stem:[y] do ponto.
+ 
+|`float getX()`
+|Recupera o valor da coordenada stem:[x] do ponto.
+
+|`float getY()`
+|Recupera o valor da coordenada stem:[y] do ponto.
+
+|`add(Point p1)`
+|Adiciona as coordenadas stem:[(x,y)] do ponto com as coordenadas de
+ um ponto stem:[P1(x_1,y_1)] fornecido, armazenando o resultado
+ latexmath:[(x+x_1, y+y_1)] nas coordenadas de um novo ponto, que deverá
+ ser retornado para o cliente da classe.
+ 
+|`sub(Point p1)`
+|Subtrai as coordenadas stem:[(x,y)] do ponto com as coordenadas de
+ um ponto stem:[P1(x_1,y_1)] fornecido, armazenando o resultado
+ stem:[(x-x_1, y-y_1)] nas coordenadas de um novo ponto, que deverá
+ ser retornado para o cliente da classe.
+ 
+|`norma()`
+|Calcula a distância do ponto para a origem do sistema de
+ coordenadas.
+ 
+|`translada(float a, float b)`
+| Translada o ponto stem:[(x, y)] de latexmath:[(+a, +b)], de modo que,
+após a execução do método, as coordenadas do ponto serão stem:[(x+a, y+b)].
+
+|`imprime()`
+|Imprime o ponto na forma `(xpos, ypos)`.
+|====
+
+=== Etapa 2 - Criação da classe `Poligono` ===
+
+Defina uma classe chamada `Poligono` para representar polígonos
+convexos. Assuma que o tamanho dos polígonos será limitado a 100
+vértices. Utilize a classe `Point` que você definiu na etapa anterior
+para guardar informações com as posições dos stem:[N] vértices do
+polígono. Sua classe deverá prever as seguintes funcionalidades:
+
+* Inserir vértice no polígono. Assuma que os vértices deverão ser
+  inseridos conforme a sequência (anti-horária) em que figuram ao
+  redor do polígono. As arestas do polígono serão então compostas
+  pelos segmentos latexmath:[(x_0,y_0) \rightarrow (x_1,y_1)],
+  latexmath:[(x_1,y_1) \rightarrow (x_2,y_2)] etc., com exceção da
+  última aresta, que será formada pelo segmento
+  latexmath:[(x_{N-1},y_{N-1}) \rightarrow (x_0,y_0)].
+
+* Recuperar a quantidade de vértices que foram inseridos no polígono
+
+* Calcular a área do polígono. Procure na Internet a fundamentação
+  matemática necessária para implementar essa funcionalidade.
+
+* Transladar o polígono para latexmath:[(+a, +b)] usando uma função
+  `translada(float a, float b)`.
+
+* Rotacionar o polígono de stem:[\theta] graus no sentido anti-horário
+  em torno de um ponto latexmath:[(x_0, y_0)] fornecido pelo usuário.
+
+* Imprimir o polígono armazenado da forma `(x0,y0)->(x1,y1)->(x2,y2)->...`
+
+=== Etapa 3 - Criação da classe `Retangulo`
+
+Utilizando a implementação da classe `Poligono` desenvolvida na etapa
+anterior, crie uma subclasse `Retangulo` derivada da superclasse
+`Poligono`. O construtor da nova classe deverá ser da forma
+`Retangulo(float x, float y, float largura, float altura)`, denotando a
+posição stem:[(x,y)] do retângulo no espaço (coordenadas do canto
+superior esquerdo) e suas dimensões - altura
+e largura. Realize com esta classe as seguintes tarefas:
+
+* Assegure-se de que o construtor da classe utiliza os métodos da
+  superclasse para armazenar a estrutura interna do retângulo.
+
+=== Etapa 4 - Teste das classes criadas ===
+
+* Crie um pequeno exemplo para testar sua implementação da classe
+`Retangulo`.
+
+* No exemplo, defina um novo retângulo na posição latexmath:[(x,y) =
+(0,0)], com altura e largura iguais a `3` e `4`, respectivamente.
+
+* Imprima a estrutura poligonal gerada para o retângulo.
+
+* Calcule a sua área usando a função já implementada na classe
+`Poligono` e mostre o resultado.
+
+* Mude a posição do retângulo usando a função `translada(float,float)` para
+stem:[(x,y) = (-3,4)] e recalcule a área do retângulo. Compare-a com a
+área calculada antes da transformação geométrica.
+
+
+* Rotacione o Retângulo de stem:[+30^o] em relação ao seu centro de
+  massa e recalcule a sua área. Compare-a com a área calculada antes
+  da transformação geométrica.
+
+== Projeto 2 - Tratamento de classes abstratas ==
+
+Seu projeto deverá ser capaz de tratar classes abstratas para
+manipulação de figuras geométricas simples, realizando operações de
+desenho em uma matriz de pontos.
+
+=== Etapa 1 - Criação da classe concreta `Screen`
+
+A classe `Screen` deverá prover suporte para desenhar pontos em uma
+tela virtual. Essa tela deverá ser implementada em uma matriz alocada
+dinamicamente conforme tamanho a ser determinado pelo usuário.
+
+A classe `Screen` deverá ter o protótipo mostrado na Listagem <<exa_screen>> e
+deverá ter seus métodos implementados conforme sugerem os comentários
+que os precedem.
+
+[[exa_screen, Classe Screen]]
+[source,cpp]
+.Classe `Screen`
+----
+class Screen{
+private:
+  // armazenam o tamanho da tela de desenho
+  // no de linhas e de colunas
+  int nlin, ncol;
+  
+  // guarda o caractere usado para desenhar
+  char brush;
+
+  // armazena a matriz da tela
+  vector< vector<char> > mat; 
+public:
+  // construtor da classe
+  Screen(int nlin, int ncol);
+
+  // desenha um pixel da matriz usando o caratere
+  // guardado em 'brush'
+  void setPixel(int x, int y);
+
+  // limpa a tela
+  void clear();
+
+  // muda o caractere de desenho
+  void setBrush(char brush);
+
+  // envia a tela para um stream de saida
+  friend ostream& operator<<(ostream &os, Screen &t);
+};
+----
+
+=== Etapa 2 - Criação da classe abstrata `FiguraGeometrica` ===
+
+Crie uma classe abstrata `FiguraGeometrica` para representar objetos
+primitivos genéricos, e preveja para esta classe pelo menos uma
+característica:
+
+* Uma função virtual pura `draw(Screen &t)` que instrua o objeto a se
+  desenhar em um objeto do tipo `Screen`. Essa função deverá ser
+  implementada nas subclasses da classe `FiguraGeometrica`.
+
+=== Etapa 3 - Criação da classe concreta `Reta` === 
+
+* Crie uma classe `Reta` derivada de `FiguraGeometrica`. Uma reta
+  deverá ser especificada conforme a posição de dois pontos
+  fornecidos.
+* O método `draw(Screen &t)` deverá ser implementado. 
+
+=== Etapa 4 -  Criação da classe concreta `Retangulo` === 
+
+* Crie uma classe `Retangulo` derivada de `FiguraGeometrica`. Um
+  retângulo deverá ser especificado conforme a posição do canto
+  superior esquerdo, bem como largura e altura em pixels.
+* O método `draw(Screen &t)` deverá ser implementado. 
+
+=== Etapa 5 -  Criação da classe concreta `Circulo` === 
+
+* Crie uma classe `Circulo` derivada de `FiguraGeometrica`. Um
+  círculo deverá ser especificado conforme a posição do centro, seu
+  raio e se este deverá ser preenchido ou apenas o contorno será
+  desenhado.
+* O método `draw(Screen &t)` deverá ser implementado. 
+
+=== Etapa 6 - Armazenamento de figuras ===
+
+* Prepare um recurso para ler figuras gravadas em um arquivo e
+  desenhá-las conforme as instruções presentes. O arquivo poderá
+  conter os seguintes códigos, que deverão ser interpretados pela sua
+  aplicação e utilizar a classe abstrata `FiguraGeometrica` para
+  tratar e gerar o desenho conforme os códigos utilizados na tabela <<tab_codigos>>.
+
+[[tab_codigos]]
+.Códigos das figuras geométricas
+[cols = "s,a"]
+|====
+| Código | Função
+
+| `dim largura altura`
+| define as dimensões do desenho.
+
+Ex: `dim 60 20`
+
+| `line x0 y0 x1 y1 brush`
+| define uma linha do ponto stem:[(x0,y0)] para stem:[(x1, y1)]
+  usando o caractere `brush`. Caso não haja caractere no final da
+  linha, o caractere de desenho será o espaço.
+
+Ex: `line 5 5 10 8 @` (linha desenhada com o caractere `@`)
+
+Ex: `line 5 5 10 8` (linha desenhada com o caractere espaço)
+
+
+
+| `rectangle x0 y0 largura altura fillmode brush`
+| define um retângulo com ponto superior esquerdo em stem:[(x0,y0)] e
+  dimensões `largura x altura` usando o caractere `brush`. Se fillmode maior que
+  zero, o retângulo será totalmente preenchido. Caso contrário, apenas o
+  contorno será desenhado. Caso não haja caractere no final da
+  linha, o caractere de desenho será o espaço.
+
+
+Ex: `rectangle 5 6 10 20 1 @` (retângulo preenchido com o caractere `@`)
+
+Ex: `rectangle 5 6 10 20 1` (retângulo preenchido com o caractere espaço)
+
+Ex: `rectangle 5 6 10 20 0 @` (contorno do retângulo desenhado
+com o caractere `@`)
+
+Ex: `rectangle 5 6 10 20 0` (contorno do retângulo desenhado
+com o caractere espaço)
+
+| `circle x0 y0 raio fillmode brush`
+| define um círculo com centro no ponto stem:[(x0, y0)], raio
+  especificado e sua forma de preenchimento usando o caractere
+  `brush`. Se fillmode for igual a um, o círculo será totalmente
+  preenchido. Caso contrário, apenas o contorno será desenhado. Caso
+  não haja caractere no final da linha, o caractere de desenho será o
+  espaço.
+
+Ex: `circle 10 10 5 1` (círculo desenhado com o caractere espaço)
+
+Ex: `circle 10 10 5 0 @` (círculo desenhado com o caractere `@`)
+
+Ex: `circle 10 10 5 0` (contorno desenhado com o caractere espaço) 
+
+Ex: `circle 10 10 5 0 @` (contorno desenhado com o caractere `@`)
+|====
+
+=== Etapa 7 - Teste das funcionalidades implementadas ===
+
+Crie uma figura e um programa-exemplo para testar as implementações
+que você realizou.
+
+* Toda a figura poderá ser armazenada em um array de ponteiros para 
+  `FiguraGeometrica`.
+
+* Faça utilização exaustiva das classes da biblioteca padrão de
+  gabaritos. As classes `vector`, `string` e `stringstream`, bem como
+  seus respetivos `iterators` poderão ser amplamente utilizados para
+  realizar a implementação das funcionalidades.
+
+* Crie uma figura e represente-a em um arquivo utilizando os códigos
+  fornecidos. Use uma combinação adequada de classes para converter
+  sua figura em uma matriz de pontos em código ASCII. A matriz deverá
+  ser salva em outro arquivo usando um dos métodos da classe `Screen`.
+
+
+
