@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.7.1">
 <meta name="author" content="Agostinho Brito">
-<title>Tarefas de programação em C++ (Segunda Unidade)</title>
+<title>Projeto Escultor 3D</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -505,14 +505,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Tarefas de programação em C++ (Segunda Unidade)</h1>
+<h1>Projeto Escultor 3D</h1>
 <div class="details">
 <span id="author" class="author">Agostinho Brito</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <ul class="sectlevel1">
-<li><a href="#_projeto_escultor_3d">1. Projeto Escultor 3D</a>
+<li><a href="#_apresentação">1. Apresentação</a>
 <ul class="sectlevel2">
 <li><a href="#_parte_1_biblioteca_de_leitura_e_traçado_de_esculturas">1.1. Parte 1 - Biblioteca de leitura e traçado de esculturas</a></li>
 </ul>
@@ -523,6 +523,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#sec.projetos.escultor.off">2.2. O formato de armazenamento OFF</a></li>
 </ul>
 </li>
+<li><a href="#_a_classe_escultor">3. A classe Escultor</a></li>
 </ul>
 </div>
 </div>
@@ -548,7 +549,7 @@ claro, procure o professor para que o texto seja atualizado.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_projeto_escultor_3d">1. Projeto Escultor 3D</h2>
+<h2 id="_apresentação">1. Apresentação</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>O objetivo desse projeto é construir uma ferramenta em C++ para
@@ -1007,13 +1008,127 @@ Face 6: P1 P2 P6 P5</pre>
 <p>Para um cubo de lado de tamanho igual a 1, com centro no ponto
  e faces opacas desenhadas na cor branca, sua representação no formato OFF seria dada pelo arquivo com o seguinte conteúdo:</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code>OFF
+8 6 0
+-0.5 0.5 -0.5
+-0.5 -0.5 -0.5
+0.5 -0.5 -0.5
+0.5 0.5 -0.5
+-0.5 0.5 0.5
+-0.5 -0.5 0.5
+0.5 -0.5 0.5
+0.5 0.5 0.5
+4 0 3 2 1 1 1 1 1
+4 4 5 6 7 1 1 1 1
+4 0 1 5 4 1 1 1 1
+4 0 4 7 3 1 1 1 1
+4 3 7 6 2 1 1 1 1
+4 1 2 6 5 1 1 1 1</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Neste arquivo, o modelo 3d possui 8 vértices e 6 faces declarados. O
+número de arestas igual a zero não é utilizado.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_a_classe_escultor">3. A classe Escultor</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Para manipular os pixels da matriz tridimensional, um desenvolvedor
+deverá usar um conjunto de funcionalidades previstas para uma classe
+denominada <code>Sculptor</code> que deverá possuir a seguinte especificação:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-k">class</span> <span class="tok-nc">Sculptor</span> <span class="tok-p">{</span>
+<span class="tok-k">protected</span><span class="tok-o">:</span>
+  <span class="tok-n">Voxel</span> <span class="tok-o">***</span><span class="tok-n">v</span><span class="tok-p">;</span>
+  <span class="tok-c1">// 3D matrix</span>
+  <span class="tok-kt">int</span> <span class="tok-n">nx</span><span class="tok-p">,</span><span class="tok-n">ny</span><span class="tok-p">,</span><span class="tok-n">nz</span><span class="tok-p">;</span> <span class="tok-c1">// Dimensions</span>
+  <span class="tok-kt">float</span> <span class="tok-n">r</span><span class="tok-p">,</span><span class="tok-n">g</span><span class="tok-p">,</span><span class="tok-n">b</span><span class="tok-p">,</span><span class="tok-n">a</span><span class="tok-p">;</span> <span class="tok-c1">// Current drawing color</span>
+<span class="tok-k">public</span><span class="tok-o">:</span>
+  <span class="tok-kt">void</span> <span class="tok-n">setColor</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">r</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">g</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">b</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">alpha</span><span class="tok-p">);</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">putVoxel</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">x</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">y</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">z</span><span class="tok-p">);</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">cutVoxel</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">x</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">y</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">z</span><span class="tok-p">);</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">putBox</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">x0</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">x1</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">y0</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">y1</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">z0</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">z1</span><span class="tok-p">);</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">cutBox</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">x0</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">x1</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">y0</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">y1</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">z0</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">z1</span><span class="tok-p">);</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">putSphere</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">xcenter</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">ycenter</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">zcenter</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">radius</span><span class="tok-p">);</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">cutSphere</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">xcenter</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">ycenter</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">zcenter</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">radius</span><span class="tok-p">);</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">putEllipsoid</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">xcenter</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">ycenter</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">zcenter</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">rx</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">ry</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">rz</span><span class="tok-p">);</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">cutEllipsoid</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">xcenter</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">ycenter</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">zcenter</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">rx</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">ry</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">rz</span><span class="tok-p">);</span>
+<span class="tok-p">};</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Cada um dos métodos da classe <code>Sculptor</code> realiza uma modificação
+específica na matriz de voxels definida pela variável <code>v</code>. A descrição
+de cada um desses métodos é apresentada na tabela <a href="#tab_metodos">Métodos da classe <code>Sculptor</code></a></p>
+</div>
+<table id="tab_metodos" class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Método</th>
+<th class="tableblock halign-left valign-top">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>void setColor(float r, float g, float b, float alpha)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Define a cor atual de desenho.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>void putVoxel(int x, int y, int z)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ativa o voxel na posição (x,y,z) (fazendo <code>isOn = true</code>) e atribui ao
+mesmo a cor atual de desenho</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>void cutVoxel(int x, int y, int z)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Desativa o voxel na posição (x,y,z) (fazendo <code>isOn = false</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>void putBox(int x0, int x1, int y0, int y1, int z0, int z1)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ativa todos os voxels no intervalo \$x \in [x0,x1\$], \$y \in [y0,y1\$], \$z \in [z0, z1\$] e atribui aos mesmos a cor atual de desenho</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>void cutBox(int x0, int x1, int y0, int y1, int z0, int z1)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Desativa todos os voxels no intervalo \$x \in [x0,x1\$], \$y \in [y0,y1\$], \$z \in [z0, z1\$] e atribui aos mesmos a cor atual de desenho</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>void putSphere(int xcenter, int ycenter, int zcenter, int radius)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ativa todos os voxels que satisfazem à equação da esfera e atribui
+  aos mesmos a cor atual de desenho</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>void cutSphere(int xcenter, int ycenter, int zcenter, int radius)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Desativa todos os voxels que satisfazem à equação da esfera</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>void putEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int
+ ry, int rz)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ativa todos os voxels que satisfazem à equação do elipsóide e atribui
+  aos mesmos a cor atual de desenho</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>void cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Desativa todos os voxels que satisfazem à equação do elipsóide</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2019-04-10 10:31:27 -03
+Última atualização 2019-04-10 12:19:48 -03
 </div>
 </div>
 <script type="text/x-mathjax-config">
