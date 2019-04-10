@@ -23,7 +23,7 @@
 :version-label: Versão
 :last-update-label: Última atualização
 
-= Tarefas de programação em C++ (Segunda Unidade)
+= Tarefas de programação em C++ (Segunda Unidade) 
 
 [IMPORTANT]
 .Leia com atenção
@@ -32,7 +32,7 @@ As descrições dos projetos devem ser lidas com atenção. Se não estiver
 claro, procure o professor para que o texto seja atualizado.
 ====
 
-== Projeto Escultor 3D
+== Projeto Escultor 3D 
 
 O objetivo desse projeto é construir uma ferramenta em C++ para
 realizar esculturas em blocos representados por matrizes digitais,
@@ -49,11 +49,11 @@ apreciar a escultura criada.
 O projeto consiste em dois módulos: uma classe em C++ destinada à
 interpretação de um arquivo em formato de texto simples e geração
 das matrizes tridimensionais; e uma ferramenta visual para desenho,
-algo equivalente a um "paint" 3D.
+algo equivalente a um "paint" 3D. 
 
 Os sistemas de escultura tridimensional prevêem alguns tipos de formas
 geométricas simples que poderão ser usadas pelo usuário para pintar e
-deverão ser implementadas no projeto.
+deverão ser implementadas no projeto. 
 
 
 === Parte 1 - Biblioteca de leitura e traçado de esculturas ===
@@ -115,12 +115,12 @@ de dimensões stem:[[2 \times 2 \times 2]] voxels com as seguintes propriedades:
 
 [options="header"]
 |===
-3+^| coordenadas  4+^| propriedades |
-| x | y | z | r | g | b | alpha | isOn
-| 0 | 0 | 0 | 0 | 1 | 0 |   1.0 | true
-| 0 | 0 | 1 | 1 | 0 | 0 |  0.8  | true
-| 0 | 1 | 0 | 0 | 0 | 1 |  1.0  | true
-| 0 | 1 | 1 | 1 | 1 | 0 |  0.5  | true
+3+^| coordenadas  4+^| propriedades |   
+| x | y | z | r | g | b | alpha | isOn 
+| 0 | 0 | 0 | 0 | 1 | 0 |   1.0 | true 
+| 0 | 0 | 1 | 1 | 0 | 0 |  0.8  | true 
+| 0 | 1 | 0 | 0 | 0 | 1 |  1.0  | true 
+| 0 | 1 | 1 | 1 | 1 | 0 |  0.5  | true 
 | 1 | 0 | 0 | * | * | * |   *   | false
 | 1 | 0 | 1 | * | * | * |   *   | false
 | 1 | 1 | 0 | * | * | * |   *   | false
@@ -178,8 +178,8 @@ Arquivos VECT são normalmente associados à extensão _.vect_
 ----
 
 VECT
-NPoligonos  NVertices  NCores
-Nv[0] ... Nv[NPoligonos-1]
+NPoligonos  NVertices  NCores 
+Nv[0] ... Nv[NPoligonos-1]    
 Nc[0] ... Nc[NPoligonos-1]
 x[0] y[0] z[0]
 ...
@@ -224,8 +224,8 @@ correspondente seria o seguinte:
 ----
 VECT
 8 8 8
-1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 1 
 0 0 0
 0 0 1
 0 1 0
@@ -241,7 +241,7 @@ VECT
 1 0 0 1
 1 0 0 1
 1 0 0 1
-1 0 0 1
+1 0 0 1	
 ----
 Considere agora que se deseje representar o cubo mesmo cubo digital,
 desta vez, sem estar presente o elemento de coordenadas stem:[(0,0,0)]
@@ -252,8 +252,8 @@ com o seguinte conteúdo:
 ----
 VECT
 7 7 7
-1 1 1 1 1 1 1
-1 1 1 1 1 1 1
+1 1 1 1 1 1 1 
+1 1 1 1 1 1 1 
 0 0 1
 0 1 0
 0 1 1
@@ -316,28 +316,23 @@ sua transparência.
 Um fato importante sobre a especificação da face diz respeito à
 sequência em que os vértices são apresentados.  O sentido do vetor
 normal a esta superfície é indicado pela regra da mão direita, onde os
-dedos acompanham a sequência fornecida (ver Figura <<fig_normal>>)
+dedos acompanham a sequência fornecida (ver <<_fig.projetos.normal>>
 ). Cada sequência de pontos produz um polígono planar com duas faces
 opostas e, nos programas de visualização, a direção e sentido do vetor
 normal são usados para escolher e iluminar corretamente a face que se
 deseja exibir.
 
-[[fig_normal, Normal à superfície]]
+[fig_normal,]
 .Definição da normal à superfície pela regra da mão direita
 image::normal.svg[]
 
 
-Para exemplificar a criação de um arquivo OFF, considere o cubo
-apresentado na <<fig_cubo3d>>
+Para exemplificar a criação de um arquivo OFF, considere o cubo apresentado na <<_fig.cubo3d>>
 .
-Sua representação deverá ser dada pelas posições dos seus oito
-vértices stem:[(P_0 ... P_7)] e pelas sequências de vértices que
-definem suas faces, que deverão ser organizadas de modo às suas
-normais apontarem para fora do cubo. Só assim as superfícies das faces
-são corretamente iluminadas, proporcionando o efeito visual desejado
-na ferramenta de exibição.
+Sua representação deverá ser dada pelas posições dos seus oito vértices 
+ e pelas sequências de vértices que definem suas faces, que derverão ser organizadas de modo às suas normais apontarem para fora do cubo.
+Só assim, as superfícies das faces corretamente iluminadas, proporcionando o efeito visual desejado na ferramenta de exibição.
 
-[[fig_cubo3d, Cubo 3d]]
 .Representação de um cubo com centro no ponto .
 image::cubo.svg["$P(x,y,z)$"]
 
@@ -354,25 +349,8 @@ Face 6: P1 P2 P6 P5
 ----
 
 
-Para um cubo de lado de tamanho igual a 1, com centro no ponto
+Para um cubo de lado de tamanho igual a 1, com centro no ponto 
  e faces opacas desenhadas na cor branca, sua representação no formato OFF seria dada pelo arquivo com o seguinte conteúdo:
 
-[source]
-----
-OFF
-8 6 0 
--0.5 0.5 -0.5
--0.5 -0.5 -0.5
-0.5 -0.5 -0.5
-0.5 0.5 -0.5
--0.5 0.5 0.5
--0.5 -0.5 0.5
-0.5 -0.5 0.5
-0.5 0.5 0.5
-4 0 3 2 1 1 1 1 1
-4 4 5 6 7 1 1 1 1
-4 0 1 5 4 1 1 1 1
-4 0 4 7 3 1 1 1 1
-4 3 7 6 2 1 1 1 1
-4 1 2 6 5 1 1 1 1
-----
+
+
