@@ -528,6 +528,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_parte_1_estruturas_básicas">4.1. Parte 1 - Estruturas básicas</a></li>
 <li><a href="#_parte_2_estruturas_avançadas">4.2. Parte 2 - Estruturas avançadas</a></li>
+<li><a href="#_etapa_1_criação_da_classe_abstrata_figurageometrica">4.3. Etapa 1 - Criação da classe abstrata <code>FiguraGeometrica</code></a></li>
+<li><a href="#_criação_da_classe_concreta_putvoxel">4.4. Criação da classe concreta <code>PutVoxel</code></a></li>
+<li><a href="#_criação_da_classe_concreta_cutvoxel">4.5. Criação da classe concreta <code>CutVoxel</code></a></li>
+<li><a href="#_criação_da_classe_concreta_putbox">4.6. Criação da classe concreta <code>PutBox</code></a></li>
+<li><a href="#_criação_da_classe_concreta_cutbox">4.7. Criação da classe concreta <code>CutBox</code></a></li>
+<li><a href="#_criação_da_classe_concreta_putsphere">4.8. Criação da classe concreta <code>PutSphere</code></a></li>
+<li><a href="#_criação_da_classe_concreta_cutsphere">4.9. Criação da classe concreta <code>CutSphere</code></a></li>
+<li><a href="#_criação_da_classe_concreta_putellipsoid">4.10. Criação da classe concreta <code>PutEllipsoid</code></a></li>
+<li><a href="#_criação_da_classe_concreta_cutellipsoid">4.11. Criação da classe concreta <code>CutEllipsoid</code></a></li>
+<li><a href="#_etapa_6_armazenamento_de_figuras">4.12. Etapa 6 - Armazenamento de figuras</a></li>
+<li><a href="#_etapa_7_teste_das_funcionalidades_implementadas">4.13. Etapa 7 - Teste das funcionalidades implementadas</a></li>
 </ul>
 </li>
 </ul>
@@ -1130,7 +1141,7 @@ mesmo a cor atual de desenho</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>void putSphere(int xcenter, int ycenter, int zcenter, int radius)</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ativa todos os voxels que satisfazem à equação da esfera e atribui
-  aos mesmos a cor atual de desenho</p></td>
+  aos mesmos a cor atual de desenho \$(r,g,b,a)\$</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>void cutSphere(int xcenter, int ycenter, int zcenter, int radius)</code></p></td>
@@ -1203,12 +1214,290 @@ salvá-la nos formatos <code>OFF</code> e <code>VECT</code></p>
 <div class="sect2">
 <h3 id="_parte_2_estruturas_avançadas">4.2. Parte 2 - Estruturas avançadas</h3>
 <div class="paragraph">
-<p>(em desenvolvimento)</p>
+<p>Seu projeto deverá ser capaz de tratar classes abstratas para
+manipulação de figuras geométricas simples, realizando operações de
+desenho em uma matriz de pontos.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_etapa_1_criação_da_classe_abstrata_figurageometrica">4.3. Etapa 1 - Criação da classe abstrata <code>FiguraGeometrica</code></h3>
+<div class="paragraph">
+<p>Crie uma classe abstrata <code>FiguraGeometrica</code> para representar objetos
+primitivos genéricos, e preveja para esta classe pelo menos uma
+característica:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Uma função virtual pura <code>draw(Sculptor &amp;t)</code> que instrua o objeto a se
+desenhar em um objeto do tipo <code>Sculptor</code>. Essa função deverá ser
+implementada nas subclasses da classe <code>FiguraGeometrica</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_criação_da_classe_concreta_putvoxel">4.4. Criação da classe concreta <code>PutVoxel</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Crie uma classe <code>PutVoxel</code> derivada de <code>FiguraGeometrica</code>. Um voxel
+deverá ser especificado para desenho conforme sua posição no espaco,
+sua cor e transparência.</p>
+</li>
+<li>
+<p>O método <code>draw(Sculptor &amp;t)</code> deverá ser implementado.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_criação_da_classe_concreta_cutvoxel">4.5. Criação da classe concreta <code>CutVoxel</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Crie uma classe <code>CutVoxel</code> derivada de <code>FiguraGeometrica</code>. Um voxel
+deverá ser especificado para remoção conforme sua posição no espaco.</p>
+</li>
+<li>
+<p>O método <code>draw(Sculptor &amp;t)</code> deverá ser implementado.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_criação_da_classe_concreta_putbox">4.6. Criação da classe concreta <code>PutBox</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Crie uma classe <code>PutBox</code> derivada de <code>FiguraGeometrica</code>. Uma caixa
+deverá ser especificada para desenho conforme os limites espaciais
+fornecidos para as três dimensões, sua cor e transparência.</p>
+</li>
+<li>
+<p>O método <code>draw(Sculptor &amp;t)</code> deverá ser implementado.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_criação_da_classe_concreta_cutbox">4.7. Criação da classe concreta <code>CutBox</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Crie uma classe <code>CutBox</code> derivada de <code>FiguraGeometrica</code>. Uma caixa
+deverá ser especificada para remoção conforme os limites espaciais
+fornecidos.</p>
+</li>
+<li>
+<p>O método <code>draw(Sculptor &amp;t)</code> deverá ser implementado.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_criação_da_classe_concreta_putsphere">4.8. Criação da classe concreta <code>PutSphere</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Crie uma classe <code>PutSphere</code> derivada de <code>FiguraGeometrica</code>. Uma
+esfera deverá ser especificada para desenho conforme a posição do
+centro, seu raio em pixels, bem como sua cor e transparência.</p>
+</li>
+<li>
+<p>O método <code>draw(Sculptor &amp;t)</code> deverá ser implementado.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_criação_da_classe_concreta_cutsphere">4.9. Criação da classe concreta <code>CutSphere</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Crie uma classe <code>CutSphere</code> derivada de <code>FiguraGeometrica</code>. Uma
+esfera deverá ser especificada para remoção conforme a posição do
+centro e seu raio em pixels.</p>
+</li>
+<li>
+<p>O método <code>draw(Sculptor &amp;t)</code> deverá ser implementado.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_criação_da_classe_concreta_putellipsoid">4.10. Criação da classe concreta <code>PutEllipsoid</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Crie uma classe <code>PutEllipsoid</code> derivada de <code>FiguraGeometrica</code>. Uma
+esfera deverá ser especificada para desenho conforme a posição do
+centro, seus raios em pixels, bem como sua cor e transparência.</p>
+</li>
+<li>
+<p>O método <code>draw(Sculptor &amp;t)</code> deverá ser implementado.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_criação_da_classe_concreta_cutellipsoid">4.11. Criação da classe concreta <code>CutEllipsoid</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Crie uma classe <code>CutEllipsoid</code> derivada de <code>FiguraGeometrica</code>. Uma
+esfera deverá ser especificada para remoção conforme a posição do
+centro e seus raios em pixels.</p>
+</li>
+<li>
+<p>O método <code>draw(Sculptor &amp;t)</code> deverá ser implementado.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_etapa_6_armazenamento_de_figuras">4.12. Etapa 6 - Armazenamento de figuras</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Prepare um recurso para ler figuras gravadas em um arquivo e
+desenhá-las conforme as instruções presentes. O arquivo poderá
+conter os seguintes códigos, que deverão ser interpretados pela sua
+aplicação e utilizar a classe abstrata <code>FiguraGeometrica</code> para
+tratar e gerar o desenho conforme os códigos utilizados na tabela <a href="#tab_codigos">Códigos das figuras geométricas</a>.</p>
+</li>
+</ul>
+</div>
+<table id="tab_codigos" class="tableblock frame-all grid-all stretch">
+<caption class="title">Tabela 1. Códigos das figuras geométricas</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Código</th>
+<th class="tableblock halign-left valign-top">Função</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>dim largura altura profundidade</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>define as dimensões do desenho.</p>
 </div>
 <div class="paragraph">
-<p>A segunda parte do projeto consiste na criação de um interpretador de
-texto capaz de ler uma especificação de escultura criada em um arquivo
-e produzir a escultura digital associada em um arquivo <code>OFF</code>.</p>
+<p>Ex: <code>dim 60 40 55</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>putvoxel x0 y0 z0 r g b a</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>desenha voxel na posição \$(x0,y0,z0)\$ com a cor \$(r,g,b,a)\$</p>
+</div>
+<div class="paragraph">
+<p>Ex: <code>putvoxel 5 5 10 1.0 0.8 0.4 0.3</code> (linha desenhada com o caractere <code>@</code>)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>cutvoxel x0 y0 z0</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>apaga voxel na posição \$(x0,y0,z0)\$ com a cor \$(r,g,b,a)\$</p>
+</div>
+<div class="paragraph">
+<p>Ex: <code>cutvoxel 5 5 10</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>putbox x0 x1 y0 y1 z0 z1 r g b a</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>desenha um paralelepípedo delimitado por \$x \in (x0,x1)\$,
+  \$y \in (y0,y1)\$, \$z \in (z0,z1)\$ com a cor
+  \$(r,g,b,a)\$.</p>
+</div>
+<div class="paragraph">
+<p>Ex: <code>putbox 10 15 12 33 1 8 0.4 0.5 0.8 1</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>cutbox x0 x1 y0 y1 z0 z1</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>apaga um paralelepípedo delimitado por \$x \in (x0,x1)\$,
+  \$y \in (y0,y1)\$, \$z \in (z0,z1)\$.</p>
+</div>
+<div class="paragraph">
+<p>Ex: <code>cutbox 10 15 12 33 1 8</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>putsphere x0 y0 z0 raio r g b a</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>desenha uma esfera com centro no ponto \$(x0, y0, z0)\$, raio
+  especificado e com a cor \$(r,g,b,a)\$.</p>
+</div>
+<div class="paragraph">
+<p>Ex: <code>putsphere 10 10 5 3 1.0 1.0 0.5 0.3</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>cutsphere x0 y0 z0 raio</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>apaga uma esfera com centro no ponto \$(x0, y0, z0)\$ e raio
+  especificado.</p>
+</div>
+<div class="paragraph">
+<p>Ex: <code>cutsphere 10 10 5 3</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>putellipsoid x0 y0 z0 raiox raioy raioz r g b a</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>desenha um elipsóide com centro no ponto \$(x0, y0, z0)\$, raios
+  especificados e com a cor \$(r,g,b,a)\$.</p>
+</div>
+<div class="paragraph">
+<p>Ex: <code>putellipsoid 10 10 5 3 4 5 1.0 0.5 0.9 0.4</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>cutellipsoid x0 y0 z0 raio</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>apaga um elipsóide com centro no ponto \$(x0, y0, z0)\$ e raios
+  especificados.</p>
+</div>
+<div class="paragraph">
+<p>Ex: <code>cutellipsoid 10 10 5 3 4 5</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_etapa_7_teste_das_funcionalidades_implementadas">4.13. Etapa 7 - Teste das funcionalidades implementadas</h3>
+<div class="paragraph">
+<p>Crie uma figura e um programa-exemplo para testar as implementações
+que você realizou.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Toda a figura poderá ser armazenada em um array de ponteiros para
+<code>FiguraGeometrica</code>.</p>
+</li>
+<li>
+<p>Faça utilização exaustiva das classes da biblioteca padrão de
+gabaritos. As classes <code>vector</code>, <code>string</code> e <code>stringstream</code>, bem como
+seus respetivos <code>iterators</code> poderão ser amplamente utilizados para
+realizar a implementação das funcionalidades.</p>
+</li>
+<li>
+<p>Crie uma figura  e represente-a em um arquivo  utilizando os códigos
+fornecidos. Use  uma combinação  adequada de classes  para converter
+sua figura em  uma escultura digital nos formatos <code>OFF</code>  e <code>VECT</code>. A
+matriz deverá  ser salva em outro  arquivo usando um dos  métodos da
+classe <code>Sculptor</code>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1216,7 +1505,7 @@ e produzir a escultura digital associada em um arquivo <code>OFF</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2019-04-18 10:02:13 -03
+Última atualização 2019-05-02 12:42:12 -03
 </div>
 </div>
 <script type="text/x-mathjax-config">

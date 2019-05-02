@@ -3,10 +3,10 @@
   <channel>
     <title>Agostinho Brito</title>
     <description>Blog pessoal de Agostinho Brito</description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <updated>2019-04-11T16:36:17-03:00</updated>
-    <id>http://localhost:4000</id>
+    <link>http://agostinhobritojr.github.io/</link>
+    <atom:link href="http://agostinhobritojr.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <updated>2019-05-02T12:43:21-03:00</updated>
+    <id>http://agostinhobritojr.github.io</id>
     <author>
       <name>Agostinho Brito</name>
     </author>
@@ -31,12 +31,12 @@
   &lt;li&gt;Luccas Bonato e a criação de um braço robótico para desenhar imagens através da técnica de pontilhismo.&lt;/li&gt;
   &lt;li&gt;Gabriel Signoretti e um moderno sistema de monitoramento de alimentação canina, para plugar na Internet uma tigela de alimentação convencional. A tigela será turbinada com um Raspberry pi, usando a API REST para controle e monitoramento (Django ou Flask), OpenCV para analisar o conteúdo presente na tigela. Esforços estão sendo feitos de modo a permitir o controle remoto do sistema.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;hr&gt;&lt;a href=&quot;https://twitter.com/share?text=Blogs contribuintes&amp;url=http://localhost:4000/blog/2018/08/20/editorial/&amp;via=agostinhobritojr&quot; target=&quot;_blank&quot; title=&quot;tweet author @agostinhobritojr&quot;&gt;tweet author&lt;/a&gt; | &lt;a href=&quot;https://plus.google.com/share?url=http://localhost:4000/blog/2018/08/20/editorial/&quot; target=&quot;_blank&quot; title=&quot;Share on Google+&quot;&gt;share on Google+&lt;/a&gt;
+&lt;hr&gt;&lt;a href=&quot;https://twitter.com/share?text=Blogs contribuintes&amp;url=http://agostinhobritojr.github.io/blog/2018/08/20/editorial/&amp;via=agostinhobritojr&quot; target=&quot;_blank&quot; title=&quot;tweet author @agostinhobritojr&quot;&gt;tweet author&lt;/a&gt; | &lt;a href=&quot;https://plus.google.com/share?url=http://agostinhobritojr.github.io/blog/2018/08/20/editorial/&quot; target=&quot;_blank&quot; title=&quot;Share on Google+&quot;&gt;share on Google+&lt;/a&gt;
 </description>
         
         <pubDate>Mon, 20 Aug 2018 00:00:00 -0300</pubDate>
-        <link>http://localhost:4000/blog/2018/08/20/editorial/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2018/08/20/editorial/</guid>
+        <link>http://agostinhobritojr.github.io/blog/2018/08/20/editorial/</link>
+        <guid isPermaLink="true">http://agostinhobritojr.github.io/blog/2018/08/20/editorial/</guid>
       </item>
     
       <item>
@@ -57,8 +57,9 @@ um blog com Jekyll.&lt;/p&gt;
 
 &lt;p&gt;O primeiro passo foi a instalação é do próprio Jekyll. Basta digitar o comando&lt;/p&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt install jekyll
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt install jekyll
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;que praticamente todo o ferramental que necessário será
 instalado. Como o Jekyll é feito em ruby, todas as dependências para
@@ -74,17 +75,19 @@ temas criados para o Jekyll usam &lt;em&gt;gemas&lt;/em&gt; do ruby para melhora
 aspectos visuais e introduzir elementos nas páginas. A incorporação
 dessa gemas é justamente tratada pelo &lt;code class=&quot;highlighter-rouge&quot;&gt;bundler&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt install bundler
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt install bundler
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;Daqui para frente a criação de um repositório local para o blog pode
 ser feita com comandos adaptados diretamento do próprio site
 &lt;a href=&quot;http://jekyllrb.com&quot;&gt;jekyllrb.com&lt;/a&gt;:&lt;/p&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;jekyll new meublog
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;meublog
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;jekyll new meublog
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;meublog
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;Ou quase… Essa última instrução nem sempre funciona. No Ubuntu o
 bundler exige a presença de um arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; no diretório onde o
@@ -93,28 +96,31 @@ criado por default pelo Jekyll. Basta criar um arquivo vazio com
 qualquer editor de texto e nomeá-lo como &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; ou fazer isso na
 própria shell com o comando &lt;code class=&quot;highlighter-rouge&quot;&gt;touch&lt;/code&gt;.&lt;/p&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;touch Gemfile
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;touch Gemfile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;Agora é só repetir a instrução que invoca o bundler que o sistema será
 preparado sem erros.&lt;/p&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;Se a instalação tiver sido feita corretamente as seguintes mensagems
 deverão ser apresentadas no terminal:&lt;/p&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Configuration file: /home/user/meublog/_config.yml
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Configuration file: /home/user/meublog/_config.yml
             Source: /home/user/meublog
        Destination: /home/user/meublog/_site
- Incremental build: disabled. Enable with &lt;span class=&quot;nt&quot;&gt;--incremental&lt;/span&gt;
+ Incremental build: disabled. Enable with --incremental
       Generating... 
                     &lt;span class=&quot;k&quot;&gt;done in &lt;/span&gt;0.225 seconds.
  Auto-regeneration: enabled &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/home/user/meublog'&lt;/span&gt;
     Server address: http://127.0.0.1:4000/
   Server running... press ctrl-c to stop.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;O Jekyll deverá processar as páginas criadas localmente,
 convertendo-as para HTML e hospedando-as no diretório _site, de onde
@@ -145,9 +151,10 @@ acesso pelo GitHub pages.&lt;/li&gt;
   &lt;li&gt;Atualize o arquivo &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;, incluindo as seguintes linhas:&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;baseurl: &quot;/blog&quot;
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;baseurl: &quot;/blog&quot;
 production_url : http://usuario.github.io.com/blog
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;Os procedimentos descritos aqui servem apenas para criar um esqueleto
 bem rudimentar para um blog baseado em Jekyll. A criação de um blog
@@ -158,12 +165,12 @@ futuro.&lt;/p&gt;
 sugerem sites como &lt;a href=&quot;https://jekyllthemes.io/&quot;&gt;jekyllthemes.io/&lt;/a&gt;. O
 próprio &lt;a href=&quot;https://github.com&quot;&gt;github.com&lt;/a&gt; suporta Jekyll e, inclusive,
 ajuda a criação de blogs com alguns temas sugeridos.&lt;/p&gt;
-&lt;hr&gt;&lt;a href=&quot;https://twitter.com/share?text=Instalando Jekyll...&amp;url=http://localhost:4000/blog/2018/08/01/install-jekyll-blog/&amp;via=agostinhobritojr&quot; target=&quot;_blank&quot; title=&quot;tweet author @agostinhobritojr&quot;&gt;tweet author&lt;/a&gt; | &lt;a href=&quot;https://plus.google.com/share?url=http://localhost:4000/blog/2018/08/01/install-jekyll-blog/&quot; target=&quot;_blank&quot; title=&quot;Share on Google+&quot;&gt;share on Google+&lt;/a&gt;
+&lt;hr&gt;&lt;a href=&quot;https://twitter.com/share?text=Instalando Jekyll...&amp;url=http://agostinhobritojr.github.io/blog/2018/08/01/install-jekyll-blog/&amp;via=agostinhobritojr&quot; target=&quot;_blank&quot; title=&quot;tweet author @agostinhobritojr&quot;&gt;tweet author&lt;/a&gt; | &lt;a href=&quot;https://plus.google.com/share?url=http://agostinhobritojr.github.io/blog/2018/08/01/install-jekyll-blog/&quot; target=&quot;_blank&quot; title=&quot;Share on Google+&quot;&gt;share on Google+&lt;/a&gt;
 </description>
         
         <pubDate>Wed, 01 Aug 2018 00:00:00 -0300</pubDate>
-        <link>http://localhost:4000/blog/2018/08/01/install-jekyll-blog/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2018/08/01/install-jekyll-blog/</guid>
+        <link>http://agostinhobritojr.github.io/blog/2018/08/01/install-jekyll-blog/</link>
+        <guid isPermaLink="true">http://agostinhobritojr.github.io/blog/2018/08/01/install-jekyll-blog/</guid>
       </item>
     
       <item>
@@ -212,12 +219,12 @@ compreender como faz.&lt;/p&gt;
 dicas de uso.&lt;/p&gt;
 
 &lt;p&gt;Valeu!&lt;/p&gt;
-&lt;hr&gt;&lt;a href=&quot;https://twitter.com/share?text=Alô, mundo!&amp;url=http://localhost:4000/blog/2018/06/12/alo-mundo/&amp;via=agostinhobritojr&quot; target=&quot;_blank&quot; title=&quot;tweet author @agostinhobritojr&quot;&gt;tweet author&lt;/a&gt; | &lt;a href=&quot;https://plus.google.com/share?url=http://localhost:4000/blog/2018/06/12/alo-mundo/&quot; target=&quot;_blank&quot; title=&quot;Share on Google+&quot;&gt;share on Google+&lt;/a&gt;
+&lt;hr&gt;&lt;a href=&quot;https://twitter.com/share?text=Alô, mundo!&amp;url=http://agostinhobritojr.github.io/blog/2018/06/12/alo-mundo/&amp;via=agostinhobritojr&quot; target=&quot;_blank&quot; title=&quot;tweet author @agostinhobritojr&quot;&gt;tweet author&lt;/a&gt; | &lt;a href=&quot;https://plus.google.com/share?url=http://agostinhobritojr.github.io/blog/2018/06/12/alo-mundo/&quot; target=&quot;_blank&quot; title=&quot;Share on Google+&quot;&gt;share on Google+&lt;/a&gt;
 </description>
         
         <pubDate>Tue, 12 Jun 2018 00:00:00 -0300</pubDate>
-        <link>http://localhost:4000/blog/2018/06/12/alo-mundo/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2018/06/12/alo-mundo/</guid>
+        <link>http://agostinhobritojr.github.io/blog/2018/06/12/alo-mundo/</link>
+        <guid isPermaLink="true">http://agostinhobritojr.github.io/blog/2018/06/12/alo-mundo/</guid>
       </item>
     
   </channel>
