@@ -16,7 +16,7 @@ desocupado... não, pera!
 
 <i class="fa fa-hand-o-left"></i> Aí ao lado esquerdo da tela (ou
 em cima, quem sabe) tem um menu de links para cursos que
-ministro e tutoriais que preparei (que audácia!).
+ministro e tutoriais que preparei.
 
 Sinta-se à vontade para criticar e dar sugestões de melhoria.
 
