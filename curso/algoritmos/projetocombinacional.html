@@ -4,18 +4,17 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.6">
+<meta name="generator" content="Asciidoctor 2.0.10">
 <meta name="author" content="Agostinho Brito">
 <title>Projeto de programação em C (Terceira Unidade)</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
-/* Uncomment @import statement when using as custom stylesheet */
+/* Uncomment @import statement to use as custom stylesheet */
 /*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
-audio,canvas,video{display:inline-block}
+audio,video{display:inline-block}
 audio:not([controls]){display:none;height:0}
-script{display:none!important}
 html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
 a{background:none}
 a:focus{outline:thin dotted}
@@ -220,8 +219,8 @@ table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font
 .literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
 @media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
 @media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
-.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .listingblock>.content{position:relative}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
@@ -242,7 +241,7 @@ table.linenotable td.linenos{border-right:1px solid currentColor;opacity:.35;pad
 pre.pygments .lineno{border-right:1px solid currentColor;opacity:.35;display:inline-block;margin-right:.75em}
 pre.pygments .lineno::before{content:"";margin-right:-.125em}
 .quoteblock{margin:0 1em 1.25em 1.5em;display:table}
-.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
 .quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
 .quoteblock blockquote{margin:0;padding:0;border:0}
 .quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
@@ -259,12 +258,14 @@ pre.pygments .lineno::before{content:"";margin-right:-.125em}
 .quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
 .quoteblock.abstract{margin:0 1em 1.25em;display:block}
 .quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
-.quoteblock.excerpt,.quoteblock .quoteblock{margin:0 0 1.25em;padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
 .quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
 .quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
 table.tableblock{max-width:100%;border-collapse:separate}
 p.tableblock:last-child{margin-bottom:0}
-td.tableblock>.content{margin-bottom:-1.25em}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+td.tableblock>.content>:last-child.sidebarblock{margin-bottom:0}
 table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
 table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
 table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
@@ -446,10 +447,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <ul class="sectlevel1">
-<li><a href="#_objetivos">1. Objetivos</a></li>
-<li><a href="#_linguagem_de_descrição_de_circuito">2. Linguagem de descrição de circuito</a></li>
-<li><a href="#_exemplo_de_circuito">3. Exemplo de circuito</a></li>
-<li><a href="#_tarefas">4. Tarefas</a></li>
+<li><a href="#_apresentação">1. Apresentação</a></li>
+<li><a href="#_objetivos">2. Objetivos</a></li>
+<li><a href="#_linguagem_de_descrição_de_circuito">3. Linguagem de descrição de circuito</a></li>
+<li><a href="#_formato_do_arquivo_de_descrição_de_circuito">4. Formato do arquivo de descrição de circuito</a></li>
+<li><a href="#_exemplo_de_circuito">5. Exemplo de circuito</a></li>
+<li><a href="#_tarefas">6. Tarefas</a></li>
 </ul>
 </div>
 </div>
@@ -475,21 +478,352 @@ claras, procure o professor para que o texto seja atualizado.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_objetivos">1. Objetivos</h2>
+<h2 id="_apresentação">1. Apresentação</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Construir um programa em C que seja capaz de calcular tabelas-verdade
-para expressões lógicas combinacionais descritas na forma de circuitos
-digitais simples usando uma linguagem de especificação de circuito. A
-descrição de um dado circuito deverá ser escrita em um arquivo no
-formato de texto simples e lida pela ferramenta desenvolvida,
-apresentando os resultados da expressão lógica correspondente.</p>
+<p>Eletrônica digital é uma parte da eletrônica onde utilizados circuitos
+eletrônicos para realizar cálculos de expressões lógicas usando
+dispositivos físicos. Dispositivos como esse estão presentes no dia a
+dia da maioria das pessoas, sejam em computadores ou telefones
+celulares.</p>
+</div>
+<div class="paragraph">
+<p>As unidades básicas que compõem esses circuitos são chamadas de portas
+lógicas e cada tipo de porta realiza o cálculo de funções matemáticas bem
+simples com quantidades binárias. Por exemplo, a porta lógica
+normalmente denominada AND calcula o <em>AND</em> lógico entre dois
+bits. Assim, somente se as duas entradas dessa porta forem iguais ao
+que se convenciona ser o "1" lógico a saída também será igual
+a 1. Combinações de várias milhões dessas portas são usadas para
+construir os computadores modernos.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_linguagem_de_descrição_de_circuito">2. Linguagem de descrição de circuito</h2>
+<h2 id="_objetivos">2. Objetivos</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Para explorar o uso das expressões lógicas em programação, propõe-se
+um projeto que envolve a construção de uma calculadora lógica de
+tabelas-verdade. Tabelas-verdades são espécies de tabelas que mostram
+para as várias possíveis combinações de valores de entrada as suas
+respectivas saídas calculadas pelo circuito lógico.</p>
+</div>
+<div class="paragraph">
+<p>Nesse contexto, o presente projeto visa que o aluno desenvolva um
+programa em C que seja capaz de calcular tabelas-verdade para
+expressões lógicas combinacionais expressas na forma de uma
+representação de circuito. Não será implementado o circuito em si, mas
+sim uma simulação do mesmo feita na forma de um programa.</p>
+</div>
+<div class="paragraph">
+<p>Cada circuito circuito digital é especificado usando uma linguagem de
+especificação de circuito. A descrição de um dado circuito escrita em
+um arquivo no formato de texto simples deverá ser lida pela ferramenta
+desenvolvida e esta apresentará os resultados da expressão lógica
+correspondente.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_linguagem_de_descrição_de_circuito">3. Linguagem de descrição de circuito</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>No âmbito desse projeto, os circuitos serão definidos em um arquivo
+que contém uma série de linhas, e em cada linha um comando
+correspondente a um dos três tipos de componentes possíveis: portas
+lógicas, variáveis de entrada e variáveis de saída. Todos os valores
+de entrada ou saída desses componentes sempre assumirão valores
+iguais a <code>0</code> ou <code>1</code>. Os componentes do circuito implementarão as
+seguintes portas lógicas com suas respectivas operações matemáticas:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">AND</dt>
+<dd>
+<p>possui duas entradas <code>A</code> e <code>B</code> e produz uma saída <code>C</code> conforme a
+seguinte tabela</p>
+</dd>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Símbolo</th>
+<th class="tableblock halign-left valign-top">A</th>
+<th class="tableblock halign-left valign-top">B</th>
+<th class="tableblock halign-left valign-top">C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle" rowspan="4"><p class="tableblock"><span class="image"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgIHhtbG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiCiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB3aWR0aD0iMy41NzAyMjE0bW0iCiAgIGhlaWdodD0iMi44NzAxNzc3bW0iCiAgIHZpZXdCb3g9IjAgMCAzLjU3MDIyMTMgMi44NzAxNzc4IgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmc4OTI2OSIKICAgaW5rc2NhcGU6dmVyc2lvbj0iMC45Mi40ICg1ZGE2ODljMzEzLCAyMDE5LTAxLTE0KSIKICAgc29kaXBvZGk6ZG9jbmFtZT0iYW5kZ2F0ZS5zdmciPgogIDxkZWZzCiAgICAgaWQ9ImRlZnM4OTI2MyIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9ImJhc2UiCiAgICAgcGFnZWNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcmNvbG9yPSIjNjY2NjY2IgogICAgIGJvcmRlcm9wYWNpdHk9IjEuMCIKICAgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMC4wIgogICAgIGlua3NjYXBlOnBhZ2VzaGFkb3c9IjIiCiAgICAgaW5rc2NhcGU6em9vbT0iMTEuMiIKICAgICBpbmtzY2FwZTpjeD0iMTIuNzQ4NzAxIgogICAgIGlua3NjYXBlOmN5PSI1LjE4MDg3MzEiCiAgICAgaW5rc2NhcGU6ZG9jdW1lbnQtdW5pdHM9Im1tIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9ImxheWVyMSIKICAgICBzaG93Z3JpZD0iZmFsc2UiCiAgICAgZml0LW1hcmdpbi10b3A9IjAiCiAgICAgZml0LW1hcmdpbi1sZWZ0PSIwIgogICAgIGZpdC1tYXJnaW4tcmlnaHQ9IjAiCiAgICAgZml0LW1hcmdpbi1ib3R0b209IjAiCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSIxODY2IgogICAgIGlua3NjYXBlOndpbmRvdy1oZWlnaHQ9IjEwMTYiCiAgICAgaW5rc2NhcGU6d2luZG93LXg9IjE0MjAiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9IjI3IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiIC8+CiAgPG1ldGFkYXRhCiAgICAgaWQ9Im1ldGFkYXRhODkyNjYiPgogICAgPHJkZjpSREY+CiAgICAgIDxjYzpXb3JrCiAgICAgICAgIHJkZjphYm91dD0iIj4KICAgICAgICA8ZGM6Zm9ybWF0PmltYWdlL3N2Zyt4bWw8L2RjOmZvcm1hdD4KICAgICAgICA8ZGM6dHlwZQogICAgICAgICAgIHJkZjpyZXNvdXJjZT0iaHR0cDovL3B1cmwub3JnL2RjL2RjbWl0eXBlL1N0aWxsSW1hZ2UiIC8+CiAgICAgICAgPGRjOnRpdGxlPjwvZGM6dGl0bGU+CiAgICAgIDwvY2M6V29yaz4KICAgIDwvcmRmOlJERj4KICA8L21ldGFkYXRhPgogIDxnCiAgICAgaW5rc2NhcGU6bGFiZWw9IkxheWVyIDEiCiAgICAgaW5rc2NhcGU6Z3JvdXBtb2RlPSJsYXllciIKICAgICBpZD0ibGF5ZXIxIgogICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMzQuMjk3ODksLTEyOS4zMjUxMikiPgogICAgPGcKICAgICAgIGlkPSJ1c2U4ODY2MiIKICAgICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjIiCiAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjI2NDU4MzMzLDAsMCwwLjI2NDU4MzMzLDEzMi41ODI3OCwxMjcuMjU5OTkpIj4KICAgICAgPHRpdGxlCiAgICAgICAgIGlkPSJ0aXRsZTg5OTU4Ij5BbmQgR2F0ZTwvdGl0bGU+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoODk5NjAiCiAgICAgICAgIGQ9Ik0gNi42MTQ1ODMzLDE4LjUyMDgzMyBWIDE1Ljg3NSAxMy4yMjkxNjcgMTAuNTgzMzMzIDcuOTM3NSBoIDcuOTM3NDk5NyBjIDIuOTIyNTA3LDAgNS4yOTE2NjcsMi4zNjkxNiA1LjI5MTY2Nyw1LjI5MTY2NyAwLDIuOTIyNTA2IC0yLjM2OTE2LDUuMjkxNjY2IC01LjI5MTY2Nyw1LjI5MTY2NiB6IgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICAgICAgICBzdHlsZT0ic3Ryb2tlLXdpZHRoOjAuMjY0NTgzMzIiIC8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K" alt="andgate" width="150"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+</tbody>
+</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">OR</dt>
+<dd>
+<p>possui duas entradas <code>A</code> e <code>B</code> e produz uma saída <code>C</code> conforme a
+seguinte tabela</p>
+</dd>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Símbolo</th>
+<th class="tableblock halign-left valign-top">A</th>
+<th class="tableblock halign-left valign-top">B</th>
+<th class="tableblock halign-left valign-top">C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle" rowspan="4"><p class="tableblock"><span class="image"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgIHhtbG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiCiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB3aWR0aD0iMy42MjIwNjM0bW0iCiAgIGhlaWdodD0iMi44NzAxNzc3bW0iCiAgIHZpZXdCb3g9IjAgMCAzLjYyMjA2MzMgMi44NzAxNzc4IgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmc4OTI2OSIKICAgaW5rc2NhcGU6dmVyc2lvbj0iMC45Mi40ICg1ZGE2ODljMzEzLCAyMDE5LTAxLTE0KSIKICAgc29kaXBvZGk6ZG9jbmFtZT0ib3JnYXRlLnN2ZyI+CiAgPGRlZnMKICAgICBpZD0iZGVmczg5MjYzIiAvPgogIDxzb2RpcG9kaTpuYW1lZHZpZXcKICAgICBpZD0iYmFzZSIKICAgICBwYWdlY29sb3I9IiNmZmZmZmYiCiAgICAgYm9yZGVyY29sb3I9IiM2NjY2NjYiCiAgICAgYm9yZGVyb3BhY2l0eT0iMS4wIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZXNoYWRvdz0iMiIKICAgICBpbmtzY2FwZTp6b29tPSIxMS4yIgogICAgIGlua3NjYXBlOmN4PSItMy4yODM4ODAyIgogICAgIGlua3NjYXBlOmN5PSItNS43Nzg4MDQ3IgogICAgIGlua3NjYXBlOmRvY3VtZW50LXVuaXRzPSJtbSIKICAgICBpbmtzY2FwZTpjdXJyZW50LWxheWVyPSJsYXllcjEiCiAgICAgc2hvd2dyaWQ9ImZhbHNlIgogICAgIGZpdC1tYXJnaW4tdG9wPSIwIgogICAgIGZpdC1tYXJnaW4tbGVmdD0iMCIKICAgICBmaXQtbWFyZ2luLXJpZ2h0PSIwIgogICAgIGZpdC1tYXJnaW4tYm90dG9tPSIwIgogICAgIGlua3NjYXBlOndpbmRvdy13aWR0aD0iMTg2NiIKICAgICBpbmtzY2FwZTp3aW5kb3ctaGVpZ2h0PSIxMDE2IgogICAgIGlua3NjYXBlOndpbmRvdy14PSIxNDIwIgogICAgIGlua3NjYXBlOndpbmRvdy15PSIyNyIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIiAvPgogIDxtZXRhZGF0YQogICAgIGlkPSJtZXRhZGF0YTg5MjY2Ij4KICAgIDxyZGY6UkRGPgogICAgICA8Y2M6V29yawogICAgICAgICByZGY6YWJvdXQ9IiI+CiAgICAgICAgPGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+CiAgICAgICAgPGRjOnR5cGUKICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIiAvPgogICAgICAgIDxkYzp0aXRsZT48L2RjOnRpdGxlPgogICAgICA8L2NjOldvcms+CiAgICA8L3JkZjpSREY+CiAgPC9tZXRhZGF0YT4KICA8ZwogICAgIGlua3NjYXBlOmxhYmVsPSJMYXllciAxIgogICAgIGlua3NjYXBlOmdyb3VwbW9kZT0ibGF5ZXIiCiAgICAgaWQ9ImxheWVyMSIKICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTM4LjUzOTg0LC0xMjYuNDI1MzcpIj4KICAgIDxnCiAgICAgICBpZD0idXNlODg2MzciCiAgICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoyIgogICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4yNjQ1ODMzMywwLDAsMC4yNjQ1ODMzMywxMzYuODc0NDgsMTI0LjM2MDI0KSI+CiAgICAgIDx0aXRsZQogICAgICAgICBpZD0idGl0bGU4OTkxNSI+T3IgR2F0ZTwvdGl0bGU+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoODk5MTciCiAgICAgICAgIGQ9Ik0gNi41MjM2MzI4LDE4LjUyMDgzMyBIIDExLjkwNjI1IGMgNS4yOTE2NjcsMCA3LjkzNzUsLTUuMjkxNjY2IDcuOTM3NSwtNS4yOTE2NjYgMCwwIC0xLjMyMjkxNywtNS4yOTE2NjcgLTcuOTM3NSwtNS4yOTE2NjcgSCA2LjUyMzYzMjggYyAwLjQ3MzU4NDYsMC44MTg2NzA2IDAuODMzNzk4NCwxLjcwNzQ4MDkgMS4wNzQ4Njk4LDIuNjQ1ODMzIDAuMjE3MzIwOCwwLjg0NTkwNSAwLjMzODk5NzQsMS43MzE5MTUgMC4zMzg5OTc0LDIuNjQ1ODM0IDAsMC45MTM5MTggLTAuMTIxNjc2NiwxLjc5OTkyOCAtMC4zMzg5OTc0LDIuNjQ1ODMzIC0wLjI0MTA3MTQsMC45MzgzNTIgLTAuNjAxMjg1MiwxLjgyNzE2MyAtMS4wNzQ4Njk4LDIuNjQ1ODMzIHoiCiAgICAgICAgIGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiCiAgICAgICAgIHN0eWxlPSJzdHJva2Utd2lkdGg6MC4yNjQ1ODMzMiIgLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=" alt="orgate" width="150"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+</tbody>
+</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">NOT</dt>
+<dd>
+<p>possui duas entradas <code>A</code> e <code>B</code> e produz uma saída <code>C</code> conforme a
+seguinte tabela</p>
+</dd>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Símbolo</th>
+<th class="tableblock halign-left valign-top">A</th>
+<th class="tableblock halign-left valign-top">C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle" rowspan="4"><p class="tableblock"><span class="image"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgIHhtbG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiCiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB3aWR0aD0iMy45MjAyNDNtbSIKICAgaGVpZ2h0PSIyLjkwMzU3MjFtbSIKICAgdmlld0JveD0iMCAwIDMuOTIwMjQzIDIuOTAzNTcyMSIKICAgdmVyc2lvbj0iMS4xIgogICBpZD0ic3ZnODkyNjkiCiAgIGlua3NjYXBlOnZlcnNpb249IjAuOTIuNCAoNWRhNjg5YzMxMywgMjAxOS0wMS0xNCkiCiAgIHNvZGlwb2RpOmRvY25hbWU9Im5vdGdhdGUuc3ZnIj4KICA8ZGVmcwogICAgIGlkPSJkZWZzODkyNjMiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJiYXNlIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzY2NjY2NiIKICAgICBib3JkZXJvcGFjaXR5PSIxLjAiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAuMCIKICAgICBpbmtzY2FwZTpwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnpvb209IjExLjIiCiAgICAgaW5rc2NhcGU6Y3g9IjkuNzkzMTY4NiIKICAgICBpbmtzY2FwZTpjeT0iMC4wNjk3MTA5MjciCiAgICAgaW5rc2NhcGU6ZG9jdW1lbnQtdW5pdHM9Im1tIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9ImxheWVyMSIKICAgICBzaG93Z3JpZD0iZmFsc2UiCiAgICAgZml0LW1hcmdpbi10b3A9IjAiCiAgICAgZml0LW1hcmdpbi1sZWZ0PSIwIgogICAgIGZpdC1tYXJnaW4tcmlnaHQ9IjAiCiAgICAgZml0LW1hcmdpbi1ib3R0b209IjAiCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSIxODY2IgogICAgIGlua3NjYXBlOndpbmRvdy1oZWlnaHQ9IjEwMTYiCiAgICAgaW5rc2NhcGU6d2luZG93LXg9IjE0MjAiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9IjI3IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiIC8+CiAgPG1ldGFkYXRhCiAgICAgaWQ9Im1ldGFkYXRhODkyNjYiPgogICAgPHJkZjpSREY+CiAgICAgIDxjYzpXb3JrCiAgICAgICAgIHJkZjphYm91dD0iIj4KICAgICAgICA8ZGM6Zm9ybWF0PmltYWdlL3N2Zyt4bWw8L2RjOmZvcm1hdD4KICAgICAgICA8ZGM6dHlwZQogICAgICAgICAgIHJkZjpyZXNvdXJjZT0iaHR0cDovL3B1cmwub3JnL2RjL2RjbWl0eXBlL1N0aWxsSW1hZ2UiIC8+CiAgICAgICAgPGRjOnRpdGxlPjwvZGM6dGl0bGU+CiAgICAgIDwvY2M6V29yaz4KICAgIDwvcmRmOlJERj4KICA8L21ldGFkYXRhPgogIDxnCiAgICAgaW5rc2NhcGU6bGFiZWw9IkxheWVyIDEiCiAgICAgaW5rc2NhcGU6Z3JvdXBtb2RlPSJsYXllciIKICAgICBpZD0ibGF5ZXIxIgogICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMzQuODY3MjYsLTEyNy43MjY3OCkiPgogICAgPGcKICAgICAgIGlkPSJ1c2U4ODY4OCIKICAgICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjIiCiAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjI2NDU4MzMzLDAsMCwwLjI2NDU4MzMzLDEzMy4xNTIxNSwxMjUuNjc4MzUpIj4KICAgICAgPHRpdGxlCiAgICAgICAgIGlkPSJ0aXRsZTg5ODI0Ij5Ob3QgR2F0ZTwvdGl0bGU+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoODk4MjYiCiAgICAgICAgIGQ9Ik0gNi42MTQ1ODMzLDcuOTM3NSAxOS44NDM3NSwxMy4yMjkxNjcgNi42MTQ1ODMzLDE4LjUyMDgzMyB2IC01LjI5MTY2NiB6IgogICAgICAgICBzdHlsZT0ic3Ryb2tlLXdpZHRoOjAuMjY0NTgzMzI7c3Ryb2tlLW1pdGVybGltaXQ6MiIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg4OTgyOCIKICAgICAgICAgZD0ibSAyMS4xNjY2NjcsMTMuMjI5MTY3IGMgMCwwLjM2NTMxMyAtMC4yOTYxNDUsMC42NjE0NTggLTAuNjYxNDU5LDAuNjYxNDU4IC0wLjM2NTMxMywwIC0wLjY2MTQ1OCwtMC4yOTYxNDUgLTAuNjYxNDU4LC0wLjY2MTQ1OCAwLC0wLjM2NTMxNCAwLjI5NjE0NSwtMC42NjE0NTkgMC42NjE0NTgsLTAuNjYxNDU5IDAuMzY1MzE0LDAgMC42NjE0NTksMC4yOTYxNDUgMC42NjE0NTksMC42NjE0NTkgeiIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIKICAgICAgICAgc3R5bGU9InN0cm9rZS13aWR0aDowLjI2NDU4MzMyIiAvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+Cg==" alt="notgate" width="150"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+</tbody>
+</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">NAND</dt>
+<dd>
+<p>possui duas entradas <code>A</code> e <code>B</code> e produz uma saída <code>C</code> conforme a
+seguinte tabela</p>
+</dd>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Símbolo</th>
+<th class="tableblock halign-left valign-top">A</th>
+<th class="tableblock halign-left valign-top">B</th>
+<th class="tableblock halign-left valign-top">C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle" rowspan="4"><p class="tableblock"><span class="image"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgIHhtbG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiCiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB3aWR0aD0iMy45MjAyNDNtbSIKICAgaGVpZ2h0PSIyLjg3MDE3NzdtbSIKICAgdmlld0JveD0iMCAwIDMuOTIwMjQyOSAyLjg3MDE3NzgiCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2Zzg5MjY5IgogICBpbmtzY2FwZTp2ZXJzaW9uPSIwLjkyLjQgKDVkYTY4OWMzMTMsIDIwMTktMDEtMTQpIgogICBzb2RpcG9kaTpkb2NuYW1lPSJuYW5kZ2F0ZS5zdmciPgogIDxkZWZzCiAgICAgaWQ9ImRlZnM4OTI2MyIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9ImJhc2UiCiAgICAgcGFnZWNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcmNvbG9yPSIjNjY2NjY2IgogICAgIGJvcmRlcm9wYWNpdHk9IjEuMCIKICAgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMC4wIgogICAgIGlua3NjYXBlOnBhZ2VzaGFkb3c9IjIiCiAgICAgaW5rc2NhcGU6em9vbT0iMTEuMiIKICAgICBpbmtzY2FwZTpjeD0iLTUuNDY1NjIwOSIKICAgICBpbmtzY2FwZTpjeT0iNy43MjUxOTg5IgogICAgIGlua3NjYXBlOmRvY3VtZW50LXVuaXRzPSJtbSIKICAgICBpbmtzY2FwZTpjdXJyZW50LWxheWVyPSJsYXllcjEiCiAgICAgc2hvd2dyaWQ9ImZhbHNlIgogICAgIGZpdC1tYXJnaW4tdG9wPSIwIgogICAgIGZpdC1tYXJnaW4tbGVmdD0iMCIKICAgICBmaXQtbWFyZ2luLXJpZ2h0PSIwIgogICAgIGZpdC1tYXJnaW4tYm90dG9tPSIwIgogICAgIGlua3NjYXBlOndpbmRvdy13aWR0aD0iMTg2NiIKICAgICBpbmtzY2FwZTp3aW5kb3ctaGVpZ2h0PSIxMDE2IgogICAgIGlua3NjYXBlOndpbmRvdy14PSIxNDIwIgogICAgIGlua3NjYXBlOndpbmRvdy15PSIyNyIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIiAvPgogIDxtZXRhZGF0YQogICAgIGlkPSJtZXRhZGF0YTg5MjY2Ij4KICAgIDxyZGY6UkRGPgogICAgICA8Y2M6V29yawogICAgICAgICByZGY6YWJvdXQ9IiI+CiAgICAgICAgPGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+CiAgICAgICAgPGRjOnR5cGUKICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIiAvPgogICAgICAgIDxkYzp0aXRsZT48L2RjOnRpdGxlPgogICAgICA8L2NjOldvcms+CiAgICA8L3JkZjpSREY+CiAgPC9tZXRhZGF0YT4KICA8ZwogICAgIGlua3NjYXBlOmxhYmVsPSJMYXllciAxIgogICAgIGlua3NjYXBlOmdyb3VwbW9kZT0ibGF5ZXIiCiAgICAgaWQ9ImxheWVyMSIKICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTM5LjExNzEsLTEyOS45OTgzMSkiPgogICAgPGcKICAgICAgIGlkPSJ1c2U4ODc0MCIKICAgICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjIiCiAgICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjI2NDU4MzMzLDAsMCwwLjI2NDU4MzMzLDEzNy40MDE5OSwxMjcuOTMzMTgpIj4KICAgICAgPHRpdGxlCiAgICAgICAgIGlkPSJ0aXRsZTkwMDQ4Ij5OYW5kIEdhdGU8L3RpdGxlPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDkwMDUwIgogICAgICAgICBkPSJNIDYuNjE0NTgzMywxOC41MjA4MzMgViAxNS44NzUgMTMuMjI5MTY3IDEwLjU4MzMzMyA3LjkzNzUgaCA3LjkzNzQ5OTcgYyAyLjkyMjUwNywwIDUuMjkxNjY3LDIuMzY5MTYgNS4yOTE2NjcsNS4yOTE2NjcgMCwyLjkyMjUwNiAtMi4zNjkxNiw1LjI5MTY2NiAtNS4yOTE2NjcsNS4yOTE2NjYgeiIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIKICAgICAgICAgc3R5bGU9InN0cm9rZS13aWR0aDowLjI2NDU4MzMyIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDkwMDUyIgogICAgICAgICBkPSJtIDIxLjE2NjY2NywxMy4yMjkxNjcgYyAwLDAuMzY1MzEzIC0wLjI5NjE0NSwwLjY2MTQ1OCAtMC42NjE0NTksMC42NjE0NTggLTAuMzY1MzEzLDAgLTAuNjYxNDU4LC0wLjI5NjE0NSAtMC42NjE0NTgsLTAuNjYxNDU4IDAsLTAuMzY1MzE0IDAuMjk2MTQ1LC0wLjY2MTQ1OSAwLjY2MTQ1OCwtMC42NjE0NTkgMC4zNjUzMTQsMCAwLjY2MTQ1OSwwLjI5NjE0NSAwLjY2MTQ1OSwwLjY2MTQ1OSB6IgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICAgICAgICBzdHlsZT0ic3Ryb2tlLXdpZHRoOjAuMjY0NTgzMzIiIC8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K" alt="nandgate" width="150"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+</tbody>
+</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">NOR</dt>
+<dd>
+<p>possui duas entradas <code>A</code> e <code>B</code> e produz uma saída <code>C</code> conforme a
+seguinte tabela</p>
+</dd>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Símbolo</th>
+<th class="tableblock halign-left valign-top">A</th>
+<th class="tableblock halign-left valign-top">B</th>
+<th class="tableblock halign-left valign-top">C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle" rowspan="4"><p class="tableblock"><span class="image"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgIHhtbG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiCiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB3aWR0aD0iMy45Njk5ODk4bW0iCiAgIGhlaWdodD0iMi44NzAxNzc3bW0iCiAgIHZpZXdCb3g9IjAgMCAzLjk2OTk4OTYgMi44NzAxNzc4IgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmc4OTI2OSIKICAgaW5rc2NhcGU6dmVyc2lvbj0iMC45Mi40ICg1ZGE2ODljMzEzLCAyMDE5LTAxLTE0KSIKICAgc29kaXBvZGk6ZG9jbmFtZT0ibm9yZ2F0ZS5zdmciPgogIDxkZWZzCiAgICAgaWQ9ImRlZnM4OTI2MyIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9ImJhc2UiCiAgICAgcGFnZWNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcmNvbG9yPSIjNjY2NjY2IgogICAgIGJvcmRlcm9wYWNpdHk9IjEuMCIKICAgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMC4wIgogICAgIGlua3NjYXBlOnBhZ2VzaGFkb3c9IjIiCiAgICAgaW5rc2NhcGU6em9vbT0iMTEuMiIKICAgICBpbmtzY2FwZTpjeD0iLTIuNTE2ODA5NyIKICAgICBpbmtzY2FwZTpjeT0iMC45NjE5NjgyNyIKICAgICBpbmtzY2FwZTpkb2N1bWVudC11bml0cz0ibW0iCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ibGF5ZXIxIgogICAgIHNob3dncmlkPSJmYWxzZSIKICAgICBmaXQtbWFyZ2luLXRvcD0iMCIKICAgICBmaXQtbWFyZ2luLWxlZnQ9IjAiCiAgICAgZml0LW1hcmdpbi1yaWdodD0iMCIKICAgICBmaXQtbWFyZ2luLWJvdHRvbT0iMCIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE4NjYiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iMTAxNiIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iMTQyMCIKICAgICBpbmtzY2FwZTp3aW5kb3cteT0iMjciCiAgICAgaW5rc2NhcGU6d2luZG93LW1heGltaXplZD0iMSIgLz4KICA8bWV0YWRhdGEKICAgICBpZD0ibWV0YWRhdGE4OTI2NiI+CiAgICA8cmRmOlJERj4KICAgICAgPGNjOldvcmsKICAgICAgICAgcmRmOmFib3V0PSIiPgogICAgICAgIDxkYzpmb3JtYXQ+aW1hZ2Uvc3ZnK3htbDwvZGM6Zm9ybWF0PgogICAgICAgIDxkYzp0eXBlCiAgICAgICAgICAgcmRmOnJlc291cmNlPSJodHRwOi8vcHVybC5vcmcvZGMvZGNtaXR5cGUvU3RpbGxJbWFnZSIgLz4KICAgICAgICA8ZGM6dGl0bGU+PC9kYzp0aXRsZT4KICAgICAgPC9jYzpXb3JrPgogICAgPC9yZGY6UkRGPgogIDwvbWV0YWRhdGE+CiAgPGcKICAgICBpbmtzY2FwZTpsYWJlbD0iTGF5ZXIgMSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlkPSJsYXllcjEiCiAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEzOC4zMzY4OSwtMTI4LjIwODg3KSI+CiAgICA8ZwogICAgICAgaWQ9InVzZTg4NzY4IgogICAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MiIKICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMjY0NTgzMzMsMCwwLDAuMjY0NTgzMzMsMTM2LjY3MTUzLDEyNi4xNDM3NCkiPgogICAgICA8dGl0bGUKICAgICAgICAgaWQ9InRpdGxlOTAwMDIiPk5vciBHYXRlPC90aXRsZT4KICAgICAgPHBhdGgKICAgICAgICAgaWQ9InBhdGg5MDAwNCIKICAgICAgICAgZD0iTSA2LjUyMzYzMjgsMTguNTIwODMzIEggMTEuOTA2MjUgYyA1LjI5MTY2NywwIDcuOTM3NSwtNS4yOTE2NjYgNy45Mzc1LC01LjI5MTY2NiAwLDAgLTEuMzIyOTE3LC01LjI5MTY2NyAtNy45Mzc1LC01LjI5MTY2NyBIIDYuNTIzNjMyOCBjIDAuNDczNTg0NiwwLjgxODY3MDYgMC44MzM3OTg0LDEuNzA3NDgwOSAxLjA3NDg2OTgsMi42NDU4MzMgMC4yMTczMjA4LDAuODQ1OTA1IDAuMzM4OTk3NCwxLjczMTkxNSAwLjMzODk5NzQsMi42NDU4MzQgMCwwLjkxMzkxOCAtMC4xMjE2NzY2LDEuNzk5OTI4IC0wLjMzODk5NzQsMi42NDU4MzMgLTAuMjQxMDcxNCwwLjkzODM1MiAtMC42MDEyODUyLDEuODI3MTYzIC0xLjA3NDg2OTgsMi42NDU4MzMgeiIKICAgICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIKICAgICAgICAgc3R5bGU9InN0cm9rZS13aWR0aDowLjI2NDU4MzMyIiAvPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDkwMDA2IgogICAgICAgICBkPSJtIDIxLjE2NjY2NywxMy4yMjkxNjcgYyAwLDAuMzY1MzEzIC0wLjI5NjE0NSwwLjY2MTQ1OCAtMC42NjE0NTksMC42NjE0NTggLTAuMzY1MzEzLDAgLTAuNjYxNDU4LC0wLjI5NjE0NSAtMC42NjE0NTgsLTAuNjYxNDU4IDAsLTAuMzY1MzE0IDAuMjk2MTQ1LC0wLjY2MTQ1OSAwLjY2MTQ1OCwtMC42NjE0NTkgMC4zNjUzMTQsMCAwLjY2MTQ1OSwwLjI5NjE0NSAwLjY2MTQ1OSwwLjY2MTQ1OSB6IgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICAgICAgICBzdHlsZT0ic3Ryb2tlLXdpZHRoOjAuMjY0NTgzMzIiIC8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K" alt="norgate" width="150"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+</tbody>
+</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">XOR</dt>
+<dd>
+<p>possui duas entradas <code>A</code> e <code>B</code> e produz uma saída <code>C</code> conforme a
+seguinte tabela</p>
+</dd>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Símbolo</th>
+<th class="tableblock halign-left valign-top">A</th>
+<th class="tableblock halign-left valign-top">B</th>
+<th class="tableblock halign-left valign-top">C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle" rowspan="4"><p class="tableblock"><span class="image"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgIHhtbG5zOmNjPSJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMiCiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB3aWR0aD0iNC4wMTAwODE4bW0iCiAgIGhlaWdodD0iMi44NzAxNzc3bW0iCiAgIHZpZXdCb3g9IjAgMCA0LjAxMDA4MTcgMi44NzAxNzc4IgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmc4OTI2OSIKICAgaW5rc2NhcGU6dmVyc2lvbj0iMC45Mi40ICg1ZGE2ODljMzEzLCAyMDE5LTAxLTE0KSIKICAgc29kaXBvZGk6ZG9jbmFtZT0ieG9yZ2F0ZS5zdmciPgogIDxkZWZzCiAgICAgaWQ9ImRlZnM4OTI2MyIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9ImJhc2UiCiAgICAgcGFnZWNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcmNvbG9yPSIjNjY2NjY2IgogICAgIGJvcmRlcm9wYWNpdHk9IjEuMCIKICAgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMC4wIgogICAgIGlua3NjYXBlOnBhZ2VzaGFkb3c9IjIiCiAgICAgaW5rc2NhcGU6em9vbT0iMTEuMiIKICAgICBpbmtzY2FwZTpjeD0iLTE1LjQ4NTg2NiIKICAgICBpbmtzY2FwZTpjeT0iLTEwLjIyMDYwNiIKICAgICBpbmtzY2FwZTpkb2N1bWVudC11bml0cz0ibW0iCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ibGF5ZXIxIgogICAgIHNob3dncmlkPSJmYWxzZSIKICAgICBmaXQtbWFyZ2luLXRvcD0iMCIKICAgICBmaXQtbWFyZ2luLWxlZnQ9IjAiCiAgICAgZml0LW1hcmdpbi1yaWdodD0iMCIKICAgICBmaXQtbWFyZ2luLWJvdHRvbT0iMCIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE4NjYiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iMTAxNiIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iMTQyMCIKICAgICBpbmtzY2FwZTp3aW5kb3cteT0iMjciCiAgICAgaW5rc2NhcGU6d2luZG93LW1heGltaXplZD0iMSIgLz4KICA8bWV0YWRhdGEKICAgICBpZD0ibWV0YWRhdGE4OTI2NiI+CiAgICA8cmRmOlJERj4KICAgICAgPGNjOldvcmsKICAgICAgICAgcmRmOmFib3V0PSIiPgogICAgICAgIDxkYzpmb3JtYXQ+aW1hZ2Uvc3ZnK3htbDwvZGM6Zm9ybWF0PgogICAgICAgIDxkYzp0eXBlCiAgICAgICAgICAgcmRmOnJlc291cmNlPSJodHRwOi8vcHVybC5vcmcvZGMvZGNtaXR5cGUvU3RpbGxJbWFnZSIgLz4KICAgICAgICA8ZGM6dGl0bGU+PC9kYzp0aXRsZT4KICAgICAgPC9jYzpXb3JrPgogICAgPC9yZGY6UkRGPgogIDwvbWV0YWRhdGE+CiAgPGcKICAgICBpbmtzY2FwZTpsYWJlbD0iTGF5ZXIgMSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlkPSJsYXllcjEiCiAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE0MS41NTU2NywtMTI1LjAzNzUzKSI+CiAgICA8ZwogICAgICAgaWQ9InVzZTg4NzE2IgogICAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MiIKICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMjY0NTgzMzMsMCwwLDAuMjY0NTgzMzMsMTQwLjI3ODMzLDEyMi45NzI0KSI+CiAgICAgIDx0aXRsZQogICAgICAgICBpZD0idGl0bGU4OTg3MCI+WG9yIEdhdGU8L3RpdGxlPgogICAgICA8cGF0aAogICAgICAgICBpZD0icGF0aDg5ODcyIgogICAgICAgICBkPSJNIDYuNTIzNjMyOCwxOC41MjA4MzMgSCAxMS45MDYyNSBjIDUuMjkxNjY3LDAgNy45Mzc1LC01LjI5MTY2NiA3LjkzNzUsLTUuMjkxNjY2IDAsMCAtMS4zMjI5MTcsLTUuMjkxNjY3IC03LjkzNzUsLTUuMjkxNjY3IEggNi41MjM2MzI4IGMgMC40NzM1ODQ2LDAuODE4NjcwNiAwLjgzMzc5ODQsMS43MDc0ODA5IDEuMDc0ODY5OCwyLjY0NTgzMyAwLjIxNzMyMDgsMC44NDU5MDUgMC4zMzg5OTc0LDEuNzMxOTE1IDAuMzM4OTk3NCwyLjY0NTgzNCAwLDAuOTEzOTE4IC0wLjEyMTY3NjYsMS43OTk5MjggLTAuMzM4OTk3NCwyLjY0NTgzMyAtMC4yNDEwNzE0LDAuOTM4MzUyIC0wLjYwMTI4NTIsMS44MjcxNjMgLTEuMDc0ODY5OCwyLjY0NTgzMyB6IgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICAgICAgICBzdHlsZT0ic3Ryb2tlLXdpZHRoOjAuMjY0NTgzMzIiIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIGlkPSJwYXRoODk4NzQiCiAgICAgICAgIGQ9Im0gNC45MzYxMzI4LDE4LjUyMDgzMyBjIDEuMDUxMjY4NywtMS41MDIxOSAxLjY3ODQ1MDUsLTMuMzE5MDEyIDEuNjc4NDUwNSwtNS4yOTE2NjYgMCwtMS45NzI2NTUgLTAuNjI3MTgxOCwtMy43ODk0NzY5IC0xLjY3ODQ1MDUsLTUuMjkxNjY3IgogICAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICAgICAgICBzdHlsZT0ic3Ryb2tlLXdpZHRoOjAuMjY0NTgzMzIiIC8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K" alt="xorgate" width="150"></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_formato_do_arquivo_de_descrição_de_circuito">4. Formato do arquivo de descrição de circuito</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>O arquivo que conterá a representação do circuito é formado por várias
+linhas, cada uma contendo uma instrução sobre a existência de uma
+porta lógica, entrada ou saída que o circuito possui. As linhas
+começam com um identificador, seguido de informações referentes ao
+mesmo. Um arquivo de descrição de circuito pode conter as seguintes
+entradas:</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -545,13 +879,13 @@ apresentando os resultados da expressão lógica correspondente.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_exemplo_de_circuito">3. Exemplo de circuito</h2>
+<h2 id="_exemplo_de_circuito">5. Exemplo de circuito</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Considere o circuito lógico combinacional apresentado na Figura
-<a href="#fig-circuito">Exemplo de circuito lógico</a>. A descrição formal do circuito utilizando a
-especificação proposta pode ser descrita pelo conjunto de linhas
-mostrado na Listagem <a href="#exa-circuito">Arquivo com a especificação do circuito</a>.</p>
+<a href="#fig-circuito">Exemplo de circuito lógico</a>. A descrição do circuito utilizando a especificação
+proposta na última seção pode ser descrita pelo arquivo cujo conteúdo
+é mostrado na Listagem <a href="#exa-circuito">Arquivo com a especificação do circuito</a>.</p>
 </div>
 <div id="fig-circuito" class="imageblock">
 <div class="content">
@@ -576,7 +910,10 @@ OUTPUT 6 S</code></pre>
 </div>
 <div class="paragraph">
 <p>A tabela verdade correspondente a esse circuito é deverá ser
-apresentada conforme apresentado na Listagem <a href="#exa-tabelaverdade">Tabela-verdade produzida para o circuito do exemplo</a>.</p>
+apresentada conforme apresentado na Listagem
+<a href="#exa-tabelaverdade">Tabela-verdade produzida para o circuito do exemplo</a>. Perceba que cada linha contém uma sequência de
+combinações de entrada seguido da sequência de combinações das saídas
+especificadas.</p>
 </div>
 <div id="exa-tabelaverdade" class="listingblock">
 <div class="title">Listagem 2. Tabela-verdade produzida para o circuito do exemplo</div>
@@ -599,7 +936,7 @@ A <span class="tok-p">|</span> B <span class="tok-p">|</span> C <span class="tok
 </div>
 </div>
 <div class="sect1">
-<h2 id="_tarefas">4. Tarefas</h2>
+<h2 id="_tarefas">6. Tarefas</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>O projeto deverá contemplar as seguintes etapas:</p>
@@ -656,7 +993,7 @@ de modo que o usuário possa testar seu projeto.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2019-10-22 17:35:32 -0300
+Última atualização 2019-10-24 20:01:53 -0300
 </div>
 </div>
 <style>
