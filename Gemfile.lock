@@ -205,7 +205,7 @@ GEM
     kramdown (1.16.2)
     launchy (2.4.3)
       addressable (~> 2.3)
-    libv8 (3.16.14.19)
+    libv8 (3.16.14.19-x86_64-linux)
     liquid (4.0.0)
     listen (3.0.6)
       rb-fsevent (>= 0.9.3)
@@ -305,4 +305,4 @@ DEPENDENCIES
   travis
 
 BUNDLED WITH
-   2.0.2
+   2.0.1
