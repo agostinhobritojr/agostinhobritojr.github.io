@@ -1,0 +1,70 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{calc}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[normalem]{ulem}
+\usepackage[brazil]{babel}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{sudoku}
+
+\geometry{left=2.5cm, top=2.5cm, bottom=2.5cm, right=2cm}
+ 
+\renewcommand{\lstlistingname}{Listagem}
+\renewcommand{\labelenumii}{\alph{enumii})}
+\newcommand{\lacuna}{(\hspace*{5mm}) }
+
+\lstset{language=C, basicstyle=\ttfamily\small, showstringspaces=false, showspaces=false, keywordstyle=\color{black}\bfseries}
+
+\begin{document}
+\section*{DCA0201 - 1a. Lista de Exercícios}
+\begin{enumerate}
+  \item Crie uma regra para encontrar o último elemento de uma lista. Exemplo:
+\begin{verbatim}
+?- ultimo(X,[a,b,c,d]).
+X = d
+\end{verbatim}
+  \item Crie uma regra para encontrar o penúltimo elemento de uma lista.
+  \item Crie uma regra para encontrar o k-ésimo elemento de uma lista.
+  \item Crie uma regra para determinar se uma lista é um palíndromo. Palíndromos podem ser lidos para trás e para frente. Ex: $[s,o,p,a,p,o,s]$.
+  \item Resolva o seguinte criptograma, sabendo que as letras podem assumir um dos algarismos de 0 a 9, todos diferentes.
+    \begin{displaymath}
+      \begin{array}{ccccc}
+        & N & O & V & E \\
+        + & T & R & E & S\\ \hline
+        & D & O & Z & E\\
+      \end{array}
+    \end{displaymath}
+  \item Crie uma base de regras para representar relações familiares, incluindo as relações de cunhado(a), concunhado(a) e tio(a)\_torto(a) (casado com a(o) tia(o) legítimo)
+  \item Considere uma representação de conjuntos como listas e defina os seguintes predicados:
+    \begin{itemize}
+    \item membro(X,L), que indica se um elemento X pertence ao conjunto L.
+    \item subconjunto(L,K), que indica se o conjunto L é subconjunto de K.
+    \item disjunto(L,K), que indica se L and K não possuem elementos em comum.
+    \item uniao(L,K,M), que indica se is a união de L e K.
+    \item intersecao(L,K,M), que indica se M é a interseção de L e K.
+    \item differenca(L,K,M), que indica se M é a diferença de L e K.
+    \end{itemize}
+  \item Pesquise na Internet soluções em prolog para realizar colorização de maps geográficos. O objetivo da colorização é representar mapas cartográficos com regiões coloridas, de forma que duas regiões adjacentes não tenham a mesma cor. Use os resultados da sua pesquisa para propor uma colorização para o mapa do Brasil.
+  \item Defina os predicados and/2, or/2, nand/2 e xor/2 que irão funcionar ou falhar de acordo com os resultados das suas operações. Espressões lógicas poderão ser escritas da forma and(or(A,B),nand(A,B)).
+
+Escreva um predicado tabela/3 que mostra a tabela verdade para uma dada espressão lógica de duas variáveis. Exemplo:
+\begin{verbatim}
+?- tabela(A,B,and(A,or(A,B))).
+true true true
+true fail true
+fail true fail
+fail fail fail
+\end{verbatim}
+\item Defina um predicado ehprimo/1 para determinar se um número é primo. Exemplo:
+\begin{verbatim}
+?- ehprimo(7).
+true
+\end{verbatim}
+
+\end{enumerate}
+\end{document}
