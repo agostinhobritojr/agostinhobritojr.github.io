@@ -4,6 +4,6 @@
 GCC = g++
 
 .cpp:
-	$(GCC) -Wall -Wunused -std=c++11 -O2 $< -o $@ `pkg-config --libs opencv`
+	$(GCC) -Wall -Wunused -std=c++11 -O2 $< -o $@ `pkg-config --libs opencv4`
 
 
