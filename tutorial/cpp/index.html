@@ -1254,14 +1254,14 @@ bidimensionais é mostrada na Listagem <a href="#exe.classevetor">Classe Vetor2d
 <span class="tok-k">private</span><span class="tok-o">:</span>
   <span class="tok-kt">float</span> <span class="tok-n">x</span><span class="tok-p">,</span> <span class="tok-n">y</span><span class="tok-p">;</span>
 <span class="tok-k">public</span><span class="tok-o">:</span>
-  <span class="tok-kt">void</span> <span class="tok-n">setX</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-p">){</span>
-	<span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-n">_x</span><span class="tok-p">;</span>
+  <span class="tok-kt">void</span> <span class="tok-n">setX</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">x_</span><span class="tok-p">){</span>
+	<span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-n">x_</span><span class="tok-p">;</span>
   <span class="tok-p">}</span>
   <span class="tok-kt">float</span> <span class="tok-n">getX</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
 	<span class="tok-k">return</span> <span class="tok-n">x</span><span class="tok-p">;</span>
   <span class="tok-p">}</span>
-  <span class="tok-kt">void</span> <span class="tok-n">setY</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_y</span><span class="tok-p">){</span>
-	<span class="tok-n">y</span> <span class="tok-o">=</span> <span class="tok-n">_y</span><span class="tok-p">;</span>
+  <span class="tok-kt">void</span> <span class="tok-n">setY</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">y_</span><span class="tok-p">){</span>
+	<span class="tok-n">y</span> <span class="tok-o">=</span> <span class="tok-n">y_</span><span class="tok-p">;</span>
   <span class="tok-p">}</span>
   <span class="tok-kt">float</span> <span class="tok-n">getY</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
 	<span class="tok-k">return</span> <span class="tok-n">y</span><span class="tok-p">;</span>
@@ -1339,8 +1339,8 @@ funções públicas, declaradas na seção da classe.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="c++"><span></span><span class="tok-k">public</span><span class="tok-o">:</span>
-  <span class="tok-kt">void</span> <span class="tok-n">setX</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-p">){</span>
-    <span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-n">_x</span><span class="tok-p">;</span>
+  <span class="tok-kt">void</span> <span class="tok-n">setX</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">x_</span><span class="tok-p">){</span>
+    <span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-n">x_</span><span class="tok-p">;</span>
   <span class="tok-p">}</span>
   <span class="tok-kt">float</span> <span class="tok-n">getX</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
     <span class="tok-k">return</span> <span class="tok-n">x</span><span class="tok-p">;</span>
@@ -1491,9 +1491,9 @@ classe da sua implementação.</p>
 <span class="tok-k">private</span><span class="tok-o">:</span>
   <span class="tok-kt">float</span> <span class="tok-n">x</span><span class="tok-p">,</span> <span class="tok-n">y</span><span class="tok-p">;</span>
 <span class="tok-k">public</span><span class="tok-o">:</span>
-  <span class="tok-kt">void</span> <span class="tok-n">setX</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-p">);</span>
+  <span class="tok-kt">void</span> <span class="tok-n">setX</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">x_</span><span class="tok-p">);</span>
   <span class="tok-kt">float</span> <span class="tok-nf">getX</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">);</span>
-  <span class="tok-kt">void</span> <span class="tok-nf">setY</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_y</span><span class="tok-p">);</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">setY</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">y_</span><span class="tok-p">);</span>
   <span class="tok-kt">float</span> <span class="tok-nf">getY</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">);</span>
 <span class="tok-p">};</span>
 
@@ -1520,16 +1520,16 @@ classe da sua implementação.</p>
 
 <span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span>
 
-<span class="tok-kt">void</span> <span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">setX</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-p">){</span>
-	<span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-n">_x</span><span class="tok-p">;</span>
+<span class="tok-kt">void</span> <span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">setX</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">x_</span><span class="tok-p">){</span>
+	<span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-n">x_</span><span class="tok-p">;</span>
 <span class="tok-p">}</span>
 
 <span class="tok-kt">float</span> <span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">getX</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
   <span class="tok-k">return</span> <span class="tok-n">x</span><span class="tok-p">;</span>
 <span class="tok-p">}</span>
 
-<span class="tok-kt">void</span> <span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">setY</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_y</span><span class="tok-p">){</span>
-  <span class="tok-n">y</span> <span class="tok-o">=</span> <span class="tok-n">_y</span><span class="tok-p">;</span>
+<span class="tok-kt">void</span> <span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">setY</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">y_</span><span class="tok-p">){</span>
+  <span class="tok-n">y</span> <span class="tok-o">=</span> <span class="tok-n">y_</span><span class="tok-p">;</span>
 <span class="tok-p">}</span>
 
 <span class="tok-kt">float</span> <span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">getY</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
@@ -1676,9 +1676,9 @@ seguinte:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c++"><span></span><span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">_y</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">){</span>
-  <span class="tok-n">x</span><span class="tok-o">=</span><span class="tok-n">_x</span><span class="tok-p">;</span>
-  <span class="tok-n">y</span><span class="tok-o">=</span><span class="tok-n">_y</span><span class="tok-p">;</span>
+<pre class="pygments highlight"><code data-lang="c++"><span></span><span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">x_</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">y_</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">){</span>
+  <span class="tok-n">x</span><span class="tok-o">=</span><span class="tok-n">x_</span><span class="tok-p">;</span>
+  <span class="tok-n">y</span><span class="tok-o">=</span><span class="tok-n">y_</span><span class="tok-p">;</span>
 <span class="tok-p">}</span></code></pre>
 </div>
 </div>
@@ -1702,9 +1702,9 @@ valores <em>default</em> também atribuídos.  Exemplo:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="c++"><span></span><span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">_y</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">);</span> <span class="tok-c1">// VÁLIDO</span>
-<span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">_y</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">);</span> <span class="tok-c1">// VÁLIDO</span>
-<span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">_y</span><span class="tok-p">);</span>   <span class="tok-c1">// INVÁLIDO</span></code></pre>
+<pre class="pygments highlight"><code data-lang="c++"><span></span><span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">x_</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">y_</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">);</span> <span class="tok-c1">// VÁLIDO</span>
+<span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">x_</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">y_</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">);</span> <span class="tok-c1">// VÁLIDO</span>
+<span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">x_</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">y_</span><span class="tok-p">);</span>   <span class="tok-c1">// INVÁLIDO</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1722,12 +1722,12 @@ construtor e verifique os efeitos produzidos.</p>
 <span class="tok-k">private</span><span class="tok-o">:</span>
   <span class="tok-kt">float</span> <span class="tok-n">x</span><span class="tok-p">,</span> <span class="tok-n">y</span><span class="tok-p">;</span>
 <span class="tok-k">public</span><span class="tok-o">:</span>
-  <span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">_y</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">){</span>
-    <span class="tok-n">x</span><span class="tok-o">=</span><span class="tok-n">_x</span><span class="tok-p">;</span> <span class="tok-n">y</span><span class="tok-o">=</span><span class="tok-n">_y</span><span class="tok-p">;</span>
+  <span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">x_</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">y_</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">){</span>
+    <span class="tok-n">x</span><span class="tok-o">=</span><span class="tok-n">x_</span><span class="tok-p">;</span> <span class="tok-n">y</span><span class="tok-o">=</span><span class="tok-n">y_</span><span class="tok-p">;</span>
   <span class="tok-p">}</span>
-  <span class="tok-kt">void</span> <span class="tok-n">setX</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-p">);</span>
+  <span class="tok-kt">void</span> <span class="tok-n">setX</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">x_</span><span class="tok-p">);</span>
   <span class="tok-kt">float</span> <span class="tok-nf">getX</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">);</span>
-  <span class="tok-kt">void</span> <span class="tok-nf">setY</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_y</span><span class="tok-p">);</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">setY</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">y_</span><span class="tok-p">);</span>
   <span class="tok-kt">float</span> <span class="tok-nf">getY</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">);</span>
 <span class="tok-p">};</span>
 
@@ -1775,7 +1775,7 @@ são mostrados no <a href="#exe.construtor.default">Exemplos de construtores <em
 <span class="tok-k">class</span> <span class="tok-nc">Alo</span><span class="tok-p">{</span>
   <span class="tok-kt">int</span> <span class="tok-n">x</span><span class="tok-p">;</span>
   <span class="tok-k">public</span><span class="tok-o">:</span>
-  <span class="tok-n">Alo</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">_x</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">){</span> <span class="tok-n">x</span><span class="tok-o">=</span><span class="tok-n">_x</span><span class="tok-p">;}</span>
+  <span class="tok-n">Alo</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">x_</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">){</span> <span class="tok-n">x</span><span class="tok-o">=</span><span class="tok-n">x_</span><span class="tok-p">;}</span>
 <span class="tok-p">};</span>
 
 <span class="tok-kt">int</span> <span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
@@ -1801,9 +1801,9 @@ Considere o exemplo a seguir.</p>
 <span class="tok-k">class</span> <span class="tok-nc">Alo</span><span class="tok-p">{</span>
   <span class="tok-kt">int</span> <span class="tok-n">x</span><span class="tok-p">;</span>
 <span class="tok-k">public</span><span class="tok-o">:</span>
-  <span class="tok-n">Alo</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">_x</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">){</span>
+  <span class="tok-n">Alo</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">x_</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">){</span>
     <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;construtor default</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">;</span>
-    <span class="tok-n">x</span><span class="tok-o">=</span> <span class="tok-n">_x</span><span class="tok-p">;</span>
+    <span class="tok-n">x</span><span class="tok-o">=</span> <span class="tok-n">x_</span><span class="tok-p">;</span>
     <span class="tok-n">print</span><span class="tok-p">();</span>
   <span class="tok-p">}</span>
   <span class="tok-n">Alo</span><span class="tok-p">(</span><span class="tok-k">const</span> <span class="tok-n">Alo</span> <span class="tok-o">&amp;</span><span class="tok-n">a</span><span class="tok-p">){</span>
@@ -1933,7 +1933,7 @@ que causem confusão para o compilador, como mostra o exemplo seguinte:</p>
 <pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-k">class</span> <span class="tok-nc">Alo</span><span class="tok-p">{</span>
   <span class="tok-kt">int</span> <span class="tok-n">x</span><span class="tok-p">;</span>
 <span class="tok-k">public</span><span class="tok-o">:</span>
-  <span class="tok-n">Alo</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">_x</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">){</span> <span class="tok-n">x</span><span class="tok-o">=</span><span class="tok-n">_x</span><span class="tok-p">;</span> <span class="tok-p">}</span> <span class="tok-c1">// Problema:</span>
+  <span class="tok-n">Alo</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">x_</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">){</span> <span class="tok-n">x</span><span class="tok-o">=</span><span class="tok-n">x_</span><span class="tok-p">;</span> <span class="tok-p">}</span> <span class="tok-c1">// Problema:</span>
   <span class="tok-n">Alo</span><span class="tok-p">(){</span> <span class="tok-n">x</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span> <span class="tok-p">}</span>          <span class="tok-c1">// qual dos dois deverá ser chamado?!</span>
 <span class="tok-p">};</span>
 
@@ -2019,8 +2019,8 @@ tarefa, inserindo uma função vazia.</p>
 <span class="tok-k">class</span> <span class="tok-nc">Alo</span><span class="tok-p">{</span>
   <span class="tok-kt">int</span> <span class="tok-n">id</span><span class="tok-p">;</span>
 <span class="tok-k">public</span><span class="tok-o">:</span>
-  <span class="tok-n">Alo</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">_id</span><span class="tok-p">){</span>
-    <span class="tok-n">id</span> <span class="tok-o">=</span> <span class="tok-n">_id</span><span class="tok-p">;</span>
+  <span class="tok-n">Alo</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">id_</span><span class="tok-p">){</span>
+    <span class="tok-n">id</span> <span class="tok-o">=</span> <span class="tok-n">id_</span><span class="tok-p">;</span>
     <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;Construtor de Alo: elemento &quot;</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-n">id</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">;</span>
   <span class="tok-p">}</span>
   <span class="tok-o">~</span><span class="tok-n">Alo</span><span class="tok-p">(){</span>
@@ -2229,9 +2229,9 @@ poderá verificar que o programa produz os mesmos resultados.</p>
   <span class="tok-kt">char</span> <span class="tok-n">fabricante</span><span class="tok-p">[</span><span class="tok-mi">100</span><span class="tok-p">];</span>
   <span class="tok-kt">float</span> <span class="tok-n">preco</span><span class="tok-p">;</span>
 <span class="tok-k">public</span><span class="tok-o">:</span>
-  <span class="tok-kt">void</span> <span class="tok-n">setNome</span><span class="tok-p">(</span><span class="tok-k">const</span> <span class="tok-kt">char</span> <span class="tok-o">*</span><span class="tok-n">_nome</span><span class="tok-p">);</span>
-  <span class="tok-kt">void</span> <span class="tok-nf">setFabricante</span><span class="tok-p">(</span><span class="tok-k">const</span> <span class="tok-kt">char</span> <span class="tok-o">*</span><span class="tok-n">_fabricante</span><span class="tok-p">);</span>
-  <span class="tok-kt">void</span> <span class="tok-nf">setPreco</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_preco</span><span class="tok-p">);</span>
+  <span class="tok-kt">void</span> <span class="tok-n">setNome</span><span class="tok-p">(</span><span class="tok-k">const</span> <span class="tok-kt">char</span> <span class="tok-o">*</span><span class="tok-n">nome_</span><span class="tok-p">);</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">setFabricante</span><span class="tok-p">(</span><span class="tok-k">const</span> <span class="tok-kt">char</span> <span class="tok-o">*</span><span class="tok-n">fabricante_</span><span class="tok-p">);</span>
+  <span class="tok-kt">void</span> <span class="tok-nf">setPreco</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">preco_</span><span class="tok-p">);</span>
   <span class="tok-kt">char</span><span class="tok-o">*</span> <span class="tok-nf">getNome</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">);</span>
   <span class="tok-kt">char</span><span class="tok-o">*</span> <span class="tok-nf">getFabricante</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">);</span>
   <span class="tok-kt">float</span> <span class="tok-nf">getPreco</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">);</span>
@@ -2247,16 +2247,16 @@ poderá verificar que o programa produz os mesmos resultados.</p>
   <span class="tok-kt">float</span> <span class="tok-nf">getVelocidade</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">);</span>
 <span class="tok-p">};</span>
 
-<span class="tok-kt">void</span> <span class="tok-n">Equipamento</span><span class="tok-o">::</span><span class="tok-n">setNome</span><span class="tok-p">(</span><span class="tok-k">const</span> <span class="tok-kt">char</span> <span class="tok-o">*</span><span class="tok-n">_nome</span><span class="tok-p">){</span>
-  <span class="tok-n">strcpy</span><span class="tok-p">(</span><span class="tok-n">nome</span><span class="tok-p">,</span><span class="tok-n">_nome</span><span class="tok-p">);</span>
+<span class="tok-kt">void</span> <span class="tok-n">Equipamento</span><span class="tok-o">::</span><span class="tok-n">setNome</span><span class="tok-p">(</span><span class="tok-k">const</span> <span class="tok-kt">char</span> <span class="tok-o">*</span><span class="tok-n">nome_</span><span class="tok-p">){</span>
+  <span class="tok-n">strcpy</span><span class="tok-p">(</span><span class="tok-n">nome</span><span class="tok-p">,</span><span class="tok-n">nome_</span><span class="tok-p">);</span>
 <span class="tok-p">}</span>
 
-<span class="tok-kt">void</span> <span class="tok-n">Equipamento</span><span class="tok-o">::</span><span class="tok-n">setFabricante</span><span class="tok-p">(</span><span class="tok-k">const</span> <span class="tok-kt">char</span> <span class="tok-o">*</span><span class="tok-n">_fabricante</span><span class="tok-p">){</span>
-  <span class="tok-n">strcpy</span><span class="tok-p">(</span><span class="tok-n">fabricante</span><span class="tok-p">,</span><span class="tok-n">_fabricante</span><span class="tok-p">);</span>
+<span class="tok-kt">void</span> <span class="tok-n">Equipamento</span><span class="tok-o">::</span><span class="tok-n">setFabricante</span><span class="tok-p">(</span><span class="tok-k">const</span> <span class="tok-kt">char</span> <span class="tok-o">*</span><span class="tok-n">fabricante_</span><span class="tok-p">){</span>
+  <span class="tok-n">strcpy</span><span class="tok-p">(</span><span class="tok-n">fabricante</span><span class="tok-p">,</span><span class="tok-n">fabricante_</span><span class="tok-p">);</span>
 <span class="tok-p">}</span>
 
-<span class="tok-kt">void</span> <span class="tok-n">Equipamento</span><span class="tok-o">::</span><span class="tok-n">setPreco</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_preco</span><span class="tok-p">){</span>
-  <span class="tok-n">preco</span><span class="tok-o">=</span><span class="tok-n">_preco</span><span class="tok-p">;</span>
+<span class="tok-kt">void</span> <span class="tok-n">Equipamento</span><span class="tok-o">::</span><span class="tok-n">setPreco</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">preco_</span><span class="tok-p">){</span>
+  <span class="tok-n">preco</span><span class="tok-o">=</span><span class="tok-n">preco_</span><span class="tok-p">;</span>
 <span class="tok-p">}</span>
 
 <span class="tok-kt">char</span><span class="tok-o">*</span> <span class="tok-n">Equipamento</span><span class="tok-o">::</span><span class="tok-n">getNome</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
@@ -2783,9 +2783,9 @@ deseja sobrecarregar, como mostra a Listagem
   <span class="tok-kt">float</span> <span class="tok-n">x</span><span class="tok-p">;</span>
   <span class="tok-n">string</span> <span class="tok-n">nome</span><span class="tok-p">;</span>
 <span class="tok-k">public</span><span class="tok-o">:</span>
-  <span class="tok-n">Foo</span><span class="tok-p">(</span><span class="tok-n">string</span> <span class="tok-n">_nome</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-p">){</span>
+  <span class="tok-n">Foo</span><span class="tok-p">(</span><span class="tok-n">string</span> <span class="tok-n">_nome</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">x_</span><span class="tok-p">){</span>
 	<span class="tok-n">nome</span> <span class="tok-o">=</span> <span class="tok-n">_nome</span><span class="tok-p">;</span>
-	<span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-n">_x</span><span class="tok-p">;</span>
+	<span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-n">x_</span><span class="tok-p">;</span>
   <span class="tok-p">}</span>
   <span class="tok-n">Foo</span><span class="tok-p">(){}</span>
   <span class="tok-n">Foo</span> <span class="tok-k">operator</span><span class="tok-o">+</span><span class="tok-p">(</span><span class="tok-n">Foo</span> <span class="tok-n">b</span><span class="tok-p">){</span>
@@ -3081,14 +3081,14 @@ reapresentada na Listagem <a href="#exe.gabaritos.classevetor">Classe Vetor2d</a
 <span class="tok-k">private</span><span class="tok-o">:</span>
   <span class="tok-kt">float</span> <span class="tok-n">x</span><span class="tok-p">,</span> <span class="tok-n">y</span><span class="tok-p">;</span>
 <span class="tok-k">public</span><span class="tok-o">:</span>
-  <span class="tok-kt">void</span> <span class="tok-n">setX</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-p">){</span>
-	<span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-n">_x</span><span class="tok-p">;</span>
+  <span class="tok-kt">void</span> <span class="tok-n">setX</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">x_</span><span class="tok-p">){</span>
+	<span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-n">x_</span><span class="tok-p">;</span>
   <span class="tok-p">}</span>
   <span class="tok-kt">float</span> <span class="tok-n">getX</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
 	<span class="tok-k">return</span> <span class="tok-n">x</span><span class="tok-p">;</span>
   <span class="tok-p">}</span>
-  <span class="tok-kt">void</span> <span class="tok-n">setY</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_y</span><span class="tok-p">){</span>
-	<span class="tok-n">y</span> <span class="tok-o">=</span> <span class="tok-n">_y</span><span class="tok-p">;</span>
+  <span class="tok-kt">void</span> <span class="tok-n">setY</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">y_</span><span class="tok-p">){</span>
+	<span class="tok-n">y</span> <span class="tok-o">=</span> <span class="tok-n">y_</span><span class="tok-p">;</span>
   <span class="tok-p">}</span>
   <span class="tok-kt">float</span> <span class="tok-n">getY</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
 	<span class="tok-k">return</span> <span class="tok-n">y</span><span class="tok-p">;</span>
@@ -3302,19 +3302,19 @@ gabaritos de função.  O exemplo da Listagem
 <span class="tok-k">private</span><span class="tok-o">:</span>
   <span class="tok-n">T</span> <span class="tok-n">x</span><span class="tok-p">,</span> <span class="tok-n">y</span><span class="tok-p">;</span>
 <span class="tok-k">public</span><span class="tok-o">:</span>
-  <span class="tok-kt">void</span> <span class="tok-n">setX</span><span class="tok-p">(</span><span class="tok-n">T</span> <span class="tok-n">_x</span><span class="tok-p">){</span>
-	<span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-n">_x</span><span class="tok-p">;</span>
+  <span class="tok-kt">void</span> <span class="tok-n">setX</span><span class="tok-p">(</span><span class="tok-n">T</span> <span class="tok-n">x_</span><span class="tok-p">){</span>
+	<span class="tok-n">x</span> <span class="tok-o">=</span> <span class="tok-n">x_</span><span class="tok-p">;</span>
   <span class="tok-p">}</span>
   <span class="tok-n">T</span> <span class="tok-n">getX</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
 	<span class="tok-k">return</span> <span class="tok-n">x</span><span class="tok-p">;</span>
   <span class="tok-p">}</span>
-  <span class="tok-kt">void</span> <span class="tok-n">setY</span><span class="tok-p">(</span><span class="tok-n">T</span> <span class="tok-n">_y</span><span class="tok-p">);</span>
+  <span class="tok-kt">void</span> <span class="tok-n">setY</span><span class="tok-p">(</span><span class="tok-n">T</span> <span class="tok-n">y_</span><span class="tok-p">);</span>
   <span class="tok-n">T</span> <span class="tok-nf">getY</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">);</span>
 <span class="tok-p">};</span>
 
 <span class="tok-k">template</span> <span class="tok-o">&lt;</span><span class="tok-k">class</span> <span class="tok-nc">T</span><span class="tok-o">&gt;</span>
-<span class="tok-kt">void</span> <span class="tok-n">Vetor2d</span><span class="tok-o">&lt;</span><span class="tok-n">T</span><span class="tok-o">&gt;::</span><span class="tok-n">setY</span><span class="tok-p">(</span><span class="tok-n">T</span> <span class="tok-n">_y</span><span class="tok-p">){</span>
-  <span class="tok-n">y</span> <span class="tok-o">=</span> <span class="tok-n">_y</span><span class="tok-p">;</span>
+<span class="tok-kt">void</span> <span class="tok-n">Vetor2d</span><span class="tok-o">&lt;</span><span class="tok-n">T</span><span class="tok-o">&gt;::</span><span class="tok-n">setY</span><span class="tok-p">(</span><span class="tok-n">T</span> <span class="tok-n">y_</span><span class="tok-p">){</span>
+  <span class="tok-n">y</span> <span class="tok-o">=</span> <span class="tok-n">y_</span><span class="tok-p">;</span>
 <span class="tok-p">}</span>
 
 <span class="tok-k">template</span> <span class="tok-o">&lt;</span><span class="tok-k">class</span> <span class="tok-nc">T</span><span class="tok-o">&gt;</span>
@@ -3474,12 +3474,12 @@ como mostra o <a href="#exe.streams.vetor2dprint">Implementação do método <co
 <span class="tok-k">class</span> <span class="tok-nc">Vetor2d</span><span class="tok-p">{</span>
   <span class="tok-kt">float</span> <span class="tok-n">x</span><span class="tok-p">,</span> <span class="tok-n">y</span><span class="tok-p">;</span>
 <span class="tok-k">public</span><span class="tok-o">:</span>
-  <span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">_y</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">);</span>
+  <span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">x_</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">y_</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">);</span>
   <span class="tok-kt">void</span> <span class="tok-nf">print</span><span class="tok-p">();</span>
 <span class="tok-p">};</span>
 
-<span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">_y</span><span class="tok-p">){</span>
-    <span class="tok-n">x</span><span class="tok-o">=</span><span class="tok-n">_x</span><span class="tok-p">;</span> <span class="tok-n">y</span><span class="tok-o">=</span><span class="tok-n">_y</span><span class="tok-p">;</span>
+<span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">x_</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">y_</span><span class="tok-p">){</span>
+    <span class="tok-n">x</span><span class="tok-o">=</span><span class="tok-n">x_</span><span class="tok-p">;</span> <span class="tok-n">y</span><span class="tok-o">=</span><span class="tok-n">y_</span><span class="tok-p">;</span>
 <span class="tok-p">}</span>
 
 <span class="tok-kt">void</span> <span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">print</span><span class="tok-p">(){</span>
@@ -3520,13 +3520,13 @@ exemplo da Listagem <a href="#exe.streams.vetor2dstreams">Uso de sobrecarga de o
 <span class="tok-k">class</span> <span class="tok-nc">Vetor2d</span><span class="tok-p">{</span>
   <span class="tok-kt">float</span> <span class="tok-n">x</span><span class="tok-p">,</span> <span class="tok-n">y</span><span class="tok-p">;</span>
 <span class="tok-k">public</span><span class="tok-o">:</span>
-  <span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">_y</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">);</span>
+  <span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">x_</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">y_</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">);</span>
   <span class="tok-k">friend</span> <span class="tok-n">ostream</span><span class="tok-o">&amp;</span> <span class="tok-k">operator</span><span class="tok-o">&lt;&lt;</span><span class="tok-p">(</span><span class="tok-n">ostream</span><span class="tok-o">&amp;</span> <span class="tok-n">os</span><span class="tok-p">,</span> <span class="tok-n">Vetor2d</span> <span class="tok-o">&amp;</span><span class="tok-n">v</span><span class="tok-p">);</span>
   <span class="tok-k">friend</span> <span class="tok-n">istream</span><span class="tok-o">&amp;</span> <span class="tok-k">operator</span><span class="tok-o">&gt;&gt;</span><span class="tok-p">(</span><span class="tok-n">istream</span><span class="tok-o">&amp;</span> <span class="tok-n">is</span><span class="tok-p">,</span> <span class="tok-n">Vetor2d</span> <span class="tok-o">&amp;</span><span class="tok-n">v</span><span class="tok-p">);</span>
 <span class="tok-p">};</span>
 
-<span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">_x</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">_y</span><span class="tok-p">){</span>
-    <span class="tok-n">x</span><span class="tok-o">=</span><span class="tok-n">_x</span><span class="tok-p">;</span> <span class="tok-n">y</span><span class="tok-o">=</span><span class="tok-n">_y</span><span class="tok-p">;</span>
+<span class="tok-n">Vetor2d</span><span class="tok-o">::</span><span class="tok-n">Vetor2d</span><span class="tok-p">(</span><span class="tok-kt">float</span> <span class="tok-n">x_</span><span class="tok-p">,</span> <span class="tok-kt">float</span> <span class="tok-n">y_</span><span class="tok-p">){</span>
+    <span class="tok-n">x</span><span class="tok-o">=</span><span class="tok-n">x_</span><span class="tok-p">;</span> <span class="tok-n">y</span><span class="tok-o">=</span><span class="tok-n">y_</span><span class="tok-p">;</span>
 <span class="tok-p">}</span>
 
 <span class="tok-n">ostream</span><span class="tok-o">&amp;</span> <span class="tok-k">operator</span><span class="tok-o">&lt;&lt;</span><span class="tok-p">(</span><span class="tok-n">ostream</span><span class="tok-o">&amp;</span> <span class="tok-n">os</span><span class="tok-p">,</span> <span class="tok-n">Vetor2d</span> <span class="tok-o">&amp;</span><span class="tok-n">v</span><span class="tok-p">){</span>
@@ -3590,7 +3590,7 @@ em desenvolvimento&#8230;&#8203;
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-08-09 12:13:29 -0300
+Última atualização 2020-08-09 15:00:37 -0300
 </div>
 </div>
 <style>

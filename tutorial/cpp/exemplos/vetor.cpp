@@ -6,14 +6,14 @@ class Vetor2d{
 private:
   float x, y;
 public:
-  void setX(float _x){
-	x = _x;
+  void setX(float x_){
+	x = x_;
   }
   float getX(void){
 	return x;
   }
-  void setY(float _y){
-	y = _y;
+  void setY(float y_){
+	y = y_;
   }
   float getY(void){
 	return y;

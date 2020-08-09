@@ -3,16 +3,16 @@
 
 using namespace std;
 
-void Vetor2d::setX(float _x){
-	x = _x;
+void Vetor2d::setX(float x_){
+	x = x_;
 }
 
 float Vetor2d::getX(void){
   return x;
 }
 
-void Vetor2d::setY(float _y){
-  y = _y;
+void Vetor2d::setY(float y_){
+  y = y_;
 }
 
 float Vetor2d::getY(void){

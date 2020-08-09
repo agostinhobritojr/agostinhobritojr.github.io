@@ -7,19 +7,19 @@ class Vetor2d{
 private:
   T x, y;
 public:
-  void setX(T _x){
-	x = _x;
+  void setX(T x_){
+	x = x_;
   }
   T getX(void){
 	return x;
   }
-  void setY(T _y);
+  void setY(T y_);
   T getY(void);
 };
 
 template <class T>
-void Vetor2d<T>::setY(T _y){
-  y = _y;
+void Vetor2d<T>::setY(T y_){
+  y = y_;
 }
 
 template <class T>

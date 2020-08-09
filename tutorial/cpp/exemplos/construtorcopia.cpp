@@ -5,12 +5,12 @@ using namespace std;
 class Alo{
   int x;
 public:
-  Alo(int _x=0){ 
+  Alo(int x_=0){ 
     cout << "construtor default\n";
-    x= _x;
+    x= x_;
     print();
   }
-  Alo(Alo &a){
+  Alo(const Alo &a){
     cout << "construtor copia\n";
     x = a.x;
     print();
