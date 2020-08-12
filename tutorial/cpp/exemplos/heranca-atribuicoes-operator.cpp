@@ -23,5 +23,5 @@ int main(void){
   Base b;
   Derivada d;
   b = d;
-  d = b; //OK! Parte indefinida de "d" agora é tratada
+  d = b; //OK! Parte indefinida de "d" agora eh tratada
 }

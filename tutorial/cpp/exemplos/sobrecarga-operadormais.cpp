@@ -6,9 +6,9 @@ class Foo{
   float x;
   string nome;
 public:
-  Foo(string _nome, float _x){
+  Foo(string _nome, float x_){
 	nome = _nome;
-	x = _x;
+	x = x_;
   }
   Foo(){}
   Foo operator+(Foo b){

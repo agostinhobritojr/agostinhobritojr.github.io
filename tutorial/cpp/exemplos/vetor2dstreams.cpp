@@ -5,13 +5,13 @@ using namespace std;
 class Vetor2d{
   float x, y;
 public:
-  Vetor2d(float _x=0, float _y=0);
+  Vetor2d(float x_=0, float y_=0);
   friend ostream& operator<<(ostream& os, Vetor2d &v);
   friend istream& operator>>(istream& is, Vetor2d &v);
 };
 
-Vetor2d::Vetor2d(float _x, float _y){
-    x=_x; y=_y;
+Vetor2d::Vetor2d(float x_, float y_){
+    x=x_; y=y_;
 }
 
 ostream& operator<<(ostream& os, Vetor2d &v){

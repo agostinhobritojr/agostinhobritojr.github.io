@@ -5,12 +5,12 @@ class Vetor2d{
 private:
   float x, y;
 public:
-  Vetor2d(float _x=0, float _y=0){
-    x=_x; y=_y;
+  Vetor2d(float x_=0, float y_=0){
+    x=x_; y=y_;
   }
-  void setX(float _x);
+  void setX(float x_);
   float getX(void);
-  void setY(float _y);
+  void setY(float y_);
   float getY(void);
 };
 

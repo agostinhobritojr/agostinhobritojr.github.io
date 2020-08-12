@@ -6,14 +6,14 @@ class Vetor2dDouble{
 private:
   double x, y;
 public:
-  void setX(double _x){
-	x = _x;
+  void setX(double x_){
+	x = x_;
   }
   double getX(void){
 	return x;
   }
-  void setY(double _y){
-	y = _y;
+  void setY(double y_){
+	y = y_;
   }
   double getY(void){
 	return y;

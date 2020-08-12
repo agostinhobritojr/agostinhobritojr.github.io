@@ -5,9 +5,9 @@ class Vetor2d{
 private:
   float x, y;
 public:
-  void setX(float _x);
+  void setX(float x_);
   float getX(void);
-  void setY(float _y);
+  void setY(float y_);
   float getY(void);
 };
 
