@@ -1187,11 +1187,11 @@ $ ./labeling bolhas.png</code></pre>
 <h3 id="_descrição_do_programa_labeling_cpp">3.1. Descrição do programa <code>labeling.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">CvPoint</span> <span class="tok-n">p</span><span class="tok-p">;</span></code></pre>
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">Point</span> <span class="tok-n">p</span><span class="tok-p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A estrutura <code>CvPoint</code> define um ponto na segunda dimensão que permite
+<p>A estrutura <code>Point</code> define um ponto na segunda dimensão que permite
 acesso às suas coordenadas x e y. Ele será usado no exemplo para
 indicar a semente de preenchimento que é usada pelo algoritmo <em>floodfill</em>.</p>
 </div>
@@ -1278,7 +1278,10 @@ atual.</p>
 </div>
 <div class="paragraph">
 <p>Finalmente, a imagem <code>image</code> é mostrada (já completamente rotulada) e
-então gravada no arquivo <code>labeling.png</code>.</p>
+então gravada no arquivo <code>labeling.png</code>. Uma das linhas com o comando
+<code>imshow</code> é usada apenas para mostrar a imagem com um pouco de realce
+(para fins de melhor visualização). Como esse efeito funciona será
+discutido mais adiante.</p>
 </div>
 </div>
 <div class="sect2">
@@ -3648,7 +3651,7 @@ os centros obtidos na execução do k-means.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-08-12 08:27:26 -0300
+Última atualização 2020-08-12 08:37:15 -0300
 </div>
 </div>
 <style>
