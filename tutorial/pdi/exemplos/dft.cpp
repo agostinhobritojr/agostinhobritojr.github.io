@@ -1,6 +1,5 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
 
 #define RADIUS 20
 
@@ -170,7 +169,7 @@ int main(int , char**){
     // troca novamente os quadrantes
     deslocaDFT(complexImage);
 
-	cout << complexImage.size().height << endl;
+	//cout << complexImage.size().height << endl;
     // calcula a DFT inversa
     idft(complexImage, complexImage);
 

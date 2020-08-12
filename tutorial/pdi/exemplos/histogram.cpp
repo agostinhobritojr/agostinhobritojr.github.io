@@ -15,7 +15,8 @@ int main(int argc, char** argv){
   const float *histrange = { range };
   bool uniform = true;
   bool acummulate = false;
-
+  int key;
+  
   cap.open(0);
   
   if(!cap.isOpened()){
@@ -73,7 +74,8 @@ int main(int argc, char** argv){
     histImgG.copyTo(image(Rect(0, histh   ,nbins, histh)));
     histImgB.copyTo(image(Rect(0, 2*histh ,nbins, histh)));
     imshow("image", image);
-    if(waitKey(30) >= 0) break;
+	key = waitKey(30);
+	// if(waitKey(30) >= 0) break;
   }
   return 0;
 }
