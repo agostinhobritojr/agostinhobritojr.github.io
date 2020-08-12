@@ -1192,7 +1192,7 @@ indicar a semente de preenchimento que é usada pelo algoritmo <em>floodfill</em
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">image</span> <span class="tok-o">=</span> <span class="tok-n">imread</span><span class="tok-p">(</span><span class="tok-n">argv</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">],</span><span class="tok-n">CV_LOAD_IMAGE_GRAYSCALE</span><span class="tok-p">);</span></code></pre>
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">image</span> <span class="tok-o">=</span> <span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">imread</span><span class="tok-p">(</span><span class="tok-n">argv</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">],</span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">IMREAD_GRAYSCALE</span><span class="tok-p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1246,7 +1246,7 @@ presentes)</p>
       <span class="tok-n">nobjects</span><span class="tok-o">++</span><span class="tok-p">;</span>
       <span class="tok-n">p</span><span class="tok-p">.</span><span class="tok-n">x</span><span class="tok-o">=</span><span class="tok-n">j</span><span class="tok-p">;</span>
       <span class="tok-n">p</span><span class="tok-p">.</span><span class="tok-n">y</span><span class="tok-o">=</span><span class="tok-n">i</span><span class="tok-p">;</span>
-      <span class="tok-n">floodFill</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-n">p</span><span class="tok-p">,</span><span class="tok-n">nobjects</span><span class="tok-p">);</span>
+      <span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">floodFill</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-n">p</span><span class="tok-p">,</span><span class="tok-n">nobjects</span><span class="tok-p">);</span>
     <span class="tok-p">}</span>
   <span class="tok-p">}</span>
 <span class="tok-p">}</span></code></pre>
@@ -1266,9 +1266,9 @@ atual.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;image&quot;</span><span class="tok-p">,</span> <span class="tok-n">image</span><span class="tok-p">);</span>
-<span class="tok-n">imwrite</span><span class="tok-p">(</span><span class="tok-s">&quot;labeling.png&quot;</span><span class="tok-p">,</span> <span class="tok-n">image</span><span class="tok-p">);</span>
-<span class="tok-n">waitKey</span><span class="tok-p">();</span></code></pre>
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;image&quot;</span><span class="tok-p">,</span> <span class="tok-n">image</span><span class="tok-p">);</span>
+<span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">imwrite</span><span class="tok-p">(</span><span class="tok-s">&quot;labeling.png&quot;</span><span class="tok-p">,</span> <span class="tok-n">image</span><span class="tok-p">);</span>
+<span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">waitKey</span><span class="tok-p">();</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3643,7 +3643,7 @@ os centros obtidos na execução do k-means.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-08-12 08:22:09 -0300
+Última atualização 2020-08-12 08:27:26 -0300
 </div>
 </div>
 <style>
