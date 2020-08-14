@@ -4,7 +4,7 @@
 using namespace cv;
 
 int main( int argc, char** argv ){
-  int nClusters = 6;
+  int nClusters = 8;
   Mat rotulos;
   int nRodadas = 5;
   Mat centros;

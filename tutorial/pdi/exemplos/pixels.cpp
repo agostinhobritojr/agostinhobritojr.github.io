@@ -5,14 +5,14 @@ using namespace cv;
 using namespace std;
 
 int main(int, char**){
-  Mat image;
-  Vec3b val;
+  cv::Mat image;
+  cv::Vec3b val;
 
-  image= imread("bolhas.png",CV_LOAD_IMAGE_GRAYSCALE);
+  image= cv::imread("bolhas.png",cv::IMREAD_GRAYSCALE);
   if(!image.data)
-    cout << "nao abriu bolhas.png" << endl;
+    std::cout << "nao abriu bolhas.png" << std::endl;
 
-  namedWindow("janela",WINDOW_AUTOSIZE);
+  cv::namedWindow("janela", cv::WINDOW_AUTOSIZE);
 
   for(int i=200;i<210;i++){
     for(int j=10;j<200;j++){
@@ -20,10 +20,10 @@ int main(int, char**){
     }
   }
   
-  imshow("janela", image);  
-  waitKey();
+  cv::imshow("janela", image);  
+  cv::waitKey();
 
-  image= imread("bolhas.png",CV_LOAD_IMAGE_COLOR);
+  image= cv::imread("bolhas.png",cv::IMREAD_COLOR);
 
   val[0] = 0;   //B
   val[1] = 0;   //G
@@ -35,7 +35,7 @@ int main(int, char**){
     }
   }
 
-  imshow("janela", image);  
-  waitKey();
+  cv::imshow("janela", image);  
+  cv::waitKey();
   return 0;
 }
