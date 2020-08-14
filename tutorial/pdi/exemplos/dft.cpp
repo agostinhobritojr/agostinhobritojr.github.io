@@ -1,6 +1,5 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
 
 #define RADIUS 20
 
@@ -83,7 +82,7 @@ int main(int , char**){
   // prepara a matriz complexa para ser preenchida
   complexImage = Mat(padded.size(), CV_32FC2, Scalar(0));
 
-  // a função de transferência (filtro frequencial) deve ter o
+  // a função de transferencia (filtro de frequencia) deve ter o
   // mesmo tamanho e tipo da matriz complexa
   filter = complexImage.clone();
 
@@ -135,7 +134,7 @@ int main(int , char**){
     // realiza a troca de quadrantes
     deslocaDFT(complexImage);
 
-    // aplica o filtro frequencial
+    // aplica o filtro de frequencia
     mulSpectrums(complexImage,filter,complexImage,0);
 
     // limpa o array de planos
@@ -170,7 +169,7 @@ int main(int , char**){
     // troca novamente os quadrantes
     deslocaDFT(complexImage);
 
-	cout << complexImage.size().height << endl;
+	//cout << complexImage.size().height << endl;
     // calcula a DFT inversa
     idft(complexImage, complexImage);
 
