@@ -2130,10 +2130,8 @@ Listagem <a href="#exa_addweighted">Addweighted</a>.</p>
 <div class="title">Listagem 7. addweighted.cpp</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
+<span class="tok-cp">#include</span> <span class="tok-cpf">&lt;cstdio&gt;</span><span class="tok-cp"></span>
 <span class="tok-cp">#include</span> <span class="tok-cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="tok-cp"></span>
-
-<span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">cv</span><span class="tok-p">;</span>
-<span class="tok-k">using</span> <span class="tok-k">namespace</span> <span class="tok-n">std</span><span class="tok-p">;</span>
 
 <span class="tok-kt">double</span> <span class="tok-n">alfa</span><span class="tok-p">;</span>
 <span class="tok-kt">int</span> <span class="tok-n">alfa_slider</span> <span class="tok-o">=</span> <span class="tok-mi">0</span><span class="tok-p">;</span>
@@ -2142,48 +2140,48 @@ Listagem <a href="#exa_addweighted">Addweighted</a>.</p>
 <span class="tok-kt">int</span> <span class="tok-n">top_slider</span> <span class="tok-o">=</span> <span class="tok-mi">0</span><span class="tok-p">;</span>
 <span class="tok-kt">int</span> <span class="tok-n">top_slider_max</span> <span class="tok-o">=</span> <span class="tok-mi">100</span><span class="tok-p">;</span>
 
-<span class="tok-n">Mat</span> <span class="tok-n">image1</span><span class="tok-p">,</span> <span class="tok-n">image2</span><span class="tok-p">,</span> <span class="tok-n">blended</span><span class="tok-p">;</span>
-<span class="tok-n">Mat</span> <span class="tok-n">imageTop</span><span class="tok-p">;</span>
+<span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">Mat</span> <span class="tok-n">image1</span><span class="tok-p">,</span> <span class="tok-n">image2</span><span class="tok-p">,</span> <span class="tok-n">blended</span><span class="tok-p">;</span>
+<span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">Mat</span> <span class="tok-n">imageTop</span><span class="tok-p">;</span>
 
 <span class="tok-kt">char</span> <span class="tok-n">TrackbarName</span><span class="tok-p">[</span><span class="tok-mi">50</span><span class="tok-p">];</span>
 
 <span class="tok-kt">void</span> <span class="tok-nf">on_trackbar_blend</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-p">,</span> <span class="tok-kt">void</span><span class="tok-o">*</span><span class="tok-p">){</span>
  <span class="tok-n">alfa</span> <span class="tok-o">=</span> <span class="tok-p">(</span><span class="tok-kt">double</span><span class="tok-p">)</span> <span class="tok-n">alfa_slider</span><span class="tok-o">/</span><span class="tok-n">alfa_slider_max</span> <span class="tok-p">;</span>
- <span class="tok-n">addWeighted</span><span class="tok-p">(</span> <span class="tok-n">image1</span><span class="tok-p">,</span> <span class="tok-n">alfa</span><span class="tok-p">,</span> <span class="tok-n">imageTop</span><span class="tok-p">,</span> <span class="tok-mi">1</span><span class="tok-o">-</span><span class="tok-n">alfa</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-n">blended</span><span class="tok-p">);</span>
- <span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;addweighted&quot;</span><span class="tok-p">,</span> <span class="tok-n">blended</span><span class="tok-p">);</span>
+ <span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">addWeighted</span><span class="tok-p">(</span><span class="tok-n">image1</span><span class="tok-p">,</span> <span class="tok-mi">1</span><span class="tok-o">-</span><span class="tok-n">alfa</span><span class="tok-p">,</span> <span class="tok-n">imageTop</span><span class="tok-p">,</span> <span class="tok-n">alfa</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-n">blended</span><span class="tok-p">);</span>
+ <span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;addweighted&quot;</span><span class="tok-p">,</span> <span class="tok-n">blended</span><span class="tok-p">);</span>
 <span class="tok-p">}</span>
 
 <span class="tok-kt">void</span> <span class="tok-nf">on_trackbar_line</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-p">,</span> <span class="tok-kt">void</span><span class="tok-o">*</span><span class="tok-p">){</span>
   <span class="tok-n">image1</span><span class="tok-p">.</span><span class="tok-n">copyTo</span><span class="tok-p">(</span><span class="tok-n">imageTop</span><span class="tok-p">);</span>
   <span class="tok-kt">int</span> <span class="tok-n">limit</span> <span class="tok-o">=</span> <span class="tok-n">top_slider</span><span class="tok-o">*</span><span class="tok-mi">255</span><span class="tok-o">/</span><span class="tok-mi">100</span><span class="tok-p">;</span>
   <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">limit</span> <span class="tok-o">&gt;</span> <span class="tok-mi">0</span><span class="tok-p">){</span>
-	<span class="tok-n">Mat</span> <span class="tok-n">tmp</span> <span class="tok-o">=</span> <span class="tok-n">image2</span><span class="tok-p">(</span><span class="tok-n">Rect</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">256</span><span class="tok-p">,</span> <span class="tok-n">limit</span><span class="tok-p">));</span>
-	<span class="tok-n">tmp</span><span class="tok-p">.</span><span class="tok-n">copyTo</span><span class="tok-p">(</span><span class="tok-n">imageTop</span><span class="tok-p">(</span><span class="tok-n">Rect</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">256</span><span class="tok-p">,</span> <span class="tok-n">limit</span><span class="tok-p">)));</span>
+    <span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">Mat</span> <span class="tok-n">tmp</span> <span class="tok-o">=</span> <span class="tok-n">image2</span><span class="tok-p">(</span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">Rect</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">256</span><span class="tok-p">,</span> <span class="tok-n">limit</span><span class="tok-p">));</span>
+    <span class="tok-n">tmp</span><span class="tok-p">.</span><span class="tok-n">copyTo</span><span class="tok-p">(</span><span class="tok-n">imageTop</span><span class="tok-p">(</span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">Rect</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">256</span><span class="tok-p">,</span> <span class="tok-n">limit</span><span class="tok-p">)));</span>
   <span class="tok-p">}</span>
   <span class="tok-n">on_trackbar_blend</span><span class="tok-p">(</span><span class="tok-n">alfa_slider</span><span class="tok-p">,</span><span class="tok-mi">0</span><span class="tok-p">);</span>
 <span class="tok-p">}</span>
 
 <span class="tok-kt">int</span> <span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">argvc</span><span class="tok-p">,</span> <span class="tok-kt">char</span><span class="tok-o">**</span> <span class="tok-n">argv</span><span class="tok-p">){</span>
-  <span class="tok-n">image1</span> <span class="tok-o">=</span> <span class="tok-n">imread</span><span class="tok-p">(</span><span class="tok-s">&quot;blend1.jpg&quot;</span><span class="tok-p">);</span>
-  <span class="tok-n">image2</span> <span class="tok-o">=</span> <span class="tok-n">imread</span><span class="tok-p">(</span><span class="tok-s">&quot;blend2.jpg&quot;</span><span class="tok-p">);</span>
+  <span class="tok-n">image1</span> <span class="tok-o">=</span> <span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">imread</span><span class="tok-p">(</span><span class="tok-s">&quot;blend1.jpg&quot;</span><span class="tok-p">);</span>
+  <span class="tok-n">image2</span> <span class="tok-o">=</span> <span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">imread</span><span class="tok-p">(</span><span class="tok-s">&quot;blend2.jpg&quot;</span><span class="tok-p">);</span>
   <span class="tok-n">image2</span><span class="tok-p">.</span><span class="tok-n">copyTo</span><span class="tok-p">(</span><span class="tok-n">imageTop</span><span class="tok-p">);</span>
-  <span class="tok-n">namedWindow</span><span class="tok-p">(</span><span class="tok-s">&quot;addweighted&quot;</span><span class="tok-p">,</span> <span class="tok-mi">1</span><span class="tok-p">);</span>
+  <span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">namedWindow</span><span class="tok-p">(</span><span class="tok-s">&quot;addweighted&quot;</span><span class="tok-p">,</span> <span class="tok-mi">1</span><span class="tok-p">);</span>
 
-  <span class="tok-n">sprintf</span><span class="tok-p">(</span> <span class="tok-n">TrackbarName</span><span class="tok-p">,</span> <span class="tok-s">&quot;Alpha x %d&quot;</span><span class="tok-p">,</span> <span class="tok-n">alfa_slider_max</span> <span class="tok-p">);</span>
-  <span class="tok-n">createTrackbar</span><span class="tok-p">(</span> <span class="tok-n">TrackbarName</span><span class="tok-p">,</span> <span class="tok-s">&quot;addweighted&quot;</span><span class="tok-p">,</span>
-				  <span class="tok-o">&amp;</span><span class="tok-n">alfa_slider</span><span class="tok-p">,</span>
-				  <span class="tok-n">alfa_slider_max</span><span class="tok-p">,</span>
-				  <span class="tok-n">on_trackbar_blend</span> <span class="tok-p">);</span>
+  <span class="tok-n">std</span><span class="tok-o">::</span><span class="tok-n">sprintf</span><span class="tok-p">(</span> <span class="tok-n">TrackbarName</span><span class="tok-p">,</span> <span class="tok-s">&quot;Alpha x %d&quot;</span><span class="tok-p">,</span> <span class="tok-n">alfa_slider_max</span> <span class="tok-p">);</span>
+  <span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">createTrackbar</span><span class="tok-p">(</span> <span class="tok-n">TrackbarName</span><span class="tok-p">,</span> <span class="tok-s">&quot;addweighted&quot;</span><span class="tok-p">,</span>
+                      <span class="tok-o">&amp;</span><span class="tok-n">alfa_slider</span><span class="tok-p">,</span>
+                      <span class="tok-n">alfa_slider_max</span><span class="tok-p">,</span>
+                      <span class="tok-n">on_trackbar_blend</span> <span class="tok-p">);</span>
   <span class="tok-n">on_trackbar_blend</span><span class="tok-p">(</span><span class="tok-n">alfa_slider</span><span class="tok-p">,</span> <span class="tok-mi">0</span> <span class="tok-p">);</span>
 
-  <span class="tok-n">sprintf</span><span class="tok-p">(</span> <span class="tok-n">TrackbarName</span><span class="tok-p">,</span> <span class="tok-s">&quot;Scanline x %d&quot;</span><span class="tok-p">,</span> <span class="tok-n">top_slider_max</span> <span class="tok-p">);</span>
-  <span class="tok-n">createTrackbar</span><span class="tok-p">(</span> <span class="tok-n">TrackbarName</span><span class="tok-p">,</span> <span class="tok-s">&quot;addweighted&quot;</span><span class="tok-p">,</span>
-				  <span class="tok-o">&amp;</span><span class="tok-n">top_slider</span><span class="tok-p">,</span>
-				  <span class="tok-n">top_slider_max</span><span class="tok-p">,</span>
-				  <span class="tok-n">on_trackbar_line</span> <span class="tok-p">);</span>
+  <span class="tok-n">std</span><span class="tok-o">::</span><span class="tok-n">sprintf</span><span class="tok-p">(</span> <span class="tok-n">TrackbarName</span><span class="tok-p">,</span> <span class="tok-s">&quot;Scanline x %d&quot;</span><span class="tok-p">,</span> <span class="tok-n">top_slider_max</span> <span class="tok-p">);</span>
+  <span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">createTrackbar</span><span class="tok-p">(</span> <span class="tok-n">TrackbarName</span><span class="tok-p">,</span> <span class="tok-s">&quot;addweighted&quot;</span><span class="tok-p">,</span>
+                      <span class="tok-o">&amp;</span><span class="tok-n">top_slider</span><span class="tok-p">,</span>
+                      <span class="tok-n">top_slider_max</span><span class="tok-p">,</span>
+                      <span class="tok-n">on_trackbar_line</span> <span class="tok-p">);</span>
   <span class="tok-n">on_trackbar_line</span><span class="tok-p">(</span><span class="tok-n">top_slider</span><span class="tok-p">,</span> <span class="tok-mi">0</span> <span class="tok-p">);</span>
 
-  <span class="tok-n">waitKey</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">);</span>
+  <span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">waitKey</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">);</span>
   <span class="tok-k">return</span> <span class="tok-mi">0</span><span class="tok-p">;</span>
 <span class="tok-p">}</span></code></pre>
 </div>
