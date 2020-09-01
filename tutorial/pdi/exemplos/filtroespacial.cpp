@@ -11,7 +11,7 @@ void printmask(cv::Mat &m){
 }
 
 int main(int, char**){
-  cv::VideoCapture video; // open the default camera
+  cv::VideoCapture cap; // open the default camera
   float media[] = {0.1111,0.1111,0.1111,
                    0.1111,0.1111,0.1111,
                    0.1111,0.1111,0.1111};
@@ -31,23 +31,26 @@ int main(int, char**){
                  -1,5.2,-1,
                  0,-1,0};
   
-  cv::Mat cap, frame, frame32f, frameFiltered;
+  cv::Mat frame, framegray, frame32f, frameFiltered;
   cv::Mat mask(3,3,CV_32F);
   cv::Mat result;
   double width, height;
   int absolut;
   char key;
 
-  video.open(2);
+  cap.open(0);
 
-  if(!video.isOpened())  // check if we succeeded
+  if(!cap.isOpened())  // check if we succeeded
     return -1;
-  width=video.get(cv::CAP_PROP_FRAME_WIDTH);
-  height=video.get(cv::CAP_PROP_FRAME_HEIGHT);
+
+  cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
+  cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);  
+  width=cap.get(cv::CAP_PROP_FRAME_WIDTH);
+  height=cap.get(cv::CAP_PROP_FRAME_HEIGHT);
   std::cout << "largura=" << width << "\n";;
   std::cout << "altura =" << height<< "\n";;
-  std::cout << "fps    =" << video.get(cv::CAP_PROP_FPS) << "\n";
-  std::cout << "format =" << video.get(cv::CAP_PROP_FORMAT) << "\n";
+  std::cout << "fps    =" << cap.get(cv::CAP_PROP_FPS) << "\n";
+  std::cout << "format =" << cap.get(cv::CAP_PROP_FORMAT) << "\n";
 
   cv::namedWindow("filtroespacial", cv::WINDOW_NORMAL);
   cv::namedWindow("original", cv::WINDOW_NORMAL);
@@ -57,11 +60,11 @@ int main(int, char**){
   absolut=1; // calcs abs of the image
 
   for(;;){
-    video >> cap; // get a new frame from camera
-    cv::cvtColor(cap, frame, cv::COLOR_BGR2GRAY);
-    cv::flip(frame,frame,1);
-    cv::imshow("original",frame);
-    frame.convertTo(frame32f, CV_32F);
+    cap >> frame; // get a new frame from camera
+    cv::cvtColor(frame, framegray, cv::COLOR_BGR2GRAY);
+    cv::flip(framegray,framegray,1);
+    cv::imshow("original",framegray);
+    framegray.convertTo(frame32f, CV_32F);
     cv::filter2D(frame32f,
                  frameFiltered,
                  frame32f.depth(),
