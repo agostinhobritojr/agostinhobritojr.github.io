@@ -1,28 +1,26 @@
 #include <iostream>
+#include <vector>
 #include <opencv2/opencv.hpp>
 
 #define RADIUS 20
 
-using namespace cv;
-using namespace std;
-
 // troca os quadrantes da imagem da DFT
-void deslocaDFT(Mat& image ){
-  Mat tmp, A, B, C, D;
+void deslocaDFT(cv::Mat& image ){
+  cv::Mat tmp, A, B, C, D;
 
   // se a imagem tiver tamanho impar, recorta a regiao para
   // evitar cópias de tamanho desigual
-  image = image(Rect(0, 0, image.cols & -2, image.rows & -2));
+  image = image(cv::Rect(0, 0, image.cols & -2, image.rows & -2));
   int cx = image.cols/2;
   int cy = image.rows/2;
   
   // reorganiza os quadrantes da transformada
   // A B   ->  D C
   // C D       B A
-  A = image(Rect(0, 0, cx, cy));
-  B = image(Rect(cx, 0, cx, cy));
-  C = image(Rect(0, cy, cx, cy));
-  D = image(Rect(cx, cy, cx, cy));
+  A = image(cv::Rect(0, 0, cx, cy));
+  B = image(cv::Rect(cx, 0, cx, cy));
+  C = image(cv::Rect(0, cy, cx, cy));
+  D = image(cv::Rect(cx, cy, cx, cy));
 
   // A <-> D
   A.copyTo(tmp);  D.copyTo(A);  tmp.copyTo(D);
@@ -32,12 +30,12 @@ void deslocaDFT(Mat& image ){
 }
 
 int main(int , char**){
-  VideoCapture cap;   
-  Mat imaginaryInput, complexImage, multsp;
-  Mat padded, filter, mag;
-  Mat image, imagegray, tmp; 
-  Mat_<float> realInput, zeros;
-  vector<Mat> planos;
+  cv::VideoCapture cap;   
+  cv::Mat imaginaryInput, complexImage, multsp;
+  cv::Mat padded, filter, mag;
+  cv::Mat image, imagegray, tmp; 
+  cv::Mat_<float> realInput, zeros;
+  std::vector<cv::Mat> planos;
 
   // habilita/desabilita ruido
   int noise=0;
@@ -58,6 +56,10 @@ int main(int , char**){
 
   // abre a câmera default
   cap.open(0);
+
+  cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
+  cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);  
+  
   if(!cap.isOpened())
     return -1;
 
@@ -67,20 +69,20 @@ int main(int , char**){
 
   // identifica os tamanhos otimos para
   // calculo do FFT
-  dft_M = getOptimalDFTSize(image.rows);
-  dft_N = getOptimalDFTSize(image.cols);
+  dft_M = cv::getOptimalDFTSize(image.rows);
+  dft_N = cv::getOptimalDFTSize(image.cols);
 
   // realiza o padding da imagem
-  copyMakeBorder(image, padded, 0,
-                 dft_M - image.rows, 0,
-                 dft_N - image.cols,
-                 BORDER_CONSTANT, Scalar::all(0));
+  cv::copyMakeBorder(image, padded, 0,
+                     dft_M - image.rows, 0,
+                     dft_N - image.cols,
+                     cv::BORDER_CONSTANT, cv::Scalar::all(0));
 
   // parte imaginaria da matriz complexa (preenchida com zeros)
-  zeros = Mat_<float>::zeros(padded.size());
+  zeros = cv::Mat_<float>::zeros(padded.size());
 
   // prepara a matriz complexa para ser preenchida
-  complexImage = Mat(padded.size(), CV_32FC2, Scalar(0));
+  complexImage = cv::Mat(padded.size(), CV_32FC2, cv::Scalar(0));
 
   // a função de transferencia (filtro de frequencia) deve ter o
   // mesmo tamanho e tipo da matriz complexa
@@ -88,7 +90,7 @@ int main(int , char**){
 
   // cria uma matriz temporária para criar as componentes real
   // e imaginaria do filtro ideal
-  tmp = Mat(dft_M, dft_N, CV_32F);
+  tmp = cv::Mat(dft_M, dft_N, CV_32F);
 
   // prepara o filtro passa-baixas ideal
   for(int i=0; i<dft_M; i++){
@@ -101,49 +103,49 @@ int main(int , char**){
 
   // cria a matriz com as componentes do filtro e junta
   // ambas em uma matriz multicanal complexa
-  Mat comps[]= {tmp, tmp};
-  merge(comps, 2, filter);
+  cv::Mat comps[]= {tmp, tmp};
+  cv::merge(comps, 2, filter);
 
   for(;;){
     cap >> image;
-    cvtColor(image, imagegray, CV_BGR2GRAY);
-    imshow("original", imagegray);
+    cv::cvtColor(image, imagegray, cv::COLOR_BGR2GRAY);
+    cv::imshow("original", imagegray);
 
     // realiza o padding da imagem
-    copyMakeBorder(imagegray, padded, 0,
-                   dft_M - image.rows, 0,
-                   dft_N - image.cols,
-                   BORDER_CONSTANT, Scalar::all(0));
-
+    cv::copyMakeBorder(imagegray, padded, 0,
+                       dft_M - image.rows, 0,
+                       dft_N - image.cols,
+                       cv::BORDER_CONSTANT, cv::Scalar::all(0));
+    
     // limpa o array de matrizes que vao compor a
     // imagem complexa
     planos.clear();
     // cria a compoente real
-    realInput = Mat_<float>(padded);
+    realInput = cv::Mat_<float>(padded);
     // insere as duas componentes no array de matrizes
     planos.push_back(realInput);
     planos.push_back(zeros);
 
     // combina o array de matrizes em uma unica
     // componente complexa
-    merge(planos, complexImage);
+    cv::merge(planos, complexImage);
 
     // calcula o dft
-    dft(complexImage, complexImage);
+    cv::dft(complexImage, complexImage);
 
     // realiza a troca de quadrantes
     deslocaDFT(complexImage);
 
     // aplica o filtro de frequencia
-    mulSpectrums(complexImage,filter,complexImage,0);
+    cv::mulSpectrums(complexImage,filter,complexImage,0);
 
     // limpa o array de planos
     planos.clear();
     // separa as partes real e imaginaria para modifica-las
-    split(complexImage, planos);
+    cv::split(complexImage, planos);
  
     // usa o valor medio do espectro para dosar o ruido 
-    mean = abs(planos[0].at<float> (dft_M/2,dft_N/2));
+    mean = cv::abs(planos[0].at<float> (dft_M/2,dft_N/2));
 
     // insere ruido coerente, se habilitado
     if(noise){
@@ -164,27 +166,26 @@ int main(int , char**){
     }
 
     // recompoe os planos em uma unica matriz complexa
-    merge(planos, complexImage);
+    cv::merge(planos, complexImage);
 
     // troca novamente os quadrantes
     deslocaDFT(complexImage);
 
-	//cout << complexImage.size().height << endl;
     // calcula a DFT inversa
-    idft(complexImage, complexImage);
+    cv::idft(complexImage, complexImage);
 
     // limpa o array de planos
     planos.clear();
 
     // separa as partes real e imaginaria da
     // imagem filtrada
-    split(complexImage, planos);
+    cv::split(complexImage, planos);
 
     // normaliza a parte real para exibicao
-    normalize(planos[0], planos[0], 0, 1, CV_MINMAX);
-    imshow("filtrada", planos[0]);
+    cv::normalize(planos[0], planos[0], 0, 1, cv::NORM_MINMAX);
+    cv::imshow("filtrada", planos[0]);
  
-    key = (char) waitKey(10);
+    key = (char) cv::waitKey(10);
     if( key == 27 ) break; // esc pressed!
     switch(key){
       // aumenta a frequencia do ruido
@@ -207,7 +208,7 @@ int main(int , char**){
     case 'z':
       gain -= 0.1;
       if(gain < 0)
-        gain=0;
+        gain=0;zz
       break;
       // insere/remove ruido
     case 'e':
