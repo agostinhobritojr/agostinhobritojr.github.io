@@ -82,7 +82,7 @@ int main(int , char**){
   // prepara a matriz complexa para ser preenchida
   complexImage = Mat(padded.size(), CV_32FC2, Scalar(0));
 
-  // a função de transferência (filtro frequencial) deve ter o
+  // a função de transferencia (filtro de frequencia) deve ter o
   // mesmo tamanho e tipo da matriz complexa
   filter = complexImage.clone();
 
@@ -134,7 +134,7 @@ int main(int , char**){
     // realiza a troca de quadrantes
     deslocaDFT(complexImage);
 
-    // aplica o filtro frequencial
+    // aplica o filtro de frequencia
     mulSpectrums(complexImage,filter,complexImage,0);
 
     // limpa o array de planos
