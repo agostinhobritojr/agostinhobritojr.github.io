@@ -72,7 +72,6 @@ int main(int, char**){
       frameFiltered=cv::abs(frameFiltered);
     }
  
-    //std::cout << max << "\n";
     frameFiltered.convertTo(result,CV_8U);
  
     cv::imshow("filtroespacial", result);
