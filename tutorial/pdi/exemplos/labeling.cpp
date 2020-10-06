@@ -9,15 +9,15 @@ int main(int argc, char** argv){
   int nobjects;
   
   cv::Point p;
-  image = imread(argv[1], cv::IMREAD_GRAYSCALE  );
+  image = cv::imread(argv[1], cv::IMREAD_GRAYSCALE);
   
   if(!image.data){
     std::cout << "imagem nao carregou corretamente\n";
     return(-1);
   }
 
-  width=image.size().width;
-  height=image.size().height;
+  width=image.cols;
+  height=image.rows;
   std::cout << width << "x" << height << std::endl;
 
   p.x=0;
@@ -37,6 +37,7 @@ int main(int argc, char** argv){
       }
     }
   }
+  std::cout << "a figura tem " << nobjects << " bolhas\n";
   cv::equalizeHist(image, realce);
   cv::imshow("image", image);
   cv::imshow("realce", realce);

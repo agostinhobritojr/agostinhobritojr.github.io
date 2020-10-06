@@ -4,19 +4,21 @@
 using namespace cv;
 
 int main(int argc, char** argv){
-  Mat image, mask;
+  cv::Mat image, realce;
   int width, height;
   int nobjects;
   
-  CvPoint p;
-  image = imread(argv[1],CV_LOAD_IMAGE_GRAYSCALE);
+  cv::Point p;
+  image = imread(argv[1], cv::IMREAD_GRAYSCALE  );
   
   if(!image.data){
     std::cout << "imagem nao carregou corretamente\n";
     return(-1);
   }
+
   width=image.size().width;
   height=image.size().height;
+  std::cout << width << "x" << height << std::endl;
 
   p.x=0;
   p.y=0;
@@ -30,13 +32,15 @@ int main(int argc, char** argv){
         nobjects++;
         p.x=j;
         p.y=i;
-		// preenche o objeto com o contador
-        floodFill(image,p,nobjects);
+  		// preenche o objeto com o contador
+		  cv::floodFill(image,p,nobjects);
       }
     }
   }
-  imshow("image", image);
-  imwrite("labeling.png", image);
-  waitKey();
+  cv::equalizeHist(image, realce);
+  cv::imshow("image", image);
+  cv::imshow("realce", realce);
+  cv::imwrite("labeling.png", image);
+  cv::waitKey();
   return 0;
 }

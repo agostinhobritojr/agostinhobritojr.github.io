@@ -6,15 +6,15 @@ class Vetor2d{
 private:
   float x, y;
 public:
-  Vetor2d(float _x=0, float _y=0);
+  Vetor2d(float x_=0, float y_=0);
   Vetor2d operator+(Vetor2d v);
   Vetor2d operator-(Vetor2d v);
   Vetor2d operator*(float a);
   float   operator*(Vetor2d v);
 };
 
-Vetor2d::Vetor2d(float _x, float _y){
-  x=_x; y=_y;
+Vetor2d::Vetor2d(float x_, float y_){
+  x=x_; y=y_;
 }
 
 Vetor2d Vetor2d::operator+(Vetor2d v){

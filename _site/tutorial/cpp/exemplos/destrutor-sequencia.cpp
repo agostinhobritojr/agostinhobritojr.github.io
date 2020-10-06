@@ -5,8 +5,8 @@ using namespace std;
 class Alo{
   int id;
 public:
-  Alo(int _id){
-    id = _id;
+  Alo(int id_){
+    id = id_;
     cout << "Construtor de Alo: elemento " << id << "\n";
   }
   ~Alo(){

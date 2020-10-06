@@ -8,9 +8,9 @@ class Equipamento{
   char fabricante[100];
   float preco;
 public:
-  void setNome(const char *_nome);
-  void setFabricante(const char *_fabricante);
-  void setPreco(float _preco);
+  void setNome(const char *nome_);
+  void setFabricante(const char *fabricante_);
+  void setPreco(float preco_);
   char* getNome(void);
   char* getFabricante(void);
   float getPreco(void);
@@ -26,16 +26,16 @@ public:
   float getVelocidade(void);
 };
 
-void Equipamento::setNome(const char *_nome){
-  strcpy(nome,_nome);
+void Equipamento::setNome(const char *nome_){
+  strcpy(nome,nome_);
 }
 
-void Equipamento::setFabricante(const char *_fabricante){
-  strcpy(fabricante,_fabricante);
+void Equipamento::setFabricante(const char *fabricante_){
+  strcpy(fabricante,fabricante_);
 }
 
-void Equipamento::setPreco(float _preco){
-  preco=_preco;
+void Equipamento::setPreco(float preco_){
+  preco=preco_;
 }
 
 char* Equipamento::getNome(void){

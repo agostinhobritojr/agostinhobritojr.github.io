@@ -1,51 +1,86 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
+#include <vector>
 
 #define RADIUS 20
 
-using namespace cv;
-using namespace std;
+void on_trackbar_frequency(int, void*) {}
+
+void on_trackbar_noise_gain(int, void*) {}
+
+void menu() {
+  std::cout << "e : habilita/desabilita interferencia\n"
+               "m : habilita/desabilita o filtro mediano\n"
+               "g : habilita/desabilita o filtro gaussiano\n"
+               "p : realiza uma amostra das imagens\n"
+               "s : habilita/desabilita subtração de fundo\n"
+               "b : realiza uma amostra do fundo da cena\n"
+               "n : processa o negativo\n";
+}
 
 // troca os quadrantes da imagem da DFT
-void deslocaDFT(Mat& image ){
-  Mat tmp, A, B, C, D;
+void deslocaDFT(cv::Mat& image) {
+  cv::Mat tmp, A, B, C, D;
 
   // se a imagem tiver tamanho impar, recorta a regiao para
   // evitar cópias de tamanho desigual
-  image = image(Rect(0, 0, image.cols & -2, image.rows & -2));
-  int cx = image.cols/2;
-  int cy = image.rows/2;
-  
+  image = image(cv::Rect(0, 0, image.cols & -2, image.rows & -2));
+  int cx = image.cols / 2;
+  int cy = image.rows / 2;
+
   // reorganiza os quadrantes da transformada
   // A B   ->  D C
   // C D       B A
-  A = image(Rect(0, 0, cx, cy));
-  B = image(Rect(cx, 0, cx, cy));
-  C = image(Rect(0, cy, cx, cy));
-  D = image(Rect(cx, cy, cx, cy));
+  A = image(cv::Rect(0, 0, cx, cy));
+  B = image(cv::Rect(cx, 0, cx, cy));
+  C = image(cv::Rect(0, cy, cx, cy));
+  D = image(cv::Rect(cx, cy, cx, cy));
 
   // A <-> D
-  A.copyTo(tmp);  D.copyTo(A);  tmp.copyTo(D);
+  A.copyTo(tmp);
+  D.copyTo(A);
+  tmp.copyTo(D);
 
   // C <-> B
-  C.copyTo(tmp);  B.copyTo(C);  tmp.copyTo(B);
+  C.copyTo(tmp);
+  B.copyTo(C);
+  tmp.copyTo(B);
 }
 
-int main(int , char**){
-  VideoCapture cap;   
-  Mat imaginaryInput, complexImage, multsp;
-  Mat padded, filter, mag;
-  Mat image, imagegray, tmp; 
-  Mat_<float> realInput, zeros;
-  vector<Mat> planos;
+int main(int, char**) {
+  cv::VideoCapture cap;
+  cv::Mat imaginaryInput, complexImage, multsp;
+  cv::Mat padded, filter, mag;
+  cv::Mat image, imagegray, tmp, magI;
+  cv::Mat_<float> realInput, zeros, ones;
+  cv::Mat backgroundImage;
+  std::vector<cv::Mat> planos;
 
   // habilita/desabilita ruido
-  int noise=0;
+  bool noise = true;
   // frequencia do ruido
-  int freq=10;
-  // ganho inicial do ruido
-  float gain=1;
+  int freq = 10;
+  int freq_max;
+  // ganho do ruido
+  int gain_int = 0;
+  int gain_max = 100;
+  float gain = 0;
+
+  // habilita filtro da mediana
+  bool median = false;
+  // habilita o filtro gaussiano
+  bool gaussian = false;
+  // habilita o negativo da imagem
+  bool negative = false;
+
+  // realiza amostragem da imagem
+  bool sample = false;
+
+  // captura background
+  bool background = false;
+
+  // subtrai fundo da imagem
+  bool subtract = false;
 
   // valor do ruido
   float mean;
@@ -57,10 +92,19 @@ int main(int , char**){
   // para calculo da DFT
   int dft_M, dft_N;
 
-  // abre a câmera default
+  //  char TrackbarRadiusName[50];
+  //  std::strcpy(TrackbarFrequencyName, "Raio");
+
+  // abre a câmera
   cap.open(0);
-  if(!cap.isOpened())
-    return -1;
+
+  // apresenta as opcoes de interacao
+  menu();
+
+  cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
+  cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
+
+  if (!cap.isOpened()) return -1;
 
   // captura uma imagem para recuperar as
   // informacoes de gravação
@@ -68,153 +112,210 @@ int main(int , char**){
 
   // identifica os tamanhos otimos para
   // calculo do FFT
-  dft_M = getOptimalDFTSize(image.rows);
-  dft_N = getOptimalDFTSize(image.cols);
+  dft_M = cv::getOptimalDFTSize(image.rows);
+  dft_N = cv::getOptimalDFTSize(image.cols);
+
+  freq_max = dft_M / 2 - 1;
+  cv::namedWindow("original", 1);
+  cv::createTrackbar("frequencia", "original", &freq, freq_max,
+                     on_trackbar_frequency);
+
+  on_trackbar_frequency(freq, 0);
+
+  cv::createTrackbar("amp. ruido", "original", &gain_int, gain_max,
+                     on_trackbar_frequency);
+
+  on_trackbar_noise_gain(gain_int, 0);
 
   // realiza o padding da imagem
-  copyMakeBorder(image, padded, 0,
-                 dft_M - image.rows, 0,
-                 dft_N - image.cols,
-                 BORDER_CONSTANT, Scalar::all(0));
+  cv::copyMakeBorder(image, padded, 0, dft_M - image.rows, 0,
+                     dft_N - image.cols, cv::BORDER_CONSTANT,
+                     cv::Scalar::all(0));
 
   // parte imaginaria da matriz complexa (preenchida com zeros)
-  zeros = Mat_<float>::zeros(padded.size());
+  zeros = cv::Mat_<float>::zeros(padded.size());
+  ones = cv::Mat_<float>::zeros(padded.size());
 
   // prepara a matriz complexa para ser preenchida
-  complexImage = Mat(padded.size(), CV_32FC2, Scalar(0));
+  complexImage = cv::Mat(padded.size(), CV_32FC2, cv::Scalar(0));
 
-  // a função de transferência (filtro frequencial) deve ter o
+  // a função de transferencia (filtro de frequencia) deve ter o
   // mesmo tamanho e tipo da matriz complexa
   filter = complexImage.clone();
 
   // cria uma matriz temporária para criar as componentes real
   // e imaginaria do filtro ideal
-  tmp = Mat(dft_M, dft_N, CV_32F);
+  tmp = cv::Mat(dft_M, dft_N, CV_32F);
 
   // prepara o filtro passa-baixas ideal
-  for(int i=0; i<dft_M; i++){
-    for(int j=0; j<dft_N; j++){
-      if((i-dft_M/2)*(i-dft_M/2)+(j-dft_N/2)*(j-dft_N/2) < RADIUS*RADIUS){
-        tmp.at<float> (i,j) = 1.0;
+  for (int i = 0; i < dft_M; i++) {
+    for (int j = 0; j < dft_N; j++) {
+      if ((i - dft_M / 2) * (i - dft_M / 2) +
+              (j - dft_N / 2) * (j - dft_N / 2) <
+          RADIUS * RADIUS) {
+        tmp.at<float>(i, j) = 1.0;
       }
     }
   }
 
   // cria a matriz com as componentes do filtro e junta
   // ambas em uma matriz multicanal complexa
-  Mat comps[]= {tmp, tmp};
-  merge(comps, 2, filter);
+  cv::Mat comps[] = {tmp, tmp};
+  cv::merge(comps, 2, filter);
 
-  for(;;){
+  for (;;) {
     cap >> image;
-    cvtColor(image, imagegray, CV_BGR2GRAY);
-    imshow("original", imagegray);
+    cv::cvtColor(image, imagegray, cv::COLOR_BGR2GRAY);
+    if (background == true) {
+      imagegray.copyTo(backgroundImage);
+      background = false;
+    }
+
+    if (subtract) {
+      imagegray = cv::max(imagegray - backgroundImage, cv::Scalar(0));
+    }
+
+    if (negative) {
+      bitwise_not(imagegray, imagegray);
+    }
+    if (median) {
+      cv::medianBlur(imagegray, image, 3);
+      image.copyTo(imagegray);
+    }
+    if (gaussian) {
+      cv::GaussianBlur(imagegray, image, cv::Size(3, 3), 0);
+      image.copyTo(imagegray);
+    }
+    cv::imshow("original", imagegray);
 
     // realiza o padding da imagem
-    copyMakeBorder(imagegray, padded, 0,
-                   dft_M - image.rows, 0,
-                   dft_N - image.cols,
-                   BORDER_CONSTANT, Scalar::all(0));
+    cv::copyMakeBorder(imagegray, padded, 0, dft_M - image.rows, 0,
+                       dft_N - image.cols, cv::BORDER_CONSTANT,
+                       cv::Scalar::all(0));
 
     // limpa o array de matrizes que vao compor a
     // imagem complexa
     planos.clear();
     // cria a compoente real
-    realInput = Mat_<float>(padded);
+    realInput = cv::Mat_<float>(padded);
     // insere as duas componentes no array de matrizes
     planos.push_back(realInput);
     planos.push_back(zeros);
 
     // combina o array de matrizes em uma unica
     // componente complexa
-    merge(planos, complexImage);
+    cv::merge(planos, complexImage);
 
     // calcula o dft
-    dft(complexImage, complexImage);
-
+    cv::dft(complexImage, complexImage);
     // realiza a troca de quadrantes
     deslocaDFT(complexImage);
 
-    // aplica o filtro frequencial
-    mulSpectrums(complexImage,filter,complexImage,0);
+    // exibe o espectro e angulo de fase
+    // armazena amostra das imagens
+    {
+      planos.clear();
+      cv::split(complexImage, planos);
+
+      cv::Mat magn, angl, anglInt, magnInt;
+      cv::cartToPolar(planos[0], planos[1], magn, angl, false);
+      cv::normalize(angl, angl, 0, 255, cv::NORM_MINMAX);
+      angl.convertTo(anglInt, CV_8U);
+      cv::imshow("Angulo de Fase", anglInt);
+
+      cv::magnitude(planos[0], planos[1], planos[0]);
+      magI = planos[0];
+      magI += cv::Scalar::all(1);
+      cv::log(magI, magI);
+      cv::normalize(magI, magI, 0, 255, cv::NORM_MINMAX);
+      magI.convertTo(magnInt, CV_8U);
+      cv::imshow("Espectro", magnInt);
+
+      if (sample == true) {
+        cv::imwrite("dft-imagem.png", padded);
+        cv::imwrite("dft-espectro.png", magnInt);
+        cv::imwrite("dft-angl.png", anglInt);
+        std::cout << "#### sample ok ###\n";
+        menu();
+        sample = false;
+      }
+    }
+
+    // aplica o filtro de frequencia
+    cv::mulSpectrums(complexImage, filter, complexImage, 0);
 
     // limpa o array de planos
     planos.clear();
+
     // separa as partes real e imaginaria para modifica-las
-    split(complexImage, planos);
- 
-    // usa o valor medio do espectro para dosar o ruido 
-    mean = abs(planos[0].at<float> (dft_M/2,dft_N/2));
+    cv::split(complexImage, planos);
+
+    // usa o valor medio do espectro para dosar o ruido
+    mean = cv::abs(planos[0].at<float>(dft_M / 2, dft_N / 2));
 
     // insere ruido coerente, se habilitado
-    if(noise){
+    if (noise) {
+      gain = 1.0 * gain_int / gain_max;
       // F(u,v) recebe ganho proporcional a F(0,0)
-      planos[0].at<float>(dft_M/2 +freq, dft_N/2 +freq) +=
-        gain*mean;
-   
-      planos[1].at<float>(dft_M/2 +freq, dft_N/2 +freq) +=
-        gain*mean;
-   
-      // F*(-u,-v) = F(u,v)
-      planos[0].at<float>(dft_M/2 -freq, dft_N/2 -freq) =
-        planos[0].at<float>(dft_M/2 +freq, dft_N/2 +freq);
-   
-      planos[1].at<float>(dft_M/2 -freq, dft_N/2 -freq) =
-        -planos[1].at<float>(dft_M/2 +freq, dft_N/2 +freq);
+      planos[0].at<float>(dft_M / 2 + freq, dft_N / 2 + freq) += gain * mean;
 
+      planos[1].at<float>(dft_M / 2 + freq, dft_N / 2 + freq) += gain * mean;
+
+      // F*(-u,-v) = F(u,v)
+      planos[0].at<float>(dft_M / 2 - freq, dft_N / 2 - freq) =
+          planos[0].at<float>(dft_M / 2 + freq, dft_N / 2 + freq);
+
+      planos[1].at<float>(dft_M / 2 - freq, dft_N / 2 - freq) =
+          -planos[1].at<float>(dft_M / 2 + freq, dft_N / 2 + freq);
     }
 
     // recompoe os planos em uma unica matriz complexa
-    merge(planos, complexImage);
+    cv::merge(planos, complexImage);
 
     // troca novamente os quadrantes
     deslocaDFT(complexImage);
 
-	cout << complexImage.size().height << endl;
     // calcula a DFT inversa
-    idft(complexImage, complexImage);
+    cv::idft(complexImage, complexImage);
 
     // limpa o array de planos
     planos.clear();
 
     // separa as partes real e imaginaria da
     // imagem filtrada
-    split(complexImage, planos);
+    cv::split(complexImage, planos);
 
     // normaliza a parte real para exibicao
-    normalize(planos[0], planos[0], 0, 1, CV_MINMAX);
-    imshow("filtrada", planos[0]);
- 
-    key = (char) waitKey(10);
-    if( key == 27 ) break; // esc pressed!
-    switch(key){
-      // aumenta a frequencia do ruido
-    case 'q':
-      freq=freq+1;
-      if(freq > dft_M/2-1)
-        freq = dft_M/2-1;
-      break;
-      // diminui a frequencia do ruido
-    case 'a':
-      freq=freq-1;
-      if(freq < 1)
-        freq = 1;
-      break;
-      // amplifica o ruido
-    case 'x':
-      gain += 0.1;
-      break;
-      // atenua o ruido
-    case 'z':
-      gain -= 0.1;
-      if(gain < 0)
-        gain=0;
-      break;
-      // insere/remove ruido
-    case 'e':
-      noise=!noise;
-      break;
-    } 
+    cv::normalize(planos[0], planos[0], 0, 1, cv::NORM_MINMAX);
+    cv::imshow("filtrada", planos[0]);
+
+    key = (char)cv::waitKey(10);
+    if (key == 27) break;  // esc pressed!
+    switch (key) {
+      case 'e':
+        noise = !noise;
+        break;
+      case 'm':
+        median = !median;
+        menu();
+        break;
+      case 'g':
+        gaussian = !gaussian;
+        menu();
+        break;
+      case 'p':
+        sample = true;
+        break;
+      case 'b':
+        background = true;
+        break;
+      case 's':
+        subtract = !subtract;
+        break;
+      case 'n':
+        negative = !negative;
+        break;
+    }
   }
   return 0;
 }
