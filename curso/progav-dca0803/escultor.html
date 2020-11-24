@@ -447,16 +447,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <ul class="sectlevel1">
-<li><a href="#_apresentação">1. Apresentação</a></li>
-<li><a href="#_conceitos_gerais_e_objetivos">2. Conceitos gerais e Objetivos</a></li>
-<li><a href="#_o_formatos_de_armazenamento_de_modelos_digitais_off">3. O formatos de armazenamento de modelos digitais OFF</a></li>
-<li><a href="#_parte_1_a_classe_sculptor">4. Parte 1 - A classe Sculptor</a>
+<li><a href="#_apresentação">1. Apresentação</a>
 <ul class="sectlevel2">
-<li><a href="#_criação_da_classe_concreta_sculptor">4.1. Criação da classe concreta Sculptor</a></li>
-<li><a href="#_criação_de_um_programa_de_testes">4.2. Criação de um programa de testes</a></li>
+<li><a href="#_parte_1_biblioteca_de_leitura_e_traçado_de_esculturas">1.1. Parte 1 - Biblioteca de leitura e traçado de esculturas</a></li>
 </ul>
 </li>
-<li><a href="#_parte_2_reestruturando_o_escultor_com_classes_abstratas">5. Parte 2 - Reestruturando o escultor com classes abstratas</a>
+<li><a href="#_objetivos">2. Objetivos</a></li>
+<li><a href="#_formatos_de_armazenamento_de_modelos_digitais">3. Formatos de armazenamento de modelos digitais</a>
+<ul class="sectlevel2">
+<li><a href="#_o_formato_de_armazenamento_vect">3.1. O formato de armazenamento VECT</a></li>
+<li><a href="#sec.projetos.escultor.off">3.2. O formato de armazenamento OFF</a></li>
+</ul>
+</li>
+<li><a href="#_a_classe_escultor_parte_1_estruturas_básicas">4. A classe Escultor - Parte 1 - Estruturas básicas</a>
+<ul class="sectlevel2">
+<li><a href="#_criação_de_um_programa_de_testes">4.1. Criação de um programa de testes</a></li>
+</ul>
+</li>
+<li><a href="#_a_classe_escultor_parte_2_estruturas_avançadas">5. A classe Escultor - Parte 2 - Estruturas avançadas</a>
 <ul class="sectlevel2">
 <li><a href="#_criação_da_classe_abstrata_figurageometrica">5.1. Criação da classe abstrata <code>FiguraGeometrica</code></a></li>
 <li><a href="#_criação_da_classe_concreta_putvoxel">5.2. Criação da classe concreta <code>PutVoxel</code></a></li>
@@ -468,10 +476,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_criação_da_classe_concreta_putellipsoid">5.8. Criação da classe concreta <code>PutEllipsoid</code></a></li>
 <li><a href="#_criação_da_classe_concreta_cutellipsoid">5.9. Criação da classe concreta <code>CutEllipsoid</code></a></li>
 <li><a href="#_armazenamento_de_figuras">5.10. Armazenamento de figuras</a></li>
-<li><a href="#_criação_de_um_programa_de_testes_2">5.11. Criação de um programa de testes</a></li>
+<li><a href="#_teste_das_funcionalidades_implementadas">5.11. Teste das funcionalidades implementadas</a></li>
 </ul>
 </li>
-<li><a href="#_parte_3_programa_interativo_para_criação_de_esculturas">6. Parte 3 - Programa interativo para criação de esculturas</a></li>
 </ul>
 </div>
 </div>
@@ -501,40 +508,34 @@ claro, procure o professor para que o texto seja atualizado.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>O objetivo desse projeto é construir uma ferramenta em C++ para
-realizar esculturas em blocos tridimensionais representados por matrizes digitais,
+realizar esculturas em blocos representados por matrizes digitais,
 algo como a ideia usada pelo jogo <a href="http://www.minecraft.net">minecraft</a>.</p>
 </div>
 <div class="paragraph">
-<p>O projeto é dividido em três etapas. Na primeira, será concebida uma classe denominada
-<code>Sculptor</code>, que representará uma estrutura capaz de ser manipulada para realizar
-desenhos em uma matriz alocada internamente. Na segunda, um arquivo em texto simples
-que contém uma sequência de passos a serem seguidos com as propriedades
-dessa matriz tridimensional deverá ser processado para gerar a escultura. Na terceira,
-deverá ser desenvolvida uma interface visual em Qt para criação das esculturas
-na forma de uma ferramenta de desenho, algo como um programa de pintura tridimensional.</p>
-</div>
-<div class="paragraph">
-<p>As propriedades da escultura contêm especificações de cor para os elementos,
-de sorte que com o auxílio de softwares de visualização o usuário possa
+<p>A ideia é permitir que o utilizador da ferramenta seja capaz de criar
+um arquivo em texto simples que contém uma sequência de passos a serem
+seguidos para definir propriedades de uma matriz tridimensional. As
+propriedades contêm especificações de cor para os elementos, de sorte
+que com o auxílio de softwares de visualização o usuário possa
 apreciar a escultura criada.</p>
 </div>
 <div class="paragraph">
-<p>As funções usadas para criar a escultura tridimensional prevêem alguns tipos de formas
+<p>O projeto consiste em dois módulos: uma classe em C++ destinada à
+interpretação de um arquivo em formato de texto simples e geração
+das matrizes tridimensionais; e uma ferramenta visual para desenho,
+algo equivalente a um "paint" 3D.</p>
+</div>
+<div class="paragraph">
+<p>Os sistemas de escultura tridimensional prevêem alguns tipos de formas
 geométricas simples que poderão ser usadas pelo usuário para pintar e
 deverão ser implementadas no projeto.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_conceitos_gerais_e_objetivos">2. Conceitos gerais e Objetivos</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_parte_1_biblioteca_de_leitura_e_traçado_de_esculturas">1.1. Parte 1 - Biblioteca de leitura e traçado de esculturas</h3>
 <div class="paragraph">
-<p>As duas etapas do projeto consistem na criação de classes em C++ que
-permitam realizar operações em uma matriz tridimensional alocada
-dinamicamente.</p>
-</div>
-<div class="paragraph">
-<p>Os elementos dessa matriz guardam propriedades da
+<p>A primeira etapa do projeto consiste em conceber uma classe em C++ que
+permita realizar operações em uma matriz tridimensional alocada
+dinamicamente. Os elementos dessa matriz guardam propriedades da
 escultura e são denominados <code>Voxels</code> (<em>volume elements</em>), algo
 equivalente aos <code>Pixels</code> que comumente são usados em imagens
 digitais. Nos Voxels seria possível armazenar informações como cor e
@@ -705,7 +706,7 @@ de dimensões \$[2 \times 2 \times 2\$] voxels com as seguintes propriedades:</p
 </table>
 <div class="paragraph">
 <p>A escultura tridimensional correspondente ao conjunto de voxels com
-tais propriedades é mostrado na Figura <a href="#fig_exemploescultura">Exemplo de escultura 3d para criada com uma matrix de \$2 \times 2 \times 2\$ voxels</a>.</p>
+tais propriedades é mostrado na Figura <a href="#fig_exemploescultura">Exemplo de Escultura</a>.</p>
 </div>
 <div id="fig_exemploescultura" class="imageblock">
 <div class="content">
@@ -713,13 +714,19 @@ tais propriedades é mostrado na Figura <a href="#fig_exemploescultura">Exemplo 
 </div>
 <div class="title">Figura 1. Exemplo de escultura 3d para criada com uma matrix de \$2 \times 2 \times 2\$ voxels</div>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objetivos">2. Objetivos</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>O que o desenvolvedor deverá implementar nesse projeto? A proposta é
 que a classe disponibilize uma série de métodos apropriados para
 realizar a escultura no bloco digital. Espera-se que um utilizador da
 classe seja capaz de desenhar ou apagar pelo menos três tipos de
 estruturas em uma escultura: blocos, voxels individuais e elipsóides,
-cujos métodos serão detalhados adiante para cada uma das partes do projeto.</p>
+cujos métodos serão detalhados adiante.</p>
 </div>
 <div class="paragraph">
 <p>Em se tratando de um elemento abstrato, precisa-se de uma ferramenta
@@ -736,23 +743,140 @@ android e ios).</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_o_formatos_de_armazenamento_de_modelos_digitais_off">3. O formatos de armazenamento de modelos digitais OFF</h2>
+<h2 id="_formatos_de_armazenamento_de_modelos_digitais">3. Formatos de armazenamento de modelos digitais</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Para ser visualizada, a representação da escultura digital deve ser
 armazenada um arquivo utilizando um formato suportado pela ferramenta
 de visualização.  Diversos formatos de armazenamento de modelos
-tridimensionais podem ser usados, mas optamos pelo uso do formato OFF,
-por ser de fácil criação e entendimento. Ele é suportado pelas ferramentas
-de visualização sugeridas, de sorte que pode ser usado para representar
-malhas tridimensionais na forma de polígonos planares. A Figura
-<a href="#fig_exemploescultura">Exemplo de escultura 3d para criada com uma matrix de \$2 \times 2 \times 2\$ voxels</a>, por exemplo, foi obtida a partir da
+tridimensionais podem ser usados, mas optamos pelo uso de dois
+formatos bastante simples, de fácil criação e entendimento, que são os
+formatos VECT e OFF.  Ambos são suportados pelo geomview, de sorte que
+primeiro pode ser usado para armazenar matrizes de pontos com cores
+associadas, enquanto que o segundo pode ser usado para representar
+malhas tridimensionais na forma de polígonos planares. A
+<a href="#fig_exemploescultura">Exemplo de Escultura</a>, por exemplo, foi obtida a partir da
 representação dos voxels na forma de cubos coloridos armazenados no
 formato OFF.</p>
 </div>
+<div class="sect2">
+<h3 id="_o_formato_de_armazenamento_vect">3.1. O formato de armazenamento VECT</h3>
 <div class="paragraph">
-<p>O formato de armazenamento OFF geralmente é
-associado a arquivos com a extensão <em>.off</em>.  Ele prevê a
+<p>Arquivos VECT são normalmente associados à extensão <em>.vect</em>
+ possui uma descrição bem simples.  Para fins desse projeto, podemos
+ resumir o formato de um arquivo desse tipo da seguinte maneira:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code><span></span>
+VECT
+NPoligonos  NVertices  NCores
+Nv[0] ... Nv[NPoligonos-1]
+Nc[0] ... Nc[NPoligonos-1]
+x[0] y[0] z[0]
+...
+x[NVertices-1] y[NVertices-1] z[NVertices-1]
+r[0] g[0] b[0] a[0]
+...
+r[NCores-1] g[NCores-1] b[NCores-1] a[NCores-1]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A primeira linha contém apenas a palavra <code>VECT</code>, servindo para
+identificar o tipo do arquivo.</p>
+</div>
+<div class="paragraph">
+<p>A segunda linha especifica o número de polígonos, vértices e cores que
+são representados ao todo na figura geométrica.  Por natureza, o
+formato VECT foi previsto para armazenar polígonos.  Entretanto, para
+nossa comodidade, podemos representar os voxels do bloco digital como
+sendo polígonos de apenas um vértice (sem arestas!) com uma cor
+associada.  Logo, teremos um mesmo valor associado aos três
+descritores <code>NPoligonos</code>, <code>NVertices</code> e <code>NCores</code>.</p>
+</div>
+<div class="paragraph">
+<p>A terceira linha contém uma lista de inteiros especificando o número
+de vértices em cada polígono.  Haja vista que foi convencionado que
+cada polígono contém apenas um vértice, esta linha será formada por
+diversos valores iguais a <code>1</code>, na mesma quantidade que o número de
+voxels.  A mesma ideia vale para a terceira linha que, dessa vez,
+especifica a quantidade de cores em cada polígono (também igual a 1!).</p>
+</div>
+<div class="paragraph">
+<p>Da quarta linha em diante seguem as coordenadas dos NVertices
+presentes no bloco digital, devendo ser colocados um conjunto de
+coordenadas por linha.</p>
+</div>
+<div class="paragraph">
+<p>Finalmente, seguem-se <code>NCores</code> linhas contendo as cores R(ed), G(reen) e
+B(lue) de cada voxel, bem como o valor da componente alpha, que define
+a transparência desse voxel.  As cores são especificadas na forma de
+números reais, assumindo valores entre na faixa \$[0,1\$].</p>
+</div>
+<div class="paragraph">
+<p>Para um bloco digital de dimensões \$2 \times 2 \times 2\$ com
+todos os seus elementos presentes e na cor vermelha, o arquivo VECT
+correspondente seria o seguinte:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code><span></span>VECT
+8 8 8
+1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1
+0 0 0
+0 0 1
+0 1 0
+0 1 1
+1 0 0
+1 0 1
+1 1 0
+1 1 1
+1 0 0 1
+1 0 0 1
+1 0 0 1
+1 0 0 1
+1 0 0 1
+1 0 0 1
+1 0 0 1
+1 0 0 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Considere agora que se deseje representar o cubo mesmo cubo digital,
+desta vez, sem estar presente o elemento de coordenadas \$(0,0,0)\$
+e com o elemento de coordenadas \$(1,1,1)\$ desenhado com a cor
+verde.  As novas modificações seriam representadas em um arquivo VECT
+com o seguinte conteúdo:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>VECT
+7 7 7
+1 1 1 1 1 1 1
+1 1 1 1 1 1 1
+0 0 1
+0 1 0
+0 1 1
+1 0 0
+1 0 1
+1 1 0
+1 1 1
+1 0 0 1
+1 0 0 1
+1 0 0 1
+1 0 0 1
+1 0 0 1
+1 0 0 1
+0 1 0 1</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sec.projetos.escultor.off">3.2. O formato de armazenamento OFF</h3>
+<div class="paragraph">
+<p>O segundo formato de armazenamento é o formato OFF, geralmente
+associados a arquivos com a extensão <em>.off</em>.  Ele prevê a
 representação de superfícies usando conjuntos de vértices e polígonos
 que os interconectam.  Para fins do projeto proposto, um arquivo OFF
 pode ser descrito da seguinte maneira:</p>
@@ -789,7 +913,8 @@ tridimensionais dos <code>NVertices</code> presentes na figura.</p>
 definida por uma sequência de índices em uma linha do arquivo.  O
 primeiro elemento da linha define o número de vértices na referida
 face.  Em seguida, são apresentadas os índices dos <code>NVertices</code>
-vértices da face, bem como a cor da face no formato RGBA. Cada cor é composta por um conjunto de
+vértices da face, bem como a cor da face no formato RGBA, tal como
+descrito para o formato VECT. Cada cor é composta por um conjunto de
 quatro números em ponto flutuante na faixa \$[0,1\$], onde os três
 primeiros definem a cor da face (Red, Green, Blue) e o último define a
 sua transparência.</p>
@@ -798,7 +923,7 @@ sua transparência.</p>
 <p>Um fato importante sobre a especificação da face diz respeito à
 sequência em que os vértices são apresentados.  O sentido do vetor
 normal a esta superfície é indicado pela regra da mão direita, onde os
-dedos acompanham a sequência fornecida (ver Figura <a href="#fig_normal">Normal à superfície</a>)
+dedos acompanham a sequência fornecida (ver <a href="#fig_normal">Figura 2</a>)
 ). Cada sequência de pontos produz um polígono planar com duas faces
 opostas e, nos programas de visualização, a direção e sentido do vetor
 normal são usados para escolher e iluminar corretamente a face que se
@@ -812,7 +937,7 @@ deseja exibir.</p>
 </div>
 <div class="paragraph">
 <p>Para exemplificar a criação de um arquivo OFF, considere o cubo
-apresentado na <a href="#fig_cubo3d">Cubo 3d</a>
+apresentado na <a href="#fig_cubo3d">Figura 3</a>
 .
 Sua representação deverá ser dada pelas posições dos seus oito
 vértices \$(P_0 ... P_7)\$ e pelas sequências de vértices que
@@ -870,11 +995,10 @@ número de arestas igual a zero não é utilizado.</p>
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="_parte_1_a_classe_sculptor">4. Parte 1 - A classe Sculptor</h2>
+<h2 id="_a_classe_escultor_parte_1_estruturas_básicas">4. A classe Escultor - Parte 1 - Estruturas básicas</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_criação_da_classe_concreta_sculptor">4.1. Criação da classe concreta Sculptor</h3>
 <div class="paragraph">
 <p>Para manipular os pixels da matriz tridimensional, o desenvolvedor
 deverá usar um conjunto de funcionalidades previstas para uma classe
@@ -907,9 +1031,10 @@ denominada <code>Sculptor</code> que deverá possuir a seguinte declaração:</p
 <div class="paragraph">
 <p>Cada um dos métodos da classe <code>Sculptor</code> realiza uma modificação
 específica na matriz de voxels definida pela variável <code>v</code>. A descrição
-de cada um desses métodos é apresentada na tabela <a href="#tab_metodos">Métodos da classe <code>Sculptor</code></a></p>
+de cada um desses métodos é apresentada na <a href="#tab_metodos">Tabela 1</a></p>
 </div>
 <table id="tab_metodos" class="tableblock frame-all grid-all stretch">
+<caption class="title">Tabela 1. Métodos da classe <code>Sculptor</code></caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1010,19 +1135,18 @@ voxels com propriedade <code>isOn=true</code>, exista um total de <code>8*Nvoxel
 vértices e <code>6*Nvoxels</code> faces para representar escultura digital
 equivalente às propriedades da matriz.</p>
 </div>
-</div>
 <div class="sect2">
-<h3 id="_criação_de_um_programa_de_testes">4.2. Criação de um programa de testes</h3>
+<h3 id="_criação_de_um_programa_de_testes">4.1. Criação de um programa de testes</h3>
 <div class="paragraph">
 <p>Elabore um pequeno programa de testes que explore o uso de TODAS os
 métodos especificados para desenvolver uma escultura digital e
-salvá-la no formato <code>OFF</code>.</p>
+salvá-la nos formatos <code>OFF</code> e <code>VECT</code></p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_parte_2_reestruturando_o_escultor_com_classes_abstratas">5. Parte 2 - Reestruturando o escultor com classes abstratas</h2>
+<h2 id="_a_classe_escultor_parte_2_estruturas_avançadas">5. A classe Escultor - Parte 2 - Estruturas avançadas</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Seu projeto deverá ser capaz de tratar classes abstratas para
@@ -1174,12 +1298,12 @@ centro e seus raios em pixels.</p>
 desenhá-las conforme as instruções presentes. O arquivo poderá
 conter os seguintes códigos, que deverão ser interpretados pela sua
 aplicação e utilizar a classe abstrata <code>FiguraGeometrica</code> para
-tratar e gerar o desenho conforme os códigos utilizados na tabela <a href="#tab_codigos">Códigos das figuras geométricas</a>.</p>
+tratar e gerar o desenho conforme os códigos utilizados na tabela <a href="#tab_codigos">Tabela 2</a>.</p>
 </li>
 </ul>
 </div>
 <table id="tab_codigos" class="tableblock frame-all grid-all stretch">
-<caption class="title">Tabela 1. Códigos das figuras geométricas</caption>
+<caption class="title">Tabela 2. Códigos das figuras geométricas</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1206,7 +1330,7 @@ tratar e gerar o desenho conforme os códigos utilizados na tabela <a href="#tab
 <p>desenha voxel na posição \$(x0,y0,z0)\$ com a cor \$(r,g,b,a)\$</p>
 </div>
 <div class="paragraph">
-<p>Ex: <code>putvoxel 5 5 10 1.0 0.8 0.4 0.3</code> (linha desenhada com o caractere <code>@</code>)</p>
+<p>Ex: <code>putvoxel 5 5 10 1.0 0.8 0.4 0.3</code></p>
 </div></div></td>
 </tr>
 <tr>
@@ -1283,7 +1407,7 @@ tratar e gerar o desenho conforme os códigos utilizados na tabela <a href="#tab
 </table>
 </div>
 <div class="sect2">
-<h3 id="_criação_de_um_programa_de_testes_2">5.11. Criação de um programa de testes</h3>
+<h3 id="_teste_das_funcionalidades_implementadas">5.11. Teste das funcionalidades implementadas</h3>
 <div class="paragraph">
 <p>Crie uma figura e um programa-exemplo para testar as implementações
 que você realizou.</p>
@@ -1291,19 +1415,18 @@ que você realizou.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Toda a figura poderá ser armazenada em um array de ponteiros para
+<p>Toda a figura poderá ser armazenada em um container de ponteiros para
 <code>FiguraGeometrica</code>.</p>
 </li>
 <li>
 <p>Faça utilização exaustiva das classes da biblioteca padrão de
-gabaritos. As classes <code>vector</code>, <code>string</code> e <code>stringstream</code>, bem como
-seus respetivos <code>iterators</code> poderão ser amplamente utilizados para
-realizar a implementação das funcionalidades.</p>
+gabaritos. As classes <code>vector</code>, <code>string</code> e <code>stringstream</code> poderão ser
+amplamente utilizados para realizar a implementação das funcionalidades.</p>
 </li>
 <li>
 <p>Crie uma figura  e represente-a em um arquivo  utilizando os códigos
 fornecidos. Use  uma combinação  adequada de classes  para converter
-sua figura em uma escultura digital no formato <code>OFF</code>. A
+sua figura em  uma escultura digital no formato <code>OFF</code>. A
 matriz deverá  ser salva em outro  arquivo usando um dos  métodos da
 classe <code>Sculptor</code>.</p>
 </li>
@@ -1312,69 +1435,10 @@ classe <code>Sculptor</code>.</p>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_parte_3_programa_interativo_para_criação_de_esculturas">6. Parte 3 - Programa interativo para criação de esculturas</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Prepare um programa interativo baseado nas biblioteca de programação
-visual Qt para utilizar a classe <code>Sculptor</code> para permitir que um
-usuário realize desenhos em uma espécie de <em>Paint 3D</em>.</p>
-</div>
-<div class="paragraph">
-<p>Considere-se à vontade para criar o programa conforme suas próprias
-idealizações, mas que a construção permite que esse seja utilizável
-por alguém que deseje trabalhar com as funções de sua classe
-<code>Sculptor</code>.</p>
-</div>
-<div class="paragraph">
-<p>Será exigido que seu programa realize as seguintes tarefas:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Criar uma abstração de um objeto da classe <code>Sculptor</code> com dimensões
-fornecidas pelo usuário.</p>
-</li>
-<li>
-<p>Permitir que o usuário visualize o objeto criado utilizando algum
-artifício.</p>
-</li>
-<li>
-<p>Permitir que o usuário modifique os parâmetros dos vários tipos de
-métodos previstos na classe escultor, tais como raios de uma esfera
-a ser desenhada, dimensões de uma caixa (<em>box</em>) ou cor de desenho.</p>
-</li>
-<li>
-<p>Agregar os métodos especificados para a classe <code>Sculptor</code> e permitir
-que o usuário os selecione algum deles usando botões de uma toolbox.</p>
-</li>
-<li>
-<p>Ao movimentar o mouse sobre a abstração do objeto da classe com o
-botão esquerdo pressionado, o método associado ao botão selecionado
-deve ser aplicado na abstração do objeto, na posição correspondente
-na matriz 3D.</p>
-</li>
-<li>
-<p>A interface deve prover recursos para, terminado o processo de
-desenho, permitir que o usuário salve a escultura criada em um
-arquivo <code>OFF</code> especificado.</p>
-</li>
-<li>
-<p>O programa criado deverá ser documentado com Doxygen.</p>
-</li>
-<li>
-<p>O programa criado deverá ser hospedado no github e deverá ser
-provido um manual no arquivo README.md com instruções de compilação
-e uso do programa</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2020-10-18 20:44:45 -0300
+Última atualização 2020-11-24 06:54:31 -0300
 </div>
 </div>
 <style>
