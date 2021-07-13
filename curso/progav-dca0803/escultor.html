@@ -453,12 +453,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#_objetivos">2. Objetivos</a></li>
-<li><a href="#_formatos_de_armazenamento_de_modelos_digitais">3. Formatos de armazenamento de modelos digitais</a>
-<ul class="sectlevel2">
-<li><a href="#_o_formato_de_armazenamento_vect">3.1. O formato de armazenamento VECT</a></li>
-<li><a href="#sec.projetos.escultor.off">3.2. O formato de armazenamento OFF</a></li>
-</ul>
-</li>
+<li><a href="#_formatos_de_armazenamento_de_modelos_digitais">3. Formatos de armazenamento de modelos digitais</a></li>
 <li><a href="#_a_classe_escultor_parte_1_estruturas_básicas">4. A classe Escultor - Parte 1 - Estruturas básicas</a>
 <ul class="sectlevel2">
 <li><a href="#_criação_de_um_programa_de_testes">4.1. Criação de um programa de testes</a></li>
@@ -663,9 +658,9 @@ de dimensões \$[2 \times 2 \times 2\$] voxels com as seguintes propriedades:</p
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
@@ -749,137 +744,14 @@ android e ios).</p>
 <p>Para ser visualizada, a representação da escultura digital deve ser
 armazenada um arquivo utilizando um formato suportado pela ferramenta
 de visualização.  Diversos formatos de armazenamento de modelos
-tridimensionais podem ser usados, mas optamos pelo uso de dois
-formatos bastante simples, de fácil criação e entendimento, que são os
-formatos VECT e OFF.  Ambos são suportados pelo geomview, de sorte que
-primeiro pode ser usado para armazenar matrizes de pontos com cores
-associadas, enquanto que o segundo pode ser usado para representar
-malhas tridimensionais na forma de polígonos planares. A
+tridimensionais podem ser usados, mas optamos pelo uso do formato OFF, por ser bastante simples, de fácil criação e entendimento. Esse formato permite armazenar malhas tridimensionais na forma de polígonos planares. A
 <a href="#fig_exemploescultura">Exemplo de Escultura</a>, por exemplo, foi obtida a partir da
 representação dos voxels na forma de cubos coloridos armazenados no
 formato OFF.</p>
 </div>
-<div class="sect2">
-<h3 id="_o_formato_de_armazenamento_vect">3.1. O formato de armazenamento VECT</h3>
 <div class="paragraph">
-<p>Arquivos VECT são normalmente associados à extensão <em>.vect</em>
- possui uma descrição bem simples.  Para fins desse projeto, podemos
- resumir o formato de um arquivo desse tipo da seguinte maneira:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code><span></span>
-VECT
-NPoligonos  NVertices  NCores
-Nv[0] ... Nv[NPoligonos-1]
-Nc[0] ... Nc[NPoligonos-1]
-x[0] y[0] z[0]
-...
-x[NVertices-1] y[NVertices-1] z[NVertices-1]
-r[0] g[0] b[0] a[0]
-...
-r[NCores-1] g[NCores-1] b[NCores-1] a[NCores-1]</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>A primeira linha contém apenas a palavra <code>VECT</code>, servindo para
-identificar o tipo do arquivo.</p>
-</div>
-<div class="paragraph">
-<p>A segunda linha especifica o número de polígonos, vértices e cores que
-são representados ao todo na figura geométrica.  Por natureza, o
-formato VECT foi previsto para armazenar polígonos.  Entretanto, para
-nossa comodidade, podemos representar os voxels do bloco digital como
-sendo polígonos de apenas um vértice (sem arestas!) com uma cor
-associada.  Logo, teremos um mesmo valor associado aos três
-descritores <code>NPoligonos</code>, <code>NVertices</code> e <code>NCores</code>.</p>
-</div>
-<div class="paragraph">
-<p>A terceira linha contém uma lista de inteiros especificando o número
-de vértices em cada polígono.  Haja vista que foi convencionado que
-cada polígono contém apenas um vértice, esta linha será formada por
-diversos valores iguais a <code>1</code>, na mesma quantidade que o número de
-voxels.  A mesma ideia vale para a terceira linha que, dessa vez,
-especifica a quantidade de cores em cada polígono (também igual a 1!).</p>
-</div>
-<div class="paragraph">
-<p>Da quarta linha em diante seguem as coordenadas dos NVertices
-presentes no bloco digital, devendo ser colocados um conjunto de
-coordenadas por linha.</p>
-</div>
-<div class="paragraph">
-<p>Finalmente, seguem-se <code>NCores</code> linhas contendo as cores R(ed), G(reen) e
-B(lue) de cada voxel, bem como o valor da componente alpha, que define
-a transparência desse voxel.  As cores são especificadas na forma de
-números reais, assumindo valores entre na faixa \$[0,1\$].</p>
-</div>
-<div class="paragraph">
-<p>Para um bloco digital de dimensões \$2 \times 2 \times 2\$ com
-todos os seus elementos presentes e na cor vermelha, o arquivo VECT
-correspondente seria o seguinte:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code><span></span>VECT
-8 8 8
-1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1
-0 0 0
-0 0 1
-0 1 0
-0 1 1
-1 0 0
-1 0 1
-1 1 0
-1 1 1
-1 0 0 1
-1 0 0 1
-1 0 0 1
-1 0 0 1
-1 0 0 1
-1 0 0 1
-1 0 0 1
-1 0 0 1</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Considere agora que se deseje representar o cubo mesmo cubo digital,
-desta vez, sem estar presente o elemento de coordenadas \$(0,0,0)\$
-e com o elemento de coordenadas \$(1,1,1)\$ desenhado com a cor
-verde.  As novas modificações seriam representadas em um arquivo VECT
-com o seguinte conteúdo:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>VECT
-7 7 7
-1 1 1 1 1 1 1
-1 1 1 1 1 1 1
-0 0 1
-0 1 0
-0 1 1
-1 0 0
-1 0 1
-1 1 0
-1 1 1
-1 0 0 1
-1 0 0 1
-1 0 0 1
-1 0 0 1
-1 0 0 1
-1 0 0 1
-0 1 0 1</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="sec.projetos.escultor.off">3.2. O formato de armazenamento OFF</h3>
-<div class="paragraph">
-<p>O segundo formato de armazenamento é o formato OFF, geralmente
-associados a arquivos com a extensão <em>.off</em>.  Ele prevê a
-representação de superfícies usando conjuntos de vértices e polígonos
-que os interconectam.  Para fins do projeto proposto, um arquivo OFF
-pode ser descrito da seguinte maneira:</p>
+<p>O formato OFF é geralmente associado a arquivos com a extensão <em>.off</em>.  Ele prevê a representação de superfícies usando conjuntos de vértices e polígonos
+que os interconectam conforme sequências apresentadas dentro do arquivo.  Para fins do projeto proposto, um arquivo OFF pode ser descrito da seguinte maneira:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -992,7 +864,6 @@ Face 6: P1 P2 P6 P5</pre>
 <div class="paragraph">
 <p>Neste arquivo, o modelo 3d possui 8 vértices e 6 faces declarados. O
 número de arestas igual a zero não é utilizado.</p>
-</div>
 </div>
 </div>
 </div>
@@ -1438,7 +1309,7 @@ classe <code>Sculptor</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2021-02-26 09:17:45 -0300
+Última atualização 2021-07-13 14:02:23 -0300
 </div>
 </div>
 <style>
