@@ -538,7 +538,7 @@ transparência, necessárias para idealizar os elementos de uma escultura.</p>
 </div>
 <div class="paragraph">
 <p>As matrizes tridimensionais possuem dimensões de largura, altura e
-largura especificadas pelo usuário, onde os índices dos elementos
+profundidade especificadas pelo usuário, onde os índices dos elementos
 nessa matriz coresponderiam às posições dos voxels no espaço discreto.</p>
 </div>
 <div class="paragraph">
@@ -785,8 +785,7 @@ tridimensionais dos <code>NVertices</code> presentes na figura.</p>
 definida por uma sequência de índices em uma linha do arquivo.  O
 primeiro elemento da linha define o número de vértices na referida
 face.  Em seguida, são apresentadas os índices dos <code>NVertices</code>
-vértices da face, bem como a cor da face no formato RGBA, tal como
-descrito para o formato VECT. Cada cor é composta por um conjunto de
+vértices da face, bem como a cor da face no formato RGBA. Cada cor é composta por um conjunto de
 quatro números em ponto flutuante na faixa \$[0,1\$], onde os três
 primeiros definem a cor da face (Red, Green, Blue) e o último define a
 sua transparência.</p>
@@ -944,7 +943,7 @@ mesmo a cor atual de desenho</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>void cutBox(int x0, int x1, int y0, int y1, int z0, int z1)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Desativa todos os voxels no intervalo \$x \in [x0,x1\$], \$y \in [y0,y1\$], \$z \in [z0, z1\$] e atribui aos mesmos a cor atual de desenho</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Desativa todos os voxels no intervalo \$x \in [x0,x1\$], \$y \in [y0,y1\$], \$z \in [z0, z1\$]</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>void putSphere(int xcenter, int ycenter, int zcenter, int radius)</code></p></td>
@@ -1011,7 +1010,7 @@ equivalente às propriedades da matriz.</p>
 <div class="paragraph">
 <p>Elabore um pequeno programa de testes que explore o uso de TODAS os
 métodos especificados para desenvolver uma escultura digital e
-salvá-la nos formatos <code>OFF</code> e <code>VECT</code></p>
+salvá-la no formato <code>OFF</code>.</p>
 </div>
 </div>
 </div>
@@ -1309,7 +1308,7 @@ classe <code>Sculptor</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2021-07-13 14:02:23 -0300
+Última atualização 2021-08-03 08:40:05 -0300
 </div>
 </div>
 <style>
