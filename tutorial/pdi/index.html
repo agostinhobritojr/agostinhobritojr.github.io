@@ -536,42 +536,36 @@ pre.pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
 <ul class="sectlevel2">
 <li><a href="#_descrição_do_programa_labeling_cpp">3.1. Descrição do programa <code>labeling.cpp</code></a></li>
 <li><a href="#_exercícios_2">3.2. Exercícios</a></li>
+<li><a href="#_descrição_do_programa_histogram_cpp">3.3. Descrição do programa <code>histogram.cpp</code></a></li>
+<li><a href="#_exercícios_3">3.4. Exercícios</a></li>
+<li><a href="#_descrição_do_programa_filtroespacial_cpp">3.5. Descrição do programa <code>filtroespacial.cpp</code></a></li>
+<li><a href="#_exercícios_4">3.6. Exercícios</a></li>
 </ul>
 </li>
-<li><a href="#_manipulação_de_histogramas">4. Manipulação de histogramas</a>
+<li><a href="#_filtragem_no_domínio_espacial_ii">4. Filtragem no domínio espacial II</a>
 <ul class="sectlevel2">
-<li><a href="#_descrição_do_programa_histogram_cpp">4.1. Descrição do programa <code>histogram.cpp</code></a></li>
-<li><a href="#_exercícios_3">4.2. Exercícios</a></li>
+<li><a href="#_exercícios_5">4.1. Exercícios</a></li>
 </ul>
 </li>
-<li><a href="#_filtragem_no_domínio_espacial_i">5. Filtragem no domínio espacial I</a>
+<li><a href="#_filtragem_no_domínio_da_frequência">5. Filtragem no domínio da frequência</a>
 <ul class="sectlevel2">
-<li><a href="#_descrição_do_programa_filtroespacial_cpp">5.1. Descrição do programa <code>filtroespacial.cpp</code></a></li>
-<li><a href="#_exercícios_4">5.2. Exercícios</a></li>
+<li><a href="#_descrição_do_programa_dft_cpp">5.1. Descrição do programa <code>dft.cpp</code></a></li>
+<li><a href="#_exercícios_6">5.2. Exercícios</a></li>
+<li><a href="#_canny_e_a_arte_com_pontilhismo">5.3. Canny e a arte com pontilhismo</a></li>
+<li><a href="#_descrição_do_programa_pontilhismo_cpp">5.4. Descrição do programa <code>pontilhismo.cpp</code></a></li>
+<li><a href="#_exercícios_7">5.5. Exercícios</a></li>
 </ul>
 </li>
-<li><a href="#_filtragem_no_domínio_espacial_ii">6. Filtragem no domínio espacial II</a>
+<li><a href="#_quantização_vetorial_com_k_means">6. Quantização vetorial com k-means</a>
 <ul class="sectlevel2">
-<li><a href="#_exercícios_5">6.1. Exercícios</a></li>
+<li><a href="#_descrição_do_programa_kmeans_cpp">6.1. Descrição do programa <code>kmeans.cpp</code></a></li>
+<li><a href="#_exercícios_8">6.2. Exercícios</a></li>
 </ul>
 </li>
-<li><a href="#_filtragem_no_domínio_da_frequência">7. Filtragem no domínio da frequência</a>
+<li><a href="#_filtragem_de_forma_com_morfologia_matemática">7. Filtragem de forma com morfologia matemática</a>
 <ul class="sectlevel2">
-<li><a href="#_descrição_do_programa_dft_cpp">7.1. Descrição do programa <code>dft.cpp</code></a></li>
-<li><a href="#_exercícios_6">7.2. Exercícios</a></li>
-</ul>
-</li>
-<li><a href="#_detecção_de_bordas_com_o_algoritmo_de_canny">8. Detecção de bordas com o algoritmo de Canny</a>
-<ul class="sectlevel2">
-<li><a href="#_canny_e_a_arte_com_pontilhismo">8.1. Canny e a arte com pontilhismo</a></li>
-<li><a href="#_descrição_do_programa_pontilhismo_cpp">8.2. Descrição do programa <code>pontilhismo.cpp</code></a></li>
-<li><a href="#_exercícios_7">8.3. Exercícios</a></li>
-</ul>
-</li>
-<li><a href="#_quantização_vetorial_com_k_means">9. Quantização vetorial com k-means</a>
-<ul class="sectlevel2">
-<li><a href="#_descrição_do_programa_kmeans_cpp">9.1. Descrição do programa <code>kmeans.cpp</code></a></li>
-<li><a href="#_exercícios_8">9.2. Exercícios</a></li>
+<li><a href="#_descrição_do_programa_morfologia_cpp">7.1. Descrição do programa <code>morfologia.cpp</code></a></li>
+<li><a href="#_exercícios_9">7.2. Exercícios</a></li>
 </ul>
 </li>
 </ul>
@@ -1366,19 +1360,14 @@ uma solução para este problema.</p>
 </li>
 <li>
 <p>Aprimore o algoritmo de contagem apresentado para identificar
-regiões com ou sem buracos internos que existam na cena. Assuma que
-objetos com mais de um buraco podem existir. Inclua suporte no seu
-algoritmo para não contar bolhas que tocam as bordas da imagem. Não
-se pode presumir, a priori, que elas tenham buracos ou não.</p>
+  regiões com ou sem buracos internos que existam na cena. Assuma que
+  objetos com mais de um buraco podem existir. Inclua suporte no seu
+  algoritmo para não contar bolhas que tocam as bordas da imagem. Não
+  se pode presumir, a priori, que elas tenham buracos ou não.
+== Manipulação de histogramas ==</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_manipulação_de_histogramas">4. Manipulação de histogramas</h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>O objetivo dessa lição é mostrar como tratar histogramas de imagens usando
 OpenCV. Histogramas são ferramentas interessantes para avaliar
@@ -1514,8 +1503,9 @@ $ ./histogram</code></pre>
 </div>
 <div class="title">Figura 8. Saída do programa histogram</div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_histogram_cpp">4.1. Descrição do programa <code>histogram.cpp</code></h3>
+<h3 id="_descrição_do_programa_histogram_cpp">3.3. Descrição do programa <code>histogram.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">VideoCapture</span><span class="tok-w"> </span><span class="tok-n">cap</span><span class="tok-p">;</span><span class="tok-w"></span></code></pre>
@@ -1769,7 +1759,7 @@ outra, para o canto superior esquerdo da imagem capturada na câmera.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_3">4.2. Exercícios</h3>
+<h3 id="_exercícios_3">3.4. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1782,21 +1772,16 @@ gerado. Assuma que as imagens processadas serão em tons de cinza.</p>
 </li>
 <li>
 <p>Utilizando o programa <a href="exemplos/histogram.cpp" class="bare">exemplos/histogram.cpp</a> como referência,
-implemente um programa <code>motiondetector.cpp</code>. Este deverá
-continuamente calcular o histograma da imagem (apenas uma componente
-de cor é suficiente) e compará-lo com o último histograma
-calculado. Quando a diferença entre estes ultrapassar um limiar
-pré-estabelecido, ative um alarme. Utilize uma função de comparação
-que julgar conveniente.</p>
+  implemente um programa <code>motiondetector.cpp</code>. Este deverá
+  continuamente calcular o histograma da imagem (apenas uma componente
+  de cor é suficiente) e compará-lo com o último histograma
+  calculado. Quando a diferença entre estes ultrapassar um limiar
+  pré-estabelecido, ative um alarme. Utilize uma função de comparação
+  que julgar conveniente.
+== Filtragem no domínio espacial I ==</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_filtragem_no_domínio_espacial_i">5. Filtragem no domínio espacial I</h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>A convolução é um processo pelo qual duas funções se combinam para
 formar uma terceira função no domínio espacial. Tal processo resulta
@@ -2000,8 +1985,9 @@ $ ./filtroespacial</code></pre>
 a imagem original capturada e outra com o resultado da filtragem. O
 filtro inicial escolhido no exemplo é o da média.</p>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_filtroespacial_cpp">5.1. Descrição do programa <code>filtroespacial.cpp</code></h3>
+<h3 id="_descrição_do_programa_filtroespacial_cpp">3.5. Descrição do programa <code>filtroespacial.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-w">  </span><span class="tok-kt">float</span><span class="tok-w"> </span><span class="tok-n">media</span><span class="tok-p">[]</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-mf">0.1111</span><span class="tok-p">,</span><span class="tok-mf">0.1111</span><span class="tok-p">,</span><span class="tok-mf">0.1111</span><span class="tok-p">,</span><span class="tok-w"></span>
@@ -2103,7 +2089,7 @@ capturada.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_4">5.2. Exercícios</h3>
+<h3 id="_exercícios_4">3.6. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2120,7 +2106,7 @@ do filtro laplaciano.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_filtragem_no_domínio_espacial_ii">6. Filtragem no domínio espacial II</h2>
+<h2 id="_filtragem_no_domínio_espacial_ii">4. Filtragem no domínio espacial II</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Este capítulo visa explorar um pouco mais do uso de filtragem espacial
@@ -2320,7 +2306,7 @@ imagem borrada.</p>
 <div class="title">Figura 12. Exemplo de imagens geradas para ponderação no <code>tiltshift</code></div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_5">6.1. Exercícios</h3>
+<h3 id="_exercícios_5">4.1. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2361,7 +2347,7 @@ em vídeos desse tipo.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_filtragem_no_domínio_da_frequência">7. Filtragem no domínio da frequência</h2>
+<h2 id="_filtragem_no_domínio_da_frequência">5. Filtragem no domínio da frequência</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>O objetivo desse capítulo é entender como se dá o uso da filtragem no
@@ -2754,7 +2740,7 @@ exemplo mostrado na Listagem <a href="#exa_dft">DFT</a></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_dft_cpp">7.1. Descrição do programa <code>dft.cpp</code></h3>
+<h3 id="_descrição_do_programa_dft_cpp">5.1. Descrição do programa <code>dft.cpp</code></h3>
 <div class="paragraph">
 <p>O programa funciona capturando continuamente quadros da primeira
 câmera disponível, calcula a Transformada de Fourier e realiza duas
@@ -3093,24 +3079,19 @@ simulada. As opções do menu são descritas na tabela seguinte:</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_6">7.2. Exercícios</h3>
+<h3 id="_exercícios_6">5.2. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
 <p>Utilizando o programa <a href="exemplos/dft.cpp" class="bare">exemplos/dft.cpp</a> como referência,
-implemente o filtro homomórfico para melhorar imagens com iluminação
-irregular. Crie uma cena mal iluminada e ajuste os parâmetros do
-filtro homomórfico para corrigir a iluminação da melhor forma
-possível. Assuma que a imagem fornecida é em tons de cinza.</p>
+  implemente o filtro homomórfico para melhorar imagens com iluminação
+  irregular. Crie uma cena mal iluminada e ajuste os parâmetros do
+  filtro homomórfico para corrigir a iluminação da melhor forma
+  possível. Assuma que a imagem fornecida é em tons de cinza.
+== Detecção de bordas com o algoritmo de Canny ==</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_detecção_de_bordas_com_o_algoritmo_de_canny">8. Detecção de bordas com o algoritmo de Canny</h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>O detector de bordas de Canny é sabidamente reconhecido como um dos
 mais rápidos e eficientes algoritmos para encontrar descontinuidades
@@ -3283,8 +3264,9 @@ matriz onde a imagem de bordas será escrita, e os limiares
 \(T_1\) e \(T_2\), neste caso representado pelas
 quantidades  <code>top_slider</code> e <code>3*top_slider</code>.</p>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_canny_e_a_arte_com_pontilhismo">8.1. Canny e a arte com pontilhismo</h3>
+<h3 id="_canny_e_a_arte_com_pontilhismo">5.3. Canny e a arte com pontilhismo</h3>
 <div class="paragraph">
 <p>O algoritmo de Canny de fato é útil para diversas aplicações em
 processamento de imagens e visão artificial. Informações de bordas
@@ -3428,7 +3410,7 @@ $ ./pontilhismo biel.png</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_pontilhismo_cpp">8.2. Descrição do programa <code>pontilhismo.cpp</code></h3>
+<h3 id="_descrição_do_programa_pontilhismo_cpp">5.4. Descrição do programa <code>pontilhismo.cpp</code></h3>
 <div class="paragraph">
 <p>O programa <code>pontilhismo.cpp</code> não introduz novas funcionalidades da
 biblioteca de programação OpenCV. Entretanto, algumas classes da
@@ -3528,7 +3510,7 @@ agradável na imagem pontilhista.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_7">8.3. Exercícios</h3>
+<h3 id="_exercícios_7">5.5. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3577,10 +3559,10 @@ sua técnica pontilhista.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_quantização_vetorial_com_k_means">9. Quantização vetorial com k-means</h2>
+<h2 id="_quantização_vetorial_com_k_means">6. Quantização vetorial com k-means</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Dá-se o nome de quantização ao grupo de técnicas usadas para mapear os
+<p>Algoritmos de quantização são um grupo de técnicas usadas para mapear os
 dados presentes em um conjunto grande em um conjunto menor de
 elementos. É normalmente usada para fins de compressão de
 dados. Quando um grande conjunto de pontos (vetores) é dividido em
@@ -3715,7 +3697,7 @@ $ ./kmeans sushi.jpg sushi-kmeans.jpg</code></pre>
 <div class="title">Figura 20. Saída do programa kmeans</div>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_kmeans_cpp">9.1. Descrição do programa <code>kmeans.cpp</code></h3>
+<h3 id="_descrição_do_programa_kmeans_cpp">6.1. Descrição do programa <code>kmeans.cpp</code></h3>
 <div class="paragraph">
 <p>O programa kmeans opera sobre a imagem fornecida como primeiro
 argumento de modo a reduzir a quantidade de cores presentes na mesma
@@ -3794,7 +3776,7 @@ os centros obtidos na execução do k-means.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_8">9.2. Exercícios</h3>
+<h3 id="_exercícios_8">6.2. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3805,10 +3787,183 @@ os centros obtidos na execução do k-means.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_filtragem_de_forma_com_morfologia_matemática">7. Filtragem de forma com morfologia matemática</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A filtragem de forma é uma técnica de processamento de imagens que visa corrigir imperfeições relacionadas com a forma de objetos que compõem, como por exemplo pequenas regiões. Ela é realizada através de operações morfológicas que atuam sobre a forma de objetos na imagem, modificando a propriedade dos pixels conforme propriedades de uma vizinhança selecionada. Assim como na operação de convolução a máscara utilizada desempenha um papel fundamental no resultado do processo, na morfologia, o efeito da filtragem é controlada por um conjunto denominado elemento estruturante. O elemento estruturante normalmente é uma matriz binária que define a forma e o tamanho da vizinhança que será utilizada para a filtragem.</p>
+</div>
+<div class="paragraph">
+<p>A <a href="#fig_falhas_de_forma">Figura 21</a> mostra um exemplo típico de uma imagem corrompiada pelo ruído de forma. Perceba que a figura contém várias linhas que não são desejadas, tanto permeando a região de fundo escuro quanto a região branca que representa o objeto.</p>
+</div>
+<div id="fig_falhas_de_forma" class="imageblock">
+<div class="content">
+<img src="data:image/png;base64,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" alt="Falhas de forma">
+</div>
+<div class="title">Figura 21. Figura com falhas de forma</div>
+</div>
+<div class="paragraph">
+<p>A filtragem de forma pode ser utilizada para corrigir esse problema usando o programa <a href="exemplos/morfologia.cpp">morfologia.cpp</a>, que é mostrado na <a href="#exa_filtragem_forma">Listagem 12</a>.</p>
+</div>
+<div id="exa_filtragem_forma" class="listingblock">
+<div class="title">Listagem 12. morfologia.cpp</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-cp">#include</span><span class="tok-w"> </span><span class="tok-cpf">&lt;iostream&gt;</span><span class="tok-cp"></span>
+<span class="tok-cp">#include</span><span class="tok-w"> </span><span class="tok-cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="tok-cp"></span>
+
+<span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">argc</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">char</span><span class="tok-o">**</span><span class="tok-w"> </span><span class="tok-n">argv</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-w"></span>
+<span class="tok-w">  </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">Mat</span><span class="tok-w"> </span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">erosao</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">dilatacao</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">abertura</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">fechamento</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">abertfecha</span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-w">  </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">Mat</span><span class="tok-w"> </span><span class="tok-n">str</span><span class="tok-p">;</span><span class="tok-w"></span>
+
+<span class="tok-w">  </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">argc</span><span class="tok-w"> </span><span class="tok-o">!=</span><span class="tok-w"> </span><span class="tok-mi">2</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-n">std</span><span class="tok-o">::</span><span class="tok-n">cout</span><span class="tok-w"> </span><span class="tok-o">&lt;&lt;</span><span class="tok-w"> </span><span class="tok-s">&quot;morfologia entrada saida</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-w">  </span><span class="tok-p">}</span><span class="tok-w"></span>
+
+<span class="tok-w">  </span><span class="tok-n">image</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">imread</span><span class="tok-p">(</span><span class="tok-n">argv</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">],</span><span class="tok-w"> </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">IMREAD_UNCHANGED</span><span class="tok-p">);</span><span class="tok-w"></span>
+
+<span class="tok-c1">//  image = cv::imread(argv[1], -1);</span>
+<span class="tok-w">  </span>
+<span class="tok-w">  </span><span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">empty</span><span class="tok-p">())</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-n">std</span><span class="tok-o">::</span><span class="tok-n">cout</span><span class="tok-w"> </span><span class="tok-o">&lt;&lt;</span><span class="tok-w"> </span><span class="tok-s">&quot;Erro ao carregar a imagem: &quot;</span><span class="tok-w"> </span><span class="tok-o">&lt;&lt;</span><span class="tok-w"> </span><span class="tok-n">argv</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">&lt;&lt;</span><span class="tok-w"> </span><span class="tok-n">std</span><span class="tok-o">::</span><span class="tok-n">endl</span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-w">    </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-mi">-1</span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-w">  </span><span class="tok-p">}</span><span class="tok-w"></span>
+
+<span class="tok-w">  </span><span class="tok-c1">// elemento estruturante</span>
+<span class="tok-w">  </span><span class="tok-n">str</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">getStructuringElement</span><span class="tok-p">(</span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">MORPH_RECT</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">Size</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">3</span><span class="tok-p">));</span><span class="tok-w"></span>
+<span class="tok-w">  </span><span class="tok-c1">// erosao</span>
+<span class="tok-w">  </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">erode</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">erosao</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">str</span><span class="tok-p">);</span><span class="tok-w"></span>
+<span class="tok-w">  </span><span class="tok-c1">// dilatacao</span>
+<span class="tok-w">  </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">dilate</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">dilatacao</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">str</span><span class="tok-p">);</span><span class="tok-w"></span>
+<span class="tok-w">  </span><span class="tok-c1">// abertura</span>
+<span class="tok-w">  </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">morphologyEx</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">abertura</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">MORPH_OPEN</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">str</span><span class="tok-p">);</span><span class="tok-w"></span>
+<span class="tok-w">  </span><span class="tok-c1">// fechamento</span>
+<span class="tok-w">  </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">morphologyEx</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">fechamento</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">MORPH_CLOSE</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">str</span><span class="tok-p">);</span><span class="tok-w"></span>
+<span class="tok-w">  </span><span class="tok-c1">// abertura -&gt; fechamento</span>
+<span class="tok-w">  </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">morphologyEx</span><span class="tok-p">(</span><span class="tok-n">abertura</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">abertfecha</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">MORPH_CLOSE</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">str</span><span class="tok-p">);</span><span class="tok-w"></span>
+<span class="tok-w">  </span>
+<span class="tok-w">  </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">Mat</span><span class="tok-w"> </span><span class="tok-n">matArray</span><span class="tok-p">[]</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-n">erosao</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">dilatacao</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">abertura</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">fechamento</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">abertfecha</span><span class="tok-p">};</span><span class="tok-w"></span>
+<span class="tok-w">  </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">hconcat</span><span class="tok-p">(</span><span class="tok-n">matArray</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">5</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">image</span><span class="tok-p">);</span><span class="tok-w"></span>
+
+<span class="tok-w">  </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;original&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">image</span><span class="tok-p">);</span><span class="tok-w"></span>
+<span class="tok-w">  </span><span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;morfologia&quot;</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">image</span><span class="tok-p">);</span><span class="tok-w"></span>
+
+<span class="tok-w">  </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">waitKey</span><span class="tok-p">();</span><span class="tok-w"></span>
+<span class="tok-w">  </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-w"></span>
+<span class="tok-p">}</span><span class="tok-w"></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Para compilar e executar o programa
+<a href="exemplos/morfologia.cpp">morfologia.cpp</a>, salve-o juntamente com o arquivo
+<a href="exemplos/Makefile">Makefile</a> e a imagem
+<a href="figs/morfoobjetos.png">morfoobjetos.png</a> em um diretório e execute a seguinte
+seqüência de comandos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell"><span></span>$ make morfologia
+$ ./morfologia morfoobjetos.png</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A saída do programa <em>morfologia</em> é mostrado na <a href="#fig_morfologia">Figura 22</a>. Da esquerda para a direita são apresentadas as imagens resultantes das operações <em>erosão</em>, <em>dilatação</em>, <em>abertura</em>, <em>fechamento</em> e <em>abertura</em> seguida de <em>fechamento</em>, respectivamente.</p>
+</div>
+<div id="fig_morfologia" class="imageblock">
+<div class="content">
+<img src="data:image/png;base64,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" alt="Saída do programa morfologia">
+</div>
+<div class="title">Figura 22. Saída do programa morfologia</div>
+</div>
+<div class="sect2">
+<h3 id="_descrição_do_programa_morfologia_cpp">7.1. Descrição do programa <code>morfologia.cpp</code></h3>
+<div class="paragraph">
+<p>O programa <em>morfologia.cpp</em> é um exemplo de aplicação da filtragem de forma. Ele recebe como parâmetro de entrada uma imagem e aplica as operações morfológicas de erosão, dilatação, abertura, fechamento e abertura seguida de fechamento. O programa utiliza a biblioteca <em>OpenCV</em> para carregar a imagem e exibir os resultados.</p>
+</div>
+<div class="paragraph">
+<p>O primeiro passo da filtragem é criar o elemento estruturante que irá modelar as operações de filtragem morfológica.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">str</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">getStructuringElement</span><span class="tok-p">(</span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">MORPH_RECT</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">Size</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">3</span><span class="tok-p">));</span><span class="tok-w"></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A função <code>getStructuringElement()</code> cria um elemento estruturante com a forma de um retângulo de tamanho \$3 \times 3\$, todos preenchidos com o valor 1 (o elemento é representado como um objeto do tipo <code>MAT</code>). Essa marcação <strong>1</strong>s indica que o elemento estruturante irá atuar sobre todos os pixels da vizinhança. A função <code>getStructuringElement</code> também pode ser utilizada para criar elementos estruturantes com formas diferentes, como por exemplo um elemento estruturante com forma de cruz, elipse ou disco, preenchido dentro do retângulo que limita o tamanho do elemento.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">erode</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">erosao</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">str</span><span class="tok-p">);</span><span class="tok-w"></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Realiza a erosão da imagem <code>image</code> pelo elemento estruturante <code>str</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">dilate</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">dilatacao</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">str</span><span class="tok-p">);</span><span class="tok-w"></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Realiza a dilatação da imagem <code>image</code> pelo elemento estruturante <code>str</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">morphologyEx</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">abertura</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">MORPH_OPEN</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">str</span><span class="tok-p">);</span><span class="tok-w"></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Realiza a abertura da imagem <code>image</code> pelo elemento estruturante <code>str</code>. A abertura é uma operação morfológica que consiste na erosão seguida de dilatação. Perceba que, ao contrário da erosão e dilatação, não há uma função específica para realizar a abertura. Para realizar a abertura é necessário chamar a função <code>morphologyEx()</code> passando como parâmetro o valor <code>MORPH_OPEN</code> para o parâmetro <code>op</code>. A função <code>morphologyEx()</code> é uma função genérica que permite realizar algumas das operações morfológicas mais comuns, como erosão, dilatação, abertura, fechamento, top hat, black hat e a transformada hit-or-miss.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">morphologyEx</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">fechamento</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">MORPH_CLOSE</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">str</span><span class="tok-p">);</span><span class="tok-w"></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Realiza o fechamento da imagem <code>image</code> pelo elemento estruturante <code>str</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">morphologyEx</span><span class="tok-p">(</span><span class="tok-n">abertura</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">abertfecha</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">cv</span><span class="tok-o">::</span><span class="tok-n">MORPH_CLOSE</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">str</span><span class="tok-p">);</span><span class="tok-w"></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Realiza a abertura seguida de fechamento da imagem <code>image</code> pelo elemento estruturante <code>str</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercícios_9">7.2. Exercícios</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Um sistema de captura de imagens precisa realizar o reconhecimento de carateres de um visor de segmentos para uma aplicação industrial. O visor mostra caracteres como estes apresentados na <a href="#fig_caracteres_visor">Figura 23</a>.</p>
+</li>
+</ul>
+</div>
+<div id="fig_caracteres_visor" class="imageblock">
+<div class="content">
+<img src="data:image/png;base64,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" alt="digitos">
+</div>
+<div class="title">Figura 23. Caracteres do visor</div>
+</div>
+<div class="paragraph">
+<p>Ocorre que o software de reconhecimento de padrões apresenta dificuldades de reconhecer os dígitos em virtude da separação existente entre os segmentos do visor. Idealmente, o software deveria reconhecer os dígitos como na <a href="#fig_caracteres_visor_reconhecidos">Figura 24</a>.</p>
+</div>
+<div id="fig_caracteres_visor_reconhecidos" class="imageblock">
+<div class="content">
+<img src="data:image/png;base64,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" alt="digitos filtered">
+</div>
+<div class="title">Figura 24. Caracteres ideais para o reconhecimento</div>
+</div>
+<div class="paragraph">
+<p>Usando o programa <a href="exemplos/morfologia.cpp">morfologia.cpp</a> como referência, crie um programa que resolva o problema da pré-filtragem de forma para reconhecimento dos caracteres usando operações morfológicas. Você poderá usar as imagens <a href="figs/digitos-1.png">digitos-1.png</a>, <a href="figs/digitos-2.png">digitos-2.png</a>, <a href="figs/digitos-3.png">digitos-3.png</a>, <a href="figs/digitos-4.png">digitos-4.png</a> e <a href="figs/digitos-5.png">digitos-5.png</a> para testar seu programa.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2021-11-12 10:30:38 -0300
 </div>
 </div>
 <script type="text/x-mathjax-config">

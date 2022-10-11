@@ -1,9 +1,6 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
-using namespace cv;
-using namespace std;
-
 int main(int, char**){
   cv::Mat image;
   cv::Vec3b val;
@@ -31,7 +28,7 @@ int main(int, char**){
   
   for(int i=200;i<210;i++){
     for(int j=10;j<200;j++){
-      image.at<Vec3b>(i,j)=val;
+      image.at<cv::Vec3b>(i,j)=val;
     }
   }
 

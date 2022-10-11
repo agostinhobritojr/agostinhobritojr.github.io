@@ -13,7 +13,7 @@ int main( int argc, char** argv ){
 	exit(0);
   }
   
-  Mat img = imread( argv[1], CV_LOAD_IMAGE_COLOR);
+  Mat img = imread( argv[1], cv::IMREAD_COLOR);
   Mat samples(img.rows * img.cols, 3, CV_32F);
 
   for( int y = 0; y < img.rows; y++ ){
@@ -27,9 +27,9 @@ int main( int argc, char** argv ){
   kmeans(samples,
 		 nClusters,
 		 rotulos,
-		 TermCriteria(CV_TERMCRIT_ITER|CV_TERMCRIT_EPS, 10000, 0.0001),
+		 TermCriteria(cv::TermCriteria::EPS, 10000, 0.0001),
 		 nRodadas,
-		 KMEANS_PP_CENTERS,
+		 cv::KMEANS_PP_CENTERS,
 		 centros );
 
 
