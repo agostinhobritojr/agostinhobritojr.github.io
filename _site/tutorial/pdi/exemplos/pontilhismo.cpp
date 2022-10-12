@@ -1,74 +1,66 @@
-#include <iostream>
-#include <opencv2/opencv.hpp>
+#include <algorithm>
+#include <cstdlib>
+#include <ctime>
 #include <fstream>
 #include <iomanip>
-#include <vector>
-#include <algorithm>
+#include <iostream>
 #include <numeric>
-#include <ctime>
-#include <cstdlib>
-
-using namespace std;
-using namespace cv;
+#include <opencv2/opencv.hpp>
+#include <vector>
 
 #define STEP 5
 #define JITTER 3
 #define RAIO 3
 
-int main(int argc, char** argv){
-  vector<int> yrange;
-  vector<int> xrange;
+int main(int argc, char** argv) {
+  std::vector<int> yrange;
+  std::vector<int> xrange;
 
-  Mat image, frame, points;
+  cv::Mat image, frame, points;
 
   int width, height, gray;
   int x, y;
-  
-  image= imread(argv[1],CV_LOAD_IMAGE_GRAYSCALE);
 
-  srand(time(0));
-  
-  if(!image.data){
-	cout << "nao abriu" << argv[1] << endl;
-    cout << argv[0] << " imagem.jpg";
-    exit(0);
+  image = cv::imread(argv[1], cv::IMREAD_GRAYSCALE);
+
+  std::srand(std::time(0));
+
+  if (image.empty()) {
+    std::cout << "Could not open or find the image" << std::endl;
+    return -1;
   }
 
-  width=image.size().width;
-  height=image.size().height;
+  width = image.cols;
+  height = image.rows;
 
-  xrange.resize(height/STEP);
-  yrange.resize(width/STEP);
-  
-  iota(xrange.begin(), xrange.end(), 0); 
-  iota(yrange.begin(), yrange.end(), 0);
+  xrange.resize(height / STEP);
+  yrange.resize(width / STEP);
 
-  for(uint i=0; i<xrange.size(); i++){
-    xrange[i]= xrange[i]*STEP+STEP/2;
+  std::iota(xrange.begin(), xrange.end(), 0);
+  std::iota(yrange.begin(), yrange.end(), 0);
+
+  for (uint i = 0; i < xrange.size(); i++) {
+    xrange[i] = xrange[i] * STEP + STEP / 2;
   }
 
-  for(uint i=0; i<yrange.size(); i++){
-    yrange[i]= yrange[i]*STEP+STEP/2;
+  for (uint i = 0; i < yrange.size(); i++) {
+    yrange[i] = yrange[i] * STEP + STEP / 2;
   }
 
-  points = Mat(height, width, CV_8U, Scalar(255));
+  points = cv::Mat(height, width, CV_8U, cv::Scalar(255));
 
-  random_shuffle(xrange.begin(), xrange.end());
-  
-  for(auto i : xrange){
-    random_shuffle(yrange.begin(), yrange.end());
-    for(auto j : yrange){
-      x = i+rand()%(2*JITTER)-JITTER+1;
-      y = j+rand()%(2*JITTER)-JITTER+1;
-      gray = image.at<uchar>(x,y);
-      circle(points,
-             cv::Point(y,x),
-             RAIO,
-             CV_RGB(gray,gray,gray),
-             -1,
-             CV_AA);
+  std::random_shuffle(xrange.begin(), xrange.end());
+
+  for (auto i : xrange) {
+    std::random_shuffle(yrange.begin(), yrange.end());
+    for (auto j : yrange) {
+      x = i + std::rand() % (2 * JITTER) - JITTER + 1;
+      y = j + std::rand() % (2 * JITTER) - JITTER + 1;
+      gray = image.at<uchar>(x, y);
+      cv::circle(points, cv::Point(y, x), RAIO, CV_RGB(gray, gray, gray),
+                 cv::FILLED, cv::LINE_AA);
     }
   }
-  imwrite("pontos.jpg", points);
+  cv::imwrite("pontos.jpg", points);
   return 0;
 }
