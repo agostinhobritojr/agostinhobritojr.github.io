@@ -637,9 +637,9 @@ estrutura <code>Voxel</code> é definida na listagem <a href="#list_voxel">Códi
 <div class="title">Listagem 1. Código fonte da estrutura <code>Voxel</code></div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="cpp"><span></span><span class="tok-k">struct</span> <span class="tok-nc">Voxel</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-w"></span>
-<span class="tok-w">  </span><span class="tok-kt">float</span><span class="tok-w"> </span><span class="tok-n">r</span><span class="tok-p">,</span><span class="tok-n">g</span><span class="tok-p">,</span><span class="tok-n">b</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c1">// Colors</span>
-<span class="tok-w">  </span><span class="tok-kt">float</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c1">// Transparency</span>
-<span class="tok-w">  </span><span class="tok-kt">bool</span><span class="tok-w"> </span><span class="tok-n">isOn</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c1">// Included or not</span>
+<span class="tok-w">  </span><span class="tok-kt">float</span><span class="tok-w"> </span><span class="tok-n">r</span><span class="tok-p">,</span><span class="tok-n">g</span><span class="tok-p">,</span><span class="tok-n">b</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c1">// Cores</span>
+<span class="tok-w">  </span><span class="tok-kt">float</span><span class="tok-w"> </span><span class="tok-n">a</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c1">// Trasnparencia</span>
+<span class="tok-w">  </span><span class="tok-kt">bool</span><span class="tok-w"> </span><span class="tok-n">show</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-c1">// Incluido ou nao</span>
 <span class="tok-p">};</span><span class="tok-w"></span></code></pre>
 </div>
 </div>
@@ -658,7 +658,7 @@ de canal alfa e deve assumir valores na faixa \$[0,1\$], onde <code>0</code>
 denota transparência total e <code>1</code> denota total opacidade.</p>
 </div>
 <div class="paragraph">
-<p>Finalmente, a propriedade <code>isOn</code> define se o voxel correspondente
+<p>Finalmente, a propriedade <code>show</code> define se o voxel correspondente
 deve ser incluído no arquivo digital que irá representar a
 escultura. Para ilustrar a ideia, considere o exemplo de uma matriz 3D
 de dimensões \$[2 \times 2 \times 2\$] voxels com as seguintes propriedades:</p>
@@ -690,7 +690,7 @@ de dimensões \$[2 \times 2 \times 2\$] voxels com as seguintes propriedades:</p
 <td class="tableblock halign-left valign-top"><p class="tableblock">g</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">b</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">alpha</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">isOn</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">show</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
@@ -934,12 +934,12 @@ Face 6: P1 P2 P6 P5</pre>
 -0.5 -0.5 0.5
 0.5 -0.5 0.5
 0.5 0.5 0.5
-4 0 3 2 1 1 1 1 1
-4 4 5 6 7 1 1 1 1
-4 0 1 5 4 1 1 1 1
-4 0 4 7 3 1 1 1 1
-4 3 7 6 2 1 1 1 1
-4 1 2 6 5 1 1 1 1</code></pre>
+4 0 3 2 1 1.0 1.0 1.0 1.0
+4 4 5 6 7 1.0 1.0 1.0 1.0
+4 0 1 5 4 1.0 1.0 1.0 1.0
+4 0 4 7 3 1.0 1.0 1.0 1.0
+4 3 7 6 2 1.0 1.0 1.0 1.0
+4 1 2 6 5 1.0 1.0 1.0 1.0</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1018,12 +1018,12 @@ de cada um desses métodos é apresentada na <a href="#tab_metodos">Tabela 1</a>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>void putVoxel(int x, int y, int z)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ativa o voxel na posição (x,y,z) (fazendo <code>isOn = true</code>) e atribui ao
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ativa o voxel na posição (x,y,z) (fazendo <code>show = true</code>) e atribui ao
 mesmo a cor atual de desenho</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>void cutVoxel(int x, int y, int z)</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Desativa o voxel na posição (x,y,z) (fazendo <code>isOn = false</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Desativa o voxel na posição (x,y,z) (fazendo <code>show = false</code>)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>void putBox(int x0, int x1, int y0, int y1, int z0, int z1)</code></p></td>
@@ -1073,14 +1073,14 @@ representar esse voxel e como ela será construída.</p>
 <p>Poder-se-ia pensar em várias representações possíveis, tais como
 esferas ou pirâmides, mas a representação cúbica deverá ser a
 escolhida para este projeto. Dessa forma, cada vez que um voxel de
-coordenadas \$(x,y,z)\$ tiver sua propriedade <code>isOn = true</code>, o
+coordenadas \$(x,y,z)\$ tiver sua propriedade <code>show = true</code>, o
 método de gravação do formato OFF deverá prever o desenho de um cubo
 com lado de comprimento igual a 1 com as mesmas propriedades de cor e
 transparência do voxel cujo centro coincide com o centro desse voxel.</p>
 </div>
 <div class="paragraph">
 <p>Por exemplo, se o voxel de posição \$(x,y,z)=(3,2,5)\$ tiver sua
-propriedade <code>isOn = true</code>, deveria ser previsto um cubo cujas faces
+propriedade <code>show = true</code>, deveria ser previsto um cubo cujas faces
 possuem a mesma cor do cubo e abrangendo a região \$x \in
 [2.5,3.5\$], \$y \in [1.5,2.5\$] e \$z \in [4.5, 5.5\$]. Para
 criar o cubo, deve-se portanto, prever-se no arquivo OFF um conjunto
@@ -1089,7 +1089,7 @@ de 8 vértices e as 6 faces que os interconectam.</p>
 <div class="paragraph">
 <p>Portanto, é tarefa do método <code>writeOFF()</code> criar um arquivo de
 computador escrito no formato <code>OFF</code> onde para um matriz com <code>Nvoxels</code>
-voxels com propriedade <code>isOn=true</code>, exista um total de <code>8*Nvoxels</code>
+voxels com propriedade <code>show=true</code>, exista um total de <code>8*Nvoxels</code>
 vértices e <code>6*Nvoxels</code> faces para representar escultura digital
 equivalente às propriedades da matriz.</p>
 </div>
@@ -1491,7 +1491,7 @@ e uso do programa</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2022-06-07 16:23:00 -0300
+Última atualização 2022-10-25 15:17:44 -0300
 </div>
 </div>
 <script type="text/x-mathjax-config">
