@@ -34,8 +34,7 @@ int main(int argc, char** argv) {
   cv::Mat matArray[] = {erosao, dilatacao, abertura, fechamento, abertfecha};
   cv::hconcat(matArray, 5, image);
 
-  cv::imshow("original", image);
-  imshow("morfologia", image);
+  cv::imshow("morfologia", image);
 
   cv::waitKey();
   return 0;
