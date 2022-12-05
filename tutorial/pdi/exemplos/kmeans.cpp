@@ -6,7 +6,8 @@ int main(int argc, char** argv) {
 
   cv::Mat rotulos, centros;
 
-  if (argc != 2) {
+  if (argc != 3) {
+    std::cout << "kmeans entrada.jpg saida.jpg\n";
     exit(0);
   }
 
