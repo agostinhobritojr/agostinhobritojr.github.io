@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="_limiarização" class="book toc2 toc-left">
+<body id="threshold" class="book toc2 toc-left">
 <div id="header">
 <h1>Introdução ao processamento digital de imagens com OpenCV</h1>
 <div class="details">
@@ -451,36 +451,36 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <p><span class="toc-root"><a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a></span></p><ul class="sectlevel1">
-<li><a href="_prefácio.html">Prefácio</a>
+<li><a href="preface.html">1. Prefácio</a>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
+<li><a href="espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_da_frequência.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
+<li><a href="frequencia.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
 </li>
-<li><a href="_segmentação_de_imagens.html">Parte III: Segmentação de imagens</a>
+<li><a href="segmentacao.html">Parte III: Segmentação de imagens</a>
 <ul class="sectlevel1">
-<li><a href="_limiarização.html"><span class="toc-current">11. Limiarização</span></a>
+<li><a href="threshold.html"><span class="toc-current">12. Limiarização</span></a>
 <ul class="sectlevel2">
-<li><a href="_limiarização.html#_descrição_do_programa_threshold_cpp">11.1. Descrição do programa <code>threshold.cpp</code></a>
+<li><a href="threshold.html#_descrição_do_programa_threshold_cpp">12.1. Descrição do programa <code>threshold.cpp</code></a>
 </li>
-<li><a href="_limiarização.html#_exercícios_10">11.2. Exercícios</a>
-</li>
-</ul>
-</li>
-<li><a href="_detecção_de_bordas_com_o_algoritmo_de_canny.html">12. Detecção de bordas com o algoritmo de Canny</a>
-</li>
-<li><a href="_quantização_vetorial_com_k_means.html">13. Quantização vetorial com k-means</a>
+<li><a href="threshold.html#_exercícios_10">12.2. Exercícios</a>
 </li>
 </ul>
 </li>
-<li><a href="_outras_transformadas_matemáticas.html">Parte IV: Outras Transformadas Matemáticas</a>
+<li><a href="canny.html">13. Detecção de bordas com o algoritmo de Canny</a>
+</li>
+<li><a href="kmeans.html">14. Quantização vetorial com k-means</a>
+</li>
+</ul>
+</li>
+<li><a href="outras.html">Parte IV: Outras Transformadas Matemáticas</a>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_limiarização">11. Limiarização</h2>
+<h2 id="threshold">12. Limiarização</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A limiarização (ou Threshold) é uma técnica de processamento de imagens que visa separar os pixels de uma imagem em categorias distintas. As técnicas mais comuns lidam com imagens em tons de cinza, onde a separação é feita em duas categorias: pixels que possuem intensidade maior que um limiar e pixels que possuem intensidade menor que o limiar. Nesse caso, a imagem resultante de um processo de limiarização de uma imagem em tons é uma imagem binária, onde os pixels são representados por valores de intensidade 0 ou 255.</p>
@@ -492,7 +492,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>A biblioteca OpenCV possui uma função que implementa a limiarização de imagens, que serve tanto para o caso manual quanto para o automático. A função <code>cv::threshold()</code> recebe como argumentos a imagem a ser processada, a imagem onde o resultado será gravado, o valor do limiar, o valor máximo que um pixel pode assumir e o tipo de limiarização.</p>
 </div>
 <div class="paragraph">
-<p>Um exemplo de aplicação do algoritmo de limiarização aplicado à imagem da <a href="_limiarização.html#fig_threshold_exemplo">Figura 26</a> é mostrado na <a href="_limiarização.html#fig_threshold">Figura 27</a>. Trata-se de sementes colocadas sobre um anteparo branco e fotografadas sob iluminação regular.</p>
+<p>Um exemplo de aplicação do algoritmo de limiarização aplicado à imagem da <a href="threshold.html#fig_threshold_exemplo">Figura 26</a> é mostrado na <a href="threshold.html#fig_threshold">Figura 27</a>. Trata-se de sementes colocadas sobre um anteparo branco e fotografadas sob iluminação regular.</p>
 </div>
 <div class="paragraph">
 <p>Neste exemplo, a função de cálculo da limiarização foi ajustada para threshold automático usando o método de Otsu. Observe que a imagem resultante da limiarização apresenta dois tipos de pixels: pixels brancos marcando o fundo da cena e pixels pretos, marcando os locais onde as sementes estavam localizadas.</p>
@@ -510,7 +510,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Figura 27. Detecção de bordas usando o filtro de threshold</div>
 </div>
 <div class="paragraph">
-<p>O programa de referência utilizado para essa tarefa, <a href="exemplos/threshold/threshold.cpp">threshold.cpp</a>, é mostrado na <a href="_limiarização.html#exa_threshold">Listagem 31</a>.</p>
+<p>O programa de referência utilizado para essa tarefa, <a href="exemplos/threshold/threshold.cpp">threshold.cpp</a>, é mostrado na <a href="threshold.html#exa_threshold">Listagem 31</a>.</p>
 </div>
 <div id="exa_threshold" class="listingblock">
 <div class="title">Listagem 31. threshold.cpp</div>
@@ -540,7 +540,7 @@ int main(int argc, char** argv) {
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/threshold/threshold.cpp">threshold.cpp</a>, salve-o em um diretório juntamente com o arquivo  <a href="exemplos/threshold/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="_limiarização.html#threshold-cmake">Listagem 32</a>), a imagem <a href="figs/sementes1.png">sementes1.png</a> e execute a seqüência de comandos mostrada na <a href="_limiarização.html#ex-compilacao-threshold">Listagem 33</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/threshold/threshold.cpp">threshold.cpp</a>, salve-o em um diretório juntamente com o arquivo  <a href="exemplos/threshold/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="threshold.html#threshold-cmake">Listagem 32</a>), a imagem <a href="figs/sementes1.png">sementes1.png</a> e execute a seqüência de comandos mostrada na <a href="threshold.html#ex-compilacao-threshold">Listagem 33</a>.</p>
 </div>
 <div id="threshold-cmake" class="listingblock">
 <div class="title">Listagem 32. CMakeLists.txt</div>
@@ -569,7 +569,7 @@ $ ./threshold ../sementes1.png</code></pre>
 <p>O programa irá gerar uma imagem chamada <code>otsu.png</code> com o resultado da limiarização da imagem <code>sementes1.png</code> usando o método de Otsu.</p>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_threshold_cpp">11.1. Descrição do programa <code>threshold.cpp</code></h3>
+<h3 id="_descrição_do_programa_threshold_cpp">12.1. Descrição do programa <code>threshold.cpp</code></h3>
 <div class="paragraph">
 <p>Neste pequeno exemplo, apenas uma linha merece atenção especial:</p>
 </div>
@@ -583,11 +583,11 @@ $ ./threshold ../sementes1.png</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_10">11.2. Exercícios</h3>
+<h3 id="_exercícios_10">12.2. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Repita agora o mesmo procedimento de limiarização para a imagem <a href="figs/sementes2.png">sementes2.png</a> mostrada na <a href="_limiarização.html#fig_threshold_exemplo2">Figura 28</a> . Qual é o resultado obtido?</p>
+<p>Repita agora o mesmo procedimento de limiarização para a imagem <a href="figs/sementes2.png">sementes2.png</a> mostrada na <a href="threshold.html#fig_threshold_exemplo2">Figura 28</a> . Qual é o resultado obtido?</p>
 </li>
 </ul>
 </div>
@@ -608,7 +608,7 @@ $ ./threshold ../sementes1.png</code></pre>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ : <a href="_segmentação_de_imagens.html">Segmentação de imagens</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="_detecção_de_bordas_com_o_algoritmo_de_canny.html">Detecção de bordas com o algoritmo de Canny</a> →</p>
+<p>↑ : <a href="segmentacao.html">Segmentação de imagens</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="canny.html">Detecção de bordas com o algoritmo de Canny</a> →</p>
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

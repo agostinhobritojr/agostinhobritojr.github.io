@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="_detecção_de_bordas_com_o_algoritmo_de_canny" class="book toc2 toc-left">
+<body id="canny" class="book toc2 toc-left">
 <div id="header">
 <h1>Introdução ao processamento digital de imagens com OpenCV</h1>
 <div class="details">
@@ -451,38 +451,38 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <p><span class="toc-root"><a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a></span></p><ul class="sectlevel1">
-<li><a href="_prefácio.html">Prefácio</a>
+<li><a href="preface.html">1. Prefácio</a>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
+<li><a href="espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_da_frequência.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
+<li><a href="frequencia.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
 </li>
-<li><a href="_segmentação_de_imagens.html">Parte III: Segmentação de imagens</a>
+<li><a href="segmentacao.html">Parte III: Segmentação de imagens</a>
 <ul class="sectlevel1">
-<li><a href="_limiarização.html">11. Limiarização</a>
+<li><a href="threshold.html">12. Limiarização</a>
 </li>
-<li><a href="_detecção_de_bordas_com_o_algoritmo_de_canny.html"><span class="toc-current">12. Detecção de bordas com o algoritmo de Canny</span></a>
+<li><a href="canny.html"><span class="toc-current">13. Detecção de bordas com o algoritmo de Canny</span></a>
 <ul class="sectlevel2">
-<li><a href="_detecção_de_bordas_com_o_algoritmo_de_canny.html#_canny_e_a_arte_com_pontilhismo">12.1. Canny e a arte com pontilhismo</a>
+<li><a href="canny.html#_canny_e_a_arte_com_pontilhismo">13.1. Canny e a arte com pontilhismo</a>
 </li>
-<li><a href="_detecção_de_bordas_com_o_algoritmo_de_canny.html#_descrição_do_programa_pontilhismo_cpp">12.2. Descrição do programa <code>pontilhismo.cpp</code></a>
+<li><a href="canny.html#_descrição_do_programa_pontilhismo_cpp">13.2. Descrição do programa <code>pontilhismo.cpp</code></a>
 </li>
-<li><a href="_detecção_de_bordas_com_o_algoritmo_de_canny.html#_exercícios_11">12.3. Exercícios</a>
-</li>
-</ul>
-</li>
-<li><a href="_quantização_vetorial_com_k_means.html">13. Quantização vetorial com k-means</a>
+<li><a href="canny.html#_exercícios_11">13.3. Exercícios</a>
 </li>
 </ul>
 </li>
-<li><a href="_outras_transformadas_matemáticas.html">Parte IV: Outras Transformadas Matemáticas</a>
+<li><a href="kmeans.html">14. Quantização vetorial com k-means</a>
+</li>
+</ul>
+</li>
+<li><a href="outras.html">Parte IV: Outras Transformadas Matemáticas</a>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_detecção_de_bordas_com_o_algoritmo_de_canny">12. Detecção de bordas com o algoritmo de Canny</h2>
+<h2 id="canny">13. Detecção de bordas com o algoritmo de Canny</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>O detector de bordas de Canny é sabidamente reconhecido como um dos
@@ -553,7 +553,7 @@ como parte da fronteira.</p>
 </div>
 <div class="paragraph">
 <p>Um exemplo de aplicação desse algoritmo na imagem da
-<a href="_detecção_de_bordas_com_o_algoritmo_de_canny.html#fig_canny_exemplo">Figura 29</a> é mostrado na <a href="_detecção_de_bordas_com_o_algoritmo_de_canny.html#fig_canny">Figura 30</a>. Observe que
+<a href="canny.html#fig_canny_exemplo">Figura 29</a> é mostrado na <a href="canny.html#fig_canny">Figura 30</a>. Observe que
 as bordas encontradas são bem localizadas e geralmente possuem
 espessura igual a 1.</p>
 </div>
@@ -570,7 +570,7 @@ espessura igual a 1.</p>
 <div class="title">Figura 30. Detecção de bordas usando o filtro de Canny</div>
 </div>
 <div class="paragraph">
-<p>O programa de referência utilizado para essa tarefa, <a href="exemplos/canny/canny.cpp">canny.cpp</a>, é mostrado na <a href="_detecção_de_bordas_com_o_algoritmo_de_canny.html#exa_canny">Listagem 34</a>.</p>
+<p>O programa de referência utilizado para essa tarefa, <a href="exemplos/canny/canny.cpp">canny.cpp</a>, é mostrado na <a href="canny.html#exa_canny">Listagem 34</a>.</p>
 </div>
 <div id="exa_canny" class="listingblock">
 <div class="title">Listagem 34. canny.cpp</div>
@@ -610,7 +610,7 @@ int main(int argc, char**argv){
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/canny/canny.cpp">canny.cpp</a>, salve-o em um diretório juntamente com o arquivo  <a href="exemplos/canny/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="_detecção_de_bordas_com_o_algoritmo_de_canny.html#canny-cmake">Listagem 35</a>), a imagem <a href="figs/biel.png">biel.png</a> e execute a seqüência de comandos mostrada na <a href="_detecção_de_bordas_com_o_algoritmo_de_canny.html#ex-compilacao-canny">Listagem 36</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/canny/canny.cpp">canny.cpp</a>, salve-o em um diretório juntamente com o arquivo  <a href="exemplos/canny/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="canny.html#canny-cmake">Listagem 35</a>), a imagem <a href="figs/biel.png">biel.png</a> e execute a seqüência de comandos mostrada na <a href="canny.html#ex-compilacao-canny">Listagem 36</a>.</p>
 </div>
 <div id="canny-cmake" class="listingblock">
 <div class="title">Listagem 35. CMakeLists.txt</div>
@@ -662,7 +662,7 @@ matriz onde a imagem de bordas será escrita, e os limiares
 quantidades  <code>top_slider</code> e <code>3*top_slider</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="_canny_e_a_arte_com_pontilhismo">12.1. Canny e a arte com pontilhismo</h3>
+<h3 id="_canny_e_a_arte_com_pontilhismo">13.1. Canny e a arte com pontilhismo</h3>
 <div class="paragraph">
 <p>O algoritmo de Canny de fato é útil para diversas aplicações em
 processamento de imagens e visão artificial. Informações de bordas
@@ -701,7 +701,7 @@ usando uma sequência aleatória, principalmente quando a técnica
 pontilhista realiza a sobreposição de círculos.</p>
 </div>
 <div class="paragraph">
-<p>Um exemplo de imagem pontilhista é mostrada na <a href="_detecção_de_bordas_com_o_algoritmo_de_canny.html#fig_pontilhismo">Figura 31</a>.</p>
+<p>Um exemplo de imagem pontilhista é mostrada na <a href="canny.html#fig_pontilhismo">Figura 31</a>.</p>
 </div>
 <div id="fig_pontilhismo" class="imageblock">
 <div class="content">
@@ -710,7 +710,7 @@ pontilhista realiza a sobreposição de círculos.</p>
 <div class="title">Figura 31. Imagem pontilhista</div>
 </div>
 <div class="paragraph">
-<p>O programa que gerou essa imagem é mostrado na <a href="_detecção_de_bordas_com_o_algoritmo_de_canny.html#exa_pontilhismo">Listagem 37</a>.</p>
+<p>O programa que gerou essa imagem é mostrado na <a href="canny.html#exa_pontilhismo">Listagem 37</a>.</p>
 </div>
 <div id="exa_pontilhismo" class="listingblock">
 <div class="title">Listagem 37. pontilhismo.cpp</div>
@@ -798,7 +798,7 @@ $ ./pontilhismo biel.png</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_pontilhismo_cpp">12.2. Descrição do programa <code>pontilhismo.cpp</code></h3>
+<h3 id="_descrição_do_programa_pontilhismo_cpp">13.2. Descrição do programa <code>pontilhismo.cpp</code></h3>
 <div class="paragraph">
 <p>O programa <code>pontilhismo.cpp</code> não introduz novas funcionalidades da
 biblioteca de programação OpenCV. Entretanto, algumas classes da
@@ -899,7 +899,7 @@ agradável na imagem pontilhista.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_11">12.3. Exercícios</h3>
+<h3 id="_exercícios_11">13.3. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -922,7 +922,7 @@ Canny para desenhar pontos nos respectivos locais na imagem gerada.</p>
 <li>
 <p>Experimente ir aumentando os limiares do algoritmo de Canny e, para
 cada novo par de limiares, desenhar círculos cada vez menores nas
-posições encontradas. A <a href="_detecção_de_bordas_com_o_algoritmo_de_canny.html#fig_lenapontilhista">Figura 32</a> foi
+posições encontradas. A <a href="canny.html#fig_lenapontilhista">Figura 32</a> foi
 desenvolvida usando essa técnica.</p>
 </li>
 </ul>
@@ -948,7 +948,7 @@ sua técnica pontilhista.</p>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← : <a href="_limiarização.html">Limiarização</a> | ↑ : <a href="_segmentação_de_imagens.html">Segmentação de imagens</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="_quantização_vetorial_com_k_means.html">Quantização vetorial com k-means</a> →</p>
+<p>← : <a href="threshold.html">Limiarização</a> | ↑ : <a href="segmentacao.html">Segmentação de imagens</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="kmeans.html">Quantização vetorial com k-means</a> →</p>
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

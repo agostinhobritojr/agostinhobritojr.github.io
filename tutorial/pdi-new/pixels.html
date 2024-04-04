@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="_manipulando_pixels_em_uma_imagem" class="book toc2 toc-left">
+<body id="pixels" class="book toc2 toc-left">
 <div id="header">
 <h1>Introdução ao processamento digital de imagens com OpenCV</h1>
 <div class="details">
@@ -451,46 +451,46 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <p><span class="toc-root"><a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a></span></p><ul class="sectlevel1">
-<li><a href="_prefácio.html">Prefácio</a>
+<li><a href="preface.html">1. Prefácio</a>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
+<li><a href="espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
 <ul class="sectlevel1">
-<li><a href="conceitos.html">1. Conceitos iniciais</a>
+<li><a href="conceitos.html">2. Conceitos iniciais</a>
 </li>
-<li><a href="_manipulando_pixels_em_uma_imagem.html"><span class="toc-current">2. Manipulando pixels em uma imagem</span></a>
+<li><a href="pixels.html"><span class="toc-current">3. Manipulando pixels em uma imagem</span></a>
 <ul class="sectlevel2">
-<li><a href="_manipulando_pixels_em_uma_imagem.html#_descrição_do_programa_pixels_cpp">2.1. Descrição do programa <code>pixels.cpp</code></a>
+<li><a href="pixels.html#_descrição_do_programa_pixels_cpp">3.1. Descrição do programa <code>pixels.cpp</code></a>
 </li>
-<li><a href="_manipulando_pixels_em_uma_imagem.html#_exercícios">2.2. Exercícios</a>
-</li>
-</ul>
-</li>
-<li><a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html">3. Serialização de dados em ponto flutuante via FileStorage</a>
-</li>
-<li><a href="_decomposição_de_imagens_em_planos_de_bits.html">4. Decomposição de imagens em planos de bits</a>
-</li>
-<li><a href="_preenchendo_regiões.html">5. Preenchendo regiões</a>
-</li>
-<li><a href="_manipulação_de_histogramas.html">6. Manipulação de histogramas</a>
-</li>
-<li><a href="_filtragem_no_domínio_espacial_i.html">7. Filtragem no domínio espacial I</a>
-</li>
-<li><a href="_filtragem_no_domínio_espacial_ii.html">8. Filtragem no domínio espacial II</a>
+<li><a href="pixels.html#_exercícios">3.2. Exercícios</a>
 </li>
 </ul>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_da_frequência.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
+<li><a href="filestorage.html">4. Serialização de dados em ponto flutuante via FileStorage</a>
 </li>
-<li><a href="_segmentação_de_imagens.html">Parte III: Segmentação de imagens</a>
+<li><a href="bitplanes.html">5. Decomposição de imagens em planos de bits</a>
 </li>
-<li><a href="_outras_transformadas_matemáticas.html">Parte IV: Outras Transformadas Matemáticas</a>
+<li><a href="labeling.html">6. Preenchendo regiões</a>
+</li>
+<li><a href="histograma.html">7. Manipulação de histogramas</a>
+</li>
+<li><a href="convolucao.html">8. Filtragem no domínio espacial I</a>
+</li>
+<li><a href="tiltshift.html">9. Filtragem no domínio espacial II</a>
+</li>
+</ul>
+</li>
+<li><a href="frequencia.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
+</li>
+<li><a href="segmentacao.html">Parte III: Segmentação de imagens</a>
+</li>
+<li><a href="outras.html">Parte IV: Outras Transformadas Matemáticas</a>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_manipulando_pixels_em_uma_imagem">2. Manipulando pixels em uma imagem</h2>
+<h2 id="pixels">3. Manipulando pixels em uma imagem</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>O objetivo dessa lição é mostrar como manipular os pixels de uma imagem, mudando a cor de uma pequena região retangular de uma imagem fornecida para processamento.</p>
@@ -515,7 +515,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 <div class="paragraph">
-<p>Para experimentar a manipulação dos pixels em uma imagem, realize a compilação do programa-exemplo <a href="exemplos/pixels.cpp">pixels.cpp</a>, mostrado na <a href="_manipulando_pixels_em_uma_imagem.html#ex-pixels">Listagem 4</a>, e teste-o com a imagem <a href="figs/bolhas.png">bolhas.png</a>. Reproduza o esquema de preparação do arquivo executável com <em>CMake</em>, compile o programa-exemplo e execute-o. Ele deverá abrir a imagem <code>bolhas.png</code> (interpretando-a em escala de cinza) e exibi-la em uma janela, desenhando um quadrado preto em uma região pré-estabelecida.</p>
+<p>Para experimentar a manipulação dos pixels em uma imagem, realize a compilação do programa-exemplo <a href="exemplos/pixels.cpp">pixels.cpp</a>, mostrado na <a href="pixels.html#ex-pixels">Listagem 4</a>, e teste-o com a imagem <a href="figs/bolhas.png">bolhas.png</a>. Reproduza o esquema de preparação do arquivo executável com <em>CMake</em>, compile o programa-exemplo e execute-o. Ele deverá abrir a imagem <code>bolhas.png</code> (interpretando-a em escala de cinza) e exibi-la em uma janela, desenhando um quadrado preto em uma região pré-estabelecida.</p>
 </div>
 <div class="paragraph">
 <p>Após isso, ele irá aguardar que o usuário pressione alguma tecla. Uma vez pressionada a tecla, o programa reabrirá o arquivo da imagem interpretando-a agora em formato com cores e passará a desenhar um quadrado vermelho na mesma região que foi pré-estabelecida.</p>
@@ -563,7 +563,7 @@ int main(int, char**) {
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/pixels/pixels.cpp">pixels.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/pixels/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="_manipulando_pixels_em_uma_imagem.html#pixels-cmake">Listagem 5</a>) e execute a seqüência de comandos mostrada na <a href="_manipulando_pixels_em_uma_imagem.html#ex-compilacao-pixels">Listagem 6</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/pixels/pixels.cpp">pixels.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/pixels/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="pixels.html#pixels-cmake">Listagem 5</a>) e execute a seqüência de comandos mostrada na <a href="pixels.html#ex-compilacao-pixels">Listagem 6</a>.</p>
 </div>
 <div id="pixels-cmake" class="listingblock">
 <div class="title">Listagem 5. CMakeLists.txt</div>
@@ -590,7 +590,7 @@ $ ./pixels</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A saída do programa <em>pixels</em> é mostrado na <a href="_manipulando_pixels_em_uma_imagem.html#fig_pixels">Figura 2</a></p>
+<p>A saída do programa <em>pixels</em> é mostrado na <a href="pixels.html#fig_pixels">Figura 2</a></p>
 </div>
 <div id="fig_pixels" class="imageblock">
 <div class="content">
@@ -599,7 +599,7 @@ $ ./pixels</code></pre>
 <div class="title">Figura 2. Saída do programa pixels</div>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_pixels_cpp">2.1. Descrição do programa <code>pixels.cpp</code></h3>
+<h3 id="_descrição_do_programa_pixels_cpp">3.1. Descrição do programa <code>pixels.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;opencv2/opencv.hpp&gt;</code></pre>
@@ -697,7 +697,7 @@ if(!image.data)
 objeto <code>image</code>. Como a leitura nesta parte do código foi feita assumindo uma imagem em tons de cinza, o tipo de dado presente na memória será neste caso <code>unsigned char</code>. Tipos diferentes poderão gerar resultados incorretos, posto que a função <code>at()</code> interpretará a sequência de bytes da matriz <code>image</code> de forma inapropriada.</p>
 </div>
 <div class="paragraph">
-<p>Para manter os sistema referencial do tipo destrógiro, assume-se que os eixos <em>x</em> e <em>y</em> ficarão organizados conforme apresenta a <a href="_manipulando_pixels_em_uma_imagem.html#fig_eixos">Figura 3</a>, com a origem no canto superior esquerdo da imagem.</p>
+<p>Para manter os sistema referencial do tipo destrógiro, assume-se que os eixos <em>x</em> e <em>y</em> ficarão organizados conforme apresenta a <a href="pixels.html#fig_eixos">Figura 3</a>, com a origem no canto superior esquerdo da imagem.</p>
 </div>
 <div id="fig_eixos" class="imageblock">
 <div class="content">
@@ -746,11 +746,11 @@ val[2] = 255; //R</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios">2.2. Exercícios</h3>
+<h3 id="_exercícios">3.2. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Utilizando o programa da <a href="_manipulando_pixels_em_uma_imagem.html#ex-pixels">Listagem 4</a> como referência, implemente um programa <code>regions.cpp</code>. Esse programa deverá solicitar ao usuário as coordenadas de dois pontos \$P_1\$ e \$P_2\$ localizados dentro dos limites do tamanho da imagem e exibir que lhe for fornecida. Entretanto, a região definida pelo retângulo de vértices opostos definidos pelos pontos \$P_1\$ e \$P_2\$ será exibida com o negativo da imagem na região correspondente. O efeito é ilustrado na <a href="_manipulando_pixels_em_uma_imagem.html#fig_regions">Figura 4</a>.</p>
+<p>Utilizando o programa da <a href="pixels.html#ex-pixels">Listagem 4</a> como referência, implemente um programa <code>regions.cpp</code>. Esse programa deverá solicitar ao usuário as coordenadas de dois pontos \$P_1\$ e \$P_2\$ localizados dentro dos limites do tamanho da imagem e exibir que lhe for fornecida. Entretanto, a região definida pelo retângulo de vértices opostos definidos pelos pontos \$P_1\$ e \$P_2\$ será exibida com o negativo da imagem na região correspondente. O efeito é ilustrado na <a href="pixels.html#fig_regions">Figura 4</a>.</p>
 </li>
 </ul>
 </div>
@@ -763,8 +763,8 @@ val[2] = 255; //R</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Utilizando o programa da <a href="_manipulando_pixels_em_uma_imagem.html#ex-pixels">Listagem 4</a> como referência, implemente um programa <code>trocaregioes.cpp</code>. Seu programa deverá trocar os quadrantes em diagonal na imagem. Explore o uso da classe
-<code>cv::Mat</code> e seus construtores para criar as regiões que serão trocadas. O efeito é ilustrado na <a href="_manipulando_pixels_em_uma_imagem.html#fig_trocaregioes">Figura 5</a>. Assuma que a imagem de entrada tem dimensões múltiplas de 2 para facilitar a implementação do processo de troca.</p>
+<p>Utilizando o programa da <a href="pixels.html#ex-pixels">Listagem 4</a> como referência, implemente um programa <code>trocaregioes.cpp</code>. Seu programa deverá trocar os quadrantes em diagonal na imagem. Explore o uso da classe
+<code>cv::Mat</code> e seus construtores para criar as regiões que serão trocadas. O efeito é ilustrado na <a href="pixels.html#fig_trocaregioes">Figura 5</a>. Assuma que a imagem de entrada tem dimensões múltiplas de 2 para facilitar a implementação do processo de troca.</p>
 </li>
 </ul>
 </div>
@@ -778,7 +778,7 @@ val[2] = 255; //R</code></pre>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← : <a href="conceitos.html">Conceitos iniciais</a> | ↑ : <a href="_processamento_de_imagens_no_domínio_espacial.html">Processamento de Imagens no Domínio Espacial</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html">Serialização de dados em ponto flutuante via FileStorage</a> →</p>
+<p>← : <a href="conceitos.html">Conceitos iniciais</a> | ↑ : <a href="espacial.html">Processamento de Imagens no Domínio Espacial</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="filestorage.html">Serialização de dados em ponto flutuante via FileStorage</a> →</p>
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

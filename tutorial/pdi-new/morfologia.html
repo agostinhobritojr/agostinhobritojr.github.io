@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="_filtragem_de_forma_com_morfologia_matemática" class="book toc2 toc-left">
+<body id="morfologia" class="book toc2 toc-left">
 <div id="header">
 <h1>Introdução ao processamento digital de imagens com OpenCV</h1>
 <div class="details">
@@ -451,21 +451,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <p><span class="toc-root"><a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a></span></p><ul class="sectlevel1">
-<li><a href="_prefácio.html">Prefácio</a>
+<li><a href="preface.html">1. Prefácio</a>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
+<li><a href="espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_da_frequência.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
+<li><a href="frequencia.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
 </li>
-<li><a href="_segmentação_de_imagens.html">Parte III: Segmentação de imagens</a>
+<li><a href="segmentacao.html">Parte III: Segmentação de imagens</a>
 </li>
-<li><a href="_outras_transformadas_matemáticas.html">Parte IV: Outras Transformadas Matemáticas</a>
+<li><a href="outras.html">Parte IV: Outras Transformadas Matemáticas</a>
 <ul class="sectlevel1">
-<li><a href="_filtragem_de_forma_com_morfologia_matemática.html"><span class="toc-current">14. Filtragem de forma com morfologia matemática</span></a>
+<li><a href="morfologia.html"><span class="toc-current">15. Filtragem de forma com morfologia matemática</span></a>
 <ul class="sectlevel2">
-<li><a href="_filtragem_de_forma_com_morfologia_matemática.html#_descrição_do_programa_morfologia_cpp">14.1. Descrição do programa <code>morfologia.cpp</code></a>
+<li><a href="morfologia.html#_descrição_do_programa_morfologia_cpp">15.1. Descrição do programa <code>morfologia.cpp</code></a>
 </li>
-<li><a href="_filtragem_de_forma_com_morfologia_matemática.html#_exercícios_13">14.2. Exercícios</a>
+<li><a href="morfologia.html#_exercícios_13">15.2. Exercícios</a>
 </li>
 </ul>
 </li>
@@ -476,13 +476,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_filtragem_de_forma_com_morfologia_matemática">14. Filtragem de forma com morfologia matemática</h2>
+<h2 id="morfologia">15. Filtragem de forma com morfologia matemática</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A filtragem de forma é uma técnica de processamento de imagens que visa corrigir imperfeições relacionadas com a forma de objetos que compõem, como por exemplo pequenas regiões. Ela é realizada através de operações morfológicas que atuam sobre a forma de objetos na imagem, modificando a propriedade dos morfologia conforme propriedades de uma vizinhança selecionada. Assim como na operação de convolução a máscara utilizada desempenha um papel fundamental no resultado do processo, na morfologia, o efeito da filtragem é controlada por um conjunto denominado elemento estruturante. O elemento estruturante normalmente é uma matriz binária que define a forma e o tamanho da vizinhança que será utilizada para a filtragem.</p>
 </div>
 <div class="paragraph">
-<p>A <a href="_filtragem_de_forma_com_morfologia_matemática.html#fig_falhas_de_forma">Figura 34</a> mostra um exemplo típico de uma imagem corrompida pelo ruído de forma. Perceba que a figura contém várias linhas que não são desejadas, tanto permeando a região de fundo escuro quanto a região branca que representa o objeto.</p>
+<p>A <a href="morfologia.html#fig_falhas_de_forma">Figura 34</a> mostra um exemplo típico de uma imagem corrompida pelo ruído de forma. Perceba que a figura contém várias linhas que não são desejadas, tanto permeando a região de fundo escuro quanto a região branca que representa o objeto.</p>
 </div>
 <div id="fig_falhas_de_forma" class="imageblock">
 <div class="content">
@@ -491,7 +491,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Figura 34. Figura com falhas de forma</div>
 </div>
 <div class="paragraph">
-<p>A filtragem de forma pode ser utilizada para corrigir esse problema usando o programa <a href="exemplos/morfologia/morfologia.cpp">morfologia.cpp</a>, que é mostrado na <a href="_filtragem_de_forma_com_morfologia_matemática.html#exa_filtragem_forma">Listagem 41</a>.</p>
+<p>A filtragem de forma pode ser utilizada para corrigir esse problema usando o programa <a href="exemplos/morfologia/morfologia.cpp">morfologia.cpp</a>, que é mostrado na <a href="morfologia.html#exa_filtragem_forma">Listagem 41</a>.</p>
 </div>
 <div id="exa_filtragem_forma" class="listingblock">
 <div class="title">Listagem 41. morfologia.cpp</div>
@@ -540,7 +540,7 @@ int main(int argc, char** argv) {
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/morfologia/morfologia.cpp">morfologia.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/morfologia/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="_filtragem_de_forma_com_morfologia_matemática.html#morfologia-cmake">Listagem 42</a>), a imagem <a href="figs/morfoobjetos.png">morfoobjetos.png</a> e execute a seqüência de comandos mostrada na <a href="_filtragem_de_forma_com_morfologia_matemática.html#ex-compilacao-morfologia">Listagem 43</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/morfologia/morfologia.cpp">morfologia.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/morfologia/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="morfologia.html#morfologia-cmake">Listagem 42</a>), a imagem <a href="figs/morfoobjetos.png">morfoobjetos.png</a> e execute a seqüência de comandos mostrada na <a href="morfologia.html#ex-compilacao-morfologia">Listagem 43</a>.</p>
 </div>
 <div id="morfologia-cmake" class="listingblock">
 <div class="title">Listagem 42. CMakeLists.txt</div>
@@ -566,7 +566,7 @@ $ ./morfologia ../morfoobjetos.png</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A saída do programa <em>morfologia</em> é mostrado na <a href="_filtragem_de_forma_com_morfologia_matemática.html#fig_morfologia">Figura 35</a>. Da esquerda para a direita são apresentadas as imagens resultantes das operações <em>erosão</em>, <em>dilatação</em>, <em>abertura</em>, <em>fechamento</em> e <em>abertura</em> seguida de <em>fechamento</em>, respectivamente.</p>
+<p>A saída do programa <em>morfologia</em> é mostrado na <a href="morfologia.html#fig_morfologia">Figura 35</a>. Da esquerda para a direita são apresentadas as imagens resultantes das operações <em>erosão</em>, <em>dilatação</em>, <em>abertura</em>, <em>fechamento</em> e <em>abertura</em> seguida de <em>fechamento</em>, respectivamente.</p>
 </div>
 <div id="fig_morfologia" class="imageblock">
 <div class="content">
@@ -575,7 +575,7 @@ $ ./morfologia ../morfoobjetos.png</code></pre>
 <div class="title">Figura 35. Saída do programa morfologia</div>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_morfologia_cpp">14.1. Descrição do programa <code>morfologia.cpp</code></h3>
+<h3 id="_descrição_do_programa_morfologia_cpp">15.1. Descrição do programa <code>morfologia.cpp</code></h3>
 <div class="paragraph">
 <p>O programa <em>morfologia.cpp</em> é um exemplo de aplicação da filtragem de forma. Ele recebe como parâmetro de entrada uma imagem e aplica as operações morfológicas de erosão, dilatação, abertura, fechamento e abertura seguida de fechamento. O programa utiliza a biblioteca <em>OpenCV</em> para carregar a imagem e exibir os resultados.</p>
 </div>
@@ -632,11 +632,11 @@ $ ./morfologia ../morfoobjetos.png</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_13">14.2. Exercícios</h3>
+<h3 id="_exercícios_13">15.2. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Um sistema de captura de imagens precisa realizar o reconhecimento de carateres de um visor de segmentos para uma aplicação industrial. O visor mostra caracteres como estes apresentados na <a href="_filtragem_de_forma_com_morfologia_matemática.html#fig_caracteres_visor">Figura 36</a>.</p>
+<p>Um sistema de captura de imagens precisa realizar o reconhecimento de carateres de um visor de segmentos para uma aplicação industrial. O visor mostra caracteres como estes apresentados na <a href="morfologia.html#fig_caracteres_visor">Figura 36</a>.</p>
 </li>
 </ul>
 </div>
@@ -647,7 +647,7 @@ $ ./morfologia ../morfoobjetos.png</code></pre>
 <div class="title">Figura 36. Caracteres do visor</div>
 </div>
 <div class="paragraph">
-<p>Ocorre que o software de reconhecimento de padrões apresenta dificuldades de reconhecer os dígitos em virtude da separação existente entre os segmentos do visor. Idealmente, o software deveria reconhecer os dígitos como na <a href="_filtragem_de_forma_com_morfologia_matemática.html#fig_caracteres_visor_reconhecidos">Figura 37</a>.</p>
+<p>Ocorre que o software de reconhecimento de padrões apresenta dificuldades de reconhecer os dígitos em virtude da separação existente entre os segmentos do visor. Idealmente, o software deveria reconhecer os dígitos como na <a href="morfologia.html#fig_caracteres_visor_reconhecidos">Figura 37</a>.</p>
 </div>
 <div id="fig_caracteres_visor_reconhecidos" class="imageblock">
 <div class="content">
@@ -662,7 +662,7 @@ $ ./morfologia ../morfoobjetos.png</code></pre>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ : <a href="_outras_transformadas_matemáticas.html">Outras Transformadas Matemáticas</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a></p>
+<p>↑ : <a href="outras.html">Outras Transformadas Matemáticas</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a></p>
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

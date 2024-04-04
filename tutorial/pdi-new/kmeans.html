@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="_quantização_vetorial_com_k_means" class="book toc2 toc-left">
+<body id="kmeans" class="book toc2 toc-left">
 <div id="header">
 <h1>Introdução ao processamento digital de imagens com OpenCV</h1>
 <div class="details">
@@ -451,36 +451,36 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <p><span class="toc-root"><a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a></span></p><ul class="sectlevel1">
-<li><a href="_prefácio.html">Prefácio</a>
+<li><a href="preface.html">1. Prefácio</a>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
+<li><a href="espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_da_frequência.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
+<li><a href="frequencia.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
 </li>
-<li><a href="_segmentação_de_imagens.html">Parte III: Segmentação de imagens</a>
+<li><a href="segmentacao.html">Parte III: Segmentação de imagens</a>
 <ul class="sectlevel1">
-<li><a href="_limiarização.html">11. Limiarização</a>
+<li><a href="threshold.html">12. Limiarização</a>
 </li>
-<li><a href="_detecção_de_bordas_com_o_algoritmo_de_canny.html">12. Detecção de bordas com o algoritmo de Canny</a>
+<li><a href="canny.html">13. Detecção de bordas com o algoritmo de Canny</a>
 </li>
-<li><a href="_quantização_vetorial_com_k_means.html"><span class="toc-current">13. Quantização vetorial com k-means</span></a>
+<li><a href="kmeans.html"><span class="toc-current">14. Quantização vetorial com k-means</span></a>
 <ul class="sectlevel2">
-<li><a href="_quantização_vetorial_com_k_means.html#_descrição_do_programa_kmeans_cpp">13.1. Descrição do programa <code>kmeans.cpp</code></a>
+<li><a href="kmeans.html#_descrição_do_programa_kmeans_cpp">14.1. Descrição do programa <code>kmeans.cpp</code></a>
 </li>
-<li><a href="_quantização_vetorial_com_k_means.html#_exercícios_12">13.2. Exercícios</a>
-</li>
-</ul>
+<li><a href="kmeans.html#_exercícios_12">14.2. Exercícios</a>
 </li>
 </ul>
 </li>
-<li><a href="_outras_transformadas_matemáticas.html">Parte IV: Outras Transformadas Matemáticas</a>
+</ul>
+</li>
+<li><a href="outras.html">Parte IV: Outras Transformadas Matemáticas</a>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_quantização_vetorial_com_k_means">13. Quantização vetorial com k-means</h2>
+<h2 id="kmeans">14. Quantização vetorial com k-means</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Algoritmos de quantização são um grupo de técnicas usadas para mapear os
@@ -538,7 +538,7 @@ quadrados das distâncias dos pontos da amostra para seus respectivos
 centros.</p>
 </div>
 <div class="paragraph">
-<p>O programa de referência utilizado para essa tarefa, <a href="exemplos/kmeans/kmeans.cpp">kmeans.cpp</a>, é mostrado na <a href="_quantização_vetorial_com_k_means.html#exa_kmeans">Listagem 38</a>.</p>
+<p>O programa de referência utilizado para essa tarefa, <a href="exemplos/kmeans/kmeans.cpp">kmeans.cpp</a>, é mostrado na <a href="kmeans.html#exa_kmeans">Listagem 38</a>.</p>
 </div>
 <div id="exa_kmeans" class="listingblock">
 <div class="title">Listagem 38. kmeans.cpp</div>
@@ -588,7 +588,7 @@ int main(int argc, char** argv) {
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/kmeans/kmeans.cpp">kmeans.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/kmeans/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="_quantização_vetorial_com_k_means.html#kmeans-cmake">Listagem 39</a>) e execute a seqüência de comandos mostrada na <a href="_quantização_vetorial_com_k_means.html#ex-compilacao-kmeans">Listagem 40</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/kmeans/kmeans.cpp">kmeans.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/kmeans/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="kmeans.html#kmeans-cmake">Listagem 39</a>) e execute a seqüência de comandos mostrada na <a href="kmeans.html#ex-compilacao-kmeans">Listagem 40</a>.</p>
 </div>
 <div id="kmeans-cmake" class="listingblock">
 <div class="title">Listagem 39. CMakeLists.txt</div>
@@ -627,7 +627,7 @@ $ ./kmeans sushi.jpg sushi-kmeans.jpg</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A saída do programa <em>kmeans</em> é mostrado na <a href="_quantização_vetorial_com_k_means.html#fig_kmeans">Figura 33</a></p>
+<p>A saída do programa <em>kmeans</em> é mostrado na <a href="kmeans.html#fig_kmeans">Figura 33</a></p>
 </div>
 <div id="fig_kmeans" class="imageblock">
 <div class="content">
@@ -636,7 +636,7 @@ $ ./kmeans sushi.jpg sushi-kmeans.jpg</code></pre>
 <div class="title">Figura 33. Saída do programa kmeans</div>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_kmeans_cpp">13.1. Descrição do programa <code>kmeans.cpp</code></h3>
+<h3 id="_descrição_do_programa_kmeans_cpp">14.1. Descrição do programa <code>kmeans.cpp</code></h3>
 <div class="paragraph">
 <p>O programa kmeans opera sobre a imagem fornecida como primeiro
 argumento de modo a reduzir a quantidade de cores presentes na mesma
@@ -709,7 +709,7 @@ os centros obtidos na execução do k-means.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_12">13.2. Exercícios</h3>
+<h3 id="_exercícios_12">14.2. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -721,7 +721,7 @@ os centros obtidos na execução do k-means.</p>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← : <a href="_detecção_de_bordas_com_o_algoritmo_de_canny.html">Detecção de bordas com o algoritmo de Canny</a> | ↑ : <a href="_segmentação_de_imagens.html">Segmentação de imagens</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="_outras_transformadas_matemáticas.html">Outras Transformadas Matemáticas</a> →</p>
+<p>← : <a href="canny.html">Detecção de bordas com o algoritmo de Canny</a> | ↑ : <a href="segmentacao.html">Segmentação de imagens</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="outras.html">Outras Transformadas Matemáticas</a> →</p>
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

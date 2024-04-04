@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="_processamento_de_imagens_no_domínio_espacial" class="book toc2 toc-left">
+<body id="labeling" class="book toc2 toc-left">
 <div id="header">
 <h1>Introdução ao processamento digital de imagens com OpenCV</h1>
 <div class="details">
@@ -451,69 +451,267 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <p><span class="toc-root"><a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a></span></p><ul class="sectlevel1">
-<li><a href="_prefácio.html">Prefácio</a>
+<li><a href="preface.html">1. Prefácio</a>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_espacial.html"><span class="toc-current">Parte I: Processamento de Imagens no Domínio Espacial</span></a>
+<li><a href="espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
 <ul class="sectlevel1">
-<li><a href="conceitos.html">1. Conceitos iniciais</a>
+<li><a href="conceitos.html">2. Conceitos iniciais</a>
 </li>
-<li><a href="_manipulando_pixels_em_uma_imagem.html">2. Manipulando pixels em uma imagem</a>
+<li><a href="pixels.html">3. Manipulando pixels em uma imagem</a>
 </li>
-<li><a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html">3. Serialização de dados em ponto flutuante via FileStorage</a>
+<li><a href="filestorage.html">4. Serialização de dados em ponto flutuante via FileStorage</a>
 </li>
-<li><a href="_decomposição_de_imagens_em_planos_de_bits.html">4. Decomposição de imagens em planos de bits</a>
+<li><a href="bitplanes.html">5. Decomposição de imagens em planos de bits</a>
 </li>
-<li><a href="_preenchendo_regiões.html">5. Preenchendo regiões</a>
+<li><a href="labeling.html"><span class="toc-current">6. Preenchendo regiões</span></a>
+<ul class="sectlevel2">
+<li><a href="labeling.html#_descrição_do_programa_labeling_cpp">6.1. Descrição do programa <code>labeling.cpp</code></a>
 </li>
-<li><a href="_manipulação_de_histogramas.html">6. Manipulação de histogramas</a>
-</li>
-<li><a href="_filtragem_no_domínio_espacial_i.html">7. Filtragem no domínio espacial I</a>
-</li>
-<li><a href="_filtragem_no_domínio_espacial_ii.html">8. Filtragem no domínio espacial II</a>
+<li><a href="labeling.html#_exercícios_4">6.2. Exercícios</a>
 </li>
 </ul>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_da_frequência.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
+<li><a href="histograma.html">7. Manipulação de histogramas</a>
 </li>
-<li><a href="_segmentação_de_imagens.html">Parte III: Segmentação de imagens</a>
+<li><a href="convolucao.html">8. Filtragem no domínio espacial I</a>
 </li>
-<li><a href="_outras_transformadas_matemáticas.html">Parte IV: Outras Transformadas Matemáticas</a>
+<li><a href="tiltshift.html">9. Filtragem no domínio espacial II</a>
+</li>
+</ul>
+</li>
+<li><a href="frequencia.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
+</li>
+<li><a href="segmentacao.html">Parte III: Segmentação de imagens</a>
+</li>
+<li><a href="outras.html">Parte IV: Outras Transformadas Matemáticas</a>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
-<h1 id="_processamento_de_imagens_no_domínio_espacial" class="sect0">Parte I: Processamento de Imagens no Domínio Espacial</h1>
+<div class="sect1">
+<h2 id="labeling">6. Preenchendo regiões</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Uma tarefa bastante comum em processamento de imagens e visão
+artificial é contar a quantidade de objetos presentes em uma cena.</p>
+</div>
+<div class="paragraph">
+<p>Para contar os objetos é necessário identificar os aglomerados de
+pixels associados a cada um. Neste exemplo, assume-se que a imagem é
+do tipo binária, ou seja, cada pixel assume apenas dois valores - 0 ou
+255 - indicando que o pixel pertence ao fundo da imagem ("0") ou a
+algum objeto presente ("255"). Assume-se também que cada aglomerado de
+pixels será interpretado como um objeto individual. Esse é o processo
+mais comum para operações de contagem de objetos em uma imagem.</p>
+</div>
+<div class="paragraph">
+<p>Uma das maneiras de identificar as regiões de forma única é através de
+rotulação. A rotulação de regiões é o processo pelo qual regiões com
+características comuns recebem um identificador comum (rótulo).</p>
+</div>
+<div class="paragraph">
+<p>Em geral, um algoritmo de rotulação de imagens binárias recebe como
+entrada uma imagem binária e fornece como saída uma imagem em tons de
+cinza, com as várias regiões representativas de objetos rotuladas com
+um tom de cinza diferente.</p>
+</div>
+<div class="paragraph">
+<p>No exemplo dessa lição será mostrado como rotular uma imagem binária,
+utilizando o algoritmo <em>floodfill</em> (ou <em>seedfill</em>) para descobrir os
+aglomerados de pixels. A imagem usada para teste será a presente no arquivo
+<a href="figs/bolhas.png">bolhas.png</a> mostrada na Figura <a href="labeling.html#fig_bolhas">Bolhas</a>.</p>
+</div>
+<div id="fig_bolhas" class="imageblock">
+<div class="content">
+<img src="data:image/png;base64,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" alt="bolhas">
+</div>
+<div class="title">Figura 14. Imagem bolhas.png</div>
+</div>
+<div class="paragraph">
+<p>O programa de referência utilizado para essa tarefa,
+<a href="exemplos/labeling.cpp">labeling.cpp</a>, é mostrado na Listagem
+<a href="labeling.html#exa_labeling">Labeling</a>.</p>
+</div>
+<div id="exa_labeling" class="listingblock">
+<div class="title">Listagem 13. labeling.cpp</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;iostream&gt;
+#include &lt;opencv2/opencv.hpp&gt;
+
+using namespace cv;
+
+int main(int argc, char** argv) {
+  cv::Mat image, realce;
+  int width, height;
+  int nobjects;
+
+  cv::Point p;
+  image = cv::imread(argv[1], cv::IMREAD_GRAYSCALE);
+
+  if (!image.data) {
+    std::cout &lt;&lt; "imagem nao carregou corretamente\n";
+    return (-1);
+  }
+
+  width = image.cols;
+  height = image.rows;
+  std::cout &lt;&lt; width &lt;&lt; "x" &lt;&lt; height &lt;&lt; std::endl;
+
+  p.x = 0;
+  p.y = 0;
+
+  // busca objetos presentes
+  nobjects = 0;
+  for (int i = 0; i &lt; height; i++) {
+    for (int j = 0; j &lt; width; j++) {
+      if (image.at&lt;uchar&gt;(i, j) == 255) {
+        // achou um objeto
+        nobjects++;
+        // para o floodfill as coordenadas
+        // x e y são trocadas.
+        p.x = j;
+        p.y = i;
+        // preenche o objeto com o contador
+        cv::floodFill(image, p, nobjects);
+      }
+    }
+  }
+  std::cout &lt;&lt; "a figura tem " &lt;&lt; nobjects &lt;&lt; " bolhas\n";
+  cv::imshow("image", image);
+  cv::imwrite("labeling.png", image);
+  cv::waitKey();
+  return 0;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/labeling/labeling.cpp">labeling.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/labeling/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="labeling.html#labeling-cmake">Listagem 14</a>) e execute a seqüência de comandos mostrada na <a href="labeling.html#ex-compilacao-labeling">Listagem 15</a>. O último comando executa o programa, passando como parâmetros o nome da imagem a ser processada Para este exemplo, foi usada a imagem <a href="figs/bolhas.png">bolhas.png</a>.</p>
+</div>
+<div id="labeling-cmake" class="listingblock">
+<div class="title">Listagem 14. CMakeLists.txt</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">cmake_minimum_required(VERSION 3.0.0)
+project(labeling VERSION 0.1.0 LANGUAGES C CXX)
+
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+add_executable(labeling labeling.cpp)
+target_link_libraries(labeling ${OpenCV_LIBS})</code></pre>
+</div>
+</div>
+<div id="ex-compilacao-labeling" class="listingblock">
+<div class="title">Listagem 15. Compilação e execução do programa labeling</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+$ ./labeling ../bolhas.png</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A saída do programa <em>labeling</em> é mostrado na Figura <a href="labeling.html#fig_labeling">Labeling</a>. Perceba que a figura possui baixo contraste por conta da escala de cinza utilizada para rotular as regiões. Como há poucas regiões, as tons de cinza mais elevados não oferecem uma quantidade significativa de detalhes.</p>
+</div>
+<div id="fig_labeling" class="imageblock">
+<div class="content">
+<img src="data:image/png;base64,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" alt="labeling">
+</div>
+<div class="title">Figura 15. Saída do programa labeling</div>
+</div>
+<div class="sect2">
+<h3 id="_descrição_do_programa_labeling_cpp">6.1. Descrição do programa <code>labeling.cpp</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">cv::Point p;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A estrutura <code>Point</code> define um ponto na segunda dimensão que permite acesso às suas coordenadas x e y. Ele será usado no exemplo para indicar a semente de  preenchimento que é usada pelo algoritmo <em>floodfill</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">image = cv::imread(argv[1],cv::IMREAD_GRAYSCALE);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Independentemente do formato da imagem de entrada, ela será convertida para tons de cinza, uma vez que o exemplo assume essa condição.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">p.x=0;
+p.y=0;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Nesta fase tem início o processo de rotulação das várias regiões da imagem. Assumindo que os pixels do objeto possuem tom de cinza igual a 255, o algoritmo percorre toda a imagem, linha após linha, de cima a baixo, da esquerda para direita por pixels que tenham tom igual a 255.</p>
+</div>
+<div class="paragraph">
+<p>Quando um elemento da matriz é encontrado com tom de cinza igual a 255, o algoritmo <em>floodfill</em> é executado utilizando as coordenadas desse ponto como semente.</p>
+</div>
+<div class="paragraph">
+<p>A operação do algoritmo <em>floodfill</em> é bem simples: dado um ponto semente, o algoritmo sai procurando os 4- ou 8-vizinhos desse ponto (conforme configuração estabelecida) que possuem a mesma propriedade do ponto semente (geralmente o tom de cinza). Para cada ponto encontrado, muda-se sua propriedade para uma nova propriedade fornecida. Para cada ponto encontrado, também, realiza-se a busca de vizinhança para os seus 4- ou 8-vizinhos que contenham a mesma propriedade da semente. Esse processo é repetido até que não restem mais pontos com propriedade alterada na componente conectada (ou região conectada).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">nobjects=0;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Inicia a contagem de objetos (inicialmente, zero objetos estão presentes)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">for(int i=0; i&lt;height; i++){
+  for(int j=0; j&lt;width; j++){
+    if(image.at&lt;uchar&gt;(i,j) == 255){
+      nobjects++;
+      p.x=j;
+      p.y=i;
+      cv::floodFill(image,p,nobjects);
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A contagem funciona percorrendo as linhas e colunas da matriz <code>image</code> em busca de elementos com tom de cinza igual a <code>255</code> (pixel de
+objeto). Quando encontrado, incrementa-se o contador de objeto e executa-se o algoritmo <em>floodfill</em> na imagem utilizando o pixel
+encontrado como semente. Observe que a região à qual o pixel pertence será rotulada com tom de cinza igual ao número de contagem de objetos
+atual.</p>
+</div>
+<div class="paragraph">
+<p>O processo continua até que toda a imagem tenha sido rotulada.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">cv::imshow("image", image);
+cv::imwrite("labeling.png", image);
+cv::waitKey();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finalmente, a imagem <code>image</code> é mostrada (já completamente rotulada) e então gravada no arquivo <code>labeling.png</code>. Uma das linhas com o comando <code>imshow</code> é usada apenas para mostrar a imagem com um pouco de realce (para fins de melhor visualização). Como esse efeito funciona será discutido mais adiante.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercícios_4">6.2. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="conceitos.html">Conceitos iniciais</a></p>
+<p>Observando-se o programa <a href="exemplos/labeling.cpp">labeling.cpp</a> como exemplo, é possível verificar que caso existam mais de 255 objetos na cena, o processo de rotulação poderá ficar comprometido, visto que o tipo de dado usado para suportar imagens cinzentas permitem armazenar apenas um byte por pixel. Identifique a situação em que isso ocorre e proponha uma solução para este problema.</p>
 </li>
 <li>
-<p><a href="_manipulando_pixels_em_uma_imagem.html">Manipulando pixels em uma imagem</a></p>
-</li>
-<li>
-<p><a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html">Serialização de dados em ponto flutuante via FileStorage</a></p>
-</li>
-<li>
-<p><a href="_decomposição_de_imagens_em_planos_de_bits.html">Decomposição de imagens em planos de bits</a></p>
-</li>
-<li>
-<p><a href="_preenchendo_regiões.html">Preenchendo regiões</a></p>
-</li>
-<li>
-<p><a href="_manipulação_de_histogramas.html">Manipulação de histogramas</a></p>
-</li>
-<li>
-<p><a href="_filtragem_no_domínio_espacial_i.html">Filtragem no domínio espacial I</a></p>
-</li>
-<li>
-<p><a href="_filtragem_no_domínio_espacial_ii.html">Filtragem no domínio espacial II</a></p>
+<p>Aprimore o algoritmo de contagem apresentado para identificar regiões com ou sem buracos internos que existam na cena. Assuma que objetos com mais de um buraco   podem existir. Inclua suporte no seu algoritmo para não contar bolhas que tocam as bordas da imagem. Não se pode presumir, a priori, que elas tenham buracos ou não.</p>
 </li>
 </ul>
 </div>
+</div>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>← : <a href="_prefácio.html">Prefácio</a> | ↑ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="conceitos.html">Conceitos iniciais</a> →</p>
+<p>← : <a href="bitplanes.html">Decomposição de imagens em planos de bits</a> | ↑ : <a href="espacial.html">Processamento de Imagens no Domínio Espacial</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="histograma.html">Manipulação de histogramas</a> →</p>
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

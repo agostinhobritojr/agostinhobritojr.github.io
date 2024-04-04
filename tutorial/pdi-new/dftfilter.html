@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="_filtragem_no_domínio_da_frequência" class="book toc2 toc-left">
+<body id="dftfilter" class="book toc2 toc-left">
 <div id="header">
 <h1>Introdução ao processamento digital de imagens com OpenCV</h1>
 <div class="details">
@@ -451,34 +451,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <p><span class="toc-root"><a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a></span></p><ul class="sectlevel1">
-<li><a href="_prefácio.html">Prefácio</a>
+<li><a href="preface.html">1. Prefácio</a>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
+<li><a href="espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_da_frequência.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
+<li><a href="frequencia.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
 <ul class="sectlevel1">
-<li><a href="_a_tranformada_discreta_de_fourier.html">9. A Tranformada Discreta de Fourier</a>
+<li><a href="dft.html">10. A Tranformada Discreta de Fourier</a>
 </li>
-<li><a href="_filtragem_no_domínio_da_frequência.html"><span class="toc-current">10. Filtragem no Domínio da Frequência</span></a>
+<li><a href="dftfilter.html"><span class="toc-current">11. Filtragem no Domínio da Frequência</span></a>
 <ul class="sectlevel2">
-<li><a href="_filtragem_no_domínio_da_frequência.html#_descrição_do_programa_dftfilter_cpp">10.1. Descrição do programa <code>dftfilter.cpp</code></a>
+<li><a href="dftfilter.html#_descrição_do_programa_dftfilter_cpp">11.1. Descrição do programa <code>dftfilter.cpp</code></a>
 </li>
-<li><a href="_filtragem_no_domínio_da_frequência.html#_exercícios_9">10.2. Exercícios</a>
-</li>
-</ul>
+<li><a href="dftfilter.html#_exercícios_9">11.2. Exercícios</a>
 </li>
 </ul>
 </li>
-<li><a href="_segmentação_de_imagens.html">Parte III: Segmentação de imagens</a>
+</ul>
 </li>
-<li><a href="_outras_transformadas_matemáticas.html">Parte IV: Outras Transformadas Matemáticas</a>
+<li><a href="segmentacao.html">Parte III: Segmentação de imagens</a>
+</li>
+<li><a href="outras.html">Parte IV: Outras Transformadas Matemáticas</a>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_filtragem_no_domínio_da_frequência">10. Filtragem no Domínio da Frequência</h2>
+<h2 id="dftfilter">11. Filtragem no Domínio da Frequência</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>O objetivo da filtragem no domínio da frequência é remover ruídos e distorções
@@ -541,7 +541,7 @@ pela função <code>mulSpectrums()</code>.</p>
 </div>
 <div class="paragraph">
 <p>O programa de referência utilizado para essa tarefa, <a href="exemplos/dftfilter/dftfilter.cpp">dftfilter.cpp</a>, é mostrado na
-<a href="_filtragem_no_domínio_da_frequência.html#exa_dftfilter">Listagem 28</a>.</p>
+<a href="dftfilter.html#exa_dftfilter">Listagem 28</a>.</p>
 </div>
 <div id="exa_dftfilter" class="listingblock">
 <div class="title">Listagem 28. dftfilter.cpp</div>
@@ -659,7 +659,7 @@ int main(int argc, char** argv) {
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/dftfilter/dftfilter.cpp">dftfilter.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/dftfilter/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="_filtragem_no_domínio_da_frequência.html#dftfilter-cmake">Listagem 29</a>), a imagem <a href="figs/biel.png">biel.png</a> e execute a seqüência de comandos mostrada na <a href="_filtragem_no_domínio_da_frequência.html#ex-compilacao-dftfilter">Listagem 30</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/dftfilter/dftfilter.cpp">dftfilter.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/dftfilter/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="dftfilter.html#dftfilter-cmake">Listagem 29</a>), a imagem <a href="figs/biel.png">biel.png</a> e execute a seqüência de comandos mostrada na <a href="dftfilter.html#ex-compilacao-dftfilter">Listagem 30</a>.</p>
 </div>
 <div id="dftfilter-cmake" class="listingblock">
 <div class="title">Listagem 29. CMakeLists.txt</div>
@@ -685,7 +685,7 @@ $ ./dftfilter ../biel.png</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A saída do programa <code>dftfilter</code> é mostrado na <a href="_filtragem_no_domínio_da_frequência.html#fig_dft-filter">Figura 25</a>.</p>
+<p>A saída do programa <code>dftfilter</code> é mostrado na <a href="dftfilter.html#fig_dft-filter">Figura 25</a>.</p>
 </div>
 <div id="fig_dft-filter" class="imageblock">
 <div class="content">
@@ -694,7 +694,7 @@ $ ./dftfilter ../biel.png</code></pre>
 <div class="title">Figura 25. Resultado do programa dftfilter</div>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_dftfilter_cpp">10.1. Descrição do programa <code>dftfilter.cpp</code></h3>
+<h3 id="_descrição_do_programa_dftfilter_cpp">11.1. Descrição do programa <code>dftfilter.cpp</code></h3>
 <div class="paragraph">
 <p>O trecho de código a seguir mostra a chamada da
 função de criação do filtro de frequência e a aplicação do filtro na imagem.</p>
@@ -785,7 +785,7 @@ e posteriormente normalizada para exibição.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_9">10.2. Exercícios</h3>
+<h3 id="_exercícios_9">11.2. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -801,7 +801,7 @@ possível. Assuma que a imagem fornecida é em tons de cinza.</p>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← : <a href="_a_tranformada_discreta_de_fourier.html">A Tranformada Discreta de Fourier</a> | ↑ : <a href="_processamento_de_imagens_no_domínio_da_frequência.html">Processamento de Imagens no Domínio da Frequência</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="_segmentação_de_imagens.html">Segmentação de imagens</a> →</p>
+<p>← : <a href="dft.html">A Tranformada Discreta de Fourier</a> | ↑ : <a href="frequencia.html">Processamento de Imagens no Domínio da Frequência</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="segmentacao.html">Segmentação de imagens</a> →</p>
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

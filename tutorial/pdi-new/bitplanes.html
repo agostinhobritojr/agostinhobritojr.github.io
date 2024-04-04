@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="_decomposição_de_imagens_em_planos_de_bits" class="book toc2 toc-left">
+<body id="bitplanes" class="book toc2 toc-left">
 <div id="header">
 <h1>Introdução ao processamento digital de imagens com OpenCV</h1>
 <div class="details">
@@ -451,48 +451,48 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <p><span class="toc-root"><a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a></span></p><ul class="sectlevel1">
-<li><a href="_prefácio.html">Prefácio</a>
+<li><a href="preface.html">1. Prefácio</a>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
+<li><a href="espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
 <ul class="sectlevel1">
-<li><a href="conceitos.html">1. Conceitos iniciais</a>
+<li><a href="conceitos.html">2. Conceitos iniciais</a>
 </li>
-<li><a href="_manipulando_pixels_em_uma_imagem.html">2. Manipulando pixels em uma imagem</a>
+<li><a href="pixels.html">3. Manipulando pixels em uma imagem</a>
 </li>
-<li><a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html">3. Serialização de dados em ponto flutuante via FileStorage</a>
+<li><a href="filestorage.html">4. Serialização de dados em ponto flutuante via FileStorage</a>
 </li>
-<li><a href="_decomposição_de_imagens_em_planos_de_bits.html"><span class="toc-current">4. Decomposição de imagens em planos de bits</span></a>
+<li><a href="bitplanes.html"><span class="toc-current">5. Decomposição de imagens em planos de bits</span></a>
 <ul class="sectlevel2">
-<li><a href="_decomposição_de_imagens_em_planos_de_bits.html#_esteganografia_em_imagens_digitais">4.1. Esteganografia em imagens digitais</a>
+<li><a href="bitplanes.html#_esteganografia_em_imagens_digitais">5.1. Esteganografia em imagens digitais</a>
 </li>
-<li><a href="_decomposição_de_imagens_em_planos_de_bits.html#_descrição_do_programa_bitplanes_cpp">4.2. Descrição do programa <code>bitplanes.cpp</code></a>
+<li><a href="bitplanes.html#_descrição_do_programa_bitplanes_cpp">5.2. Descrição do programa <code>bitplanes.cpp</code></a>
 </li>
-<li><a href="_decomposição_de_imagens_em_planos_de_bits.html#_exercícios_3">4.3. Exercícios</a>
-</li>
-</ul>
-</li>
-<li><a href="_preenchendo_regiões.html">5. Preenchendo regiões</a>
-</li>
-<li><a href="_manipulação_de_histogramas.html">6. Manipulação de histogramas</a>
-</li>
-<li><a href="_filtragem_no_domínio_espacial_i.html">7. Filtragem no domínio espacial I</a>
-</li>
-<li><a href="_filtragem_no_domínio_espacial_ii.html">8. Filtragem no domínio espacial II</a>
+<li><a href="bitplanes.html#_exercícios_3">5.3. Exercícios</a>
 </li>
 </ul>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_da_frequência.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
+<li><a href="labeling.html">6. Preenchendo regiões</a>
 </li>
-<li><a href="_segmentação_de_imagens.html">Parte III: Segmentação de imagens</a>
+<li><a href="histograma.html">7. Manipulação de histogramas</a>
 </li>
-<li><a href="_outras_transformadas_matemáticas.html">Parte IV: Outras Transformadas Matemáticas</a>
+<li><a href="convolucao.html">8. Filtragem no domínio espacial I</a>
+</li>
+<li><a href="tiltshift.html">9. Filtragem no domínio espacial II</a>
+</li>
+</ul>
+</li>
+<li><a href="frequencia.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
+</li>
+<li><a href="segmentacao.html">Parte III: Segmentação de imagens</a>
+</li>
+<li><a href="outras.html">Parte IV: Outras Transformadas Matemáticas</a>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_decomposição_de_imagens_em_planos_de_bits">4. Decomposição de imagens em planos de bits</h2>
+<h2 id="bitplanes">5. Decomposição de imagens em planos de bits</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Com apenas 8 bits (com um tipo de dado <code>unsigned char</code>) é possível representar cada componente de cor em uma imagem em uma faixa de variação de 0 a 255. Apesar ter apenas um byte de tamanho, essa quantidade permite enganar com maestria o olho humano e ainda possibilita uma gama de aproximadamente 16 milhões de tonalidades de cores para compor uma imagem.</p>
@@ -501,7 +501,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Tomando-se um pixel de uma imagem em tons de cinza, é possível entender que tipo de informação o byte desse pixel carrega consigo. Os bits mais significativos dos pixels de uma imagem são os que guardam as informações mais importantes para a composição do brilho (ou cor, no caso de uma imagem colorida), ao passo que menos significativos pouca informação detém para olhos medianos.</p>
 </div>
 <div class="paragraph">
-<p>Observe, por exemplo, a sequência de imagens na <a href="_decomposição_de_imagens_em_planos_de_bits.html#fig_bitplanes">Figura 7</a>. Elas apresentam os planos de bits da imagem <code>biel.png</code>, onde cada uma mostra valores iguais a <code>0</code> ou <code>255</code>, caso o bit correspondente de cada pixel possua valor <code>0</code> ou <code>1</code> no seu byte correspondente. São, portanto, imagens monocromáticas com um bit por pixel. A imagem do canto <strong>superior esquerdo</strong> mostra o plano de bits <strong>menos significativo</strong> da imagem <code>biel.png</code>, enquanto a imagem do canto <strong>inferior direito</strong> mostra o plano de bits <strong>mais significativo</strong> da imagem <code>biel.png</code>. Perceba que nos planos de bits menos significativos pouca informação sobre a imagem é revelada visualmente, enquanto que nos planos de bits mais significativos a imagem permite identificar mais detalhes.</p>
+<p>Observe, por exemplo, a sequência de imagens na <a href="bitplanes.html#fig_bitplanes">Figura 7</a>. Elas apresentam os planos de bits da imagem <code>biel.png</code>, onde cada uma mostra valores iguais a <code>0</code> ou <code>255</code>, caso o bit correspondente de cada pixel possua valor <code>0</code> ou <code>1</code> no seu byte correspondente. São, portanto, imagens monocromáticas com um bit por pixel. A imagem do canto <strong>superior esquerdo</strong> mostra o plano de bits <strong>menos significativo</strong> da imagem <code>biel.png</code>, enquanto a imagem do canto <strong>inferior direito</strong> mostra o plano de bits <strong>mais significativo</strong> da imagem <code>biel.png</code>. Perceba que nos planos de bits menos significativos pouca informação sobre a imagem é revelada visualmente, enquanto que nos planos de bits mais significativos a imagem permite identificar mais detalhes.</p>
 </div>
 <div id="fig_bitplanes" class="imageblock">
 <div class="content">
@@ -510,7 +510,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Figura 7. Planos de bits em uma imagem</div>
 </div>
 <div class="paragraph">
-<p>Para entender o efeito da composição de bits em uma imagem, as imagens da <a href="_decomposição_de_imagens_em_planos_de_bits.html#fig_bitszero">Figura 8</a> foram compostas manipulando os bits de cada pixel. As alterações foram feitas de forma que os <code>N</code> bits menos significativos de cada componente de cor fossem deixados com valores iguais a zero para seis valores distintos de <code>N</code>, variando de 0 (canto superior esquerdo) a 7 (canto inferior direito).</p>
+<p>Para entender o efeito da composição de bits em uma imagem, as imagens da <a href="bitplanes.html#fig_bitszero">Figura 8</a> foram compostas manipulando os bits de cada pixel. As alterações foram feitas de forma que os <code>N</code> bits menos significativos de cada componente de cor fossem deixados com valores iguais a zero para seis valores distintos de <code>N</code>, variando de 0 (canto superior esquerdo) a 7 (canto inferior direito).</p>
 </div>
 <div id="fig_bitszero" class="imageblock">
 <div class="content">
@@ -525,7 +525,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Essa peculiaridade é explorada por alguns algoritmos de compressão de imagens para diminuir o tamanho dos arquivos gerados. É justamente aí que entra a possibilidade de usar os bits menos significativos da figura para ocultar informação, posto que sua influência geralmente não é perceptível na imagem.</p>
 </div>
 <div class="sect2">
-<h3 id="_esteganografia_em_imagens_digitais">4.1. Esteganografia em imagens digitais</h3>
+<h3 id="_esteganografia_em_imagens_digitais">5.1. Esteganografia em imagens digitais</h3>
 <div class="paragraph">
 <p>Esteganografia é uma área da criptologia que se ocupa de ocultar uma informação em outra, de sorte a tornar despercebida uma determinada mensagem. Ela pode ser feita no computador usando arquivos de texto, imagens ou vídeos, de modo que apenas o receptor que conhece como a ocultação foi realizada saiba como recuperar a informação inserida. Na esteganografia, usa-se o princípio da ocultação por obscuridade, onde pressupõe-se que apenas o remetente e o destinatário sabem como decifrar o segredo enviado.</p>
 </div>
@@ -545,7 +545,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Figura 9. Imagem portadora e imagem escondida</div>
 </div>
 <div class="paragraph">
-<p>Para isso, <strong>serão preservados os 5 bits mais significativos (MSB) dos pixels da imagem portadora e os 3 bits mais significativos da imagem escondida serão colocados no lugar dos 3 bits menos significativos (LSB) da imagem portadora</strong>, como ilustra a <a href="_decomposição_de_imagens_em_planos_de_bits.html#fig_bit_composition">Figura 10</a>.  É importante observar que ambas as imagem escondida deve ter no máximo o tamanho da imagem portadora.</p>
+<p>Para isso, <strong>serão preservados os 5 bits mais significativos (MSB) dos pixels da imagem portadora e os 3 bits mais significativos da imagem escondida serão colocados no lugar dos 3 bits menos significativos (LSB) da imagem portadora</strong>, como ilustra a <a href="bitplanes.html#fig_bit_composition">Figura 10</a>.  É importante observar que ambas as imagem escondida deve ter no máximo o tamanho da imagem portadora.</p>
 </div>
 <div id="fig_bit_composition" class="imageblock">
 <div class="content">
@@ -554,7 +554,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Figura 10. Composição de bits da Imagem portadora e imagem escondida</div>
 </div>
 <div class="paragraph">
-<p>Na <a href="_decomposição_de_imagens_em_planos_de_bits.html#exa_esteganografia">Listagem 11</a> que segue é mostrado como esconder o conteúdo de uma imagem em outra utilizando operadores de manipulação de bits com OpenCV.</p>
+<p>Na <a href="bitplanes.html#exa_esteganografia">Listagem 11</a> que segue é mostrado como esconder o conteúdo de uma imagem em outra utilizando operadores de manipulação de bits com OpenCV.</p>
 </div>
 <div id="exa_esteganografia" class="listingblock">
 <div class="title">Listagem 11. bitplanes.cpp</div>
@@ -604,7 +604,7 @@ int main(int argc, char**argv) {
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/bitplanes.cpp">bitplanes.cpp</a>, salve-o em um diretório juntamente com o arquivo <code>CMakeFiles.txt</code> adaptado para o exemplo e execute a seqüência de comandos mostrada na <a href="_decomposição_de_imagens_em_planos_de_bits.html#ex-compilacao-bitplanes">Listagem 12</a>. O último comando executa o programa, passando como parâmetros o nome da imagem portadora seguido do nome da imagem a ser escondida. Para este exemplo, foram usadas as imagens <a href="figs/sushi-color.png">sushi-color.png</a> e <a href="figs/biel-color.png">biel-color.png</a> como imagem portadora e imagem escondida, respectivamente.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/bitplanes.cpp">bitplanes.cpp</a>, salve-o em um diretório juntamente com o arquivo <code>CMakeFiles.txt</code> adaptado para o exemplo e execute a seqüência de comandos mostrada na <a href="bitplanes.html#ex-compilacao-bitplanes">Listagem 12</a>. O último comando executa o programa, passando como parâmetros o nome da imagem portadora seguido do nome da imagem a ser escondida. Para este exemplo, foram usadas as imagens <a href="figs/sushi-color.png">sushi-color.png</a> e <a href="figs/biel-color.png">biel-color.png</a> como imagem portadora e imagem escondida, respectivamente.</p>
 </div>
 <div id="ex-compilacao-bitplanes" class="listingblock">
 <div class="title">Listagem 12. Compilação e execução do programa bitplanes</div>
@@ -618,7 +618,7 @@ $ ./bitplanes ../sushi-color.png ../biel-color.png</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_bitplanes_cpp">4.2. Descrição do programa <code>bitplanes.cpp</code></h3>
+<h3 id="_descrição_do_programa_bitplanes_cpp">5.2. Descrição do programa <code>bitplanes.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">valPortadora[0] = valPortadora[0] &gt;&gt; nbits &lt;&lt; nbits;
@@ -630,7 +630,7 @@ valFinal[0] = valPortadora[0] | valEscondida[0];</code></pre>
 <p>A primeira linha desse trecho faz com que os <code>N</code> bits menos significativos da imagem portadora sejam anulados, onde <code>N</code> é o número de bits que serão usados para esconder a imagem codificada. A segunda linha faz com que os <code>N</code> bits mais significativos da imagem codificada sejam deslocados à direita para a posição dos <code>N</code> bits menos significativos na variável. A terceira linha faz a combinação dos valores das duas imagens, de modo que os N bits menos significativos da imagem portadora sejam substituídos pelos <code>N</code> bits mais significativos da imagem codificada.</p>
 </div>
 <div class="paragraph">
-<p>A imagem resultante da esteganografia será gravada no arquivo <code>esteganografia.png</code>. O resultado da esteganografia é mostrado na <a href="_decomposição_de_imagens_em_planos_de_bits.html#fig_esteganografia_result">Figura 11</a>. Observe que a imagem resultante não apresenta diferenças visuais significativas em relação à imagem portadora.</p>
+<p>A imagem resultante da esteganografia será gravada no arquivo <code>esteganografia.png</code>. O resultado da esteganografia é mostrado na <a href="bitplanes.html#fig_esteganografia_result">Figura 11</a>. Observe que a imagem resultante não apresenta diferenças visuais significativas em relação à imagem portadora.</p>
 </div>
 <div id="fig_esteganografia_result" class="imageblock">
 <div class="content">
@@ -639,7 +639,7 @@ valFinal[0] = valPortadora[0] | valEscondida[0];</code></pre>
 <div class="title">Figura 11. Imagem resultante da esteganografia</div>
 </div>
 <div class="paragraph">
-<p>A decomposição em planos de bits da imagem resultante da esteganografia mostra que os bits menos significativos da imagem portadora foram substituídos pelos bits mais significativos da imagem codificada, conforme mostra a <a href="_decomposição_de_imagens_em_planos_de_bits.html#fig_esteganografia_bitplanes">Figura 12</a>. A imagem do canto superior esquerdo mostra o plano de bits menos significativo, enquanto a imagem do canto inferior direito mostra o plano de bits mais significativo.</p>
+<p>A decomposição em planos de bits da imagem resultante da esteganografia mostra que os bits menos significativos da imagem portadora foram substituídos pelos bits mais significativos da imagem codificada, conforme mostra a <a href="bitplanes.html#fig_esteganografia_bitplanes">Figura 12</a>. A imagem do canto superior esquerdo mostra o plano de bits menos significativo, enquanto a imagem do canto inferior direito mostra o plano de bits mais significativo.</p>
 </div>
 <div id="fig_esteganografia_bitplanes" class="imageblock">
 <div class="content">
@@ -649,11 +649,11 @@ valFinal[0] = valPortadora[0] | valEscondida[0];</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_3">4.3. Exercícios</h3>
+<h3 id="_exercícios_3">5.3. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Usando o programa <a href="exemplos/bitplanes.cpp">bitplanes.cpp</a> como referência para esteganografia, escreva um programa que recupere a imagem codificada de uma imagem resultante de esteganografia. Lembre-se que os bits menos significativos dos pixels da imagem fornecida deverão compor os bits mais significativos dos pixels da imagem recuperada. O programa deve receber como parâmetros de linha de comando o nome da imagem resultante da esteganografia. Teste a sua implementação com a imagem da <a href="_decomposição_de_imagens_em_planos_de_bits.html#fig_desafio_esteganografia">Figura 13</a> (<a href="figs/desafio-esteganografia.png">desafio-esteganografia.png</a>).</p>
+<p>Usando o programa <a href="exemplos/bitplanes.cpp">bitplanes.cpp</a> como referência para esteganografia, escreva um programa que recupere a imagem codificada de uma imagem resultante de esteganografia. Lembre-se que os bits menos significativos dos pixels da imagem fornecida deverão compor os bits mais significativos dos pixels da imagem recuperada. O programa deve receber como parâmetros de linha de comando o nome da imagem resultante da esteganografia. Teste a sua implementação com a imagem da <a href="bitplanes.html#fig_desafio_esteganografia">Figura 13</a> (<a href="figs/desafio-esteganografia.png">desafio-esteganografia.png</a>).</p>
 </li>
 </ul>
 </div>
@@ -667,7 +667,7 @@ valFinal[0] = valPortadora[0] | valEscondida[0];</code></pre>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← : <a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html">Serialização de dados em ponto flutuante via FileStorage</a> | ↑ : <a href="_processamento_de_imagens_no_domínio_espacial.html">Processamento de Imagens no Domínio Espacial</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="_preenchendo_regiões.html">Preenchendo regiões</a> →</p>
+<p>← : <a href="filestorage.html">Serialização de dados em ponto flutuante via FileStorage</a> | ↑ : <a href="espacial.html">Processamento de Imagens no Domínio Espacial</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="labeling.html">Preenchendo regiões</a> →</p>
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

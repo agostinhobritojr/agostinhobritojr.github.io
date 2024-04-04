@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="_serialização_de_dados_em_ponto_flutuante_via_filestorage" class="book toc2 toc-left">
+<body id="filestorage" class="book toc2 toc-left">
 <div id="header">
 <h1>Introdução ao processamento digital de imagens com OpenCV</h1>
 <div class="details">
@@ -451,46 +451,46 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <p><span class="toc-root"><a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a></span></p><ul class="sectlevel1">
-<li><a href="_prefácio.html">Prefácio</a>
+<li><a href="preface.html">1. Prefácio</a>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
+<li><a href="espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
 <ul class="sectlevel1">
-<li><a href="conceitos.html">1. Conceitos iniciais</a>
+<li><a href="conceitos.html">2. Conceitos iniciais</a>
 </li>
-<li><a href="_manipulando_pixels_em_uma_imagem.html">2. Manipulando pixels em uma imagem</a>
+<li><a href="pixels.html">3. Manipulando pixels em uma imagem</a>
 </li>
-<li><a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html"><span class="toc-current">3. Serialização de dados em ponto flutuante via FileStorage</span></a>
+<li><a href="filestorage.html"><span class="toc-current">4. Serialização de dados em ponto flutuante via FileStorage</span></a>
 <ul class="sectlevel2">
-<li><a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html#_descrição_do_programa_filestorage_cpp">3.1. Descrição do programa <code>filestorage.cpp</code></a>
+<li><a href="filestorage.html#_descrição_do_programa_filestorage_cpp">4.1. Descrição do programa <code>filestorage.cpp</code></a>
 </li>
-<li><a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html#_exercícios_2">3.2. Exercícios</a>
-</li>
-</ul>
-</li>
-<li><a href="_decomposição_de_imagens_em_planos_de_bits.html">4. Decomposição de imagens em planos de bits</a>
-</li>
-<li><a href="_preenchendo_regiões.html">5. Preenchendo regiões</a>
-</li>
-<li><a href="_manipulação_de_histogramas.html">6. Manipulação de histogramas</a>
-</li>
-<li><a href="_filtragem_no_domínio_espacial_i.html">7. Filtragem no domínio espacial I</a>
-</li>
-<li><a href="_filtragem_no_domínio_espacial_ii.html">8. Filtragem no domínio espacial II</a>
+<li><a href="filestorage.html#_exercícios_2">4.2. Exercícios</a>
 </li>
 </ul>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_da_frequência.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
+<li><a href="bitplanes.html">5. Decomposição de imagens em planos de bits</a>
 </li>
-<li><a href="_segmentação_de_imagens.html">Parte III: Segmentação de imagens</a>
+<li><a href="labeling.html">6. Preenchendo regiões</a>
 </li>
-<li><a href="_outras_transformadas_matemáticas.html">Parte IV: Outras Transformadas Matemáticas</a>
+<li><a href="histograma.html">7. Manipulação de histogramas</a>
+</li>
+<li><a href="convolucao.html">8. Filtragem no domínio espacial I</a>
+</li>
+<li><a href="tiltshift.html">9. Filtragem no domínio espacial II</a>
+</li>
+</ul>
+</li>
+<li><a href="frequencia.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
+</li>
+<li><a href="segmentacao.html">Parte III: Segmentação de imagens</a>
+</li>
+<li><a href="outras.html">Parte IV: Outras Transformadas Matemáticas</a>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_serialização_de_dados_em_ponto_flutuante_via_filestorage">3. Serialização de dados em ponto flutuante via FileStorage</h2>
+<h2 id="filestorage">4. Serialização de dados em ponto flutuante via FileStorage</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Nem todo tipo de imagem pode ser armazenado em arquivos com formatos comuns como <code>JPEG</code> ou <code>PNG</code>. Esses formatos suportam apenas imagens convencionais, cujo tipo de dado associado ao pixel normalmente é um <code>unsigned char</code>.</p>
@@ -502,7 +502,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Nesta lição, será mostrado como armazenar e recuperar dados em ponto flutuante em um arquivo codificado em <code>YAML</code>. Para isso, será criada uma matriz de pixels do tipo <code>float</code> e armazenada em um arquivo <code>YAML</code>. Em seguida, será recuperada a matriz do arquivo <code>YAML</code>, processada e exibida na tela.</p>
 </div>
 <div class="paragraph">
-<p>Para criar a matriz de <code>float</code> e armazená-la em um arquivo, utilize o programa-exemplo <code>filestorage.cpp</code> mostrado na <a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html#ex-filestorage">Listagem 7</a>.</p>
+<p>Para criar a matriz de <code>float</code> e armazená-la em um arquivo, utilize o programa-exemplo <code>filestorage.cpp</code> mostrado na <a href="filestorage.html#ex-filestorage">Listagem 7</a>.</p>
 </div>
 <div id="ex-filestorage" class="listingblock">
 <div class="title">Listagem 7. filestorage.cpp</div>
@@ -552,7 +552,7 @@ int main(int argc, char** argv) {
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/filestorage/filestorage.cpp">filestorage.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/filestorage/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html#filestorage-cmake">Listagem 8</a>) e execute a seqüência de comandos mostrada na <a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html#ex-compilacao-filestorage">Listagem 9</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/filestorage/filestorage.cpp">filestorage.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/filestorage/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="filestorage.html#filestorage-cmake">Listagem 8</a>) e execute a seqüência de comandos mostrada na <a href="filestorage.html#ex-compilacao-filestorage">Listagem 9</a>.</p>
 </div>
 <div id="filestorage-cmake" class="listingblock">
 <div class="title">Listagem 8. CMakeLists.txt</div>
@@ -581,7 +581,7 @@ $ ./filestorage</code></pre>
 <p>Ele deverá abrir uma janela e desenhar um padrão ondulado correspondente ao desenho de uma onda senoidal. As regiões mais escuras correspondem aos pontos de mínimo da senóide e as regiões mais claras correspondem aos pontos de máximo da senóide.</p>
 </div>
 <div class="paragraph">
-<p>A saída do programa <em>filestorage</em> é mostrada na <a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html#fig_filestorage">Figura 6</a></p>
+<p>A saída do programa <em>filestorage</em> é mostrada na <a href="filestorage.html#fig_filestorage">Figura 6</a></p>
 </div>
 <div id="fig_filestorage" class="imageblock">
 <div class="content">
@@ -590,7 +590,7 @@ $ ./filestorage</code></pre>
 <div class="title">Figura 6. Saída do programa filestorage</div>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_filestorage_cpp">3.1. Descrição do programa <code>filestorage.cpp</code></h3>
+<h3 id="_descrição_do_programa_filestorage_cpp">4.1. Descrição do programa <code>filestorage.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">ss_yml &lt;&lt; "senoide-" &lt;&lt; SIDE &lt;&lt; ".yml";
@@ -623,7 +623,7 @@ fs.release();</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O objeto <code>fs</code> recebe a serialização dos dados da matriz <code>image</code> associados com o identificador literal <code>mat</code>. Durante o processo de deserialização, o identificador literal <code>mat</code> será usado para recuperar os dados da matriz <code>image</code>. O método <code>release()</code> fecha o fluxo para arquivo de saída. As linhas mostradas na <a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html#ex-senoideyml">Listagem 10</a> são extraídas do início do arquivo <code>senoide-256.yml</code> que é gerado pelo programa <code>filestorage.cpp</code>. Perceba que o arquivo codificado em <code>YAML</code> é escrito em texto simples, composto por uma sequência de pares chave-valor, onde a chave é o identificador literal <code>mat</code> e o valor é a matriz de <code>float</code> serializada.</p>
+<p>O objeto <code>fs</code> recebe a serialização dos dados da matriz <code>image</code> associados com o identificador literal <code>mat</code>. Durante o processo de deserialização, o identificador literal <code>mat</code> será usado para recuperar os dados da matriz <code>image</code>. O método <code>release()</code> fecha o fluxo para arquivo de saída. As linhas mostradas na <a href="filestorage.html#ex-senoideyml">Listagem 10</a> são extraídas do início do arquivo <code>senoide-256.yml</code> que é gerado pelo programa <code>filestorage.cpp</code>. Perceba que o arquivo codificado em <code>YAML</code> é escrito em texto simples, composto por uma sequência de pares chave-valor, onde a chave é o identificador literal <code>mat</code> e o valor é a matriz de <code>float</code> serializada.</p>
 </div>
 <div id="ex-senoideyml" class="listingblock">
 <div class="title">Listagem 10. trecho do arquivo senoide-256.yml</div>
@@ -641,7 +641,7 @@ mat: !!opencv-matrix
 </div>
 </div>
 <div class="paragraph">
-<p>O programa <code>filestorage.cpp</code> também pode ser usado para gerar uma imagem no formato PNG com uma versão truncada da imagem em ponto flutuante criada no exemplo. Essa tarefa é realizada com as linhas mostradas ao final do programa <code>filestorage.cpp</code> apresentado na <a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html#ex-senoideyml">Listagem 10</a>.</p>
+<p>O programa <code>filestorage.cpp</code> também pode ser usado para gerar uma imagem no formato PNG com uma versão truncada da imagem em ponto flutuante criada no exemplo. Essa tarefa é realizada com as linhas mostradas ao final do programa <code>filestorage.cpp</code> apresentado na <a href="filestorage.html#ex-senoideyml">Listagem 10</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -657,11 +657,11 @@ normalizar os valores da matriz de <code>float</code> para o intervalo \$0, 255\
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_2">3.2. Exercícios</h3>
+<h3 id="_exercícios_2">4.2. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Utilizando o programa-exemplo <code>filestorage.cpp</code> como base, crie um programa que gere uma imagem de dimensões 256x256 pixels contendo uma senóide de 4 períodos com amplitude igual 127 desenhada na horizontal, semelhante àquela apresentada na <a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html#fig_filestorage">Figura 6</a>. Grave a imagem no formato <code>YML</code> e também exporte no formato <code>PNG</code>, como faz o programa-exemplo. Compare os arquivos gerados, extraindo uma linha correspondente de cada imagem gravada e comparando a diferença entre elas. Trace um gráfico da diferença calculada ao longo da linha correspondente extraída nas imagens. O que você observa? Por que isso acontece?</p>
+<p>Utilizando o programa-exemplo <code>filestorage.cpp</code> como base, crie um programa que gere uma imagem de dimensões 256x256 pixels contendo uma senóide de 4 períodos com amplitude igual 127 desenhada na horizontal, semelhante àquela apresentada na <a href="filestorage.html#fig_filestorage">Figura 6</a>. Grave a imagem no formato <code>YML</code> e também exporte no formato <code>PNG</code>, como faz o programa-exemplo. Compare os arquivos gerados, extraindo uma linha correspondente de cada imagem gravada e comparando a diferença entre elas. Trace um gráfico da diferença calculada ao longo da linha correspondente extraída nas imagens. O que você observa? Por que isso acontece?</p>
 </li>
 </ul>
 </div>
@@ -669,7 +669,7 @@ normalizar os valores da matriz de <code>float</code> para o intervalo \$0, 255\
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← : <a href="_manipulando_pixels_em_uma_imagem.html">Manipulando pixels em uma imagem</a> | ↑ : <a href="_processamento_de_imagens_no_domínio_espacial.html">Processamento de Imagens no Domínio Espacial</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="_decomposição_de_imagens_em_planos_de_bits.html">Decomposição de imagens em planos de bits</a> →</p>
+<p>← : <a href="pixels.html">Manipulando pixels em uma imagem</a> | ↑ : <a href="espacial.html">Processamento de Imagens no Domínio Espacial</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="bitplanes.html">Decomposição de imagens em planos de bits</a> →</p>
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="_filtragem_no_domínio_espacial_i" class="book toc2 toc-left">
+<body id="convolucao" class="book toc2 toc-left">
 <div id="header">
 <h1>Introdução ao processamento digital de imagens com OpenCV</h1>
 <div class="details">
@@ -451,46 +451,46 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <p><span class="toc-root"><a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a></span></p><ul class="sectlevel1">
-<li><a href="_prefácio.html">Prefácio</a>
+<li><a href="preface.html">1. Prefácio</a>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
+<li><a href="espacial.html">Parte I: Processamento de Imagens no Domínio Espacial</a>
 <ul class="sectlevel1">
-<li><a href="conceitos.html">1. Conceitos iniciais</a>
+<li><a href="conceitos.html">2. Conceitos iniciais</a>
 </li>
-<li><a href="_manipulando_pixels_em_uma_imagem.html">2. Manipulando pixels em uma imagem</a>
+<li><a href="pixels.html">3. Manipulando pixels em uma imagem</a>
 </li>
-<li><a href="_serialização_de_dados_em_ponto_flutuante_via_filestorage.html">3. Serialização de dados em ponto flutuante via FileStorage</a>
+<li><a href="filestorage.html">4. Serialização de dados em ponto flutuante via FileStorage</a>
 </li>
-<li><a href="_decomposição_de_imagens_em_planos_de_bits.html">4. Decomposição de imagens em planos de bits</a>
+<li><a href="bitplanes.html">5. Decomposição de imagens em planos de bits</a>
 </li>
-<li><a href="_preenchendo_regiões.html">5. Preenchendo regiões</a>
+<li><a href="labeling.html">6. Preenchendo regiões</a>
 </li>
-<li><a href="_manipulação_de_histogramas.html">6. Manipulação de histogramas</a>
+<li><a href="histograma.html">7. Manipulação de histogramas</a>
 </li>
-<li><a href="_filtragem_no_domínio_espacial_i.html"><span class="toc-current">7. Filtragem no domínio espacial I</span></a>
+<li><a href="convolucao.html"><span class="toc-current">8. Filtragem no domínio espacial I</span></a>
 <ul class="sectlevel2">
-<li><a href="_filtragem_no_domínio_espacial_i.html#_descrição_do_programa_convolucao_cpp">7.1. Descrição do programa <code>convolucao.cpp</code></a>
+<li><a href="convolucao.html#_descrição_do_programa_convolucao_cpp">8.1. Descrição do programa <code>convolucao.cpp</code></a>
 </li>
-<li><a href="_filtragem_no_domínio_espacial_i.html#_exercícios_6">7.2. Exercícios</a>
-</li>
-</ul>
-</li>
-<li><a href="_filtragem_no_domínio_espacial_ii.html">8. Filtragem no domínio espacial II</a>
+<li><a href="convolucao.html#_exercícios_6">8.2. Exercícios</a>
 </li>
 </ul>
 </li>
-<li><a href="_processamento_de_imagens_no_domínio_da_frequência.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
+<li><a href="tiltshift.html">9. Filtragem no domínio espacial II</a>
 </li>
-<li><a href="_segmentação_de_imagens.html">Parte III: Segmentação de imagens</a>
+</ul>
 </li>
-<li><a href="_outras_transformadas_matemáticas.html">Parte IV: Outras Transformadas Matemáticas</a>
+<li><a href="frequencia.html">Parte II: Processamento de Imagens no Domínio da Frequência</a>
+</li>
+<li><a href="segmentacao.html">Parte III: Segmentação de imagens</a>
+</li>
+<li><a href="outras.html">Parte IV: Outras Transformadas Matemáticas</a>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_filtragem_no_domínio_espacial_i">7. Filtragem no domínio espacial I</h2>
+<h2 id="convolucao">8. Filtragem no domínio espacial I</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A convolução é um processo pelo qual duas funções se combinam para
@@ -545,7 +545,7 @@ realizar.</p>
 máscara denotada por \$w(s,t)\$ e uma image filtrada denotada por
 \$g(x,y)\$. Para uma máscara de tamanho \$3 \times 3\$
 elementos, o processo de filtragem no domínio espacial é ilustrado na
-<a href="_filtragem_no_domínio_espacial_i.html#fig_filtragemespacial">Figura 17</a>.</p>
+<a href="convolucao.html#fig_filtragemespacial">Figura 17</a>.</p>
 </div>
 <div id="fig_filtragemespacial" class="imageblock">
 <div class="content">
@@ -568,7 +568,7 @@ bordas são os principais deles.</p>
 <div class="paragraph">
 <p>O programa de referência utilizado para essa tarefa,
 <a href="exemplos/convolucao.cpp">convolucao.cpp</a>, é mostrado na
-Listagem <a href="_filtragem_no_domínio_espacial_i.html#exa_convolucao">convolucao</a>.</p>
+Listagem <a href="convolucao.html#exa_convolucao">convolucao</a>.</p>
 </div>
 <div id="exa_convolucao" class="listingblock">
 <div class="title">Listagem 19. convolucao.cpp</div>
@@ -674,7 +674,7 @@ int main(int, char **) {
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/convolucao/convolucao.cpp">convolucao.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/convolucao/camera.hpp">camera.hpp</a>, usado para seleção de câmeras, o arquivo <a href="exemplos/convolucao/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="_filtragem_no_domínio_espacial_i.html#convolucao-cmake">Listagem 20</a>) e execute a seqüência de comandos mostrada na <a href="_filtragem_no_domínio_espacial_i.html#ex-compilacao-convolucao">Listagem 21</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/convolucao/convolucao.cpp">convolucao.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/convolucao/camera.hpp">camera.hpp</a>, usado para seleção de câmeras, o arquivo <a href="exemplos/convolucao/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="convolucao.html#convolucao-cmake">Listagem 20</a>) e execute a seqüência de comandos mostrada na <a href="convolucao.html#ex-compilacao-convolucao">Listagem 21</a>.</p>
 </div>
 <div id="convolucao-cmake" class="listingblock">
 <div class="title">Listagem 20. CMakeLists.txt</div>
@@ -705,7 +705,7 @@ a imagem original capturada e outra com o resultado da filtragem. O
 filtro inicial escolhido no exemplo é o da média.</p>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_convolucao_cpp">7.1. Descrição do programa <code>convolucao.cpp</code></h3>
+<h3 id="_descrição_do_programa_convolucao_cpp">8.1. Descrição do programa <code>convolucao.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">  float media[] = {0.1111,0.1111,0.1111,
@@ -791,7 +791,7 @@ frameFiltered.convertTo(result, CV_8U);</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_6">7.2. Exercícios</h3>
+<h3 id="_exercícios_6">8.2. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -805,7 +805,7 @@ capturadas. Compare o resultado desse filtro com a simples aplicação do filtro
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>← : <a href="_manipulação_de_histogramas.html">Manipulação de histogramas</a> | ↑ : <a href="_processamento_de_imagens_no_domínio_espacial.html">Processamento de Imagens no Domínio Espacial</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="_filtragem_no_domínio_espacial_ii.html">Filtragem no domínio espacial II</a> →</p>
+<p>← : <a href="histograma.html">Manipulação de histogramas</a> | ↑ : <a href="espacial.html">Processamento de Imagens no Domínio Espacial</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="tiltshift.html">Filtragem no domínio espacial II</a> →</p>
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
