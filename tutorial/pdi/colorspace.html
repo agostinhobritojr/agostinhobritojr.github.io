@@ -487,7 +487,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="segmentacao.html">Parte VI: Segmentação de imagens</a>
 </li>
-<li><a href="outras.html">Parte VII: Outras Transformadas Matemáticas</a>
+<li><a href="outras.html">Parte VII: Outras Ferramentas</a>
 </li>
 </ul>
 </div>
@@ -623,6 +623,9 @@ $ ./colorspace ../frutas.png</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_descrição_do_programa_colorspace_cpp">7.1. Descrição do programa <code>colorspace.cpp</code></h3>
+<div class="paragraph">
+<p>O programa <code>colorspace.cpp</code> realiza a leitura de uma imagem de entrada, seguido da sua decomposição em canais RGB e HSV.</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">cv::cvtColor(image, image, cv::COLOR_BGR2HSV_FULL);
@@ -630,7 +633,7 @@ cv::split (image, planes);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O programa <code>colorspace.cpp</code> realiza a leitura de uma imagem de entrada, seguido da sua decomposição em canais RGB e HSV. A decomposição nos canais RGB é feita diretamente usando a função <code>cv::split()</code>, enquanto a decomposição nos canais HSV é feita somente após a conversão da imagem para o modelo HSV. Neste último caso, a conversão é feita com o parâmetro <code>cv::COLOR_BGR2HSV_FULL</code>, que gera uma imagem de saída em 8 bits por canal, com valores de 0 a 255.</p>
+<p>A decomposição nos canais RGB é feita diretamente usando a função <code>cv::split()</code>, enquanto a decomposição nos canais HSV é feita somente após a conversão da imagem para o modelo HSV. Neste último caso, a conversão é feita com o parâmetro <code>cv::COLOR_BGR2HSV_FULL</code>, que gera uma imagem de saída em 8 bits por canal, com valores de 0 a 255.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -652,7 +655,7 @@ cv::split (image, planes);</code></pre>
 <p>Utilizando o programa da <a href="colorspace.html#ex_colorspace">Listagem 22</a> como referência, apresente a imagem com outros 5 <em>colormaps</em> disponíveis no OpenCV.</p>
 </li>
 <li>
-<p>Utilizando o programa da <a href="colorspace.html#ex_colorspace">Listagem 22</a> como referência, pesquise na documentação do OpenCV como criar um <em>colormap</em> personalizado e implemente um exemplo.</p>
+<p>Utilizando o programa da <a href="colorspace.html#ex_colorspace">Listagem 22</a> como referência, pesquise na documentação do OpenCV como criar um <em>colormap</em> personalizado e implemente um exemplo com um <em>colormap</em> idealizado por você.</p>
 </li>
 </ul>
 </div>
