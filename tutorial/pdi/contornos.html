@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Agostinho Brito">
+<title>Introdução ao processamento digital de imagens com OpenCV</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
+<style type="text/css">
+  .imageblock>.title {
+    text-align: inherit;
+  }
+</style>
+<style type="text/css">
+  .videoblock>.title {
+    text-align: inherit;
+  }
+</style>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+</head>
+<body id="contornos" class="book toc2 toc-left">
+<div id="header">
+<h1>Introdução ao processamento digital de imagens com OpenCV</h1>
+<div class="details">
+<span id="author" class="author">Agostinho Brito</span><br>
+<span id="email" class="email"><a href="mailto:ambj@dca.ufrn.br">ambj@dca.ufrn.br</a></span><br>
+<span id="revdate">(C) 2015-2024 Agostinho Brito.</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Sumário</div>
+<p><span class="toc-root"><a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a></span></p><ul class="sectlevel1">
+<li><a href="prefacio.html">Prefácio</a>
+</li>
+<li><a href="representacao.html">Parte I: Representação de Imagens</a>
+</li>
+<li><a href="processamento_de_cor.html">Parte II: Processamento de Imagens Coloridas</a>
+</li>
+<li><a href="manipulacao.html">Parte III: Manipulação de imagens</a>
+</li>
+<li><a href="espacial.html">Parte IV: Processamento de Imagens no Domínio Espacial</a>
+</li>
+<li><a href="frequencia.html">Parte V: Processamento de Imagens no Domínio da Frequência</a>
+</li>
+<li><a href="segmentacao.html">Parte VI: Segmentação de imagens</a>
+</li>
+<li><a href="caracteristicas.html">Parte VII: Extração de Características</a>
+<ul class="sectlevel1">
+<li><a href="contornos.html"><span class="toc-current">Capítulo 19. Extração de contornos</span></a>
+<ul class="sectlevel2">
+<li><a href="contornos.html#_descrição_do_programa_contornos_cpp">19.1. Descrição do programa <code>contornos.cpp</code></a>
+</li>
+<li><a href="contornos.html#_exercícios_18">19.2. Exercícios</a>
+</li>
+</ul>
+</li>
+<li><a href="momentos-regioes.html">Capítulo 20. Extração de características: Momentos de Hu para regiões</a>
+</li>
+<li><a href="momentos-contornos.html">Capítulo 21. Extração de características: Momentos de Hu para contornos</a>
+</li>
+</ul>
+</li>
+<li><a href="outras.html">Parte VIII: Outras Ferramentas</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="contornos">Capítulo 19. Extração de contornos</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A extração de contornos é uma técnica utilizada em processamento de imagens e classificação de padrões que permite analisar a forma de um objeto em uma imagem. Algoritmos de extração de contorno opera sobre imagens binarizadas, e visam estrair os pixels que compõem a fronteira de uma componente conectada. A fronteira de um objeto é formada pelos pixels que o separam do restante da imagem.</p>
+</div>
+<div class="paragraph">
+<p>Nas <a href="contornos.html#fig_contorno">Figura 47</a> e <a href="contornos.html#fig_contorno_detalhe">Figura 48</a> é possível visualizar exemplos de contornos. A imagem binária é composta de várias regiões separadas em cor branca, com o fundo em preto. Os pixels pintados em vermelho representam o contorno e marcam a fronteira de cada região.</p>
+</div>
+<div id="fig_contorno" class="imageblock text-center">
+<div class="content">
+<img src="data:image/png;base64,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" alt="contorno">
+</div>
+<div class="title">Figura 47. Exemplo de imagem binarizada com contornos destacados em vermelho.</div>
+</div>
+<div id="fig_contorno_detalhe" class="imageblock text-center">
+<div class="content">
+<img src="data:image/png;base64,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" alt="contorno detalhe">
+</div>
+<div class="title">Figura 48. Detalhe da imagem binarizada.</div>
+</div>
+<div class="paragraph">
+<p>Nesta lição será mostrado como extrair contornos de figuras binarizadas utilizando OpenCV. Os contornos extraídos podem ser utilizados para compor descritores de forma que podem ser utilizados em algoritmos de classificação de padrões.</p>
+</div>
+<div class="paragraph">
+<p>O programa utilizado como referência nesta lição será</p>
+</div>
+<div class="listingblock">
+<div class="title">Listagem 60. contornos.cpp</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">){</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">image</span><span class="p">,</span> <span class="n">gray</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">ofstream</span> <span class="n">file</span><span class="p">;</span>
+
+  <span class="n">image</span><span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">);</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">image</span><span class="p">.</span><span class="n">data</span><span class="p">){</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"nao abriu "</span> <span class="o">&lt;&lt;</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="n">cv</span><span class="o">::</span><span class="n">threshold</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">THRESH_BINARY</span> <span class="o">+</span> <span class="n">cv</span><span class="o">::</span><span class="n">THRESH_OTSU</span><span class="p">);</span>
+  
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">contours</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">cv</span><span class="o">::</span> <span class="n">Vec4i</span><span class="o">&gt;</span> <span class="n">hierarchy</span><span class="p">;</span>
+
+  <span class="n">cv</span><span class="o">::</span><span class="n">findContours</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">contours</span><span class="p">,</span> <span class="n">hierarchy</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">RETR_EXTERNAL</span><span class="p">,</span><span class="n">cv</span><span class="o">::</span><span class="n">CHAIN_APPROX_NONE</span><span class="p">);</span>
+
+  <span class="n">cv</span><span class="o">::</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">COLOR_GRAY2BGR</span><span class="p">);</span>
+
+  <span class="n">file</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">"contornos.svg"</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">file</span><span class="p">.</span><span class="n">is_open</span><span class="p">()){</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"nao abriu contornos.svg"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="s">"&lt;svg height=</span><span class="se">\"</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">image</span><span class="p">.</span><span class="n">rows</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\"</span><span class="s"> width=</span><span class="se">\"</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">image</span><span class="p">.</span><span class="n">cols</span> <span class="o">&lt;&lt;</span> 
+  <span class="s">"</span><span class="se">\"</span><span class="s"> xmlns=</span><span class="se">\"</span><span class="s">http://www.w3.org/2000/svg</span><span class="se">\"</span><span class="s">&gt; "</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">contours</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="s">"&lt;path d=</span><span class="se">\"</span><span class="s">M "</span> <span class="o">&lt;&lt;</span> <span class="n">contours</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">].</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="n">contours</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">].</span><span class="n">y</span> 
+    <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">contours</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">){</span>
+      <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="s">"L"</span> <span class="o">&lt;&lt;</span> <span class="n">contours</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="n">contours</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="s">"Z</span><span class="se">\"</span><span class="s"> fill=</span><span class="se">\"</span><span class="s">#cccccc</span><span class="se">\"</span><span class="s"> stroke=</span><span class="se">\"</span><span class="s">black</span><span class="se">\"</span><span class="s"> stroke-width=</span><span class="se">\"</span><span class="s">1</span><span class="se">\"</span><span class="s"> /&gt;"</span> 
+    <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">drawContours</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">contours</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">CV_RGB</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+  <span class="p">}</span>
+  <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="s">"&lt;/svg&gt;"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+  <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"imagem"</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>  
+  <span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/contornos/contornos.cpp">contornos.cpp</a>, salve-o em um diretório juntamente com o arquivo  <a href="exemplos/contornos/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="contornos.html#contornos-cmake">Listagem 61</a>), a imagem <a href="figs/formas.png">formas.png</a> e execute a seqüência de comandos mostrada na <a href="contornos.html#ex-compilacao-contornos">Listagem 62</a>.</p>
+</div>
+<div id="contornos-cmake" class="listingblock">
+<div class="title">Listagem 61. CMakeLists.txt</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cmake"><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.0.0<span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span>contornos VERSION 0.1.0 LANGUAGES C CXX<span class="p">)</span>
+
+<span class="nb">find_package</span><span class="p">(</span>OpenCV REQUIRED<span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">OpenCV_INCLUDE_DIRS</span><span class="si">}</span><span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span>contornos contornos.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>contornos <span class="si">${</span><span class="nv">OpenCV_LIBS</span><span class="si">}</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div id="ex-compilacao-contornos" class="listingblock">
+<div class="title">Listagem 62. Compilação e execução do programa contornos</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell"><span class="nv">$ </span><span class="nb">mkdir </span>build
+<span class="nv">$ </span><span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make
+<span class="nv">$ </span>./contornos ../formas.png</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>O programa irá gerar um arquivo chamado <code>contornos.svg</code> contendo os contornos externos das componentes conectadas presentes na figura <code>formas.png</code> no formato Scalable Vector Graphics. O arquivo <code>contornos.svg</code> é mostrada na <a href="contornos.html#fig_contorno_svg">Figura 49</a></p>
+</div>
+<div id="fig_contorno_svg" class="imageblock text-center">
+<div class="content">
+<img src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjI1NiIgd2lkdGg9IjI1NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gCjxwYXRoIGQ9Ik0gMjM3IDIwNyBMMjM3IDIwOCBMMjM2IDIwOSBMMjM2IDIxMCBMMjM2IDIxMSBMMjM2IDIxMiBMMjM1IDIxMyBMMjM0IDIxMyBMMjMzIDIxMyBMMjMyIDIxMyBMMjMxIDIxMyBMMjMwIDIxMyBMMjI5IDIxMyBMMjI4IDIxMyBMMjI3IDIxMyBMMjI2IDIxMyBMMjI1IDIxMyBMMjI0IDIxMyBMMjIzIDIxMiBMMjIyIDIxMiBMMjIxIDIxMiBMMjIwIDIxMiBMMjE5IDIxMiBMMjE4IDIxMiBMMjE3IDIxMiBMMjE2IDIxMSBMMjE1IDIxMSBMMjE0IDIxMSBMMjEzIDIxMSBMMjEyIDIxMSBMMjExIDIxMSBMMjEwIDIxMCBMMjA5IDIxMCBMMjA4IDIxMCBMMjA3IDIxMCBMMjA2IDIxMCBMMjA1IDIxMCBMMjA0IDIxMCBMMjAzIDIxMCBMMjAyIDIxMSBMMjAyIDIxMiBMMjAzIDIxMyBMMjAzIDIxNCBMMjA0IDIxNCBMMjA1IDIxNCBMMjA2IDIxNSBMMjA3IDIxNSBMMjA4IDIxNSBMMjA5IDIxNSBMMjEwIDIxNSBMMjExIDIxNSBMMjEyIDIxNSBMMjEzIDIxNiBMMjE0IDIxNiBMMjE1IDIxNiBMMjE2IDIxNiBMMjE3IDIxNiBMMjE4IDIxNiBMMjE5IDIxNyBMMjIwIDIxNyBMMjIxIDIxNyBMMjIyIDIxNyBMMjIzIDIxNyBMMjI0IDIxNyBMMjI1IDIxNyBMMjI2IDIxNyBMMjI3IDIxNyBMMjI4IDIxNyBMMjI5IDIxNyBMMjMwIDIxOCBMMjMxIDIxOCBMMjMyIDIxOCBMMjMzIDIxOCBMMjM0IDIxOSBMMjM0IDIyMCBMMjM0IDIyMSBMMjM0IDIyMiBMMjM0IDIyMyBMMjM1IDIyNCBMMjM2IDIyNCBMMjM3IDIyNCBMMjM4IDIyMyBMMjM4IDIyMiBMMjM4IDIyMSBMMjM4IDIyMCBMMjM5IDIxOSBMMjM5IDIxOCBMMjM5IDIxNyBMMjM5IDIxNiBMMjQwIDIxNSBMMjQwIDIxNCBMMjQwIDIxMyBMMjQxIDIxMiBMMjQxIDIxMSBMMjQxIDIxMCBMMjQxIDIwOSBMMjQwIDIwOCBMMjQwIDIwNyBMMjM5IDIwNyBMMjM4IDIwNyBaIiBmaWxsPSIjY2NjY2NjIiBzdHJva2U9ImJsYWNrIiBzdHJva2Utd2lkdGg9IjEiIC8+CjxwYXRoIGQ9Ik0gMzAgMjAwIEwyOSAyMDEgTDI4IDIwMSBMMjcgMjAyIEwyNiAyMDMgTDI1IDIwNCBMMjUgMjA1IEwyNCAyMDYgTDIzIDIwNyBMMjIgMjA4IEwyMiAyMDkgTDIyIDIxMCBMMjMgMjExIEwyMyAyMTIgTDIzIDIxMyBMMjQgMjE0IEwyNCAyMTUgTDI1IDIxNiBMMjYgMjE3IEwyNiAyMTggTDI3IDIxOSBMMjggMjE5IEwyOSAyMjAgTDMwIDIyMCBMMzEgMjIwIEwzMiAyMjAgTDMzIDIyMCBMMzQgMjIwIEwzNSAyMjAgTDM2IDIyMCBMMzcgMjIwIEwzOCAyMjAgTDM5IDIyMCBMNDAgMjIwIEw0MSAyMjAgTDQyIDIyMCBMNDMgMjIwIEw0NCAyMTkgTDQ0IDIxOCBMNDQgMjE3IEw0NCAyMTYgTDQ0IDIxNSBMNDQgMjE0IEw0NCAyMTMgTDQ0IDIxMiBMNDQgMjExIEw0NCAyMTAgTDQ0IDIwOSBMNDQgMjA4IEw0NCAyMDcgTDQzIDIwNiBMNDMgMjA1IEw0MiAyMDQgTDQxIDIwMyBMNDEgMjAyIEw0MCAyMDEgTDM5IDIwMSBMMzggMjAwIEwzNyAyMDAgTDM2IDIwMCBMMzUgMjAwIEwzNCAyMDAgTDMzIDIwMCBMMzIgMjAwIEwzMSAyMDAgWiIgZmlsbD0iI2NjY2NjYyIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxIiAvPgo8cGF0aCBkPSJNIDk5IDE5MiBMOTggMTkzIEw5OCAxOTQgTDk4IDE5NSBMOTggMTk2IEw5OSAxOTcgTDEwMCAxOTggTDEwMCAxOTkgTDEwMSAyMDAgTDEwMSAyMDEgTDEwMiAyMDIgTDEwMiAyMDMgTDEwMiAyMDQgTDEwMiAyMDUgTDEwMyAyMDYgTDEwMyAyMDcgTDEwMyAyMDggTDEwMyAyMDkgTDEwMyAyMTAgTDEwMyAyMTEgTDEwMyAyMTIgTDEwMyAyMTMgTDEwNCAyMTQgTDEwNCAyMTUgTDEwNCAyMTYgTDEwNCAyMTcgTDEwNSAyMTggTDEwNSAyMTkgTDEwNiAyMjAgTDEwNiAyMjEgTDEwNiAyMjIgTDEwNyAyMjMgTDEwNyAyMjQgTDEwOCAyMjUgTDEwOCAyMjYgTDEwOSAyMjcgTDEwOSAyMjggTDExMCAyMjkgTDExMCAyMzAgTDEwOSAyMzEgTDEwOCAyMzIgTDEwNyAyMzIgTDEwNiAyMzMgTDEwNSAyMzQgTDEwNCAyMzUgTDEwNCAyMzYgTDEwNSAyMzcgTDEwNiAyMzcgTDEwNyAyMzcgTDEwOCAyMzcgTDEwOSAyMzcgTDExMCAyMzYgTDExMSAyMzYgTDExMiAyMzUgTDExMyAyMzQgTDExNCAyMzQgTDExNSAyMzQgTDExNiAyMzMgTDExNyAyMzMgTDExOCAyMzIgTDExOSAyMzIgTDEyMCAyMzIgTDEyMSAyMzIgTDEyMiAyMzEgTDEyMyAyMzEgTDEyNCAyMzAgTDEyNSAyMjkgTDEyNSAyMjggTDEyNSAyMjcgTDEyNCAyMjYgTDEyMyAyMjYgTDEyMiAyMjYgTDEyMSAyMjYgTDEyMCAyMjcgTDExOSAyMjcgTDExOCAyMjggTDExNyAyMjggTDExNiAyMjggTDExNSAyMjggTDExNCAyMjcgTDExMyAyMjYgTDExMyAyMjUgTDExMiAyMjQgTDExMiAyMjMgTDExMSAyMjIgTDExMSAyMjEgTDExMSAyMjAgTDExMCAyMTkgTDExMCAyMTggTDEwOSAyMTcgTDEwOSAyMTYgTDEwOSAyMTUgTDEwOCAyMTQgTDEwOCAyMTMgTDEwOCAyMTIgTDEwOCAyMTEgTDEwOCAyMTAgTDEwNyAyMDkgTDEwNyAyMDggTDEwNyAyMDcgTDEwNyAyMDYgTDEwNyAyMDUgTDEwNyAyMDQgTDEwNyAyMDMgTDEwNyAyMDIgTDEwNiAyMDEgTDEwNiAyMDAgTDEwNiAxOTkgTDEwNSAxOTggTDEwNSAxOTcgTDEwNCAxOTYgTDEwNCAxOTUgTDEwMyAxOTQgTDEwMiAxOTMgTDEwMSAxOTIgTDEwMCAxOTIgWiIgZmlsbD0iI2NjY2NjYyIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxIiAvPgo8cGF0aCBkPSJNIDE3NCAxODggTDE3MyAxODkgTDE3MyAxOTAgTDE3MyAxOTEgTDE3MiAxOTIgTDE3MSAxOTMgTDE3MSAxOTQgTDE3MCAxOTUgTDE2OSAxOTYgTDE2OSAxOTcgTDE2OSAxOTggTDE2OSAxOTkgTDE2OSAyMDAgTDE2OSAyMDEgTDE2OSAyMDIgTDE2OSAyMDMgTDE2OSAyMDQgTDE2OSAyMDUgTDE2OSAyMDYgTDE2OSAyMDcgTDE3MCAyMDggTDE3MSAyMDkgTDE3MiAyMDkgTDE3MyAyMDkgTDE3NCAyMDkgTDE3NSAyMDkgTDE3NiAyMDkgTDE3NyAyMDkgTDE3OCAyMDkgTDE3OSAyMDggTDE4MCAyMDggTDE4MSAyMDggTDE4MiAyMDggTDE4MyAyMDcgTDE4NCAyMDcgTDE4NSAyMDYgTDE4NiAyMDUgTDE4NyAyMDQgTDE4NyAyMDMgTDE4NyAyMDIgTDE4NyAyMDEgTDE4NyAyMDAgTDE4NyAxOTkgTDE4NyAxOTggTDE4NyAxOTcgTDE4NiAxOTYgTDE4NiAxOTUgTDE4NSAxOTQgTDE4NCAxOTMgTDE4MyAxOTIgTDE4MiAxOTEgTDE4MSAxOTEgTDE4MCAxOTEgTDE3OSAxOTAgTDE3OCAxODkgTDE3NyAxODkgTDE3NiAxODggTDE3NSAxODggWiIgZmlsbD0iI2NjY2NjYyIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxIiAvPgo8cGF0aCBkPSJNIDM3IDE2NSBMMzYgMTY2IEwzNiAxNjcgTDM2IDE2OCBMMzYgMTY5IEwzNiAxNzAgTDM2IDE3MSBMMzYgMTcyIEwzNiAxNzMgTDM1IDE3NCBMMzQgMTc0IEwzMyAxNzQgTDMyIDE3NSBMMzEgMTc1IEwzMCAxNzUgTDI5IDE3NSBMMjggMTc1IEwyNyAxNzUgTDI2IDE3NSBMMjUgMTc1IEwyNCAxNzUgTDIzIDE3NSBMMjIgMTc2IEwyMSAxNzYgTDIwIDE3NiBMMTkgMTc2IEwxOCAxNzYgTDE3IDE3NiBMMTYgMTc2IEwxNSAxNzYgTDE0IDE3NyBMMTMgMTc3IEwxMiAxNzcgTDExIDE3OCBMMTEgMTc5IEwxMSAxODAgTDEyIDE4MSBMMTMgMTgxIEwxNCAxODEgTDE1IDE4MSBMMTYgMTgxIEwxNyAxODEgTDE4IDE4MSBMMTkgMTgwIEwyMCAxODAgTDIxIDE4MCBMMjIgMTgwIEwyMyAxODAgTDI0IDE4MCBMMjUgMTgwIEwyNiAxODAgTDI3IDE4MCBMMjggMTgwIEwyOSAxNzkgTDMwIDE3OSBMMzEgMTc5IEwzMiAxNzkgTDMzIDE3OSBMMzQgMTc5IEwzNSAxNzkgTDM2IDE3OCBMMzcgMTc4IEwzOCAxNzggTDM5IDE3OSBMNDAgMTgwIEw0MSAxODAgTDQyIDE4MCBMNDMgMTgwIEw0NCAxODAgTDQ0IDE3OSBMNDUgMTc4IEw0NSAxNzcgTDQ0IDE3NiBMNDMgMTc1IEw0MyAxNzQgTDQyIDE3MyBMNDEgMTcyIEw0MCAxNzEgTDQwIDE3MCBMNDAgMTY5IEw0MCAxNjggTDQwIDE2NyBMNDAgMTY2IEwzOSAxNjUgTDM4IDE2NSBaIiBmaWxsPSIjY2NjY2NjIiBzdHJva2U9ImJsYWNrIiBzdHJva2Utd2lkdGg9IjEiIC8+CjxwYXRoIGQ9Ik0gMTE5IDE1MCBMMTE4IDE1MSBMMTE3IDE1MSBMMTE2IDE1MSBMMTE1IDE1MSBMMTE0IDE1MiBMMTE0IDE1MyBMMTE0IDE1NCBMMTEzIDE1NSBMMTEzIDE1NiBMMTEyIDE1NyBMMTEyIDE1OCBMMTEyIDE1OSBMMTExIDE2MCBMMTExIDE2MSBMMTExIDE2MiBMMTExIDE2MyBMMTExIDE2NCBMMTEyIDE2NSBMMTEyIDE2NiBMMTEzIDE2NyBMMTE0IDE2NyBMMTE1IDE2OCBMMTE2IDE2OCBMMTE3IDE2OCBMMTE4IDE2OCBMMTE5IDE2OCBMMTIwIDE2OCBMMTIxIDE2OCBMMTIyIDE2OCBMMTIzIDE2OCBMMTI0IDE2OCBMMTI1IDE2OCBMMTI2IDE2OCBMMTI3IDE2NyBMMTI4IDE2NyBMMTI5IDE2NyBMMTMwIDE2NiBMMTMxIDE2NSBMMTMxIDE2NCBMMTMxIDE2MyBMMTMxIDE2MiBMMTMxIDE2MSBMMTMxIDE2MCBMMTMxIDE1OSBMMTMxIDE1OCBMMTMxIDE1NyBMMTMxIDE1NiBMMTMwIDE1NSBMMTI5IDE1NCBMMTI4IDE1MyBMMTI3IDE1MyBMMTI2IDE1MiBMMTI1IDE1MSBMMTI0IDE1MCBMMTIzIDE1MCBMMTIyIDE1MCBMMTIxIDE1MCBMMTIwIDE1MCBaIiBmaWxsPSIjY2NjY2NjIiBzdHJva2U9ImJsYWNrIiBzdHJva2Utd2lkdGg9IjEiIC8+CjxwYXRoIGQ9Ik0gNTcgMTQyIEw1NiAxNDMgTDU1IDE0MyBMNTQgMTQ0IEw1MyAxNDUgTDUzIDE0NiBMNTIgMTQ3IEw1MSAxNDggTDUxIDE0OSBMNTEgMTUwIEw1MCAxNTEgTDUwIDE1MiBMNTAgMTUzIEw1MSAxNTQgTDUxIDE1NSBMNTIgMTU2IEw1MiAxNTcgTDUyIDE1OCBMNTMgMTU5IEw1MyAxNjAgTDU0IDE2MSBMNTQgMTYyIEw1NSAxNjMgTDU2IDE2NCBMNTcgMTY1IEw1OCAxNjYgTDU5IDE2NyBMNjAgMTY3IEw2MSAxNjggTDYyIDE2OSBMNjMgMTcwIEw2NCAxNzAgTDY1IDE3MSBMNjYgMTcxIEw2NyAxNzEgTDY4IDE3MSBMNjkgMTcxIEw3MCAxNzEgTDcxIDE3MSBMNzIgMTcwIEw3MyAxNzAgTDczIDE2OSBMNzQgMTY4IEw3NCAxNjcgTDc0IDE2NiBMNzQgMTY1IEw3NCAxNjQgTDc0IDE2MyBMNzQgMTYyIEw3NCAxNjEgTDc0IDE2MCBMNzQgMTU5IEw3NCAxNTggTDczIDE1NyBMNzMgMTU2IEw3MyAxNTUgTDczIDE1NCBMNzIgMTUzIEw3MiAxNTIgTDcxIDE1MSBMNzEgMTUwIEw3MCAxNDkgTDY5IDE0OCBMNjggMTQ3IEw2NyAxNDYgTDY2IDE0NSBMNjUgMTQ0IEw2NCAxNDMgTDYzIDE0MiBMNjIgMTQyIEw2MSAxNDIgTDYwIDE0MiBMNTkgMTQyIEw1OCAxNDIgWiIgZmlsbD0iI2NjY2NjYyIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxIiAvPgo8cGF0aCBkPSJNIDE2OCAxMzUgTDE2NyAxMzYgTDE2NiAxMzcgTDE2NiAxMzggTDE2NiAxMzkgTDE2NiAxNDAgTDE2NiAxNDEgTDE2NiAxNDIgTDE2NSAxNDMgTDE2NSAxNDQgTDE2NSAxNDUgTDE2NCAxNDYgTDE2MyAxNDcgTDE2MyAxNDggTDE2MiAxNDkgTDE2MiAxNTAgTDE2MSAxNTEgTDE2MSAxNTIgTDE2MSAxNTMgTDE2MSAxNTQgTDE2MiAxNTUgTDE2MyAxNTUgTDE2NCAxNTUgTDE2NSAxNTQgTDE2NiAxNTMgTDE2NiAxNTIgTDE2NyAxNTEgTDE2NyAxNTAgTDE2OCAxNDkgTDE2OCAxNDggTDE2OSAxNDcgTDE2OSAxNDYgTDE3MCAxNDUgTDE3MSAxNDUgTDE3MiAxNDUgTDE3MyAxNDUgTDE3NCAxNDUgTDE3NSAxNDYgTDE3NiAxNDYgTDE3NyAxNDYgTDE3OCAxNDYgTDE3OSAxNDYgTDE4MCAxNDcgTDE4MSAxNDcgTDE4MiAxNDcgTDE4MyAxNDcgTDE4NCAxNDcgTDE4NSAxNDcgTDE4NiAxNDggTDE4NyAxNDggTDE4OCAxNDggTDE4OSAxNDkgTDE5MCAxNDkgTDE5MSAxNDkgTDE5MiAxNDkgTDE5MyAxNTAgTDE5NCAxNTAgTDE5NSAxNTAgTDE5NiAxNTEgTDE5NyAxNTEgTDE5OCAxNTIgTDE5OSAxNTIgTDIwMCAxNTMgTDIwMSAxNTMgTDIwMiAxNTMgTDIwMyAxNTQgTDIwNCAxNTUgTDIwNSAxNTUgTDIwNiAxNTUgTDIwNyAxNTYgTDIwOCAxNTYgTDIwOSAxNTYgTDIxMCAxNTcgTDIxMSAxNTcgTDIxMiAxNTcgTDIxMyAxNTcgTDIxNCAxNTggTDIxNSAxNTggTDIxNiAxNTggTDIxNyAxNTkgTDIxOCAxNTkgTDIxOSAxNTkgTDIyMCAxNTkgTDIyMSAxNTggTDIyMSAxNTcgTDIyMSAxNTYgTDIyMSAxNTUgTDIyMCAxNTUgTDIxOSAxNTQgTDIxOCAxNTQgTDIxNyAxNTMgTDIxNiAxNTMgTDIxNSAxNTMgTDIxNCAxNTMgTDIxMyAxNTIgTDIxMiAxNTIgTDIxMSAxNTIgTDIxMCAxNTIgTDIwOSAxNTEgTDIwOCAxNTEgTDIwNyAxNTEgTDIwNiAxNTAgTDIwNSAxNDkgTDIwNCAxNDkgTDIwMyAxNDggTDIwMiAxNDggTDIwMSAxNDcgTDIwMCAxNDcgTDE5OSAxNDcgTDE5OCAxNDYgTDE5NyAxNDYgTDE5NiAxNDYgTDE5NSAxNDUgTDE5NCAxNDUgTDE5MyAxNDQgTDE5MiAxNDQgTDE5MSAxNDQgTDE5MCAxNDQgTDE4OSAxNDQgTDE4OCAxNDMgTDE4NyAxNDMgTDE4NiAxNDMgTDE4NSAxNDMgTDE4NCAxNDIgTDE4MyAxNDIgTDE4MiAxNDIgTDE4MSAxNDIgTDE4MCAxNDIgTDE3OSAxNDIgTDE3OCAxNDIgTDE3NyAxNDEgTDE3NiAxNDEgTDE3NSAxNDEgTDE3NCAxNDEgTDE3MyAxNDAgTDE3MiAxNDAgTDE3MSAxMzkgTDE3MSAxMzggTDE3MSAxMzcgTDE3MCAxMzYgTDE2OSAxMzUgWiIgZmlsbD0iI2NjY2NjYyIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxIiAvPgo8cGF0aCBkPSJNIDEzMCAxMDQgTDEyOSAxMDUgTDEyOCAxMDYgTDEyOCAxMDcgTDEyOCAxMDggTDEyNyAxMDkgTDEyNiAxMTAgTDEyNSAxMTEgTDEyNCAxMTIgTDEyMyAxMTMgTDEyMiAxMTMgTDEyMSAxMTQgTDEyMCAxMTQgTDExOSAxMTUgTDExOCAxMTUgTDExNyAxMTYgTDExNiAxMTYgTDExNSAxMTcgTDExNCAxMTcgTDExMyAxMTggTDExMiAxMTggTDExMSAxMTkgTDExMCAxMjAgTDEwOSAxMjAgTDEwOCAxMjEgTDEwNyAxMjIgTDEwNiAxMjMgTDEwNSAxMjQgTDEwNCAxMjUgTDEwMyAxMjUgTDEwMiAxMjYgTDEwMSAxMjcgTDEwMCAxMjYgTDk5IDEyNSBMOTggMTI0IEw5NyAxMjQgTDk2IDEyNCBMOTUgMTI1IEw5NSAxMjYgTDk1IDEyNyBMOTUgMTI4IEw5NiAxMjkgTDk3IDEzMCBMOTcgMTMxIEw5OCAxMzIgTDk4IDEzMyBMOTggMTM0IEw5OSAxMzUgTDk5IDEzNiBMMTAwIDEzNyBMMTAxIDEzNyBMMTAyIDEzNyBMMTAzIDEzNyBMMTA0IDEzNiBMMTA0IDEzNSBMMTA0IDEzNCBMMTAzIDEzMyBMMTAzIDEzMiBMMTAzIDEzMSBMMTA0IDEzMCBMMTA1IDEzMCBMMTA2IDEyOSBMMTA3IDEyOSBMMTA4IDEyOCBMMTA5IDEyNyBMMTEwIDEyNiBMMTExIDEyNSBMMTEyIDEyNCBMMTEzIDEyMyBMMTE0IDEyMyBMMTE1IDEyMiBMMTE2IDEyMSBMMTE3IDEyMSBMMTE4IDEyMCBMMTE5IDEyMCBMMTIwIDExOSBMMTIxIDExOSBMMTIyIDExOSBMMTIzIDExOCBMMTI0IDExOCBMMTI1IDExNyBMMTI2IDExNiBMMTI3IDExNiBMMTI4IDExNSBMMTI5IDExNCBMMTMwIDExMyBMMTMxIDExMiBMMTMyIDExMSBMMTMyIDExMCBMMTMzIDEwOSBMMTMzIDEwOCBMMTMzIDEwNyBMMTMzIDEwNiBMMTMzIDEwNSBMMTMyIDEwNCBMMTMxIDEwNCBaIiBmaWxsPSIjY2NjY2NjIiBzdHJva2U9ImJsYWNrIiBzdHJva2Utd2lkdGg9IjEiIC8+CjxwYXRoIGQ9Ik0gMTgyIDg2IEwxODEgODcgTDE4MCA4NyBMMTc5IDg4IEwxNzggODkgTDE3NyA5MCBMMTc2IDkxIEwxNzUgOTIgTDE3NSA5MyBMMTc0IDk0IEwxNzMgOTUgTDE3MiA5NiBMMTcyIDk3IEwxNzEgOTggTDE3MCA5OSBMMTcwIDEwMCBMMTY5IDEwMSBMMTY5IDEwMiBMMTY4IDEwMyBMMTY4IDEwNCBMMTY4IDEwNSBMMTY3IDEwNiBMMTY3IDEwNyBMMTY3IDEwOCBMMTY3IDEwOSBMMTY3IDExMCBMMTY3IDExMSBMMTY4IDExMiBMMTY4IDExMyBMMTY5IDExNCBMMTcwIDExNSBMMTcxIDExNiBMMTcyIDExNiBMMTczIDExNiBMMTc0IDExNiBMMTc1IDExNiBMMTc2IDExNiBMMTc3IDExNiBMMTc4IDExNiBMMTc5IDExNiBMMTgwIDExNiBMMTgxIDExNiBMMTgyIDExNiBMMTgzIDExNiBMMTg0IDExNSBMMTg1IDExNSBMMTg2IDExNCBMMTg3IDExNCBMMTg4IDExMyBMMTg5IDExMiBMMTkwIDExMiBMMTkxIDExMSBMMTkyIDExMCBMMTkzIDExMCBMMTk0IDEwOSBMMTk0IDEwOCBMMTk1IDEwNyBMMTk1IDEwNiBMMTk2IDEwNSBMMTk2IDEwNCBMMTk2IDEwMyBMMTk2IDEwMiBMMTk2IDEwMSBMMTk2IDEwMCBMMTk1IDk5IEwxOTUgOTggTDE5NCA5NyBMMTkzIDk2IEwxOTIgOTUgTDE5MSA5NCBMMTkwIDk0IEwxODkgOTMgTDE4OCA5MiBMMTg3IDkxIEwxODYgOTAgTDE4NiA4OSBMMTg2IDg4IEwxODYgODcgTDE4NSA4NiBMMTg0IDg2IEwxODMgODYgWiIgZmlsbD0iI2NjY2NjYyIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxIiAvPgo8cGF0aCBkPSJNIDE3IDc2IEwxNiA3NyBMMTUgNzcgTDE1IDc4IEwxNSA3OSBMMTUgODAgTDE2IDgxIEwxNyA4MSBMMTggODEgTDE5IDgxIEwyMCA4MSBMMjEgODIgTDIwIDgzIEwyMCA4NCBMMjAgODUgTDIwIDg2IEwyMCA4NyBMMjAgODggTDIwIDg5IEwyMCA5MCBMMjAgOTEgTDIwIDkyIEwyMCA5MyBMMjAgOTQgTDIwIDk1IEwyMCA5NiBMMjAgOTcgTDIwIDk4IEwyMCA5OSBMMjAgMTAwIEwyMCAxMDEgTDIwIDEwMiBMMjAgMTAzIEwyMCAxMDQgTDIwIDEwNSBMMjAgMTA2IEwyMCAxMDcgTDIwIDEwOCBMMjAgMTA5IEwyMCAxMTAgTDIwIDExMSBMMjAgMTEyIEwxOSAxMTMgTDE5IDExNCBMMTkgMTE1IEwxOSAxMTYgTDE5IDExNyBMMTggMTE4IEwxOCAxMTkgTDE4IDEyMCBMMTggMTIxIEwxNyAxMjIgTDE3IDEyMyBMMTcgMTI0IEwxNyAxMjUgTDE2IDEyNiBMMTYgMTI3IEwxNiAxMjggTDE2IDEyOSBMMTcgMTMwIEwxOCAxMzEgTDE5IDEzMSBMMjAgMTMwIEwyMSAxMjkgTDIxIDEyOCBMMjEgMTI3IEwyMSAxMjYgTDIyIDEyNSBMMjIgMTI0IEwyMiAxMjMgTDIyIDEyMiBMMjIgMTIxIEwyMyAxMjAgTDIzIDExOSBMMjMgMTE4IEwyMyAxMTcgTDI0IDExNiBMMjQgMTE1IEwyNCAxMTQgTDI0IDExMyBMMjQgMTEyIEwyNCAxMTEgTDI0IDExMCBMMjQgMTA5IEwyNCAxMDggTDI0IDEwNyBMMjQgMTA2IEwyNCAxMDUgTDI0IDEwNCBMMjQgMTAzIEwyNCAxMDIgTDI0IDEwMSBMMjQgMTAwIEwyNCA5OSBMMjQgOTggTDI0IDk3IEwyNCA5NiBMMjQgOTUgTDI0IDk0IEwyNSA5MyBMMjUgOTIgTDI1IDkxIEwyNSA5MCBMMjUgODkgTDI1IDg4IEwyNSA4NyBMMjUgODYgTDI1IDg1IEwyNSA4NCBMMjUgODMgTDI1IDgyIEwyNiA4MSBMMjcgODAgTDI4IDgwIEwyOCA3OSBMMjggNzggTDI4IDc3IEwyNyA3NyBMMjYgNzYgTDI1IDc2IEwyNCA3NiBMMjMgNzYgTDIyIDc2IEwyMSA3NiBMMjAgNzYgTDE5IDc2IEwxOCA3NiBaIiBmaWxsPSIjY2NjY2NjIiBzdHJva2U9ImJsYWNrIiBzdHJva2Utd2lkdGg9IjEiIC8+CjxwYXRoIGQ9Ik0gNzkgNzMgTDc4IDc0IEw3NyA3NCBMNzcgNzUgTDc2IDc2IEw3NiA3NyBMNzUgNzggTDc0IDc5IEw3MyA4MCBMNzIgODEgTDcxIDgyIEw3MSA4MyBMNzAgODQgTDY5IDg1IEw2OSA4NiBMNjggODcgTDY4IDg4IEw2OCA4OSBMNjggOTAgTDY5IDkxIEw3MCA5MiBMNzEgOTIgTDcyIDkyIEw3MyA5MiBMNzQgOTIgTDc1IDkyIEw3NiA5MiBMNzcgOTIgTDc4IDkyIEw3OSA5MiBMODAgOTIgTDgxIDkyIEw4MiA5MiBMODMgOTIgTDg0IDkyIEw4NSA5MiBMODYgOTEgTDg3IDkxIEw4OCA5MSBMODkgOTEgTDkwIDkxIEw5MSA5MCBMOTIgOTAgTDkyIDg5IEw5MiA4OCBMOTIgODcgTDkyIDg2IEw5MiA4NSBMOTIgODQgTDkyIDgzIEw5MiA4MiBMOTIgODEgTDkyIDgwIEw5MSA3OSBMOTAgNzggTDg5IDc3IEw4OCA3NiBMODcgNzYgTDg2IDc1IEw4NSA3NSBMODQgNzUgTDgzIDc0IEw4MiA3NCBMODEgNzMgTDgwIDczIFoiIGZpbGw9IiNjY2NjY2MiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMSIgLz4KPHBhdGggZD0iTSAyMTggNTcgTDIxNyA1OCBMMjE3IDU5IEwyMTcgNjAgTDIxOCA2MSBMMjE5IDYxIEwyMjAgNjIgTDIyMCA2MyBMMjIwIDY0IEwyMjAgNjUgTDIyMCA2NiBMMjIwIDY3IEwyMjAgNjggTDIyMCA2OSBMMjIwIDcwIEwyMjAgNzEgTDIyMCA3MiBMMjIwIDczIEwyMjAgNzQgTDIyMCA3NSBMMjIwIDc2IEwyMjAgNzcgTDIyMCA3OCBMMjIwIDc5IEwyMjAgODAgTDIyMCA4MSBMMjIwIDgyIEwyMjAgODMgTDIyMCA4NCBMMjIwIDg1IEwyMTkgODYgTDIxOSA4NyBMMjE5IDg4IEwyMTkgODkgTDIxOSA5MCBMMjE5IDkxIEwyMTkgOTIgTDIxOCA5MyBMMjE4IDk0IEwyMTggOTUgTDIxOCA5NiBMMjE4IDk3IEwyMTggOTggTDIxNyA5OSBMMjE3IDEwMCBMMjE3IDEwMSBMMjE3IDEwMiBMMjE3IDEwMyBMMjE3IDEwNCBMMjE3IDEwNSBMMjE3IDEwNiBMMjE3IDEwNyBMMjE3IDEwOCBMMjE3IDEwOSBMMjE4IDExMCBMMjE5IDExMSBMMjIwIDExMSBMMjIxIDExMCBMMjIyIDEwOSBMMjIyIDEwOCBMMjIyIDEwNyBMMjIyIDEwNiBMMjIyIDEwNSBMMjIyIDEwNCBMMjIyIDEwMyBMMjIyIDEwMiBMMjIyIDEwMSBMMjIyIDEwMCBMMjIyIDk5IEwyMjIgOTggTDIyMiA5NyBMMjIzIDk2IEwyMjMgOTUgTDIyMyA5NCBMMjIzIDkzIEwyMjMgOTIgTDIyMyA5MSBMMjI0IDkwIEwyMjQgODkgTDIyNCA4OCBMMjI0IDg3IEwyMjQgODYgTDIyNCA4NSBMMjI0IDg0IEwyMjQgODMgTDIyNCA4MiBMMjI0IDgxIEwyMjQgODAgTDIyNCA3OSBMMjI0IDc4IEwyMjQgNzcgTDIyNCA3NiBMMjI0IDc1IEwyMjQgNzQgTDIyNCA3MyBMMjI0IDcyIEwyMjQgNzEgTDIyNCA3MCBMMjI0IDY5IEwyMjQgNjggTDIyNCA2NyBMMjI0IDY2IEwyMjUgNjUgTDIyNSA2NCBMMjI1IDYzIEwyMjYgNjIgTDIyNyA2MiBMMjI4IDYyIEwyMjkgNjEgTDIzMCA2MSBMMjMwIDYwIEwyMzAgNTkgTDIzMCA1OCBMMjI5IDU4IEwyMjggNTcgTDIyNyA1NyBMMjI2IDU3IEwyMjUgNTcgTDIyNCA1NyBMMjIzIDU3IEwyMjIgNTcgTDIyMSA1NyBMMjIwIDU3IEwyMTkgNTcgWiIgZmlsbD0iI2NjY2NjYyIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxIiAvPgo8cGF0aCBkPSJNIDEwNCA1MiBMMTAzIDUzIEwxMDIgNTQgTDEwMSA1NSBMMTAwIDU2IEw5OSA1NyBMOTggNTcgTDk3IDU4IEw5NiA1OCBMOTUgNTkgTDk0IDU5IEw5NCA2MCBMOTQgNjEgTDk0IDYyIEw5NSA2MyBMOTYgNjMgTDk3IDYzIEw5OCA2MiBMOTkgNjIgTDEwMCA2MiBMMTAxIDYxIEwxMDIgNjEgTDEwMyA2MSBMMTA0IDYyIEwxMDUgNjIgTDEwNiA2MyBMMTA3IDY0IEwxMDggNjUgTDEwOSA2NiBMMTA5IDY3IEwxMTAgNjggTDExMSA2OSBMMTEyIDcwIEwxMTMgNzEgTDExNCA3MiBMMTE0IDczIEwxMTUgNzQgTDExNiA3NSBMMTE2IDc2IEwxMTcgNzcgTDExOCA3OCBMMTE5IDc5IEwxMjAgODAgTDEyMSA4MCBMMTIyIDgxIEwxMjMgODEgTDEyNCA4MCBMMTI1IDgwIEwxMjUgNzkgTDEyNSA3OCBMMTI1IDc3IEwxMjQgNzYgTDEyMyA3NiBMMTIyIDc1IEwxMjEgNzQgTDEyMCA3MyBMMTE5IDcyIEwxMTkgNzEgTDExOCA3MCBMMTE3IDY5IEwxMTYgNjggTDExNSA2NyBMMTE1IDY2IEwxMTQgNjUgTDExMyA2NCBMMTEyIDYzIEwxMTEgNjIgTDExMCA2MSBMMTEwIDYwIEwxMDkgNTkgTDEwOCA1OCBMMTA3IDU4IEwxMDYgNTcgTDEwNyA1NiBMMTA3IDU1IEwxMDcgNTQgTDEwNyA1MyBMMTA2IDUyIEwxMDUgNTIgWiIgZmlsbD0iI2NjY2NjYyIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxIiAvPgo8cGF0aCBkPSJNIDExOSAyOSBMMTE4IDMwIEwxMTcgMzAgTDExNiAzMCBMMTE1IDMxIEwxMTQgMzEgTDExMyAzMiBMMTEyIDMzIEwxMTEgMzQgTDExMCAzNSBMMTEwIDM2IEwxMTAgMzcgTDExMCAzOCBMMTEwIDM5IEwxMTAgNDAgTDExMCA0MSBMMTEwIDQyIEwxMTEgNDMgTDExMSA0NCBMMTEyIDQ1IEwxMTMgNDYgTDExNCA0NyBMMTE1IDQ3IEwxMTYgNDggTDExNyA0OCBMMTE4IDQ4IEwxMTkgNDggTDEyMCA0OCBMMTIxIDQ4IEwxMjIgNDggTDEyMyA0OCBMMTI0IDQ3IEwxMjUgNDcgTDEyNiA0NiBMMTI3IDQ2IEwxMjggNDUgTDEyOSA0NCBMMTMwIDQzIEwxMzEgNDMgTDEzMSA0MiBMMTMyIDQxIEwxMzIgNDAgTDEzMiAzOSBMMTMyIDM4IEwxMzIgMzcgTDEzMiAzNiBMMTMyIDM1IEwxMzEgMzQgTDEzMSAzMyBMMTMwIDMyIEwxMjkgMzEgTDEyOCAzMSBMMTI3IDMwIEwxMjYgMzAgTDEyNSAzMCBMMTI0IDI5IEwxMjMgMjkgTDEyMiAyOSBMMTIxIDI5IEwxMjAgMjkgWiIgZmlsbD0iI2NjY2NjYyIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIxIiAvPgo8cGF0aCBkPSJNIDE2MiAyNyBMMTYxIDI4IEwxNjAgMjggTDE2MCAyOSBMMTYwIDMwIEwxNjAgMzEgTDE2MSAzMiBMMTYwIDMzIEwxNTkgMzQgTDE1OCAzNSBMMTU3IDM2IEwxNTcgMzcgTDE1NiAzOCBMMTU1IDM5IEwxNTQgNDAgTDE1NCA0MSBMMTUzIDQyIEwxNTIgNDMgTDE1MSA0NCBMMTUwIDQ1IEwxNDkgNDYgTDE0OCA0NyBMMTQ3IDQ4IEwxNDYgNDkgTDE0NiA1MCBMMTQ1IDUxIEwxNDUgNTIgTDE0NCA1MyBMMTQzIDU0IEwxNDMgNTUgTDE0MiA1NiBMMTQyIDU3IEwxNDEgNTggTDE0MSA1OSBMMTQwIDYwIEwxNDAgNjEgTDE0MCA2MiBMMTQwIDYzIEwxNDEgNjQgTDE0MiA2NCBMMTQzIDY0IEwxNDQgNjMgTDE0NSA2MiBMMTQ1IDYxIEwxNDYgNjAgTDE0NiA1OSBMMTQ3IDU4IEwxNDcgNTcgTDE0OCA1NiBMMTQ4IDU1IEwxNDkgNTQgTDE0OSA1MyBMMTUwIDUyIEwxNTEgNTEgTDE1MiA1MCBMMTUzIDQ5IEwxNTQgNDggTDE1NCA0NyBMMTU1IDQ2IEwxNTYgNDUgTDE1NyA0NCBMMTU4IDQzIEwxNTkgNDIgTDE2MCA0MSBMMTYwIDQwIEwxNjEgMzkgTDE2MiAzOCBMMTYzIDM3IEwxNjQgMzYgTDE2NCAzNSBMMTY1IDM0IEwxNjYgMzUgTDE2NyAzNSBMMTY4IDM2IEwxNjkgMzYgTDE3MCAzNyBMMTcxIDM4IEwxNzIgMzggTDE3MyAzOSBMMTc0IDM5IEwxNzUgMzkgTDE3NiAzOCBMMTc2IDM3IEwxNzYgMzYgTDE3NiAzNSBMMTc1IDM0IEwxNzQgMzQgTDE3MyAzMyBMMTcyIDMzIEwxNzEgMzIgTDE3MCAzMiBMMTY5IDMxIEwxNjggMzAgTDE2NyAzMCBMMTY2IDI5IEwxNjUgMjkgTDE2NCAyOCBMMTYzIDI3IFoiIGZpbGw9IiNjY2NjY2MiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMSIgLz4KPHBhdGggZD0iTSAzNyAyMSBMMzYgMjIgTDM1IDIzIEwzNCAyNCBMMzQgMjUgTDMzIDI2IEwzMyAyNyBMMzMgMjggTDMzIDI5IEwzMyAzMCBMMzIgMzEgTDMyIDMyIEwzMiAzMyBMMzMgMzQgTDMzIDM1IEwzNCAzNiBMMzUgMzcgTDM1IDM4IEwzNiAzOSBMMzcgNDAgTDM3IDQxIEwzOCA0MiBMMzkgNDMgTDQwIDQzIEw0MSA0NCBMNDIgNDQgTDQzIDQ0IEw0NCA0NCBMNDUgNDQgTDQ2IDQ0IEw0NyA0NCBMNDggNDQgTDQ5IDQ0IEw1MCA0MyBMNTEgNDIgTDUxIDQxIEw1MiA0MCBMNTIgMzkgTDUzIDM4IEw1MyAzNyBMNTMgMzYgTDUzIDM1IEw1MyAzNCBMNTMgMzMgTDUzIDMyIEw1MyAzMSBMNTIgMzAgTDUyIDI5IEw1MSAyOCBMNTEgMjcgTDUwIDI2IEw0OSAyNiBMNDggMjUgTDQ3IDI1IEw0NiAyNCBMNDUgMjMgTDQ0IDIzIEw0MyAyMiBMNDIgMjIgTDQxIDIxIEw0MCAyMSBMMzkgMjEgTDM4IDIxIFoiIGZpbGw9IiNjY2NjY2MiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMSIgLz4KPHBhdGggZD0iTSAyMTEgMiBMMjEwIDMgTDIwOSAzIEwyMDggNCBMMjA3IDUgTDIwNiA2IEwyMDYgNyBMMjA2IDggTDIwNiA5IEwyMDYgMTAgTDIwNiAxMSBMMjA2IDEyIEwyMDYgMTMgTDIwNiAxNCBMMjA3IDE1IEwyMDcgMTYgTDIwOCAxNyBMMjA4IDE4IEwyMDggMTkgTDIwOSAyMCBMMjA5IDIxIEwyMTAgMjIgTDIxMCAyMyBMMjExIDI0IEwyMTEgMjUgTDIxMSAyNiBMMjEyIDI3IEwyMTIgMjggTDIxMyAyOSBMMjE0IDMwIEwyMTUgMzEgTDIxNSAzMiBMMjE2IDMzIEwyMTcgMzQgTDIxOCAzNSBMMjE5IDM1IEwyMjAgMzUgTDIyMSAzNCBMMjIyIDM0IEwyMjMgMzMgTDIyMyAzMiBMMjI0IDMxIEwyMjUgMzAgTDIyNSAyOSBMMjI2IDI4IEwyMjcgMjcgTDIyOCAyNiBMMjI5IDI1IEwyMjkgMjQgTDIzMCAyMyBMMjMxIDIyIEwyMzEgMjEgTDIzMiAyMCBMMjMyIDE5IEwyMzMgMTggTDIzMyAxNyBMMjMzIDE2IEwyMzMgMTUgTDIzMyAxNCBMMjMyIDEzIEwyMzEgMTIgTDIzMSAxMSBMMjMwIDEwIEwyMjkgOSBMMjI4IDggTDIyNyA3IEwyMjYgNiBMMjI1IDYgTDIyNCA2IEwyMjMgNSBMMjIyIDUgTDIyMSA0IEwyMjAgNCBMMjE5IDQgTDIxOCAzIEwyMTcgMyBMMjE2IDMgTDIxNSAzIEwyMTQgMyBMMjEzIDIgTDIxMiAyIFoiIGZpbGw9IiNjY2NjY2MiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMSIgLz4KPC9zdmc+Cg==" alt="contornos">
+</div>
+<div class="title">Figura 49. Exemplo de contornos extraídos da imagem formas.png.</div>
+</div>
+<div class="sect2">
+<h3 id="_descrição_do_programa_contornos_cpp">19.1. Descrição do programa <code>contornos.cpp</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cv</span><span class="o">::</span><span class="n">threshold</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">THRESH_BINARY</span> <span class="o">+</span> <span class="n">cv</span><span class="o">::</span><span class="n">THRESH_OTSU</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>O programa <code>contornos.cpp</code> abre a imagem em escala de tons de cinza e realiza sua binarização, posto que o algoritmo de extração de contornos necessita de uma imagem binária para operar. A binarização é realizada com o método de Otsu, conforme abordado no <a href="threshold.html">Capítulo 16</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cv</span><span class="o">::</span><span class="n">findContours</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">contours</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">RETR_EXTERNAL</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">CHAIN_APPROX_NONE</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Uma vez binarizada, a imagem é encaminhada para a função <code>findcontours()</code>, que extrai os contornos das componentes conectadas usando seguidores de borda. Embora ela consiga montar toda uma hierarquia de contornos internos e externos para componentes conectadas com buracos no seu interior, o programa <code>contornos.cpp</code> está configurado para extrair apenas os contornos externos (<code>cv::RETR_EXTERNAL</code>). Ainda, a <code>findcontours()</code> é configurada para não aproximar os contornos, extraindo portanto todos os pontos que compõem o contorno da componente conectada (<code>cv::CHAIN_APPROX_NONE</code>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cv</span><span class="o">::</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">COLOR_GRAY2BGR</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A imagem é convertida para o espaço de cores BGR de modo que os contornos possam ser desenhados em vermelho no final.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">file</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">"contornos.svg"</span><span class="p">);</span>
+<span class="c1">//...</span>
+<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="s">"&lt;svg height=</span><span class="se">\"</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">image</span><span class="p">.</span><span class="n">rows</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\"</span><span class="s"> width=</span><span class="se">\"</span><span class="s">"</span> <span class="o">&lt;&lt;</span> <span class="n">image</span><span class="p">.</span><span class="n">cols</span> <span class="o">&lt;&lt;</span>
+  <span class="s">"</span><span class="se">\"</span><span class="s"> xmlns=</span><span class="se">\"</span><span class="s">http://www.w3.org/2000/svg</span><span class="se">\"</span><span class="s">&gt; "</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cv</span><span class="o">::</span><span class="n">drawContours</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">contours</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">CV_RGB</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>O programa cria um arquivo <code>contornos.svg</code> e escreve o cabeçalho do arquivo SVG, informando a altura e largura da imagem. Em seguida, no laço que percorre os contornos extraídos, é realizado o desenho dos contornos no arquivo, preenchendo-os com cinza e com traço de borda preto. Os mesmos contornos são também desenhados em vermelho na imagem original.</p>
+</div>
+<div class="paragraph">
+<p>Perceba que o arquivo no formato <code>svg</code> é criado apenas para fins de visualização após o término do programa. O arquivo <code>svg</code> pode ser aberto em qualquer editor de texto e visualizado em navegadores web, ou utilizando uma ferramenta livre como o <a href="https://inkscape.org/">Inkscape</a> para editá-lo.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercícios_18">19.2. Exercícios</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Utilizando o programa <code>contornos.cpp</code> como referência, aplique-o na extração do contorno da imagem <a href="figs/retangulos.png">retangulos.png</a> mostrada na <a href="contornos.html#fig_retangulos">Figura 50</a>. Quantos pontos são gerados para o contorno dos retângulos?</p>
+</li>
+</ul>
+</div>
+<div id="fig_retangulos" class="imageblock text-center">
+<div class="content">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAIAAADTED8xAAAA7npUWHRSYXcgcHJvZmlsZSB0eXBlIGV4aWYAAHjajVFbjsMgDPznFD2CXzH4OORRaW+wx+8kOGlT7ceOxNgYYw+mbL8/z/LYIU2KTbV5uBNgYSEdTqOB+WAmO/gEJ9/i5XIFVmF1HITktQ1x+Jz7yCZ85l+F0uEOb3of9J7x+R6fs6C070KpQHl0pjUvZCGVVGRjv6Qij1ZvT1sXuqO9l2kVn5yrgU2oVg/4Tcgq5rnuQp+LxFFoGgO9Auf+TBVokk1ZCazqQ6Xuy7TD7ixaCxIZCR3sI3QMnvCVkADlkY06XcP8nM3nr/2J/zyrvAAaQnazhZxk7AAAAYRpQ0NQSUNDIHByb2ZpbGUAAHicfZE9SMNAHMVf00pF6gfYQdQhQ3Wyi4o41ioUoUKpFVp1MLn0C5o0JCkujoJrwcGPxaqDi7OuDq6CIPgB4uzgpOgiJf4vKbSI8eC4H+/uPe7eAUKjwlQzEANUzTLSibiYza2KwVcEMIIB9GFWYqY+l0ol4Tm+7uHj612UZ3mf+3P0KnmTAT6ROMZ0wyLeIJ7ZtHTO+8RhVpIU4nPiCYMuSPzIddnlN85FhwWeGTYy6XniMLFY7GC5g1nJUImniSOKqlG+kHVZ4bzFWa3UWOue/IWhvLayzHWao0hgEUtIQYSMGsqowEKUVo0UE2naj3v4hx1/ilwyucpg5FhAFSokxw/+B7+7NQtTk25SKA50vdj2xxgQ3AWaddv+Prbt5gngfwautLa/2gBmP0mvt7XIEdC/DVxctzV5D7jcAYaedMmQHMlPUygUgPcz+qYcMHgL9Ky5vbX2cfoAZKir5A1wcAiMFyl73ePd3Z29/Xum1d8PwepyxmWPSj4AAA5baVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pgo8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJYTVAgQ29yZSA0LjQuMC1FeGl2MiI+CiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiCiAgICB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIKICAgIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiCiAgICB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iCiAgICB4bWxuczpHSU1QPSJodHRwOi8vd3d3LmdpbXAub3JnL3htcC8iCiAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIKICAgeG1wTU06RG9jdW1lbnRJRD0iZ2ltcDpkb2NpZDpnaW1wOjIyNThhOWU1LTJmN2UtNDliMC04MDY0LTM2N2E5MTQ0NzJlZCIKICAgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpjYjY1YjkzNy02ZjU1LTRiNjQtYTRmZi0xMzJhMWNjYTFkYWMiCiAgIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDplZDY1MzYyZS1mMTFiLTQyNjMtYjU0Yi1iZmE0YWQ0MWMxY2QiCiAgIGRjOkZvcm1hdD0iaW1hZ2UvcG5nIgogICBHSU1QOkFQST0iMi4wIgogICBHSU1QOlBsYXRmb3JtPSJMaW51eCIKICAgR0lNUDpUaW1lU3RhbXA9IjE3MTQyMzQ1ODc3OTE3MzUiCiAgIEdJTVA6VmVyc2lvbj0iMi4xMC4zNiIKICAgdGlmZjpPcmllbnRhdGlvbj0iMSIKICAgeG1wOkNyZWF0b3JUb29sPSJHSU1QIDIuMTAiCiAgIHhtcDpNZXRhZGF0YURhdGU9IjIwMjQ6MDQ6MjdUMTM6MTY6MjctMDM6MDAiCiAgIHhtcDpNb2RpZnlEYXRlPSIyMDI0OjA0OjI3VDEzOjE2OjI3LTAzOjAwIj4KICAgPHhtcE1NOkhpc3Rvcnk+CiAgICA8cmRmOlNlcT4KICAgICA8cmRmOmxpCiAgICAgIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiCiAgICAgIHN0RXZ0OmNoYW5nZWQ9Ii8iCiAgICAgIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6ODY5ODc2ZmYtYmJhNy00MGE5LThmODktNDhhODA1MDgwNDBlIgogICAgICBzdEV2dDpzb2Z0d2FyZUFnZW50PSJHaW1wIDIuMTAgKExpbnV4KSIKICAgICAgc3RFdnQ6d2hlbj0iMjAyNC0wNC0yNlQyMDoxOTo0OC0wMzowMCIvPgogICAgIDxyZGY6bGkKICAgICAgc3RFdnQ6YWN0aW9uPSJzYXZlZCIKICAgICAgc3RFdnQ6Y2hhbmdlZD0iLyIKICAgICAgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDowMTkwNzlmYi0zMGFkLTQ0ODQtOGI1MS05ODVlZWI1ZjRhMWUiCiAgICAgIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkdpbXAgMi4xMCAoTGludXgpIgogICAgICBzdEV2dDp3aGVuPSIyMDI0LTA0LTI3VDEzOjE2OjI3LTAzOjAwIi8+CiAgICA8L3JkZjpTZXE+CiAgIDwveG1wTU06SGlzdG9yeT4KICA8L3JkZjpEZXNjcmlwdGlvbj4KIDwvcmRmOlJERj4KPC94OnhtcG1ldGE+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAKPD94cGFja2V0IGVuZD0idyI/PvyqyBQAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAALiMAAC4jAXilP3YAAAAHdElNRQfoBBsQEBuY2j3cAAAAGXRFWHRDb21tZW50AENyZWF0ZWQgd2l0aCBHSU1QV4EOFwAAAd1JREFUeNrt1sENgCAUREHW/nteG/CgiYjRmQIwfniBMQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbpepq7c14uf2MjGEqzYjQAAgABAACAAEAAIAAYAAQAAgABAACAAEAAIAAYAAQAAgABAACAAEAAIAAYAAQAAgABAACAAEAAIAAYAAQAAgABAACAAEAAIAAYAAQAAgABAACAAEAAIAAYAAQAAgABAAAgABgABAACAA+IdMXb2tEXPqICZLvusGwBMIBAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACQAAgABAACAAEAAIAAYAAQAAgAPiW/PbP29r+Fx3ErDmKbgA8gUAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAQAAgABAACAAGAAEAAIAAEAAIAAYAAQAAgABAACAAEAAIAAYAAQAAgABAACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwaAes4Qp8hLO2cgAAAABJRU5ErkJggg==" alt="retangulos">
+</div>
+<div class="title">Figura 50. Retângulos superpostos</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Modifique o programa para extrair os contornos internos das componentes conectadas presentes na imagem <code>formas.png</code>. Para isso, altere o parâmetro <code>cv::CHAIN_APPROX_NONE</code> para <code>cv::CHAIN_APPROX_SIMPLE</code> na função <code>findContours()</code>. O que acontece com os novos contornos extraídos? Mostre quantos pontos são gerados após a alteração e discuta como a modificação do parâmetro <code>cv::CHAIN_APPROX_SIMPLE</code> influencia na extração do contorno.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>↑ : <a href="caracteristicas.html">Extração de Características</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="momentos-regioes.html">Extração de características: Momentos de Hu para regiões</a> →</p>
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>

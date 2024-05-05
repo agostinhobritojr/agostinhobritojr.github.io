@@ -1,0 +1,4 @@
+/home/ambj/Dropbox/dca0445/pdi/exemplos/momentos/build/CMakeFiles/momentos-regioes.dir
+/home/ambj/Dropbox/dca0445/pdi/exemplos/momentos/build/CMakeFiles/momentos-contornos.dir
+/home/ambj/Dropbox/dca0445/pdi/exemplos/momentos/build/CMakeFiles/edit_cache.dir
+/home/ambj/Dropbox/dca0445/pdi/exemplos/momentos/build/CMakeFiles/rebuild_cache.dir
