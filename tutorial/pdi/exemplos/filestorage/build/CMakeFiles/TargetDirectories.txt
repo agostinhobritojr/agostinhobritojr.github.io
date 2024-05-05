@@ -1,0 +1,3 @@
+/home/ambj/Dropbox/dca0445/pdi/exemplos/filestorage/build/CMakeFiles/filestorage.dir
+/home/ambj/Dropbox/dca0445/pdi/exemplos/filestorage/build/CMakeFiles/edit_cache.dir
+/home/ambj/Dropbox/dca0445/pdi/exemplos/filestorage/build/CMakeFiles/rebuild_cache.dir
