@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.18">
+<meta name="generator" content="Asciidoctor 2.0.20">
 <meta name="author" content="Agostinho Brito">
 <title>DCA1202: Programação Avançada</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -209,13 +209,10 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
 .admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
 .exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
-.exampleblock>.content>:first-child{margin-top:0}
-.exampleblock>.content>:last-child{margin-bottom:0}
 .sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
-.sidebarblock>:first-child{margin-top:0}
-.sidebarblock>:last-child{margin-bottom:0}
 .sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
-.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
 .literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
 @media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
 @media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
@@ -394,7 +391,7 @@ b.conum *{color:inherit!important}
 dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
 h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
 p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
-p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
 p{margin-bottom:1.25rem}
 .sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
 .exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
@@ -447,15 +444,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <ul class="sectlevel1">
-<li><a href="#_ementa">1. Ementa</a></li>
-<li><a href="#_objetivo_geral">2. Objetivo geral</a></li>
-<li><a href="#_metodologia">3. Metodologia</a></li>
-<li><a href="#_links_importantes">4. Links importantes</a></li>
-<li><a href="#_programa_do_curso">5. Programa do curso</a></li>
-<li><a href="#_metodologia_de_avaliação">6. Metodologia de avaliação</a></li>
-<li><a href="#_datas_das_avaliações">7. Datas das avaliações</a></li>
-<li><a href="#_submissão_de_exercícios">8. Submissão de exercícios</a></li>
-<li><a href="#_bibliografia">9. Bibliografia</a></li>
+<li><a href="#_links_importantes">1. Links importantes</a></li>
+<li><a href="#_bibliografia">2. Bibliografia</a></li>
 </ul>
 </div>
 </div>
@@ -468,54 +458,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ementa">1. Ementa</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Principais paradigmas de programação. Estudo comparativo de
-linguagens. Conceitos de orientação a objetos: exemplificação,
-encapsulamento, herança, classes abstratas, polimorfismo,
-interfaces. Linguagens de programação orientada a objetos: sintaxe,
-operadores, estruturas de controle, tratamento de exceções,
-características avançadas. Introdução às estruturas de dados. Prática
-de programação.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_objetivo_geral">2. Objetivo geral</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Conhecer os principais paradigmas de programação existentes:
-imperativo, funcional, lógico e orientado a objetos. Conhecer e
-aplicar recursos de linguagens de programação para cada um destes
-paradigmas, visando desenvolver senso crítico na escolha da linguagem
-adequada em problemas de engenharia.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_metodologia">3. Metodologia</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Aulas expositivas e práticas, no laboratório, utilizando programas
-específicos.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_links_importantes">4. Links importantes</h2>
+<h2 id="_links_importantes">1. Links importantes</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
 <p>Link github
 (<a href="http://github.com/agostinhobritojr/dca1202">http://github.com/agostinhobritojr/dca1202</a>)</p>
-</li>
-<li>
-<p><a href="listaponteiros.html">Lista de ponteiros</a></p>
-</li>
-<li>
-<p><a href="listacpp.html">Lista de C++</a></p>
 </li>
 <li>
 <p><a href="escultor.html">Escultor digital</a></p>
@@ -528,249 +477,7 @@ específicos.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_programa_do_curso">5. Programa do curso</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Primeira unidade</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Apresentação do Curso</p>
-</li>
-<li>
-<p>Paradigmas de programação</p>
-</li>
-<li>
-<p>Revisão de conceitos em C</p>
-</li>
-<li>
-<p>Revisão de conceitos em C</p>
-</li>
-<li>
-<p>Manipulação de ponteiros</p>
-</li>
-<li>
-<p>Manipulação de ponteiros</p>
-</li>
-<li>
-<p>Alocação dinâmica de memória para vetores</p>
-</li>
-<li>
-<p>Alocação dinâmica de memória para matrizes</p>
-</li>
-<li>
-<p>Alocação dinâmica de memória para matrizes</p>
-</li>
-<li>
-<p>Ponteiros para funções</p>
-</li>
-<li>
-<p>Exercícios de programação</p>
-</li>
-<li>
-<p>Introdução à Programação orientada a objetos</p>
-</li>
-<li>
-<p>Introdução à Programação orientada a objetos</p>
-</li>
-<li>
-<p>Construtores e destrutores</p>
-</li>
-<li>
-<p>Construtores e destrutores</p>
-</li>
-<li>
-<p>Exercícios de programação</p>
-</li>
-<li>
-<p>Exercícios de programação</p>
-</li>
-<li>
-<p>1a. avaliação</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Segunda Unidade</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Herança</p>
-</li>
-<li>
-<p>Herança</p>
-</li>
-<li>
-<p>Sobrecarga de operadores, funções amigas</p>
-</li>
-<li>
-<p>Sobrecarga de operadores, funções amigas</p>
-</li>
-<li>
-<p>Gabaritos de funções e classes</p>
-</li>
-<li>
-<p>Gabaritos de funções e classes</p>
-</li>
-<li>
-<p>Ponteiros e referências, alocação de memória</p>
-</li>
-<li>
-<p>Tratamento de exceções</p>
-</li>
-<li>
-<p>Streams - fluxo</p>
-</li>
-<li>
-<p>2a avaliacao - correção do primeiro projeto de programação (26/04/2017 - 26/04/2017)</p>
-</li>
-<li>
-<p>Classes abstratas</p>
-</li>
-<li>
-<p>Listas simplesmente encadeadas</p>
-</li>
-<li>
-<p>Listas duplamente encadeadas</p>
-</li>
-<li>
-<p>Pilhas e filas</p>
-</li>
-<li>
-<p>A biblioteca padrão de gabaritos</p>
-</li>
-<li>
-<p>A biblioteca padrão de gabaritos</p>
-</li>
-<li>
-<p>Exercícios de programação</p>
-</li>
-<li>
-<p>2a avaliacao - correção do segundo projeto de programação</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Terceira unidade</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Apresentação do projeto da 3a avaliação</p>
-</li>
-<li>
-<p>Programação em Qt</p>
-</li>
-<li>
-<p>Programação em Qt</p>
-</li>
-<li>
-<p>Programação em Qt</p>
-</li>
-<li>
-<p>Programação em Qt</p>
-</li>
-<li>
-<p>Acompanhamento de projetos da 3a avaliação</p>
-</li>
-<li>
-<p>Acompanhamento de projetos da 3a avaliação</p>
-</li>
-<li>
-<p>Acompanhamento de projetos da 3a avaliação</p>
-</li>
-<li>
-<p>Acompanhamento de projetos da 3a avaliação</p>
-</li>
-<li>
-<p>Acompanhamento de projetos da 3a avaliação</p>
-</li>
-<li>
-<p>3a. Avaliacao - correcao da primeira etapa do projeto</p>
-</li>
-<li>
-<p>Acompanhamento de projetos da 3a avaliação</p>
-</li>
-<li>
-<p>Acompanhamento de projetos da 3a avaliação</p>
-</li>
-<li>
-<p>Acompanhamento de projetos da 3a avaliação</p>
-</li>
-<li>
-<p>Acompanhamento de projetos da 3a avaliação</p>
-</li>
-<li>
-<p>Acompanhamento de projetos da 3a avaliação</p>
-</li>
-<li>
-<p>Acompanhamento de projetos da 3a avaliação</p>
-</li>
-<li>
-<p>3a. Avaliacao - correcao da segunda etapa do projeto</p>
-</li>
-</ol>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_metodologia_de_avaliação">6. Metodologia de avaliação</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>1a unidade: Prova escrita (40%) e Exercícios (60%)</p>
-</li>
-<li>
-<p>2a e 3a. unidades: Projetos de programação</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_datas_das_avaliações">7. Datas das avaliações</h2>
-<div class="sectionbody">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Nota"></i>
-</td>
-<td class="content">
-Verificar no SIGAA
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_submissão_de_exercícios">8. Submissão de exercícios</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>A submissão dos exercícios será feita via SIGAA.</p>
-</li>
-<li>
-<p>A apresentação dos projetos será feita em sala de aula.</p>
-</li>
-<li>
-<p>O prazo para entrega das atividades encerra-se ao fim de cada avaliação. Atividades entregues após este prazo não serão aceitas.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_bibliografia">9. Bibliografia</h2>
+<h2 id="_bibliografia">2. Bibliografia</h2>
 <div class="sectionbody">
 <div class="ulist bibliography">
 <ul class="bibliography">
@@ -797,7 +504,7 @@ referência para programação em C++'.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2023-11-22 07:10:26 -0300
+Última atualização 2024-05-14 11:00:43 -0300
 </div>
 </div>
 <script type="text/x-mathjax-config">
