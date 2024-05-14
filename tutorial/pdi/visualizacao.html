@@ -434,7 +434,120 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
 <style type="text/css">
   .imageblock>.title {
     text-align: inherit;
@@ -491,7 +604,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="segmentacao.html">Parte VI: Segmentação de imagens</a>
 </li>
-<li><a href="outras.html">Parte VII: Outras Ferramentas</a>
+<li><a href="caracteristicas.html">Parte VII: Extração de Características</a>
+</li>
+<li><a href="outras.html">Parte VIII: Outras Ferramentas</a>
+</li>
+<li><a href="atividades.html">Parte IX: Tarefas de Processamento de Imagens</a>
 </li>
 </ul>
 </div>
@@ -507,59 +624,59 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Nesta lição, serão mostradas algumas formas de exibir imagens digitais, visando salientar as diferentes formas de visualização de imagens e como elas podem ser úteis para a análise de imagens digitais.</p>
 </div>
 <div class="paragraph">
-<p>O programa mostrado no <a href="visualizacao.html#ex-visualizacao">Listagem 10</a> lê uma imagem em formato <em>grayscale</em> e cria dois arquivos de texto a partir dos pixels da imagem fornecida: <code>image.txt</code> e <code>line.txt</code>. O primeiro arquivo contém a matriz com os tons de cinza dos pixels da imagem e o segundo arquivo contém a matriz de pixels da linha central da imagem, ambos em formato de texto simples. A imagem é lida em formato <em>grayscale</em> para facilitar a manipulação dos pixels, de sorte a facilitar a representação dos pixels em uma matriz bidimensional.</p>
+<p>O programa mostrado no <a href="visualizacao.html#ex-visualizacao">Listagem 10, &#8220;visualizacao.cpp&#8221;</a> lê uma imagem em formato <em>grayscale</em> e cria dois arquivos de texto a partir dos pixels da imagem fornecida: <code>image.txt</code> e <code>line.txt</code>. O primeiro arquivo contém a matriz com os tons de cinza dos pixels da imagem e o segundo arquivo contém a matriz de pixels da linha central da imagem, ambos em formato de texto simples. A imagem é lida em formato <em>grayscale</em> para facilitar a manipulação dos pixels, de sorte a facilitar a representação dos pixels em uma matriz bidimensional.</p>
 </div>
 <div id="ex-visualizacao" class="listingblock">
 <div class="title">Listagem 10. visualizacao.cpp</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;iostream&gt;
-#include &lt;fstream&gt;
-#include &lt;string&gt;
-#include &lt;opencv2/opencv.hpp&gt;
+<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">cv</span><span class="p">;</span>
 
-using namespace cv;
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">){</span>
+  <span class="n">Mat</span> <span class="n">image</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">ofstream</span> <span class="n">file</span><span class="p">;</span>
 
-int main(int argc, char** argv){
-  Mat image;
-  std::ofstream file;
-
-  image = imread(argv[1],cv::IMREAD_GRAYSCALE);
-  if(!image.data){
-    std::cout &lt;&lt; "imagem nao carregou corretamente\n";
-    return(-1);
-  }
-  file.open("image.txt");
-  for(int j=0; j&lt;image.rows; j++){
-    for(int i=0; i&lt;image.cols; i++){
-      file &lt;&lt; (int)(image.at&lt;uchar&gt;(j,i)) &lt;&lt; " ";
-    }
-    file &lt;&lt; "\n";
-  }
-  file.close();
-  file.open("line.txt");
-  for(int i=0; i&lt;image.cols; i++){
-    file &lt;&lt; (int)(image.at&lt;uchar&gt;(image.rows/2,i)) &lt;&lt; "\n";
-  }
-  file.close();
-  return 0;
-}</code></pre>
+  <span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">image</span><span class="p">.</span><span class="n">data</span><span class="p">){</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"imagem nao carregou corretamente</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="k">return</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">file</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">"image.txt"</span><span class="p">);</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">image</span><span class="p">.</span><span class="n">rows</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">){</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">image</span><span class="p">.</span><span class="n">cols</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">image</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">file</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+  <span class="n">file</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">"line.txt"</span><span class="p">);</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">image</span><span class="p">.</span><span class="n">cols</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">image</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">rows</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">file</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/visualizacao/visualizacao.cpp">visualizacao.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/visualizacao/CMakeLists.txt">CMakeLists.txt</a> e execute a sequência de comandos mostrados na <a href="visualizacao.html#ex-compilacao-visualizacao">Listagem 11</a>. O primeiro comando cria um diretório denominado <em>build</em> e o segundo comando entra no diretório criado. O terceiro comando invoca o utilitário <em>cmake</em> para gerar o arquivo <code>Makefile</code> e o quarto comando invoca o utilitário <em>make</em> para compilar o programa. O último comando executa o programa, passando como parâmetro o nome de uma imagem cujos dados serão extraídos para as visualizações.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/visualizacao/visualizacao.cpp">visualizacao.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/visualizacao/CMakeLists.txt">CMakeLists.txt</a> e execute a sequência de comandos mostrados na <a href="visualizacao.html#ex-compilacao-visualizacao">Listagem 11, &#8220;Compilação e execução do programa visualizacao&#8221;</a>. O primeiro comando cria um diretório denominado <em>build</em> e o segundo comando entra no diretório criado. O terceiro comando invoca o utilitário <em>cmake</em> para gerar o arquivo <code>Makefile</code> e o quarto comando invoca o utilitário <em>make</em> para compilar o programa. O último comando executa o programa, passando como parâmetro o nome de uma imagem cujos dados serão extraídos para as visualizações.</p>
 </div>
 <div id="ex-compilacao-visualizacao" class="listingblock">
 <div class="title">Listagem 11. Compilação e execução do programa visualizacao</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ mkdir build
-$ cd build
-$ cmake ..
-$ make
-$ ./visualizacao ../biel-small.png</code></pre>
+<pre class="rouge highlight"><code data-lang="shell"><span class="nv">$ </span><span class="nb">mkdir </span>build
+<span class="nv">$ </span><span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make
+<span class="nv">$ </span>./visualizacao ../biel-small.png</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A imagem primeira visualização apresenta um mapa bidimensional da imagem, onde cada pixel é representado por um tom de cinza. A visualização é feita através do programa <em>gnuplot</em> (<a href="http://gnuplot.info">http://gnuplot.info</a>), que lê o arquivo <code>image.txt</code> e exibe a matriz de tons de cinza dos pixels da imagem em formato de matriz bidimensional, com um grid delimitando os pixels em suas respectivas posições. A <a href="visualizacao.html#ex-visualizacao-image">Listagem 12</a> mostra os comandos necessários para visualizar a matriz de tons de cinza dos pixels da imagem.</p>
+<p>A imagem primeira visualização apresenta um mapa bidimensional da imagem, onde cada pixel é representado por um tom de cinza. A visualização é feita através do programa <em>gnuplot</em> (<a href="http://gnuplot.info">http://gnuplot.info</a>), que lê o arquivo <code>image.txt</code> e exibe a matriz de tons de cinza dos pixels da imagem em formato de matriz bidimensional, com um grid delimitando os pixels em suas respectivas posições. A <a href="visualizacao.html#ex-visualizacao-image">Listagem 12, &#8220;Traçado da matriz de tons de cinza dos pixels da imagem via Gnuplot&#8221;</a> mostra os comandos necessários para visualizar a matriz de tons de cinza dos pixels da imagem.</p>
 </div>
 <div class="paragraph">
 <p>Assegure-se de que o programa <em>gnuplot</em> esteja instalado e de que o arquivo <code>image.txt</code> esteja no mesmo diretório onde está sendo invocado o programa <em>gnuplot</em>, caso utilize um terminal.  Caso não seja possível utilizar o programa dessa forma, é possível pode adaptar a linha <code>plot &#8230;&#8203;</code> fornecendo o caminho completo que leva para o arquivo <code>image.txt</code> no seu sistema de arquivos.</p>
@@ -567,7 +684,7 @@ $ ./visualizacao ../biel-small.png</code></pre>
 <div id="ex-visualizacao-image" class="listingblock">
 <div class="title">Listagem 12. Traçado da matriz de tons de cinza dos pixels da imagem via Gnuplot</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gnuplot hljs" data-lang="gnuplot">set size ratio 1
+<pre class="rouge highlight"><code data-lang="gnuplot">set size ratio 1
 set palette gray
 set autoscale xfix
 set autoscale yfix
@@ -584,7 +701,7 @@ plot 'image.txt' matrix with image notitle</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O resultado da visualização da matriz de tons de cinza dos pixels da imagem é mostrado na <a href="visualizacao.html#fig_visualizacao-image">Figura 6</a>. A imagem exibida é uma representação bidimensional da matriz de tons de cinza dos pixels da imagem, onde cada pixel é representado por um tom de cinza. A imagem é exibida em escala de cinza, onde os pixels com maiores valores são representados quadrados mais claros e os pixels com valores menores são representados por quadrados mais escuros. Esta é uma forma interessante de perceber os pixels da imagem e identificar as transições entre eles em escala macroscópica.</p>
+<p>O resultado da visualização da matriz de tons de cinza dos pixels da imagem é mostrado na <a href="visualizacao.html#fig_visualizacao-image">Figura 6, &#8220;Desenho da matriz de tons de cinza dos pixels da imagem via Gnuplot&#8221;</a>. A imagem exibida é uma representação bidimensional da matriz de tons de cinza dos pixels da imagem, onde cada pixel é representado por um tom de cinza. A imagem é exibida em escala de cinza, onde os pixels com maiores valores são representados quadrados mais claros e os pixels com valores menores são representados por quadrados mais escuros. Esta é uma forma interessante de perceber os pixels da imagem e identificar as transições entre eles em escala macroscópica.</p>
 </div>
 <div id="fig_visualizacao-image" class="imageblock text-center">
 <div class="content">
@@ -593,18 +710,18 @@ plot 'image.txt' matrix with image notitle</code></pre>
 <div class="title">Figura 6. Desenho da matriz de tons de cinza dos pixels da imagem via Gnuplot</div>
 </div>
 <div class="paragraph">
-<p>O arquivo <code>image.txt</code> pode ser visualizado com o programa <em>gnuplot</em> (link:gnuplot.info) através dos comandos mostrado no <a href="visualizacao.html#ex-gnuplot-matrix">Listagem 13</a>. O comando <code>set pm3d</code> ativa a visualização em 3D e o comando <code>set hidden3d</code> ativa a o processamento de superfícies ocultas. O comando <code>splot 'image.txt' matrix with pm3d</code> exibe a matriz de tons de cinza dos pixels da imagem em formato de superfície tridimensional.</p>
+<p>O arquivo <code>image.txt</code> pode ser visualizado com o programa <em>gnuplot</em> (link:gnuplot.info) através dos comandos mostrado no <a href="visualizacao.html#ex-gnuplot-matrix">Listagem 13, &#8220;Traçado da matriz da imagem na forma de uma superfície tridimensional via Gnuplot&#8221;</a>. O comando <code>set pm3d</code> ativa a visualização em 3D e o comando <code>set hidden3d</code> ativa a o processamento de superfícies ocultas. O comando <code>splot 'image.txt' matrix with pm3d</code> exibe a matriz de tons de cinza dos pixels da imagem em formato de superfície tridimensional.</p>
 </div>
 <div id="ex-gnuplot-matrix" class="listingblock">
 <div class="title">Listagem 13. Traçado da matriz da imagem na forma de uma superfície tridimensional via Gnuplot</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gnuplot hljs" data-lang="gnuplot">set pm3d
+<pre class="rouge highlight"><code data-lang="gnuplot">set pm3d
 set hidden3d
 splot 'image.txt' matrix with pm3d</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A saída do programa <em>gnuplot</em> é mostrado na <a href="visualizacao.html#fig_visualizacao-3d">Figura 7</a>. A imagem exibida é um mapa de elevação da matriz de tons de cinza dos pixels da imagem. O <code>gnuplot</code> permite interagir com a imagem, como rotacionar, aproximar e afastar a imagem, além de visualizar a imagem em diferentes perspectivas. É possível perceber que as bordas da imagem são apresentadas como as transições mais abruptas na superfície tridimensional, enquanto as regiões homogêneas da imagem são representadas por superfícies planas.</p>
+<p>A saída do programa <em>gnuplot</em> é mostrado na <a href="visualizacao.html#fig_visualizacao-3d">Figura 7, &#8220;Resultado da visualização da matriz de tons de cinza dos pixels da imagem em três dimensões.&#8221;</a>. A imagem exibida é um mapa de elevação da matriz de tons de cinza dos pixels da imagem. O <code>gnuplot</code> permite interagir com a imagem, como rotacionar, aproximar e afastar a imagem, além de visualizar a imagem em diferentes perspectivas. É possível perceber que as bordas da imagem são apresentadas como as transições mais abruptas na superfície tridimensional, enquanto as regiões homogêneas da imagem são representadas por superfícies planas.</p>
 </div>
 <div id="fig_visualizacao-3d" class="imageblock text-center">
 <div class="content">
@@ -613,16 +730,16 @@ splot 'image.txt' matrix with pm3d</code></pre>
 <div class="title">Figura 7. Resultado da visualização da matriz de tons de cinza dos pixels da imagem em três dimensões.</div>
 </div>
 <div class="paragraph">
-<p>O arquivo <code>line.txt</code> pode ser visualizado conforme o comando mostrado no <a href="visualizacao.html#ex-gnuplot-line">Listagem 14</a>. O modo de traçado <code>histeps</code>, ou em degraus, é um modo de destacar que os valores dos pixels variam de modo discreto entre os vizinhos.</p>
+<p>O arquivo <code>line.txt</code> pode ser visualizado conforme o comando mostrado no <a href="visualizacao.html#ex-gnuplot-line">Listagem 14, &#8220;Traçado da linha central da imagem via Gnuplot&#8221;</a>. O modo de traçado <code>histeps</code>, ou em degraus, é um modo de destacar que os valores dos pixels variam de modo discreto entre os vizinhos.</p>
 </div>
 <div id="ex-gnuplot-line" class="listingblock">
 <div class="title">Listagem 14. Traçado da linha central da imagem via Gnuplot</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-gnuplot hljs" data-lang="gnuplot">plot 'line.txt' with histeps</code></pre>
+<pre class="rouge highlight"><code data-lang="gnuplot">plot 'line.txt' with histeps</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A saída do programa <em>gnuplot</em> é mostrado na <a href="visualizacao.html#fig_visualizacao-line">Figura 8</a>. A imagem exibida é um gráfico de degraus que representa a linha central da imagem.</p>
+<p>A saída do programa <em>gnuplot</em> é mostrado na <a href="visualizacao.html#fig_visualizacao-line">Figura 8, &#8220;Resultado da visualização da linha central da imagem.&#8221;</a>. A imagem exibida é um gráfico de degraus que representa a linha central da imagem.</p>
 </div>
 <div id="fig_visualizacao-line" class="imageblock text-center">
 <div class="content">
@@ -635,7 +752,7 @@ splot 'image.txt' matrix with pm3d</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Utilizando o programa da <a href="visualizacao.html#ex-visualizacao">Listagem 10</a> como referência, prepare os arquivos <code>matriz.txt</code> e <code>line.txt</code> para as imagens <a href="figs/sementes1.png">sementes1.png</a> e <a href="figs/sementes2.png">sementes2.png</a> mostrada nas <a href="visualizacao.html#fig_visualizacao_sementes1">Figura 9</a> e <a href="visualizacao.html#fig_visualizacao_sementes2">Figura 10</a>. Utilize o programa <em>gnuplot</em> para realizar as visualizações mostradas nessa lição para ambas as imagens. Compare os gráficos gerados e discuta o que pode ser observado acerca da iluminação das cenas nas duas imagens.</p>
+<p>Utilizando o programa da <a href="visualizacao.html#ex-visualizacao">Listagem 10, &#8220;visualizacao.cpp&#8221;</a> como referência, prepare os arquivos <code>matriz.txt</code> e <code>line.txt</code> para as imagens <a href="figs/sementes1.png">sementes1.png</a> e <a href="figs/sementes2.png">sementes2.png</a> mostrada nas <a href="visualizacao.html#fig_visualizacao_sementes1">Figura 9, &#8220;Sementes 1&#8221;</a> e <a href="visualizacao.html#fig_visualizacao_sementes2">Figura 10, &#8220;Sementes 2&#8221;</a>. Utilize o programa <em>gnuplot</em> para realizar as visualizações mostradas nessa lição para ambas as imagens. Compare os gráficos gerados e discuta o que pode ser observado acerca da iluminação das cenas nas duas imagens.</p>
 </li>
 </ul>
 </div>
@@ -658,13 +775,6 @@ splot 'image.txt' matrix with pm3d</code></pre>
 <p>← : <a href="video.html">Tratando arquivos de vídeo</a> | ↑ : <a href="representacao.html">Representação de Imagens</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="filestorage.html">Serialização de dados em ponto flutuante via FileStorage</a> →</p>
 </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
-<script>
-if (!hljs.initHighlighting.called) {
-  hljs.initHighlighting.called = true
-  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
-}
-</script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",

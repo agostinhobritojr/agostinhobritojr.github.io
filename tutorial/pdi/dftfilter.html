@@ -434,7 +434,120 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
 <style type="text/css">
   .imageblock>.title {
     text-align: inherit;
@@ -487,7 +600,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="segmentacao.html">Parte VI: Segmentação de imagens</a>
 </li>
-<li><a href="outras.html">Parte VII: Outras Ferramentas</a>
+<li><a href="caracteristicas.html">Parte VII: Extração de Características</a>
+</li>
+<li><a href="outras.html">Parte VIII: Outras Ferramentas</a>
+</li>
+<li><a href="atividades.html">Parte IX: Tarefas de Processamento de Imagens</a>
 </li>
 </ul>
 </div>
@@ -549,159 +666,159 @@ canto superior esquerdo.`</p>
 </div>
 <div class="paragraph">
 <p>Nessa sequência de passos, o processo de filtragem inicial com a criação do
-filtro \$H(u,v)\$, tal que a imagem filtrada é dada por \$G(u,v) = H(u,v)
-\cdot F(u,v)\$, onde \$F(u,v)\$ é a transformada de Fourier da imagem de
-entrada e \$G(u,v)\$ é a transformada de Fourier da imagem filtrada. Esse
+filtro \(H(u,v)\), tal que a imagem filtrada é dada por \(G(u,v) = H(u,v)
+\cdot F(u,v)\), onde \(F(u,v)\) é a transformada de Fourier da imagem de
+entrada e \(G(u,v)\) é a transformada de Fourier da imagem filtrada. Esse
 produto de matrizes é realizado elemento a elemento, e é implementado no OpenCV
 pela função <code>mulSpectrums()</code>.</p>
 </div>
 <div class="paragraph">
 <p>O programa de referência utilizado para essa tarefa, <a href="exemplos/dftfilter/dftfilter.cpp">dftfilter.cpp</a>, é mostrado na
-<a href="dftfilter.html#exa_dftfilter">Listagem 45</a>.</p>
+<a href="dftfilter.html#exa_dftfilter">Listagem 45, &#8220;dftfilter.cpp&#8221;</a>.</p>
 </div>
 <div id="exa_dftfilter" class="listingblock">
 <div class="title">Listagem 45. dftfilter.cpp</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;iostream&gt;
-#include &lt;vector&gt;
-#include &lt;opencv2/opencv.hpp&gt;
+<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="nf">swapQuadrants</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&amp;</span> <span class="n">image</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span><span class="p">;</span>
 
-void swapQuadrants(cv::Mat&amp; image) {
-  cv::Mat tmp, A, B, C, D;
+  <span class="c1">// se a imagem tiver tamanho impar, recorta a regiao para o maior</span>
+  <span class="c1">// tamanho par possivel (-2 = 1111...1110)</span>
+  <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="p">.</span><span class="n">cols</span> <span class="o">&amp;</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">image</span><span class="p">.</span><span class="n">rows</span> <span class="o">&amp;</span> <span class="o">-</span><span class="mi">2</span><span class="p">));</span>
 
-  // se a imagem tiver tamanho impar, recorta a regiao para o maior
-  // tamanho par possivel (-2 = 1111...1110)
-  image = image(cv::Rect(0, 0, image.cols &amp; -2, image.rows &amp; -2));
+  <span class="kt">int</span> <span class="n">centerX</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">cols</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">centerY</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">rows</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
 
-  int centerX = image.cols / 2;
-  int centerY = image.rows / 2;
+  <span class="c1">// rearranja os quadrantes da transformada de Fourier de forma que </span>
+  <span class="c1">// a origem fique no centro da imagem</span>
+  <span class="c1">// A B   -&gt;  D C</span>
+  <span class="c1">// C D       B A</span>
+  <span class="n">A</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">centerX</span><span class="p">,</span> <span class="n">centerY</span><span class="p">));</span>
+  <span class="n">B</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="n">centerX</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">centerX</span><span class="p">,</span> <span class="n">centerY</span><span class="p">));</span>
+  <span class="n">C</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">centerY</span><span class="p">,</span> <span class="n">centerX</span><span class="p">,</span> <span class="n">centerY</span><span class="p">));</span>
+  <span class="n">D</span> <span class="o">=</span> <span class="n">image</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="n">centerX</span><span class="p">,</span> <span class="n">centerY</span><span class="p">,</span> <span class="n">centerX</span><span class="p">,</span> <span class="n">centerY</span><span class="p">));</span>
 
-  // rearranja os quadrantes da transformada de Fourier de forma que 
-  // a origem fique no centro da imagem
-  // A B   -&gt;  D C
-  // C D       B A
-  A = image(cv::Rect(0, 0, centerX, centerY));
-  B = image(cv::Rect(centerX, 0, centerX, centerY));
-  C = image(cv::Rect(0, centerY, centerX, centerY));
-  D = image(cv::Rect(centerX, centerY, centerX, centerY));
+  <span class="c1">// swap quadrants (Top-Left with Bottom-Right)</span>
+  <span class="n">A</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
+  <span class="n">D</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+  <span class="n">tmp</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">D</span><span class="p">);</span>
 
-  // swap quadrants (Top-Left with Bottom-Right)
-  A.copyTo(tmp);
-  D.copyTo(A);
-  tmp.copyTo(D);
+  <span class="c1">// swap quadrant (Top-Right with Bottom-Left)</span>
+  <span class="n">C</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
+  <span class="n">B</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">C</span><span class="p">);</span>
+  <span class="n">tmp</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
+<span class="p">}</span>
 
-  // swap quadrant (Top-Right with Bottom-Left)
-  C.copyTo(tmp);
-  B.copyTo(C);
-  tmp.copyTo(B);
-}
+<span class="kt">void</span> <span class="nf">makeFilter</span><span class="p">(</span><span class="k">const</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="o">&amp;</span><span class="n">image</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="o">&amp;</span><span class="n">filter</span><span class="p">){</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat_</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">filter2D</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">rows</span><span class="p">,</span> <span class="n">image</span><span class="p">.</span><span class="n">cols</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">centerX</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">cols</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">centerY</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">rows</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">radius</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
 
-void makeFilter(const cv::Mat &amp;image, cv::Mat &amp;filter){
-  cv::Mat_&lt;float&gt; filter2D(image.rows, image.cols);
-  int centerX = image.cols / 2;
-  int centerY = image.rows / 2;
-  int radius = 20;
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">image</span><span class="p">.</span><span class="n">rows</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">image</span><span class="p">.</span><span class="n">cols</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">pow</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">centerY</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">pow</span><span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="n">centerX</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">pow</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">filter2D</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">filter2D</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 
-  for (int i = 0; i &lt; image.rows; i++) {
-    for (int j = 0; j &lt; image.cols; j++) {
-      if (pow(i - centerY, 2) + pow(j - centerX, 2) &lt;= pow(radius, 2)) {
-        filter2D.at&lt;float&gt;(i, j) = 1;
-      } else {
-        filter2D.at&lt;float&gt;(i, j) = 0;
-      }
-    }
-  }
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">planes</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat_</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">filter2D</span><span class="p">),</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">::</span><span class="n">zeros</span><span class="p">(</span><span class="n">filter2D</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">CV_32F</span><span class="p">)};</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">merge</span><span class="p">(</span><span class="n">planes</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">filter</span><span class="p">);</span>
+<span class="p">}</span>
 
-  cv::Mat planes[] = {cv::Mat_&lt;float&gt;(filter2D), cv::Mat::zeros(filter2D.size(), CV_32F)};
-  cv::merge(planes, 2, filter);
-}
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">image</span><span class="p">,</span> <span class="n">padded</span><span class="p">,</span> <span class="n">complexImage</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;</span> <span class="n">planos</span><span class="p">;</span> 
 
-int main(int argc, char** argv) {
-  cv::Mat image, padded, complexImage;
-  std::vector&lt;cv::Mat&gt; planos; 
+  <span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Erro abrindo imagem"</span> <span class="o">&lt;&lt;</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">EXIT_FAILURE</span><span class="p">;</span>
+  <span class="p">}</span>
 
-  image = imread(argv[1], cv::IMREAD_GRAYSCALE);
-  if (image.empty()) {
-    std::cout &lt;&lt; "Erro abrindo imagem" &lt;&lt; argv[1] &lt;&lt; std::endl;
-    return EXIT_FAILURE;
-  }
+  <span class="c1">// expande a imagem de entrada para o melhor tamanho no qual a DFT pode ser</span>
+  <span class="c1">// executada, preenchendo com zeros a lateral inferior direita.</span>
+  <span class="kt">int</span> <span class="n">dft_M</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">getOptimalDFTSize</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">rows</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">dft_N</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">getOptimalDFTSize</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">cols</span><span class="p">);</span> 
+  <span class="n">cv</span><span class="o">::</span><span class="n">copyMakeBorder</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">padded</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">dft_M</span> <span class="o">-</span> <span class="n">image</span><span class="p">.</span><span class="n">rows</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">dft_N</span> <span class="o">-</span> <span class="n">image</span><span class="p">.</span><span class="n">cols</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">BORDER_CONSTANT</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="o">::</span><span class="n">all</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
 
-  // expande a imagem de entrada para o melhor tamanho no qual a DFT pode ser
-  // executada, preenchendo com zeros a lateral inferior direita.
-  int dft_M = cv::getOptimalDFTSize(image.rows);
-  int dft_N = cv::getOptimalDFTSize(image.cols); 
-  cv::copyMakeBorder(image, padded, 0, dft_M - image.rows, 0, dft_N - image.cols, cv::BORDER_CONSTANT, cv::Scalar::all(0));
+  <span class="c1">// prepara a matriz complexa para ser preenchida</span>
+  <span class="c1">// primeiro a parte real, contendo a imagem de entrada</span>
+  <span class="n">planos</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat_</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">padded</span><span class="p">));</span> 
+  <span class="c1">// depois a parte imaginaria com valores nulos</span>
+  <span class="n">planos</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">::</span><span class="n">zeros</span><span class="p">(</span><span class="n">padded</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">CV_32F</span><span class="p">));</span>
 
-  // prepara a matriz complexa para ser preenchida
-  // primeiro a parte real, contendo a imagem de entrada
-  planos.push_back(cv::Mat_&lt;float&gt;(padded)); 
-  // depois a parte imaginaria com valores nulos
-  planos.push_back(cv::Mat::zeros(padded.size(), CV_32F));
+  <span class="c1">// combina os planos em uma unica estrutura de dados complexa</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">merge</span><span class="p">(</span><span class="n">planos</span><span class="p">,</span> <span class="n">complexImage</span><span class="p">);</span>  
 
-  // combina os planos em uma unica estrutura de dados complexa
-  cv::merge(planos, complexImage);  
+  <span class="c1">// calcula a DFT</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">dft</span><span class="p">(</span><span class="n">complexImage</span><span class="p">,</span> <span class="n">complexImage</span><span class="p">);</span> 
+  <span class="n">swapQuadrants</span><span class="p">(</span><span class="n">complexImage</span><span class="p">);</span>
 
-  // calcula a DFT
-  cv::dft(complexImage, complexImage); 
-  swapQuadrants(complexImage);
+  <span class="c1">// cria o filtro ideal e aplica a filtragem de frequencia</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">filter</span><span class="p">;</span>
+  <span class="n">makeFilter</span><span class="p">(</span><span class="n">complexImage</span><span class="p">,</span> <span class="n">filter</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">mulSpectrums</span><span class="p">(</span><span class="n">complexImage</span><span class="p">,</span> <span class="n">filter</span><span class="p">,</span> <span class="n">complexImage</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 
-  // cria o filtro ideal e aplica a filtragem de frequencia
-  cv::Mat filter;
-  makeFilter(complexImage, filter);
-  cv::mulSpectrums(complexImage, filter, complexImage, 0);
+  <span class="c1">// calcula a DFT inversa</span>
+  <span class="n">swapQuadrants</span><span class="p">(</span><span class="n">complexImage</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">idft</span><span class="p">(</span><span class="n">complexImage</span><span class="p">,</span> <span class="n">complexImage</span><span class="p">);</span>
 
-  // calcula a DFT inversa
-  swapQuadrants(complexImage);
-  cv::idft(complexImage, complexImage);
+  <span class="c1">// planos[0] : Re(DFT(image)</span>
+  <span class="c1">// planos[1] : Im(DFT(image)</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">split</span><span class="p">(</span><span class="n">complexImage</span><span class="p">,</span> <span class="n">planos</span><span class="p">);</span>
 
-  // planos[0] : Re(DFT(image)
-  // planos[1] : Im(DFT(image)
-  cv::split(complexImage, planos);
+  <span class="c1">// recorta a imagem filtrada para o tamanho original</span>
+  <span class="c1">// selecionando a regiao de interesse (roi)</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Rect</span> <span class="nf">roi</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="p">.</span><span class="n">cols</span><span class="p">,</span> <span class="n">image</span><span class="p">.</span><span class="n">rows</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">result</span> <span class="o">=</span> <span class="n">planos</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="n">roi</span><span class="p">);</span>
 
-  // recorta a imagem filtrada para o tamanho original
-  // selecionando a regiao de interesse (roi)
-  cv::Rect roi(0, 0, image.cols, image.rows);
-  cv::Mat result = planos[0](roi);
+  <span class="c1">// normaliza a parte real para exibicao</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">normalize</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">NORM_MINMAX</span><span class="p">);</span>
 
-  // normaliza a parte real para exibicao
-  cv::normalize(result, result, 0, 1, cv::NORM_MINMAX);
+  <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"image"</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">imwrite</span><span class="p">(</span><span class="s">"dft-filter.png"</span><span class="p">,</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">255</span><span class="p">);</span>
 
-  cv::imshow("image", result);
-  cv::imwrite("dft-filter.png", result * 255);
-
-  cv::waitKey();
-  return EXIT_SUCCESS;
-}</code></pre>
+  <span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">();</span>
+  <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/dftfilter/dftfilter.cpp">dftfilter.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/dftfilter/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="dftfilter.html#dftfilter-cmake">Listagem 46</a>), a imagem <a href="figs/biel.png">biel.png</a> e execute a seqüência de comandos mostrada na <a href="dftfilter.html#ex-compilacao-dftfilter">Listagem 47</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/dftfilter/dftfilter.cpp">dftfilter.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/dftfilter/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="dftfilter.html#dftfilter-cmake">Listagem 46, &#8220;CMakeLists.txt&#8221;</a>), a imagem <a href="figs/biel.png">biel.png</a> e execute a seqüência de comandos mostrada na <a href="dftfilter.html#ex-compilacao-dftfilter">Listagem 47, &#8220;Compilação e execução do programa dftfilter&#8221;</a>.</p>
 </div>
 <div id="dftfilter-cmake" class="listingblock">
 <div class="title">Listagem 46. CMakeLists.txt</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">cmake_minimum_required(VERSION 3.0.0)
-project(dftfilter VERSION 0.1.0 LANGUAGES C CXX)
+<pre class="rouge highlight"><code data-lang="cmake"><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.0.0<span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span>dftfilter VERSION 0.1.0 LANGUAGES C CXX<span class="p">)</span>
 
-find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
+<span class="nb">find_package</span><span class="p">(</span>OpenCV REQUIRED<span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">OpenCV_INCLUDE_DIRS</span><span class="si">}</span><span class="p">)</span>
 
-add_executable(dftfilter dftfilter.cpp)
-target_link_libraries(dftfilter ${OpenCV_LIBS})</code></pre>
+<span class="nb">add_executable</span><span class="p">(</span>dftfilter dftfilter.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>dftfilter <span class="si">${</span><span class="nv">OpenCV_LIBS</span><span class="si">}</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div id="ex-compilacao-dftfilter" class="listingblock">
 <div class="title">Listagem 47. Compilação e execução do programa dftfilter</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ mkdir build
-$ cd build
-$ cmake ..
-$ make
-$ ./dftfilter ../biel.png</code></pre>
+<pre class="rouge highlight"><code data-lang="shell"><span class="nv">$ </span><span class="nb">mkdir </span>build
+<span class="nv">$ </span><span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make
+<span class="nv">$ </span>./dftfilter ../biel.png</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A saída do programa <code>dftfilter</code> é mostrado na <a href="dftfilter.html#fig_dft-filter">Figura 38</a>.</p>
+<p>A saída do programa <code>dftfilter</code> é mostrado na <a href="dftfilter.html#fig_dft-filter">Figura 38, &#8220;Resultado do programa dftfilter&#8221;</a>.</p>
 </div>
 <div id="fig_dft-filter" class="imageblock text-center">
 <div class="content">
@@ -717,9 +834,9 @@ função de criação do filtro de frequência e a aplicação do filtro na imag
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">cv::Mat filter;
-makeFilter(complexImage, filter);
-cv::mulSpectrums(complexImage, filter, complexImage, 0);</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">filter</span><span class="p">;</span>
+<span class="n">makeFilter</span><span class="p">(</span><span class="n">complexImage</span><span class="p">,</span> <span class="n">filter</span><span class="p">);</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">mulSpectrums</span><span class="p">(</span><span class="n">complexImage</span><span class="p">,</span> <span class="n">filter</span><span class="p">,</span> <span class="n">complexImage</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -730,26 +847,26 @@ referência.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">void makeFilter(const cv::Mat &amp;image, cv::Mat &amp;filter){
-  cv::Mat_&lt;float&gt; filter2D(image.rows, image.cols);
-  int centerX = image.cols / 2;
-  int centerY = image.rows / 2;
-  int radius = 20;
+<pre class="rouge highlight"><code data-lang="cpp"><span class="kt">void</span> <span class="nf">makeFilter</span><span class="p">(</span><span class="k">const</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="o">&amp;</span><span class="n">image</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="o">&amp;</span><span class="n">filter</span><span class="p">){</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat_</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">filter2D</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">rows</span><span class="p">,</span> <span class="n">image</span><span class="p">.</span><span class="n">cols</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">centerX</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">cols</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">centerY</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">rows</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">radius</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
 
-  for (int i = 0; i &lt; image.rows; i++) {
-    for (int j = 0; j &lt; image.cols; j++) {
-      if (pow(i - centerY, 2) + pow(j - centerX, 2) &lt;= pow(radius, 2)) { <i class="conum" data-value="1"></i><b>(1)</b>
-        filter2D.at&lt;float&gt;(i, j) = 1;
-      } else {
-        filter2D.at&lt;float&gt;(i, j) = 0;
-      }
-    }
-  }
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">image</span><span class="p">.</span><span class="n">rows</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">image</span><span class="p">.</span><span class="n">cols</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">pow</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">centerY</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">pow</span><span class="p">(</span><span class="n">j</span> <span class="o">-</span> <span class="n">centerX</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">pow</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="p">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="n">filter2D</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">filter2D</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 
-  cv::Mat planes[] = {cv::Mat_&lt;float&gt;(filter2D),
-                      cv::Mat::zeros(filter2D.size(), CV_32F)}; <i class="conum" data-value="2"></i><b>(2)</b>
-  cv::merge(planes, 2, filter); <i class="conum" data-value="3"></i><b>(3)</b>
-}</code></pre>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">planes</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat_</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">filter2D</span><span class="p">),</span>
+                      <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">::</span><span class="n">zeros</span><span class="p">(</span><span class="n">filter2D</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">CV_32F</span><span class="p">)};</span> <i class="conum" data-value="2"></i><b>(2)</b>
+  <span class="n">cv</span><span class="o">::</span><span class="n">merge</span><span class="p">(</span><span class="n">planes</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">filter</span><span class="p">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -775,16 +892,16 @@ vetor de matrizes <code>planes[]</code> e&#8230;&#8203;</td>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp"> // calcula a DFT inversa
-swapQuadrants(complexImage);
-cv::idft(complexImage, complexImage);
+<pre class="rouge highlight"><code data-lang="cpp"> <span class="c1">// calcula a DFT inversa</span>
+<span class="n">swapQuadrants</span><span class="p">(</span><span class="n">complexImage</span><span class="p">);</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">idft</span><span class="p">(</span><span class="n">complexImage</span><span class="p">,</span> <span class="n">complexImage</span><span class="p">);</span>
 
-cv::split(complexImage, planos);
+<span class="n">cv</span><span class="o">::</span><span class="n">split</span><span class="p">(</span><span class="n">complexImage</span><span class="p">,</span> <span class="n">planos</span><span class="p">);</span>
 
-// recorta a imagem filtrada para o tamanho original
-// selecionando a regiao de interesse (roi)
-cv::Rect roi(0, 0, image.cols, image.rows);
-cv::Mat result = planos[0](roi);</code></pre>
+<span class="c1">// recorta a imagem filtrada para o tamanho original</span>
+<span class="c1">// selecionando a regiao de interesse (roi)</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">Rect</span> <span class="nf">roi</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">image</span><span class="p">.</span><span class="n">cols</span><span class="p">,</span> <span class="n">image</span><span class="p">.</span><span class="n">rows</span><span class="p">);</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">result</span> <span class="o">=</span> <span class="n">planos</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="n">roi</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -820,13 +937,6 @@ possível. Assuma que a imagem fornecida é em tons de cinza.</p>
 <p>← : <a href="dft.html">A Tranformada Discreta de Fourier</a> | ↑ : <a href="frequencia.html">Processamento de Imagens no Domínio da Frequência</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="segmentacao.html">Segmentação de imagens</a> →</p>
 </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
-<script>
-if (!hljs.initHighlighting.called) {
-  hljs.initHighlighting.called = true
-  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
-}
-</script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",

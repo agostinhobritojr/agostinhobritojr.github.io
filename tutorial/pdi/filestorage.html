@@ -434,7 +434,120 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
 <style type="text/css">
   .imageblock>.title {
     text-align: inherit;
@@ -493,7 +606,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="segmentacao.html">Parte VI: Segmentação de imagens</a>
 </li>
-<li><a href="outras.html">Parte VII: Outras Ferramentas</a>
+<li><a href="caracteristicas.html">Parte VII: Extração de Características</a>
+</li>
+<li><a href="outras.html">Parte VIII: Outras Ferramentas</a>
+</li>
+<li><a href="atividades.html">Parte IX: Tarefas de Processamento de Imagens</a>
 </li>
 </ul>
 </div>
@@ -512,86 +629,86 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Nesta lição, será mostrado como armazenar e recuperar dados em ponto flutuante em um arquivo codificado em <code>YAML</code>. Para isso, será criada uma matriz de pixels do tipo <code>float</code> e armazenada em um arquivo <code>YAML</code>. Em seguida, será recuperada a matriz do arquivo <code>YAML</code>, processada e exibida na tela.</p>
 </div>
 <div class="paragraph">
-<p>Para criar a matriz de <code>float</code> e armazená-la em um arquivo, utilize o programa-exemplo <code>filestorage.cpp</code> mostrado na <a href="filestorage.html#ex-filestorage">Listagem 15</a>.</p>
+<p>Para criar a matriz de <code>float</code> e armazená-la em um arquivo, utilize o programa-exemplo <code>filestorage.cpp</code> mostrado na <a href="filestorage.html#ex-filestorage">Listagem 15, &#8220;filestorage.cpp&#8221;</a>.</p>
 </div>
 <div id="ex-filestorage" class="listingblock">
 <div class="title">Listagem 15. filestorage.cpp</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;iostream&gt;
-#include &lt;opencv2/opencv.hpp&gt;
-#include &lt;sstream&gt;
-#include &lt;string&gt;
+<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="n">SIDE</span> <span class="o">=</span> <span class="mi">256</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">PERIODOS</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
 
-int SIDE = 256;
-int PERIODOS = 8;
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">stringstream</span> <span class="n">ss_img</span><span class="p">,</span> <span class="n">ss_yml</span><span class="p">;</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">image</span><span class="p">;</span>
 
-int main(int argc, char** argv) {
-  std::stringstream ss_img, ss_yml;
-  cv::Mat image;
+  <span class="n">ss_yml</span> <span class="o">&lt;&lt;</span> <span class="s">"senoide-"</span> <span class="o">&lt;&lt;</span> <span class="n">SIDE</span> <span class="o">&lt;&lt;</span> <span class="s">".yml"</span><span class="p">;</span>
+  <span class="n">image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">::</span><span class="n">zeros</span><span class="p">(</span><span class="n">SIDE</span><span class="p">,</span> <span class="n">SIDE</span><span class="p">,</span> <span class="n">CV_32FC1</span><span class="p">);</span>
 
-  ss_yml &lt;&lt; "senoide-" &lt;&lt; SIDE &lt;&lt; ".yml";
-  image = cv::Mat::zeros(SIDE, SIDE, CV_32FC1);
+  <span class="n">cv</span><span class="o">::</span><span class="n">FileStorage</span> <span class="n">fs</span><span class="p">(</span><span class="n">ss_yml</span><span class="p">.</span><span class="n">str</span><span class="p">(),</span> <span class="n">cv</span><span class="o">::</span><span class="n">FileStorage</span><span class="o">::</span><span class="n">WRITE</span><span class="p">);</span>
 
-  cv::FileStorage fs(ss_yml.str(), cv::FileStorage::WRITE);
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">SIDE</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">SIDE</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">image</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="mi">127</span> <span class="o">*</span> <span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">M_PI</span> <span class="o">*</span> <span class="n">PERIODOS</span> <span class="o">*</span> <span class="n">j</span> <span class="o">/</span> <span class="n">SIDE</span><span class="p">)</span> <span class="o">+</span> <span class="mi">128</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 
-  for (int i = 0; i &lt; SIDE; i++) {
-    for (int j = 0; j &lt; SIDE; j++) {
-      image.at&lt;float&gt;(i, j) = 127 * sin(2 * M_PI * PERIODOS * j / SIDE) + 128;
-    }
-  }
+  <span class="n">fs</span> <span class="o">&lt;&lt;</span> <span class="s">"mat"</span> <span class="o">&lt;&lt;</span> <span class="n">image</span><span class="p">;</span>
+  <span class="n">fs</span><span class="p">.</span><span class="n">release</span><span class="p">();</span>
 
-  fs &lt;&lt; "mat" &lt;&lt; image;
-  fs.release();
+  <span class="n">cv</span><span class="o">::</span><span class="n">normalize</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">NORM_MINMAX</span><span class="p">);</span>
+  <span class="n">image</span><span class="p">.</span><span class="n">convertTo</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">CV_8U</span><span class="p">);</span>
+  <span class="n">ss_img</span> <span class="o">&lt;&lt;</span> <span class="s">"senoide-"</span> <span class="o">&lt;&lt;</span> <span class="n">SIDE</span> <span class="o">&lt;&lt;</span> <span class="s">".png"</span><span class="p">;</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">imwrite</span><span class="p">(</span><span class="n">ss_img</span><span class="p">.</span><span class="n">str</span><span class="p">(),</span> <span class="n">image</span><span class="p">);</span>
 
-  cv::normalize(image, image, 0, 255, cv::NORM_MINMAX);
-  image.convertTo(image, CV_8U);
-  ss_img &lt;&lt; "senoide-" &lt;&lt; SIDE &lt;&lt; ".png";
-  cv::imwrite(ss_img.str(), image);
+  <span class="n">fs</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">ss_yml</span><span class="p">.</span><span class="n">str</span><span class="p">(),</span> <span class="n">cv</span><span class="o">::</span><span class="n">FileStorage</span><span class="o">::</span><span class="n">READ</span><span class="p">);</span>
+  <span class="n">fs</span><span class="p">[</span><span class="s">"mat"</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">image</span><span class="p">;</span>
 
-  fs.open(ss_yml.str(), cv::FileStorage::READ);
-  fs["mat"] &gt;&gt; image;
+  <span class="n">cv</span><span class="o">::</span><span class="n">normalize</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">NORM_MINMAX</span><span class="p">);</span>
+  <span class="n">image</span><span class="p">.</span><span class="n">convertTo</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">CV_8U</span><span class="p">);</span>
 
-  cv::normalize(image, image, 0, 255, cv::NORM_MINMAX);
-  image.convertTo(image, CV_8U);
+  <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"image"</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">();</span>
 
-  cv::imshow("image", image);
-  cv::waitKey();
-
-  return 0;
-}</code></pre>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/filestorage/filestorage.cpp">filestorage.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/filestorage/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="filestorage.html#filestorage-cmake">Listagem 16</a>) e execute a seqüência de comandos mostrada na <a href="filestorage.html#ex-compilacao-filestorage">Listagem 17</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/filestorage/filestorage.cpp">filestorage.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/filestorage/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="filestorage.html#filestorage-cmake">Listagem 16, &#8220;CMakeLists.txt&#8221;</a>) e execute a seqüência de comandos mostrada na <a href="filestorage.html#ex-compilacao-filestorage">Listagem 17, &#8220;Compilação e execução do programa filestorage&#8221;</a>.</p>
 </div>
 <div id="filestorage-cmake" class="listingblock">
 <div class="title">Listagem 16. CMakeLists.txt</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">cmake_minimum_required(VERSION 3.0.0)
-project(filestorage VERSION 0.1.0 LANGUAGES C CXX)
+<pre class="rouge highlight"><code data-lang="cmake"><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.0.0<span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span>filestorage VERSION 0.1.0 LANGUAGES C CXX<span class="p">)</span>
 
-find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
+<span class="nb">find_package</span><span class="p">(</span>OpenCV REQUIRED<span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">OpenCV_INCLUDE_DIRS</span><span class="si">}</span><span class="p">)</span>
 
-add_executable(filestorage filestorage.cpp)
-target_link_libraries(filestorage ${OpenCV_LIBS})</code></pre>
+<span class="nb">add_executable</span><span class="p">(</span>filestorage filestorage.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>filestorage <span class="si">${</span><span class="nv">OpenCV_LIBS</span><span class="si">}</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div id="ex-compilacao-filestorage" class="listingblock">
 <div class="title">Listagem 17. Compilação e execução do programa filestorage</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ mkdir build
-$ cd build
-$ cmake ..
-$ make
-$ ./filestorage</code></pre>
+<pre class="rouge highlight"><code data-lang="shell"><span class="nv">$ </span><span class="nb">mkdir </span>build
+<span class="nv">$ </span><span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make
+<span class="nv">$ </span>./filestorage</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Ele deverá abrir uma janela e desenhar um padrão ondulado correspondente ao desenho de uma onda senoidal. As regiões mais escuras correspondem aos pontos de mínimo da senóide e as regiões mais claras correspondem aos pontos de máximo da senóide.</p>
 </div>
 <div class="paragraph">
-<p>A saída do programa <em>filestorage</em> é mostrada na <a href="filestorage.html#fig_filestorage">Figura 11</a></p>
+<p>A saída do programa <em>filestorage</em> é mostrada na <a href="filestorage.html#fig_filestorage">Figura 11, &#8220;Saída do programa filestorage&#8221;</a></p>
 </div>
 <div id="fig_filestorage" class="imageblock text-center">
 <div class="content">
@@ -603,9 +720,9 @@ $ ./filestorage</code></pre>
 <h3 id="_descrição_do_programa_filestorage_cpp">5.1. Descrição do programa <code>filestorage.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">ss_yml &lt;&lt; "senoide-" &lt;&lt; SIDE &lt;&lt; ".yml";
-image = cv::Mat::zeros(SIDE, SIDE, CV_32FC1);
-cv::FileStorage fs(ss_yml.str(), cv::FileStorage::WRITE);</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">ss_yml</span> <span class="o">&lt;&lt;</span> <span class="s">"senoide-"</span> <span class="o">&lt;&lt;</span> <span class="n">SIDE</span> <span class="o">&lt;&lt;</span> <span class="s">".yml"</span><span class="p">;</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">::</span><span class="n">zeros</span><span class="p">(</span><span class="n">SIDE</span><span class="p">,</span> <span class="n">SIDE</span><span class="p">,</span> <span class="n">CV_32FC1</span><span class="p">);</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">FileStorage</span> <span class="nf">fs</span><span class="p">(</span><span class="n">ss_yml</span><span class="p">.</span><span class="n">str</span><span class="p">(),</span> <span class="n">cv</span><span class="o">::</span><span class="n">FileStorage</span><span class="o">::</span><span class="n">WRITE</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -616,11 +733,11 @@ cv::FileStorage fs(ss_yml.str(), cv::FileStorage::WRITE);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">for (int i = 0; i &lt; SIDE; i++) {
-  for (int j = 0; j &lt; SIDE; j++) {
-    image.at&lt;float&gt;(i, j) = 127 * sin(2 * M_PI * FREQUENCIA * j / SIDE) + 128;
-  }
-}</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">SIDE</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">SIDE</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">image</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="mi">127</span> <span class="o">*</span> <span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">M_PI</span> <span class="o">*</span> <span class="n">FREQUENCIA</span> <span class="o">*</span> <span class="n">j</span> <span class="o">/</span> <span class="n">SIDE</span><span class="p">)</span> <span class="o">+</span> <span class="mi">128</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -628,42 +745,42 @@ cv::FileStorage fs(ss_yml.str(), cv::FileStorage::WRITE);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">fs &lt;&lt; "mat" &lt;&lt; image;
-fs.release();</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">fs</span> <span class="o">&lt;&lt;</span> <span class="s">"mat"</span> <span class="o">&lt;&lt;</span> <span class="n">image</span><span class="p">;</span>
+<span class="n">fs</span><span class="p">.</span><span class="n">release</span><span class="p">();</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O objeto <code>fs</code> recebe a serialização dos dados da matriz <code>image</code> associados com o identificador literal <code>mat</code>. Durante o processo de deserialização, o identificador literal <code>mat</code> será usado para recuperar os dados da matriz <code>image</code>. O método <code>release()</code> fecha o fluxo para arquivo de saída. As linhas mostradas na <a href="filestorage.html#ex-senoideyml">Listagem 18</a> são extraídas do início do arquivo <code>senoide-256.yml</code> que é gerado pelo programa <code>filestorage.cpp</code>. Perceba que o arquivo codificado em <code>YAML</code> é escrito em texto simples, composto por uma sequência de pares chave-valor, onde a chave é o identificador literal <code>mat</code> e o valor é a matriz de <code>float</code> serializada.</p>
+<p>O objeto <code>fs</code> recebe a serialização dos dados da matriz <code>image</code> associados com o identificador literal <code>mat</code>. Durante o processo de deserialização, o identificador literal <code>mat</code> será usado para recuperar os dados da matriz <code>image</code>. O método <code>release()</code> fecha o fluxo para arquivo de saída. As linhas mostradas na <a href="filestorage.html#ex-senoideyml">Listagem 18, &#8220;trecho do arquivo senoide-256.yml&#8221;</a> são extraídas do início do arquivo <code>senoide-256.yml</code> que é gerado pelo programa <code>filestorage.cpp</code>. Perceba que o arquivo codificado em <code>YAML</code> é escrito em texto simples, composto por uma sequência de pares chave-valor, onde a chave é o identificador literal <code>mat</code> e o valor é a matriz de <code>float</code> serializada.</p>
 </div>
 <div id="ex-senoideyml" class="listingblock">
 <div class="title">Listagem 18. trecho do arquivo senoide-256.yml</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">%YAML:1.0
+<pre class="rouge highlight"><code data-lang="yaml"><span class="nt">%YAML</span><span class="err">:1.0
 ---
 mat: !!opencv-matrix
    rows: 256
    cols: 256
    dt: f
-   data: [ 128., 1.52776474e+02, 1.76600800e+02, 1.98557419e+02,
-       2.17802567e+02, 2.33596634e+02, 2.45332703e+02, 2.52559738e+02,
-       255., 2.52559738e+02, 2.45332703e+02, 2.33596634e+02,
-       2.17802567e+02, 1.98557419e+02, 1.76600800e+02, 1.52776474e+02,</code></pre>
+   data: [ 128.,</span> <span class="m">1.52776474</span><span class="err">e+02,</span> <span class="err">1.76600800e+02,</span> <span class="err">1.98557419e+02,</span>
+       <span class="s">2.17802567e+02, 2.33596634e+02, 2.45332703e+02, 2.52559738e+02,</span>
+       <span class="s">255., 2.52559738e+02, 2.45332703e+02, 2.33596634e+02,</span>
+       <span class="s">2.17802567e+02, 1.98557419e+02, 1.76600800e+02, 1.52776474e+02,</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O programa <code>filestorage.cpp</code> também pode ser usado para gerar uma imagem no formato PNG com uma versão truncada da imagem em ponto flutuante criada no exemplo. Essa tarefa é realizada com as linhas mostradas ao final do programa <code>filestorage.cpp</code> apresentado na <a href="filestorage.html#ex-senoideyml">Listagem 18</a>.</p>
+<p>O programa <code>filestorage.cpp</code> também pode ser usado para gerar uma imagem no formato PNG com uma versão truncada da imagem em ponto flutuante criada no exemplo. Essa tarefa é realizada com as linhas mostradas ao final do programa <code>filestorage.cpp</code> apresentado na <a href="filestorage.html#ex-senoideyml">Listagem 18, &#8220;trecho do arquivo senoide-256.yml&#8221;</a>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">cv::normalize(image, image, 0, 255, cv::NORM_MINMAX);
-image.convertTo(image, CV_8U);
-ss_img &lt;&lt; "senoide-" &lt;&lt; SIDE &lt;&lt; ".png";
-cv::imwrite(ss_img.str(), image);</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cv</span><span class="o">::</span><span class="n">normalize</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">NORM_MINMAX</span><span class="p">);</span>
+<span class="n">image</span><span class="p">.</span><span class="n">convertTo</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">CV_8U</span><span class="p">);</span>
+<span class="n">ss_img</span> <span class="o">&lt;&lt;</span> <span class="s">"senoide-"</span> <span class="o">&lt;&lt;</span> <span class="n">SIDE</span> <span class="o">&lt;&lt;</span> <span class="s">".png"</span><span class="p">;</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">imwrite</span><span class="p">(</span><span class="n">ss_img</span><span class="p">.</span><span class="n">str</span><span class="p">(),</span> <span class="n">image</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>A mesma imagem é também gravada no formato <code>PNG</code> para que possa ser visualizada. Para isso, é necessário converter a matriz de <code>float</code> para o tipo <code>CV_8U</code>, que representa um dado em OpenCV de 8 bits sem sinal com apenas um canal (o equivalente ao tipo <code>unsigned char</code>). O método <code>cv::normalize()</code> é usado para
-normalizar os valores da matriz de <code>float</code> para o intervalo \$0, 255\$. Em seguida, o método <code>cv::convertTo()</code> converte a matriz de <code>float</code> para o tipo <code>CV_8U</code> de modo a gravação no arquivo <code>PNG</code> se dê sem intercorrências. Perceba que a classe <code>std::stringstream</code> foi novamente usada para proceder com a criação do nome do arquivo.</p>
+normalizar os valores da matriz de <code>float</code> para o intervalo \(0, 255\). Em seguida, o método <code>cv::convertTo()</code> converte a matriz de <code>float</code> para o tipo <code>CV_8U</code> de modo a gravação no arquivo <code>PNG</code> se dê sem intercorrências. Perceba que a classe <code>std::stringstream</code> foi novamente usada para proceder com a criação do nome do arquivo.</p>
 </div>
 </div>
 <div class="sect2">
@@ -671,7 +788,7 @@ normalizar os valores da matriz de <code>float</code> para o intervalo \$0, 255\
 <div class="ulist">
 <ul>
 <li>
-<p>Utilizando o programa-exemplo <code>filestorage.cpp</code> como base, crie um programa que gere uma imagem de dimensões 256x256 pixels contendo uma senóide de 4 períodos com amplitude igual 127 desenhada na horizontal, semelhante àquela apresentada na <a href="filestorage.html#fig_filestorage">Figura 11</a>. Grave a imagem no formato <code>YML</code> e também exporte no formato <code>PNG</code>, como faz o programa-exemplo. Compare os arquivos gerados, extraindo uma linha correspondente de cada imagem gravada e comparando a diferença entre elas. Trace um gráfico da diferença calculada ao longo da linha correspondente extraída nas imagens. O que você observa? Por que isso acontece?</p>
+<p>Utilizando o programa-exemplo <code>filestorage.cpp</code> como base, crie um programa que gere uma imagem de dimensões 256x256 pixels contendo uma senóide de 4 períodos com amplitude igual 127 desenhada na horizontal, semelhante àquela apresentada na <a href="filestorage.html#fig_filestorage">Figura 11, &#8220;Saída do programa filestorage&#8221;</a>. Grave a imagem no formato <code>YML</code> e também exporte no formato <code>PNG</code>, como faz o programa-exemplo. Compare os arquivos gerados, extraindo uma linha correspondente de cada imagem gravada e comparando a diferença entre elas. Trace um gráfico da diferença calculada ao longo da linha correspondente extraída nas imagens. O que você observa? Por que isso acontece?</p>
 </li>
 </ul>
 </div>
@@ -682,13 +799,6 @@ normalizar os valores da matriz de <code>float</code> para o intervalo \$0, 255\
 <p>← : <a href="visualizacao.html">Visualização de imagens</a> | ↑ : <a href="representacao.html">Representação de Imagens</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="processamento_de_cor.html">Processamento de Imagens Coloridas</a> →</p>
 </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
-<script>
-if (!hljs.initHighlighting.called) {
-  hljs.initHighlighting.called = true
-  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
-}
-</script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",

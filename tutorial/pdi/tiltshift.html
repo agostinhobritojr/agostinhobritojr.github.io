@@ -434,7 +434,120 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
 <style type="text/css">
   .imageblock>.title {
     text-align: inherit;
@@ -487,7 +600,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="segmentacao.html">Parte VI: Segmentação de imagens</a>
 </li>
-<li><a href="outras.html">Parte VII: Outras Ferramentas</a>
+<li><a href="caracteristicas.html">Parte VII: Extração de Características</a>
+</li>
+<li><a href="outras.html">Parte VIII: Outras Ferramentas</a>
+</li>
+<li><a href="atividades.html">Parte IX: Tarefas de Processamento de Imagens</a>
 </li>
 </ul>
 </div>
@@ -509,7 +626,7 @@ regiões do assunto.</p>
 </div>
 <div class="paragraph">
 <p>O princípio básico dessa técnica é ilustrado na
-<a href="tiltshift.html#fig_tiltshift_svg">Figura 30</a>.</p>
+<a href="tiltshift.html#fig_tiltshift_svg">Figura 30, &#8220;Princípio de funcionamento do <em>tilt shift</em>&#8221;</a>.</p>
 </div>
 <div id="fig_tiltshift_svg" class="imageblock text-center">
 <div class="content">
@@ -549,9 +666,9 @@ enquanto se mantém na região central a imagem sem borramento.</p>
 <div class="paragraph">
 <p>Uma forma de combinar pode ser realizada com a função <code>tiltshift()</code> do
 OpenCV. Ela opera calculando a combinação linear de duas imagens
-\$f_0(x,y)\$ e \$f_1(x,y)\$ pela
-equação \$g(x,y) = (1 - \alpha)f_0(x,y) + \alpha f_1(x,y)\$, para um
-dado valor de \$\alpha\$ fornecido.</p>
+\(f_0(x,y)\) e \(f_1(x,y)\) pela
+equação \(g(x,y) = (1 - \alpha)f_0(x,y) + \alpha f_1(x,y)\), para um
+dado valor de \(\alpha\) fornecido.</p>
 </div>
 <div class="paragraph">
 <p>O programa de referência utilizado para exemplificar o uso da função sugerida,
@@ -561,91 +678,91 @@ Listagem <a href="tiltshift.html#exa_tiltshift">tiltshift</a>.</p>
 <div id="exa_tiltshift" class="listingblock">
 <div class="title">Listagem 39. tiltshift.cpp</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;opencv2/opencv.hpp&gt;
+<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp">
+</span>
+<span class="kt">double</span> <span class="n">alfa</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">alfa_slider</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">alfa_slider_max</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
 
-double alfa;
-int alfa_slider = 0;
-int alfa_slider_max = 100;
+<span class="kt">int</span> <span class="n">top_slider</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">top_slider_max</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
 
-int top_slider = 0;
-int top_slider_max = 100;
+<span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">image1</span><span class="p">,</span> <span class="n">image2</span><span class="p">,</span> <span class="n">blended</span><span class="p">;</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">imageTop</span><span class="p">;</span> 
 
-cv::Mat image1, image2, blended;
-cv::Mat imageTop; 
+<span class="kt">char</span> <span class="n">TrackbarName</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
 
-char TrackbarName[50];
+<span class="kt">void</span> <span class="nf">on_trackbar_blend</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">){</span>
+ <span class="n">alfa</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="n">alfa_slider</span><span class="o">/</span><span class="n">alfa_slider_max</span> <span class="p">;</span>
+ <span class="n">cv</span><span class="o">::</span><span class="n">addWeighted</span><span class="p">(</span><span class="n">image1</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">alfa</span><span class="p">,</span> <span class="n">imageTop</span><span class="p">,</span> <span class="n">alfa</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">blended</span><span class="p">);</span>
+ <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"addweighted"</span><span class="p">,</span> <span class="n">blended</span><span class="p">);</span>
+<span class="p">}</span>
 
-void on_trackbar_blend(int, void*){
- alfa = (double) alfa_slider/alfa_slider_max ;
- cv::addWeighted(image1, 1-alfa, imageTop, alfa, 0.0, blended);
- cv::imshow("addweighted", blended);
-}
+<span class="kt">void</span> <span class="nf">on_trackbar_line</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">){</span>
+  <span class="n">image1</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">imageTop</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="n">top_slider</span><span class="o">*</span><span class="mi">255</span><span class="o">/</span><span class="mi">100</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">limit</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">image2</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">limit</span><span class="p">));</span>
+    <span class="n">tmp</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">imageTop</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">limit</span><span class="p">)));</span>
+  <span class="p">}</span>
+  <span class="n">on_trackbar_blend</span><span class="p">(</span><span class="n">alfa_slider</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
 
-void on_trackbar_line(int, void*){
-  image1.copyTo(imageTop);
-  int limit = top_slider*255/100;
-  if(limit &gt; 0){
-    cv::Mat tmp = image2(cv::Rect(0, 0, 256, limit));
-    tmp.copyTo(imageTop(cv::Rect(0, 0, 256, limit)));
-  }
-  on_trackbar_blend(alfa_slider,0);
-}
-
-int main(int argvc, char** argv){
-  image1 = cv::imread(argv[1]);
-  image2 = cv::imread(argv[2]);
-  image2.copyTo(imageTop);
-  cv::namedWindow("addweighted", 1);
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argvc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">){</span>
+  <span class="n">image1</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+  <span class="n">image2</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+  <span class="n">image2</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">imageTop</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">"addweighted"</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
   
-  std::sprintf( TrackbarName, "Alpha x %d", alfa_slider_max );
-  cv::createTrackbar( TrackbarName, "addweighted",
-                      &amp;alfa_slider,
-                      alfa_slider_max,
-                      on_trackbar_blend );
-  on_trackbar_blend(alfa_slider, 0 );
+  <span class="n">std</span><span class="o">::</span><span class="n">sprintf</span><span class="p">(</span> <span class="n">TrackbarName</span><span class="p">,</span> <span class="s">"Alpha x %d"</span><span class="p">,</span> <span class="n">alfa_slider_max</span> <span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">createTrackbar</span><span class="p">(</span> <span class="n">TrackbarName</span><span class="p">,</span> <span class="s">"addweighted"</span><span class="p">,</span>
+                      <span class="o">&amp;</span><span class="n">alfa_slider</span><span class="p">,</span>
+                      <span class="n">alfa_slider_max</span><span class="p">,</span>
+                      <span class="n">on_trackbar_blend</span> <span class="p">);</span>
+  <span class="n">on_trackbar_blend</span><span class="p">(</span><span class="n">alfa_slider</span><span class="p">,</span> <span class="mi">0</span> <span class="p">);</span>
   
-  std::sprintf( TrackbarName, "Scanline x %d", top_slider_max );
-  cv::createTrackbar( TrackbarName, "addweighted",
-                      &amp;top_slider,
-                      top_slider_max,
-                      on_trackbar_line );
-  on_trackbar_line(top_slider, 0 );
+  <span class="n">std</span><span class="o">::</span><span class="n">sprintf</span><span class="p">(</span> <span class="n">TrackbarName</span><span class="p">,</span> <span class="s">"Scanline x %d"</span><span class="p">,</span> <span class="n">top_slider_max</span> <span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">createTrackbar</span><span class="p">(</span> <span class="n">TrackbarName</span><span class="p">,</span> <span class="s">"addweighted"</span><span class="p">,</span>
+                      <span class="o">&amp;</span><span class="n">top_slider</span><span class="p">,</span>
+                      <span class="n">top_slider_max</span><span class="p">,</span>
+                      <span class="n">on_trackbar_line</span> <span class="p">);</span>
+  <span class="n">on_trackbar_line</span><span class="p">(</span><span class="n">top_slider</span><span class="p">,</span> <span class="mi">0</span> <span class="p">);</span>
 
-  cv::waitKey(0);
-  return 0;
-}</code></pre>
+  <span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/tiltshift/tiltshift.cpp">tiltshift.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/tiltshift/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="tiltshift.html#tiltshift-cmake">Listagem 40</a>), as imagens <a href="exemplos/tiltshift/blend1.jpg">blend1.jpg</a>, <a href="exemplos/tiltshift/blend2.jpg">blend2.jpg</a> e execute a seqüência de comandos mostrada na <a href="tiltshift.html#ex-compilacao-tiltshift">Listagem 41</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/tiltshift/tiltshift.cpp">tiltshift.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/tiltshift/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="tiltshift.html#tiltshift-cmake">Listagem 40, &#8220;CMakeLists.txt&#8221;</a>), as imagens <a href="exemplos/tiltshift/blend1.jpg">blend1.jpg</a>, <a href="exemplos/tiltshift/blend2.jpg">blend2.jpg</a> e execute a seqüência de comandos mostrada na <a href="tiltshift.html#ex-compilacao-tiltshift">Listagem 41, &#8220;Compilação e execução do programa tiltshift&#8221;</a>.</p>
 </div>
 <div id="tiltshift-cmake" class="listingblock">
 <div class="title">Listagem 40. CMakeLists.txt</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">cmake_minimum_required(VERSION 3.0.0)
-project(tiltshift VERSION 0.1.0 LANGUAGES C CXX)
+<pre class="rouge highlight"><code data-lang="cmake"><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.0.0<span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span>tiltshift VERSION 0.1.0 LANGUAGES C CXX<span class="p">)</span>
 
-find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
+<span class="nb">find_package</span><span class="p">(</span>OpenCV REQUIRED<span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">OpenCV_INCLUDE_DIRS</span><span class="si">}</span><span class="p">)</span>
 
-add_executable(tiltshift tiltshift.cpp)
-target_link_libraries(tiltshift ${OpenCV_LIBS})</code></pre>
+<span class="nb">add_executable</span><span class="p">(</span>tiltshift tiltshift.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>tiltshift <span class="si">${</span><span class="nv">OpenCV_LIBS</span><span class="si">}</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div id="ex-compilacao-tiltshift" class="listingblock">
 <div class="title">Listagem 41. Compilação e execução do programa tiltshift</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ mkdir build
-$ cd build
-$ cmake ..
-$ make
-$ ./tiltshift ../blend1.jpg ../blend2.jpg</code></pre>
+<pre class="rouge highlight"><code data-lang="shell"><span class="nv">$ </span><span class="nb">mkdir </span>build
+<span class="nv">$ </span><span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make
+<span class="nv">$ </span>./tiltshift ../blend1.jpg ../blend2.jpg</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A saída do programa <em>tiltshift</em> é mostrado na <a href="tiltshift.html#fig_tiltshift">Figura 31</a>. Nela, dois controles deslizantes permitem ajustar o valor de \$\alpha\$ e a região que será copiada de uma das imagens de entrada na imagem da composição.</p>
+<p>A saída do programa <em>tiltshift</em> é mostrado na <a href="tiltshift.html#fig_tiltshift">Figura 31, &#8220;Saída do programa tiltshift&#8221;</a>. Nela, dois controles deslizantes permitem ajustar o valor de \(\alpha\) e a região que será copiada de uma das imagens de entrada na imagem da composição.</p>
 </div>
 <div id="fig_tiltshift" class="imageblock text-center">
 <div class="content">
@@ -657,7 +774,7 @@ $ ./tiltshift ../blend1.jpg ../blend2.jpg</code></pre>
 <h3 id="_descrição_do_programa_tiltshift_cpp">13.1. Descrição do programa <code>tiltshift.cpp</code></h3>
 <div class="paragraph">
 <p>A saída do programa <em>tiltshift</em> apresentará uma janela com duas
-barras de controle: uma que regula o valor de \$alpha\$ e outra que
+barras de controle: uma que regula o valor de \(alpha\) e outra que
 indica a região que será copiada de uma das imagens de entrada na
 imagem da composição.</p>
 </div>
@@ -673,19 +790,19 @@ de desfoque ao longo do eixo vertical da imagem. Uma possível função
 que modela esse efeito é dada por</p>
 </div>
 <div class="paragraph">
-<p>\$\alpha (x) = \frac{1}{2} ( \tanh \frac{x-l1}{d}-tanh\frac{x-l2}{d} )\$</p>
+<p>\(\alpha (x) = \frac{1}{2} ( \tanh \frac{x-l1}{d}-tanh\frac{x-l2}{d} )\)</p>
 </div>
 <div class="paragraph">
-<p>Onde \$l1\$ e \$l2\$ são as linhas cujo valor de
-\$\alpha\$ assume valor em torno de 0.5, caso os dois valores
-possuam uma distância adequada um do outro, e \$d\$
+<p>Onde \(l1\) e \(l2\) são as linhas cujo valor de
+\(\alpha\) assume valor em torno de 0.5, caso os dois valores
+possuam uma distância adequada um do outro, e \(d\)
 indica a força do decaimento da região totalmente oriunda da imagem
 original para a região totalmente oriunda da imagem borrada.</p>
 </div>
 <div class="paragraph">
-<p>Para valores \$l1 = -20 \$, \$l2 = 30\$, e
-\$d = 6\$, por exemplo, a função de ponderação se
-comportaria como ilustrado na <a href="tiltshift.html#fig_tiltshiftfunction">Figura 32</a>.</p>
+<p>Para valores \(l1 = -20 \), \(l2 = 30\), e
+\(d = 6\), por exemplo, a função de ponderação se
+comportaria como ilustrado na <a href="tiltshift.html#fig_tiltshiftfunction">Figura 32, &#8220;Exemplo de função de ponderação para tiltshift&#8221;</a>.</p>
 </div>
 <div id="fig_tiltshiftfunction" class="imageblock text-center">
 <div class="content">
@@ -694,10 +811,10 @@ comportaria como ilustrado na <a href="tiltshift.html#fig_tiltshiftfunction">Fig
 <div class="title">Figura 32. Exemplo de função de ponderação para tiltshift</div>
 </div>
 <div class="paragraph">
-<p>Assumindo que \$\alpha(x)\$ pondere a imagem original (denotada por
-stem \$f(x,y)\$) e \$1-\alpha(x)\$ pondere a imagem borrada
-(denotada por \$bf(x,y)\$), a composição \$g(x,y) = \alpha(x)
-f(x,y) + (1-\alpha(x)) bf(x,y)\$ produzirá o efeito de <code>tiltshift</code>
+<p>Assumindo que \(\alpha(x)\) pondere a imagem original (denotada por
+stem \(f(x,y)\)) e \(1-\alpha(x)\) pondere a imagem borrada
+(denotada por \(bf(x,y)\)), a composição \(g(x,y) = \alpha(x)
+f(x,y) + (1-\alpha(x)) bf(x,y)\) produzirá o efeito de <code>tiltshift</code>
 desejado.</p>
 </div>
 <div class="paragraph">
@@ -706,7 +823,7 @@ desejado.</p>
 elemento-a-elemento. Cria-se a imagem que irá ponderar as linhas da
 imagem original e seu negativo irá ponderar as linhas da imagem
 borrada. A combinação linear dessas duas imagens fara o efeito
-simulado de <code>tiltshift</code>. A <a href="tiltshift.html#fig_tiltshiftfunctionpondera">Figura 33</a> ilustra
+simulado de <code>tiltshift</code>. A <a href="tiltshift.html#fig_tiltshiftfunctionpondera">Figura 33, &#8220;Exemplo de imagens geradas para ponderação no <code>tiltshift</code>&#8221;</a> ilustra
 possíveis imagens que poderiam ser usadas para ponderação no
 processo. A da esquerda ponderaria a imagem original e a da direita a
 imagem borrada.</p>
@@ -763,13 +880,6 @@ em vídeos desse tipo.</p>
 <p>← : <a href="convolucao.html">Filtragem no domínio espacial I</a> | ↑ : <a href="espacial.html">Processamento de Imagens no Domínio Espacial</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="frequencia.html">Processamento de Imagens no Domínio da Frequência</a> →</p>
 </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
-<script>
-if (!hljs.initHighlighting.called) {
-  hljs.initHighlighting.called = true
-  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
-}
-</script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",

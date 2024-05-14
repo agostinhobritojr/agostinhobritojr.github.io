@@ -434,7 +434,120 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
 <style type="text/css">
   .imageblock>.title {
     text-align: inherit;
@@ -491,7 +604,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
-<li><a href="outras.html">Parte VII: Outras Ferramentas</a>
+<li><a href="caracteristicas.html">Parte VII: Extração de Características</a>
+</li>
+<li><a href="outras.html">Parte VIII: Outras Ferramentas</a>
+</li>
+<li><a href="atividades.html">Parte IX: Tarefas de Processamento de Imagens</a>
 </li>
 </ul>
 </div>
@@ -569,7 +686,7 @@ como parte da fronteira.</p>
 </div>
 <div class="paragraph">
 <p>Um exemplo de aplicação desse algoritmo na imagem da
-<a href="canny.html#fig_canny_exemplo">Figura 42</a> é mostrado na <a href="canny.html#fig_canny">Figura 43</a>. Observe que
+<a href="canny.html#fig_canny_exemplo">Figura 42, &#8220;Exemplo para o detector de Canny&#8221;</a> é mostrado na <a href="canny.html#fig_canny">Figura 43, &#8220;Detecção de bordas usando o filtro de Canny&#8221;</a>. Observe que
 as bordas encontradas são bem localizadas e geralmente possuem
 espessura igual a 1.</p>
 </div>
@@ -586,69 +703,69 @@ espessura igual a 1.</p>
 <div class="title">Figura 43. Detecção de bordas usando o filtro de Canny</div>
 </div>
 <div class="paragraph">
-<p>O programa de referência utilizado para essa tarefa, <a href="exemplos/canny/canny.cpp">canny.cpp</a>, é mostrado na <a href="canny.html#exa_canny">Listagem 51</a>.</p>
+<p>O programa de referência utilizado para essa tarefa, <a href="exemplos/canny/canny.cpp">canny.cpp</a>, é mostrado na <a href="canny.html#exa_canny">Listagem 51, &#8220;canny.cpp&#8221;</a>.</p>
 </div>
 <div id="exa_canny" class="listingblock">
 <div class="title">Listagem 51. canny.cpp</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;iostream&gt;
-#include "opencv2/opencv.hpp"
+<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">"opencv2/opencv.hpp"</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="n">top_slider</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">top_slider_max</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
 
-int top_slider = 10;
-int top_slider_max = 200;
+<span class="kt">char</span> <span class="n">TrackbarName</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
 
-char TrackbarName[50];
+<span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">image</span><span class="p">,</span> <span class="n">border</span><span class="p">;</span>
 
-cv::Mat image, border;
+<span class="kt">void</span> <span class="nf">on_trackbar_canny</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">){</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Canny</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">top_slider</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">top_slider</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"Canny"</span><span class="p">,</span> <span class="n">border</span><span class="p">);</span>
+<span class="p">}</span>
 
-void on_trackbar_canny(int, void*){
-  cv::Canny(image, border, top_slider, 3*top_slider);
-  cv::imshow("Canny", border);
-}
-
-int main(int argc, char**argv){
-  image= cv::imread(argv[1], cv::IMREAD_GRAYSCALE);
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+  <span class="n">image</span><span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">);</span>
   
-  sprintf( TrackbarName, "Threshold inferior", top_slider_max );
+  <span class="n">sprintf</span><span class="p">(</span> <span class="n">TrackbarName</span><span class="p">,</span> <span class="s">"Threshold inferior"</span><span class="p">,</span> <span class="n">top_slider_max</span> <span class="p">);</span>
 
-  cv::namedWindow("Canny",1);
-  cv::createTrackbar( TrackbarName, "Canny",
-                &amp;top_slider,
-                top_slider_max,
-                on_trackbar_canny );
+  <span class="n">cv</span><span class="o">::</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">"Canny"</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">createTrackbar</span><span class="p">(</span> <span class="n">TrackbarName</span><span class="p">,</span> <span class="s">"Canny"</span><span class="p">,</span>
+                <span class="o">&amp;</span><span class="n">top_slider</span><span class="p">,</span>
+                <span class="n">top_slider_max</span><span class="p">,</span>
+                <span class="n">on_trackbar_canny</span> <span class="p">);</span>
 
-  on_trackbar_canny(top_slider, 0 );
+  <span class="n">on_trackbar_canny</span><span class="p">(</span><span class="n">top_slider</span><span class="p">,</span> <span class="mi">0</span> <span class="p">);</span>
 
-  cv::waitKey();
-  cv::imwrite("cannyborders.png", border);
-  return 0;
-}</code></pre>
+  <span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">();</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">imwrite</span><span class="p">(</span><span class="s">"cannyborders.png"</span><span class="p">,</span> <span class="n">border</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/canny/canny.cpp">canny.cpp</a>, salve-o em um diretório juntamente com o arquivo  <a href="exemplos/canny/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="canny.html#canny-cmake">Listagem 52</a>), a imagem <a href="figs/biel.png">biel.png</a> e execute a seqüência de comandos mostrada na <a href="canny.html#ex-compilacao-canny">Listagem 53</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/canny/canny.cpp">canny.cpp</a>, salve-o em um diretório juntamente com o arquivo  <a href="exemplos/canny/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="canny.html#canny-cmake">Listagem 52, &#8220;CMakeLists.txt&#8221;</a>), a imagem <a href="figs/biel.png">biel.png</a> e execute a seqüência de comandos mostrada na <a href="canny.html#ex-compilacao-canny">Listagem 53, &#8220;Compilação e execução do programa <code>canny.cpp</code>&#8221;</a>.</p>
 </div>
 <div id="canny-cmake" class="listingblock">
 <div class="title">Listagem 52. CMakeLists.txt</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">cmake_minimum_required(VERSION 3.0.0)
-project(canny VERSION 0.1.0 LANGUAGES C CXX)
+<pre class="rouge highlight"><code data-lang="cmake"><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.0.0<span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span>canny VERSION 0.1.0 LANGUAGES C CXX<span class="p">)</span>
 
-find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
+<span class="nb">find_package</span><span class="p">(</span>OpenCV REQUIRED<span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">OpenCV_INCLUDE_DIRS</span><span class="si">}</span><span class="p">)</span>
 
-add_executable(canny canny.cpp)
-target_link_libraries(canny ${OpenCV_LIBS})</code></pre>
+<span class="nb">add_executable</span><span class="p">(</span>canny canny.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>canny <span class="si">${</span><span class="nv">OpenCV_LIBS</span><span class="si">}</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div id="ex-compilacao-canny" class="listingblock">
-<div class="title">Listagem 53. Compilação e execução do programa canny</div>
+<div class="title">Listagem 53. Compilação e execução do programa <code>canny.cpp</code></div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ mkdir build
-$ cd build
-$ cmake ..
-$ make
-$ ./canny ../biel.png</code></pre>
+<pre class="rouge highlight"><code data-lang="shell"><span class="nv">$ </span><span class="nb">mkdir </span>build
+<span class="nv">$ </span><span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make
+<span class="nv">$ </span>./canny ../biel.png</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -668,7 +785,7 @@ diferentes.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">cv::Canny(image, border, top_slider, 3*top_slider);</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cv</span><span class="o">::</span><span class="n">Canny</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">top_slider</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">top_slider</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -717,7 +834,7 @@ usando uma sequência aleatória, principalmente quando a técnica
 pontilhista realiza a sobreposição de círculos.</p>
 </div>
 <div class="paragraph">
-<p>Um exemplo de imagem pontilhista é mostrada na <a href="canny.html#fig_pontilhismo">Figura 44</a>.</p>
+<p>Um exemplo de imagem pontilhista é mostrada na <a href="canny.html#fig_pontilhismo">Figura 44, &#8220;Imagem pontilhista&#8221;</a>.</p>
 </div>
 <div id="fig_pontilhismo" class="imageblock text-center">
 <div class="content">
@@ -726,90 +843,106 @@ pontilhista realiza a sobreposição de círculos.</p>
 <div class="title">Figura 44. Imagem pontilhista</div>
 </div>
 <div class="paragraph">
-<p>O programa que gerou essa imagem é mostrado na <a href="canny.html#exa_pontilhismo">Listagem 54</a>.</p>
+<p>O programa que gerou essa imagem é mostrado na <a href="canny.html#exa_pontilhismo">Listagem 54, &#8220;pontilhismo.cpp&#8221;</a>.</p>
 </div>
 <div id="exa_pontilhismo" class="listingblock">
 <div class="title">Listagem 54. pontilhismo.cpp</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;algorithm&gt;
-#include &lt;cstdlib&gt;
-#include &lt;ctime&gt;
-#include &lt;fstream&gt;
-#include &lt;iomanip&gt;
-#include &lt;iostream&gt;
-#include &lt;numeric&gt;
-#include &lt;opencv2/opencv.hpp&gt;
-#include &lt;vector&gt;
-
-#define STEP 5
+<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;ctime&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;chrono&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;random&gt;</span><span class="cp">
+</span>
+<span class="cp">#define STEP 5
 #define JITTER 3
 #define RAIO 3
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">yrange</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">xrange</span><span class="p">;</span>
 
-int main(int argc, char** argv) {
-  std::vector&lt;int&gt; yrange;
-  std::vector&lt;int&gt; xrange;
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">image</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">points</span><span class="p">;</span>
 
-  cv::Mat image, frame, points;
+  <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">gray</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
 
-  int width, height, gray;
-  int x, y;
+  <span class="n">image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">);</span>
 
-  image = cv::imread(argv[1], cv::IMREAD_GRAYSCALE);
+  <span class="n">std</span><span class="o">::</span><span class="n">srand</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">time</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
 
-  std::srand(std::time(0));
+  <span class="k">if</span> <span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Could not open or find the image"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
 
-  if (image.empty()) {
-    std::cout &lt;&lt; "Could not open or find the image" &lt;&lt; std::endl;
-    return -1;
-  }
+  <span class="n">width</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">cols</span><span class="p">;</span>
+  <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">rows</span><span class="p">;</span>
 
-  width = image.cols;
-  height = image.rows;
+  <span class="n">xrange</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">height</span> <span class="o">/</span> <span class="n">STEP</span><span class="p">);</span>
+  <span class="n">yrange</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">width</span> <span class="o">/</span> <span class="n">STEP</span><span class="p">);</span>
 
-  xrange.resize(height / STEP);
-  yrange.resize(width / STEP);
+  <span class="n">std</span><span class="o">::</span><span class="n">iota</span><span class="p">(</span><span class="n">xrange</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">xrange</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">iota</span><span class="p">(</span><span class="n">yrange</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">yrange</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
 
-  std::iota(xrange.begin(), xrange.end(), 0);
-  std::iota(yrange.begin(), yrange.end(), 0);
+  <span class="k">for</span> <span class="p">(</span><span class="n">uint</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">xrange</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">xrange</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">xrange</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">STEP</span> <span class="o">+</span> <span class="n">STEP</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span>
 
-  for (uint i = 0; i &lt; xrange.size(); i++) {
-    xrange[i] = xrange[i] * STEP + STEP / 2;
-  }
+  <span class="k">for</span> <span class="p">(</span><span class="n">uint</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">yrange</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">yrange</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">yrange</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">STEP</span> <span class="o">+</span> <span class="n">STEP</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span>
 
-  for (uint i = 0; i &lt; yrange.size(); i++) {
-    yrange[i] = yrange[i] * STEP + STEP / 2;
-  }
+  <span class="n">points</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">CV_8U</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">255</span><span class="p">));</span>
 
-  points = cv::Mat(height, width, CV_8U, cv::Scalar(255));
+  <span class="kt">unsigned</span> <span class="n">seed</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">system_clock</span><span class="o">::</span><span class="n">now</span><span class="p">().</span><span class="n">time_since_epoch</span><span class="p">().</span><span class="n">count</span><span class="p">();</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">shuffle</span><span class="p">(</span><span class="n">xrange</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">xrange</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span><span class="p">(</span><span class="n">seed</span><span class="p">));</span>
 
-  std::random_shuffle(xrange.begin(), xrange.end());
-
-  for (auto i : xrange) {
-    std::random_shuffle(yrange.begin(), yrange.end());
-    for (auto j : yrange) {
-      x = i + std::rand() % (2 * JITTER) - JITTER + 1;
-      y = j + std::rand() % (2 * JITTER) - JITTER + 1;
-      gray = image.at&lt;uchar&gt;(x, y);
-      cv::circle(points, cv::Point(y, x), RAIO, CV_RGB(gray, gray, gray),
-                 cv::FILLED, cv::LINE_AA);
-    }
-  }
-  cv::imwrite("pontos.jpg", points);
-  return 0;
-}</code></pre>
+  <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">i</span> <span class="o">:</span> <span class="n">xrange</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">shuffle</span><span class="p">(</span><span class="n">yrange</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">yrange</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span><span class="p">(</span><span class="n">seed</span><span class="p">));</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">j</span> <span class="o">:</span> <span class="n">yrange</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">JITTER</span><span class="p">)</span> <span class="o">-</span> <span class="n">JITTER</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="n">y</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">JITTER</span><span class="p">)</span> <span class="o">-</span> <span class="n">JITTER</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="n">gray</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+      <span class="n">cv</span><span class="o">::</span><span class="n">circle</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">RAIO</span><span class="p">,</span> <span class="n">CV_RGB</span><span class="p">(</span><span class="n">gray</span><span class="p">,</span> <span class="n">gray</span><span class="p">,</span> <span class="n">gray</span><span class="p">),</span>
+      <span class="n">cv</span><span class="o">::</span><span class="n">FILLED</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">LINE_AA</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">imwrite</span><span class="p">(</span><span class="s">"pontos.jpg"</span><span class="p">,</span> <span class="n">points</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa
-<a href="exemplos/pontilhismo.cpp">pontilhismo.cpp</a>, salve-o juntamente com
-o arquivo <a href="exemplos/Makefile">Makefile</a> e a imagem
-<a href="figs/biel.png">biel.png</a> em um diretório e execute a seguinte
-seqüência de comandos:</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/pontilhismo/pontilhismo.cpp">pontilhismo.cpp</a>, salve-o em um diretório juntamente com o arquivo  <a href="exemplos/pontilhismo/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="canny.html#pontilhismo-cmake">Listagem 55, &#8220;CMakeLists.txt&#8221;</a>), a imagem <a href="figs/biel.png">biel.png</a> e execute a seqüência de comandos mostrada na <a href="canny.html#ex-compilacao-canny">Listagem 53, &#8220;Compilação e execução do programa <code>canny.cpp</code>&#8221;</a>.</p>
 </div>
-<div class="listingblock">
+<div id="pontilhismo-cmake" class="listingblock">
+<div class="title">Listagem 55. CMakeLists.txt</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ make pontilhismo
-$ ./pontilhismo biel.png</code></pre>
+<pre class="rouge highlight"><code data-lang="cmake"><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.0.0<span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span>pontilhismo VERSION 0.1.0 LANGUAGES C CXX<span class="p">)</span>
+
+<span class="nb">find_package</span><span class="p">(</span>OpenCV REQUIRED<span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">OpenCV_INCLUDE_DIRS</span><span class="si">}</span><span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span>pontilhismo pontilhismo.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>pontilhismo <span class="si">${</span><span class="nv">OpenCV_LIBS</span><span class="si">}</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div id="ex-compilacao-pontilhismo" class="listingblock">
+<div class="title">Listagem 56. Compilação e execução do programa <code>pontilhismo.cpp</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell"><span class="nv">$ </span><span class="nb">mkdir </span>build
+<span class="nv">$ </span><span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make
+<span class="nv">$ </span>./canny ../biel.png</code></pre>
 </div>
 </div>
 </div>
@@ -825,8 +958,8 @@ no exemplo.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">std::vector&lt;int&gt; yrange;
-std::vector&lt;int&gt; xrange;</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">yrange</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">xrange</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -846,16 +979,16 @@ círculo.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">std::iota(xrange.begin(), xrange.end(), 0);
-std::iota(yrange.begin(), yrange.end(), 0);
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">iota</span><span class="p">(</span><span class="n">xrange</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">xrange</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">iota</span><span class="p">(</span><span class="n">yrange</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">yrange</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
 
-for(uint i=0; i&lt;xrange.size(); i++){
-  xrange[i]= xrange[i]*STEP+STEP/2;
-}
+<span class="k">for</span><span class="p">(</span><span class="n">uint</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">xrange</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+  <span class="n">xrange</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span> <span class="n">xrange</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">STEP</span><span class="o">+</span><span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
 
-for(uint i=0; i&lt;yrange.size(); i++){
-  yrange[i]= yrange[i]*STEP+STEP/2;
-}</code></pre>
+<span class="k">for</span><span class="p">(</span><span class="n">uint</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">yrange</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+  <span class="n">yrange</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span> <span class="n">yrange</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">STEP</span><span class="o">+</span><span class="n">STEP</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -866,27 +999,21 @@ na imagem de referência se dê no centro da janela.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">std::random_shuffle(xrange.begin(), xrange.end());</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="kt">unsigned</span> <span class="n">seed</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">system_clock</span><span class="o">::</span><span class="n">now</span><span class="p">().</span><span class="n">time_since_epoch</span><span class="p">().</span><span class="n">count</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shuffle</span><span class="p">(</span><span class="n">xrange</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">xrange</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span><span class="p">(</span><span class="n">seed</span><span class="p">));</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A função <code>random_shuffle()</code> recebe como parâmetros 2 iteradores: uma
-para o início do array e outro para o final. Como resultado, a função
-embaralha aleatoriamente todos seus elementos. Se observado, esse
-processo é feito uma vez para o array de índices das linhas -
-<code>xrange</code> - e, para cada linha, embaralha-se o array de índices das
-colunas - <code>yrange</code>.</p>
+<p>A função <code>std::shuffle()</code> recebe como parâmetros 2 iteradores: uma para o início do array e outro para o final. Como resultado, a função embaralha aleatoriamente todos seus elementos conforme a função de geração de números aleatórios fornecida em seguida. Se observado, esse processo é feito uma vez para o array de índices das linhas - <code>xrange</code> - e, para cada linha, embaralha-se o array de índices das colunas - <code>yrange</code>.</p>
 </div>
 <div class="paragraph">
-<p>Os loops descritos por <code>for(auto i : xrange)</code> e <code>for(auto j : yrange)</code>
-são construções na especificação <code>C++11</code> e servem para fazer as
-variáveis <code>i</code> e <code>j</code> assumirem, a cada passada no loop, os valores dos
-arrays <code>xrange</code> e <code>yrange</code> de forma consecutiva.</p>
+<p>Os loops descritos por <code>for(auto i : xrange)</code> e <code>for(auto j : yrange)</code> são construções na especificação <code>C++11</code> e servem para fazer as
+variáveis <code>i</code> e <code>j</code> assumirem, a cada passada no loop, os valores dos arrays <code>xrange</code> e <code>yrange</code> de forma consecutiva.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">x = i+rand()%(2*JITTER)-JITTER+1;
-y = j+rand()%(2*JITTER)-JITTER+1;</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">x</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="n">rand</span><span class="p">()</span><span class="o">%</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">JITTER</span><span class="p">)</span><span class="o">-</span><span class="n">JITTER</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="n">rand</span><span class="p">()</span><span class="o">%</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">JITTER</span><span class="p">)</span><span class="o">-</span><span class="n">JITTER</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -901,8 +1028,8 @@ uso em imagens de tamanhos diferentes.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">cv::circle(points, cv::Point(y, x), RAIO, CV_RGB(gray, gray, gray),
-                 cv::FILLED, cv::LINE_AA);</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cv</span><span class="o">::</span><span class="n">circle</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">RAIO</span><span class="p">,</span> <span class="n">CV_RGB</span><span class="p">(</span><span class="n">gray</span><span class="p">,</span> <span class="n">gray</span><span class="p">,</span> <span class="n">gray</span><span class="p">),</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">FILLED</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">LINE_AA</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -938,7 +1065,7 @@ Canny para desenhar pontos nos respectivos locais na imagem gerada.</p>
 <li>
 <p>Experimente ir aumentando os limiares do algoritmo de Canny e, para
 cada novo par de limiares, desenhar círculos cada vez menores nas
-posições encontradas. A <a href="canny.html#fig_lenapontilhista">Figura 45</a> foi
+posições encontradas. A <a href="canny.html#fig_lenapontilhista">Figura 45, &#8220;Pontilhismo aplicado à imagem Lena&#8221;</a> foi
 desenvolvida usando essa técnica.</p>
 </li>
 </ul>
@@ -967,13 +1094,6 @@ sua técnica pontilhista.</p>
 <p>← : <a href="threshold.html">Limiarização</a> | ↑ : <a href="segmentacao.html">Segmentação de imagens</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="kmeans.html">Quantização vetorial com k-means</a> →</p>
 </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
-<script>
-if (!hljs.initHighlighting.called) {
-  hljs.initHighlighting.called = true
-  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
-}
-</script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",

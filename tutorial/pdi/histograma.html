@@ -434,7 +434,120 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
 <style type="text/css">
   .imageblock>.title {
     text-align: inherit;
@@ -491,7 +604,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="segmentacao.html">Parte VI: Segmentação de imagens</a>
 </li>
-<li><a href="outras.html">Parte VII: Outras Ferramentas</a>
+<li><a href="caracteristicas.html">Parte VII: Extração de Características</a>
+</li>
+<li><a href="outras.html">Parte VIII: Outras Ferramentas</a>
+</li>
+<li><a href="atividades.html">Parte IX: Tarefas de Processamento de Imagens</a>
 </li>
 </ul>
 </div>
@@ -514,128 +631,128 @@ características de uma imagem ou de atributos que dela são extraídos.</p>
 <p>Além disso, a lição deverá explorar o uso dos recursos de captura de vídeo disponíveis no OpenCV para lidar com câmeras conectadas ao sistema. Logo, o exemplo apresentado mostrará como capturar imagens de uma câmera disponível e calcular os histogramas das componentes de cor das imagens.</p>
 </div>
 <div class="paragraph">
-<p>O exemplo da <a href="histograma.html#exa_histogram">Listagem 33</a> mostra o processo de capturar imagens de uma <em>webcam</em> instalada no computador, calcular os
+<p>O exemplo da <a href="histograma.html#exa_histogram">Listagem 33, &#8220;histogram.cpp&#8221;</a> mostra o processo de capturar imagens de uma <em>webcam</em> instalada no computador, calcular os
 histogramas das componentes de cor das imagens e desenhá-los no canto superior esquerdo da imagem capturada.</p>
 </div>
 <div id="exa_histogram" class="listingblock">
 <div class="title">Listagem 33. histogram.cpp</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;iostream&gt;
-#include &lt;opencv2/opencv.hpp&gt;
-#include "camera.hpp"
+<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">"camera.hpp"</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">){</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">image</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">camera</span><span class="p">;</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">VideoCapture</span> <span class="n">cap</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;</span> <span class="n">planes</span><span class="p">;</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">histR</span><span class="p">,</span> <span class="n">histG</span><span class="p">,</span> <span class="n">histB</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">nbins</span> <span class="o">=</span> <span class="mi">64</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">range</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">};</span>
+  <span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="n">histrange</span> <span class="o">=</span> <span class="p">{</span> <span class="n">range</span> <span class="p">};</span>
+  <span class="kt">bool</span> <span class="n">uniform</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">acummulate</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">key</span><span class="p">;</span>
 
-int main(int argc, char** argv){
-  cv::Mat image;
-  int width, height;
-  int camera;
-  cv::VideoCapture cap;
-  std::vector&lt;cv::Mat&gt; planes;
-  cv::Mat histR, histG, histB;
-  int nbins = 64;
-  float range[] = {0, 255};
-  const float *histrange = { range };
-  bool uniform = true;
-  bool acummulate = false;
-  int key;
-
-  camera = cameraEnumerator();
-  cap.open(camera);
+  <span class="n">camera</span> <span class="o">=</span> <span class="n">cameraEnumerator</span><span class="p">();</span>
+  <span class="n">cap</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">camera</span><span class="p">);</span>
   
-  if(!cap.isOpened()){
-    std::cout &lt;&lt; "cameras indisponiveis";
-    return -1;
-  }
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">()){</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"cameras indisponiveis"</span><span class="p">;</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
   
-  cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
-  cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);  
-  width = cap.get(cv::CAP_PROP_FRAME_WIDTH);
-  height = cap.get(cv::CAP_PROP_FRAME_HEIGHT);
+  <span class="n">cap</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">,</span> <span class="mi">640</span><span class="p">);</span>
+  <span class="n">cap</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">CAP_PROP_FRAME_HEIGHT</span><span class="p">,</span> <span class="mi">480</span><span class="p">);</span>  
+  <span class="n">width</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">);</span>
+  <span class="n">height</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">CAP_PROP_FRAME_HEIGHT</span><span class="p">);</span>
 
-  std::cout &lt;&lt; "largura = " &lt;&lt; width &lt;&lt; std::endl;
-  std::cout &lt;&lt; "altura  = " &lt;&lt; height &lt;&lt; std::endl;
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"largura = "</span> <span class="o">&lt;&lt;</span> <span class="n">width</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"altura  = "</span> <span class="o">&lt;&lt;</span> <span class="n">height</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-  int histw = nbins, histh = nbins/2;
-  cv::Mat histImgR(histh, histw, CV_8UC3, cv::Scalar(0,0,0));
-  cv::Mat histImgG(histh, histw, CV_8UC3, cv::Scalar(0,0,0));
-  cv::Mat histImgB(histh, histw, CV_8UC3, cv::Scalar(0,0,0));
+  <span class="kt">int</span> <span class="n">histw</span> <span class="o">=</span> <span class="n">nbins</span><span class="p">,</span> <span class="n">histh</span> <span class="o">=</span> <span class="n">nbins</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="nf">histImgR</span><span class="p">(</span><span class="n">histh</span><span class="p">,</span> <span class="n">histw</span><span class="p">,</span> <span class="n">CV_8UC3</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="nf">histImgG</span><span class="p">(</span><span class="n">histh</span><span class="p">,</span> <span class="n">histw</span><span class="p">,</span> <span class="n">CV_8UC3</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="nf">histImgB</span><span class="p">(</span><span class="n">histh</span><span class="p">,</span> <span class="n">histw</span><span class="p">,</span> <span class="n">CV_8UC3</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
 
-  while(1){
-    cap &gt;&gt; image;
-    cv::split (image, planes);
-    cv::calcHist(&amp;planes[0], 1, 0, cv::Mat(), histB, 1,
-                 &amp;nbins, &amp;histrange,
-                 uniform, acummulate);
-    cv::calcHist(&amp;planes[1], 1, 0, cv::Mat(), histG, 1,
-                 &amp;nbins, &amp;histrange,
-                 uniform, acummulate);
-    cv::calcHist(&amp;planes[2], 1, 0, cv::Mat(), histR, 1,
-                 &amp;nbins, &amp;histrange,
-                 uniform, acummulate);
+  <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+    <span class="n">cap</span> <span class="o">&gt;&gt;</span> <span class="n">image</span><span class="p">;</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">split</span> <span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">planes</span><span class="p">);</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">calcHist</span><span class="p">(</span><span class="o">&amp;</span><span class="n">planes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="p">(),</span> <span class="n">histB</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+                 <span class="o">&amp;</span><span class="n">nbins</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">histrange</span><span class="p">,</span>
+                 <span class="n">uniform</span><span class="p">,</span> <span class="n">acummulate</span><span class="p">);</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">calcHist</span><span class="p">(</span><span class="o">&amp;</span><span class="n">planes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="p">(),</span> <span class="n">histG</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+                 <span class="o">&amp;</span><span class="n">nbins</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">histrange</span><span class="p">,</span>
+                 <span class="n">uniform</span><span class="p">,</span> <span class="n">acummulate</span><span class="p">);</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">calcHist</span><span class="p">(</span><span class="o">&amp;</span><span class="n">planes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="p">(),</span> <span class="n">histR</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+                 <span class="o">&amp;</span><span class="n">nbins</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">histrange</span><span class="p">,</span>
+                 <span class="n">uniform</span><span class="p">,</span> <span class="n">acummulate</span><span class="p">);</span>
     
-    cv::normalize(histR, histR, 0, histImgR.rows, cv::NORM_MINMAX, -1, cv::Mat());
-    cv::normalize(histG, histG, 0, histImgG.rows, cv::NORM_MINMAX, -1, cv::Mat());
-    cv::normalize(histB, histB, 0, histImgB.rows, cv::NORM_MINMAX, -1, cv::Mat());
+    <span class="n">cv</span><span class="o">::</span><span class="n">normalize</span><span class="p">(</span><span class="n">histR</span><span class="p">,</span> <span class="n">histR</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">histImgR</span><span class="p">.</span><span class="n">rows</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">NORM_MINMAX</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="p">());</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">normalize</span><span class="p">(</span><span class="n">histG</span><span class="p">,</span> <span class="n">histG</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">histImgG</span><span class="p">.</span><span class="n">rows</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">NORM_MINMAX</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="p">());</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">normalize</span><span class="p">(</span><span class="n">histB</span><span class="p">,</span> <span class="n">histB</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">histImgB</span><span class="p">.</span><span class="n">rows</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">NORM_MINMAX</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="p">());</span>
     
-    histImgR.setTo(cv::Scalar(0));
-    histImgG.setTo(cv::Scalar(0));
-    histImgB.setTo(cv::Scalar(0));
+    <span class="n">histImgR</span><span class="p">.</span><span class="n">setTo</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+    <span class="n">histImgG</span><span class="p">.</span><span class="n">setTo</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+    <span class="n">histImgB</span><span class="p">.</span><span class="n">setTo</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
     
-    for(int i=0; i&lt;nbins; i++){
-      cv::line(histImgR,
-               cv::Point(i, histh),
-               cv::Point(i, histh-cvRound(histR.at&lt;float&gt;(i))),
-               cv::Scalar(0, 0, 255), 1, 8, 0);
-      cv::line(histImgG,
-               cv::Point(i, histh),
-               cv::Point(i, histh-cvRound(histG.at&lt;float&gt;(i))),
-               cv::Scalar(0, 255, 0), 1, 8, 0);
-      cv::line(histImgB,
-               cv::Point(i, histh),
-               cv::Point(i, histh-cvRound(histB.at&lt;float&gt;(i))),
-               cv::Scalar(255, 0, 0), 1, 8, 0);
-    }
-    histImgR.copyTo(image(cv::Rect(0, 0       ,nbins, histh)));
-    histImgG.copyTo(image(cv::Rect(0, histh   ,nbins, histh)));
-    histImgB.copyTo(image(cv::Rect(0, 2*histh ,nbins, histh)));
-    cv::imshow("image", image);
-    key = cv::waitKey(30);
-    if(key == 27) break;
-  }
-  return 0;
-}</code></pre>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">nbins</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="n">cv</span><span class="o">::</span><span class="n">line</span><span class="p">(</span><span class="n">histImgR</span><span class="p">,</span>
+               <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">histh</span><span class="p">),</span>
+               <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">histh</span><span class="o">-</span><span class="n">cvRound</span><span class="p">(</span><span class="n">histR</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">))),</span>
+               <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="n">cv</span><span class="o">::</span><span class="n">line</span><span class="p">(</span><span class="n">histImgG</span><span class="p">,</span>
+               <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">histh</span><span class="p">),</span>
+               <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">histh</span><span class="o">-</span><span class="n">cvRound</span><span class="p">(</span><span class="n">histG</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">))),</span>
+               <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="n">cv</span><span class="o">::</span><span class="n">line</span><span class="p">(</span><span class="n">histImgB</span><span class="p">,</span>
+               <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">histh</span><span class="p">),</span>
+               <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">histh</span><span class="o">-</span><span class="n">cvRound</span><span class="p">(</span><span class="n">histB</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">))),</span>
+               <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">histImgR</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">image</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>       <span class="p">,</span><span class="n">nbins</span><span class="p">,</span> <span class="n">histh</span><span class="p">)));</span>
+    <span class="n">histImgG</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">image</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">histh</span>   <span class="p">,</span><span class="n">nbins</span><span class="p">,</span> <span class="n">histh</span><span class="p">)));</span>
+    <span class="n">histImgB</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">image</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">histh</span> <span class="p">,</span><span class="n">nbins</span><span class="p">,</span> <span class="n">histh</span><span class="p">)));</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"image"</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">key</span> <span class="o">==</span> <span class="mi">27</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/histograma/histograma.cpp">histogram.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/histograma/camera.hpp">camera.hpp</a>, usado para seleção de câmeras, o arquivo <a href="exemplos/histograma/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="histograma.html#histograma-cmake">Listagem 34</a>) e execute a seqüência de comandos mostrada na <a href="histograma.html#ex-compilacao-histograma">Listagem 35</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/histograma/histograma.cpp">histogram.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/histograma/camera.hpp">camera.hpp</a>, usado para seleção de câmeras, o arquivo <a href="exemplos/histograma/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="histograma.html#histograma-cmake">Listagem 34, &#8220;CMakeLists.txt&#8221;</a>) e execute a seqüência de comandos mostrada na <a href="histograma.html#ex-compilacao-histograma">Listagem 35, &#8220;Compilação e execução do programa histograma&#8221;</a>.</p>
 </div>
 <div id="histograma-cmake" class="listingblock">
 <div class="title">Listagem 34. CMakeLists.txt</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">cmake_minimum_required(VERSION 3.0.0)
-project(histograma VERSION 0.1.0 LANGUAGES C CXX)
+<pre class="rouge highlight"><code data-lang="cmake"><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.0.0<span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span>histograma VERSION 0.1.0 LANGUAGES C CXX<span class="p">)</span>
 
-find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
+<span class="nb">find_package</span><span class="p">(</span>OpenCV REQUIRED<span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">OpenCV_INCLUDE_DIRS</span><span class="si">}</span><span class="p">)</span>
 
-add_executable(histograma histograma.cpp)
-target_link_libraries(histograma ${OpenCV_LIBS})</code></pre>
+<span class="nb">add_executable</span><span class="p">(</span>histograma histograma.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>histograma <span class="si">${</span><span class="nv">OpenCV_LIBS</span><span class="si">}</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div id="ex-compilacao-histograma" class="listingblock">
 <div class="title">Listagem 35. Compilação e execução do programa histograma</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ mkdir build
-$ cd build
-$ cmake ..
-$ make
-$ ./histograma</code></pre>
+<pre class="rouge highlight"><code data-lang="shell"><span class="nv">$ </span><span class="nb">mkdir </span>build
+<span class="nv">$ </span><span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make
+<span class="nv">$ </span>./histograma</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Durante a execução do código, o programa deverá perguntar ao usuário qual câmera ele deseja utilizar. Caso haja apenas uma câmera conectada ao sistema, o programa irá selecioná-la automaticamente.</p>
 </div>
 <div class="paragraph">
-<p>A saída do programa <em>histogram</em> é mostrado na <a href="histograma.html#fig_histogram">Figura 28</a></p>
+<p>A saída do programa <em>histogram</em> é mostrado na <a href="histograma.html#fig_histogram">Figura 28, &#8220;Saída do programa histogram&#8221;</a></p>
 </div>
 <div id="fig_histogram" class="imageblock text-center">
 <div class="content">
@@ -647,7 +764,7 @@ $ ./histograma</code></pre>
 <h3 id="_descrição_do_programa_histogram_cpp">11.1. Descrição do programa <code>histogram.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">cv::VideoCapture cap;</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cv</span><span class="o">::</span><span class="n">VideoCapture</span> <span class="n">cap</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -663,9 +780,9 @@ vídeo que será conectado ao objeto <code>cap</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">std::vector&lt;cv::Mat&gt; planes;
-cv::Mat histR, histG, histB;
-int nbins = 64;</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="o">&gt;</span> <span class="n">planes</span><span class="p">;</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">histR</span><span class="p">,</span> <span class="n">histG</span><span class="p">,</span> <span class="n">histB</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">nbins</span> <span class="o">=</span> <span class="mi">64</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -690,14 +807,14 @@ as ocorrências dos tons.</p>
 <div class="paragraph">
 <p>No exemplo, usa-se um total de 64 faixas para um tom de cinza máximo
 igual a 255. No cálculo, portanto, as ocorrências de tom de cinza na
-faixa \$[0,3\$] serão contabilizadas no primeiro elemento do array
-com o histograma; as ocorrências na faixa \$[4,7\$] contarão no
+faixa \([0,3\)] serão contabilizadas no primeiro elemento do array
+com o histograma; as ocorrências na faixa \([4,7\)] contarão no
 segundo elemento do histograma, e assim por diante.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">float range[] = {0, 256};
-const float *histrange = { range };</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="kt">float</span> <span class="n">range</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">256</span><span class="p">};</span>
+<span class="k">const</span> <span class="kt">float</span> <span class="o">*</span><span class="n">histrange</span> <span class="o">=</span> <span class="p">{</span> <span class="n">range</span> <span class="p">};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -708,24 +825,24 @@ histograma.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">bool uniform = true;
-bool acummulate = false;</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="kt">bool</span> <span class="n">uniform</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">acummulate</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">camera = cameraEnumerator();
-cap.open(camera);
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">camera</span> <span class="o">=</span> <span class="n">cameraEnumerator</span><span class="p">();</span>
+<span class="n">cap</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">camera</span><span class="p">);</span>
 
-if(!cap.isOpened()){
-  cout &lt;&lt; "cameras indisponiveis";
-  return -1;
-}
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">()){</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"cameras indisponiveis"</span><span class="p">;</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
 
-cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
-cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
-width = cap.get(cv::CAP_PROP_FRAME_WIDTH);
-height = cap.get(cv::CAP_PROP_FRAME_HEIGHT);</code></pre>
+<span class="n">cap</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">,</span> <span class="mi">640</span><span class="p">);</span>
+<span class="n">cap</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">CAP_PROP_FRAME_HEIGHT</span><span class="p">,</span> <span class="mi">480</span><span class="p">);</span>
+<span class="n">width</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">);</span>
+<span class="n">height</span> <span class="o">=</span> <span class="n">cap</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">CAP_PROP_FRAME_HEIGHT</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -742,10 +859,10 @@ height = cap.get(cv::CAP_PROP_FRAME_HEIGHT);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">int histw = nbins, histh = nbins/2;
-cv::Mat histImgR(histh, histw, CV_8UC3, cv::Scalar(0,0,0));
-cv::Mat histImgG(histh, histw, CV_8UC3, cv::Scalar(0,0,0));
-cv::Mat histImgB(histh, histw, CV_8UC3, cv::Scalar(0,0,0));</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="kt">int</span> <span class="n">histw</span> <span class="o">=</span> <span class="n">nbins</span><span class="p">,</span> <span class="n">histh</span> <span class="o">=</span> <span class="n">nbins</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="nf">histImgR</span><span class="p">(</span><span class="n">histh</span><span class="p">,</span> <span class="n">histw</span><span class="p">,</span> <span class="n">CV_8UC3</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="nf">histImgG</span><span class="p">(</span><span class="n">histh</span><span class="p">,</span> <span class="n">histw</span><span class="p">,</span> <span class="n">CV_8UC3</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="nf">histImgB</span><span class="p">(</span><span class="n">histh</span><span class="p">,</span> <span class="n">histw</span><span class="p">,</span> <span class="n">CV_8UC3</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -753,8 +870,8 @@ cv::Mat histImgB(histh, histw, CV_8UC3, cv::Scalar(0,0,0));</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">cap &gt;&gt; image;
-cv::split (image, planes);</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cap</span> <span class="o">&gt;&gt;</span> <span class="n">image</span><span class="p">;</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">split</span> <span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">planes</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -775,15 +892,15 @@ componente de cor de forma independente.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">cv::calcHist(&amp;planes[0], 1, 0, Mat(), histR, 1,
-            &amp;nbins, &amp;histrange,
-            uniform, acummulate);
-cv::calcHist(&amp;planes[1], 1, 0, Mat(), histG, 1,
-             &amp;nbins, &amp;histrange,
-             uniform, acummulate);
-cv::calcHist(&amp;planes[2], 1, 0, Mat(), histB, 1,
-             &amp;nbins, &amp;histrange,
-             uniform, acummulate);</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cv</span><span class="o">::</span><span class="n">calcHist</span><span class="p">(</span><span class="o">&amp;</span><span class="n">planes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Mat</span><span class="p">(),</span> <span class="n">histR</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="o">&amp;</span><span class="n">nbins</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">histrange</span><span class="p">,</span>
+            <span class="n">uniform</span><span class="p">,</span> <span class="n">acummulate</span><span class="p">);</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">calcHist</span><span class="p">(</span><span class="o">&amp;</span><span class="n">planes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Mat</span><span class="p">(),</span> <span class="n">histG</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+             <span class="o">&amp;</span><span class="n">nbins</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">histrange</span><span class="p">,</span>
+             <span class="n">uniform</span><span class="p">,</span> <span class="n">acummulate</span><span class="p">);</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">calcHist</span><span class="p">(</span><span class="o">&amp;</span><span class="n">planes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Mat</span><span class="p">(),</span> <span class="n">histB</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+             <span class="o">&amp;</span><span class="n">nbins</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">histrange</span><span class="p">,</span>
+             <span class="n">uniform</span><span class="p">,</span> <span class="n">acummulate</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -828,9 +945,9 @@ deverá passar uma lista com os limites superiores de cada faixa.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">cv::normalize(histR, histR, 0, histImgR.rows, cv::NORM_MINMAX, -1, Mat());
-cv::normalize(histG, histB, 0, histImgR.rows, cv::NORM_MINMAX, -1, Mat());
-cv::normalize(histB, histB, 0, histImgR.rows, cv::NORM_MINMAX, -1, Mat());</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cv</span><span class="o">::</span><span class="n">normalize</span><span class="p">(</span><span class="n">histR</span><span class="p">,</span> <span class="n">histR</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">histImgR</span><span class="p">.</span><span class="n">rows</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">NORM_MINMAX</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Mat</span><span class="p">());</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">normalize</span><span class="p">(</span><span class="n">histG</span><span class="p">,</span> <span class="n">histB</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">histImgR</span><span class="p">.</span><span class="n">rows</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">NORM_MINMAX</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Mat</span><span class="p">());</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">normalize</span><span class="p">(</span><span class="n">histB</span><span class="p">,</span> <span class="n">histB</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">histImgR</span><span class="p">.</span><span class="n">rows</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">NORM_MINMAX</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Mat</span><span class="p">());</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -841,21 +958,21 @@ encontrados na componente de cor.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">histImgR.setTo(Scalar(0));
-histImgG.setTo(Scalar(0));
-histImgB.setTo(Scalar(0));
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">histImgR</span><span class="p">.</span><span class="n">setTo</span><span class="p">(</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="n">histImgG</span><span class="p">.</span><span class="n">setTo</span><span class="p">(</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="n">histImgB</span><span class="p">.</span><span class="n">setTo</span><span class="p">(</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
 
-for(int i=0; i&lt;nbins; i++){
-  cv::line(histImgR, cv::Point(i, histh),
-       cv::Point(i, cvRound(histR.at&lt;float&gt;(i))),
-       cv::Scalar(0, 0, 255), 1, 8, 0);
-  line(histImgG, cv::Point(i, histh),
-       cv::Point(i, cvRound(histG.at&lt;float&gt;(i))),
-       cv::Scalar(0, 255, 0), 1, 8, 0);
-  line(histImgB, cv::Point(i, histh),
-       cv::Point(i, cvRound(histB.at&lt;float&gt;(i))),
-       cv::Scalar(255, 0, 0), 1, 8, 0);
-}</code></pre>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">nbins</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">line</span><span class="p">(</span><span class="n">histImgR</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">histh</span><span class="p">),</span>
+       <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">cvRound</span><span class="p">(</span><span class="n">histR</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">))),</span>
+       <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">line</span><span class="p">(</span><span class="n">histImgG</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">histh</span><span class="p">),</span>
+       <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">cvRound</span><span class="p">(</span><span class="n">histG</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">))),</span>
+       <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">line</span><span class="p">(</span><span class="n">histImgB</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">histh</span><span class="p">),</span>
+       <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">cvRound</span><span class="p">(</span><span class="n">histB</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">))),</span>
+       <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -866,9 +983,9 @@ barras usando a função <code>line()</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">histImgR.copyTo(image(cv::Rect(0, 0       ,nbins, histh)));
-histImgG.copyTo(image(cv::Rect(0, histh   ,nbins, histh)));
-histImgB.copyTo(image(cv::Rect(0, 2*histh ,nbins, histh)));</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">histImgR</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">image</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>       <span class="p">,</span><span class="n">nbins</span><span class="p">,</span> <span class="n">histh</span><span class="p">)));</span>
+<span class="n">histImgG</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">image</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">histh</span>   <span class="p">,</span><span class="n">nbins</span><span class="p">,</span> <span class="n">histh</span><span class="p">)));</span>
+<span class="n">histImgB</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">image</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">histh</span> <span class="p">,</span><span class="n">nbins</span><span class="p">,</span> <span class="n">histh</span><span class="p">)));</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -906,13 +1023,6 @@ que julgar conveniente.</p>
 <p>← : <a href="labeling.html">Preenchendo regiões</a> | ↑ : <a href="manipulacao.html">Manipulação de imagens</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="espacial.html">Processamento de Imagens no Domínio Espacial</a> →</p>
 </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
-<script>
-if (!hljs.initHighlighting.called) {
-  hljs.initHighlighting.called = true
-  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
-}
-</script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",

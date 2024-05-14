@@ -434,7 +434,120 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
 <style type="text/css">
   .imageblock>.title {
     text-align: inherit;
@@ -487,7 +600,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="segmentacao.html">Parte VI: Segmentação de imagens</a>
 </li>
-<li><a href="outras.html">Parte VII: Outras Ferramentas</a>
+<li><a href="caracteristicas.html">Parte VII: Extração de Características</a>
+</li>
+<li><a href="outras.html">Parte VIII: Outras Ferramentas</a>
+</li>
+<li><a href="atividades.html">Parte IX: Tarefas de Processamento de Imagens</a>
 </li>
 </ul>
 </div>
@@ -513,24 +630,24 @@ conforme o tipo de efeito que se deseja impor.</p>
 </div>
 <div class="stemblock">
 <div class="content">
-\$h(x,y) = f(x,y)*g(x,y) = \frac{1}{MN}
-\sum_{m=0}^{M-1}\sum_{n=0}^{N-1}f(m,n) g(x-m, y-n)\$
+\[h(x,y) = f(x,y)*g(x,y) = \frac{1}{MN}
+\sum_{m=0}^{M-1}\sum_{n=0}^{N-1}f(m,n) g(x-m, y-n)\]
 </div>
 </div>
 <div class="paragraph">
-<p>As funções \$f(x,y)\$ e \$g(x,y)\$ normalmente estão associadas
+<p>As funções \(f(x,y)\) e \(g(x,y)\) normalmente estão associadas
 à imagem a ser filtrada e ao filtro digital associado.</p>
 </div>
 <div class="paragraph">
 <p>Existem dois tipos de convolução: a 'convolução linear' e a
 'convolução circular'. Na primeira, assume-se que os sinais
-\$f(x,y)\$ e \$g(x,y)\$ existem em duas regiões com M e N
+\(f(x,y)\) e \(g(x,y)\) existem em duas regiões com M e N
 amostras consecutivas, respectivamente, sendo zero fora desssas
 regiões. A região resultante da convolução terá suporte de tamanho
-\$M+N-1\$. Fora desta, o resultado da convolução será nulo. Na
-segunda, assume-se que as sequências \$f(x,y)\$ e \$g(x,y)\$ são
-periódicas e com um mesmo período \$M=N\$. O resultado da
-convolução, \$h(x,y)\$ possuirá também o mesmo período \$M\$.</p>
+\(M+N-1\). Fora desta, o resultado da convolução será nulo. Na
+segunda, assume-se que as sequências \(f(x,y)\) e \(g(x,y)\) são
+periódicas e com um mesmo período \(M=N\). O resultado da
+convolução, \(h(x,y)\) possuirá também o mesmo período \(M\).</p>
 </div>
 <div class="paragraph">
 <p>Costuma-se simplificar essa equação e calcular os tons de cinza da
@@ -539,17 +656,17 @@ pequena matriz comumente denominada 'máscara' e as intensidades dos
 pixels sobre uma posição específica na imagem.</p>
 </div>
 <div class="paragraph">
-<p>As máscaras normalmente possuem dimensões de tamanho ímpar (\$3
-\times 3\$ elementos , \$5 \times 5\$ elementos, \$7 \times 7\$
+<p>As máscaras normalmente possuem dimensões de tamanho ímpar (\(3
+\times 3\) elementos , \(5 \times 5\) elementos, \(7 \times 7\)
 elementos, etc), dependendo da intensidade da filtragem que se deseja
 realizar.</p>
 </div>
 <div class="paragraph">
-<p>Considere uma imagem digital denotada por \$f(x,y)\$, uma matriz de
-máscara denotada por \$w(s,t)\$ e uma image filtrada denotada por
-\$g(x,y)\$. Para uma máscara de tamanho \$3 \times 3\$
+<p>Considere uma imagem digital denotada por \(f(x,y)\), uma matriz de
+máscara denotada por \(w(s,t)\) e uma image filtrada denotada por
+\(g(x,y)\). Para uma máscara de tamanho \(3 \times 3\)
 elementos, o processo de filtragem no domínio espacial é ilustrado na
-<a href="convolucao.html#fig_filtragemespacial">Figura 29</a>.</p>
+<a href="convolucao.html#fig_filtragemespacial">Figura 29, &#8220;Filtragem espacial&#8221;</a>.</p>
 </div>
 <div id="fig_filtragemespacial" class="imageblock text-center">
 <div class="content">
@@ -577,130 +694,130 @@ Listagem <a href="convolucao.html#exa_convolucao">convolucao</a>.</p>
 <div id="exa_convolucao" class="listingblock">
 <div class="title">Listagem 36. convolucao.cpp</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;iostream&gt;
-#include &lt;opencv2/opencv.hpp&gt;
-#include "camera.hpp"
+<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">"camera.hpp"</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="nf">printmask</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="o">&amp;</span><span class="n">m</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">.</span><span class="n">size</span><span class="p">().</span><span class="n">height</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">.</span><span class="n">size</span><span class="p">().</span><span class="n">width</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">m</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-void printmask(cv::Mat &amp;m) {
-  for (int i = 0; i &lt; m.size().height; i++) {
-    for (int j = 0; j &lt; m.size().width; j++) {
-      std::cout &lt;&lt; m.at&lt;float&gt;(i, j) &lt;&lt; ",";
-    }
-    std::cout &lt;&lt; std::endl;
-  }
-}
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">VideoCapture</span> <span class="n">cap</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">camera</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">media</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.1111</span><span class="p">,</span> <span class="mf">0.1111</span><span class="p">,</span> <span class="mf">0.1111</span><span class="p">,</span> <span class="mf">0.1111</span><span class="p">,</span> <span class="mf">0.1111</span><span class="p">,</span>
+                   <span class="mf">0.1111</span><span class="p">,</span> <span class="mf">0.1111</span><span class="p">,</span> <span class="mf">0.1111</span><span class="p">,</span> <span class="mf">0.1111</span><span class="p">};</span>
+  <span class="kt">float</span> <span class="n">gauss</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0625</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span>  <span class="mf">0.0625</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span>
+                   <span class="mf">0.125</span><span class="p">,</span>  <span class="mf">0.0625</span><span class="p">,</span> <span class="mf">0.125</span><span class="p">,</span>  <span class="mf">0.0625</span><span class="p">};</span>
+  <span class="kt">float</span> <span class="n">horizontal</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
+  <span class="kt">float</span> <span class="n">vertical</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
+  <span class="kt">float</span> <span class="n">laplacian</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+  <span class="kt">float</span> <span class="n">boost</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
 
-int main(int, char **) {
-  cv::VideoCapture cap;
-  int camera;
-  float media[] = {0.1111, 0.1111, 0.1111, 0.1111, 0.1111,
-                   0.1111, 0.1111, 0.1111, 0.1111};
-  float gauss[] = {0.0625, 0.125,  0.0625, 0.125, 0.25,
-                   0.125,  0.0625, 0.125,  0.0625};
-  float horizontal[] = {-1, 0, 1, -2, 0, 2, -1, 0, 1};
-  float vertical[] = {-1, -2, -1, 0, 0, 0, 1, 2, 1};
-  float laplacian[] = {0, -1, 0, -1, 4, -1, 0, -1, 0};
-  float boost[] = {0, -1, 0, -1, 5.2, -1, 0, -1, 0};
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">frame</span><span class="p">,</span> <span class="n">framegray</span><span class="p">,</span> <span class="n">frame32f</span><span class="p">,</span> <span class="n">frameFiltered</span><span class="p">;</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="nf">mask</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">CV_32F</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">result</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">absolut</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">key</span><span class="p">;</span>
 
-  cv::Mat frame, framegray, frame32f, frameFiltered;
-  cv::Mat mask(3, 3, CV_32F);
-  cv::Mat result;
-  double width, height;
-  int absolut;
-  char key;
+  <span class="n">camera</span> <span class="o">=</span> <span class="n">cameraEnumerator</span><span class="p">();</span>
+  <span class="n">cap</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">camera</span><span class="p">);</span>
 
-  camera = cameraEnumerator();
-  cap.open(camera);
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">cap</span><span class="p">.</span><span class="n">isOpened</span><span class="p">())</span> 
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 
-  if (!cap.isOpened()) 
-    return -1;
+  <span class="n">cap</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">CAP_PROP_FRAME_WIDTH</span><span class="p">,</span> <span class="mi">640</span><span class="p">);</span>
+  <span class="n">cap</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">cv</span><span class="o">::</span><span class="n">CAP_PROP_FRAME_HEIGHT</span><span class="p">,</span> <span class="mi">480</span><span class="p">);</span>
 
-  cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
-  cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
+  <span class="n">cv</span><span class="o">::</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">"filtroespacial"</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">WINDOW_NORMAL</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">"original"</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">WINDOW_NORMAL</span><span class="p">);</span>
 
-  cv::namedWindow("filtroespacial", cv::WINDOW_NORMAL);
-  cv::namedWindow("original", cv::WINDOW_NORMAL);
+  <span class="n">mask</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">CV_32F</span><span class="p">,</span> <span class="n">media</span><span class="p">);</span>
 
-  mask = cv::Mat(3, 3, CV_32F, media);
+  <span class="n">absolut</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">// calcula absoluto da imagem</span>
 
-  absolut = 1;  // calcula absoluto da imagem
+  <span class="k">for</span> <span class="p">(;;)</span> <span class="p">{</span>
+    <span class="n">cap</span> <span class="o">&gt;&gt;</span> <span class="n">frame</span><span class="p">;</span>  <span class="c1">// captura nova imagem da camera</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">framegray</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">COLOR_BGR2GRAY</span><span class="p">);</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">flip</span><span class="p">(</span><span class="n">framegray</span><span class="p">,</span> <span class="n">framegray</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"original"</span><span class="p">,</span> <span class="n">framegray</span><span class="p">);</span>
+    <span class="n">framegray</span><span class="p">.</span><span class="n">convertTo</span><span class="p">(</span><span class="n">frame32f</span><span class="p">,</span> <span class="n">CV_32F</span><span class="p">);</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">filter2D</span><span class="p">(</span><span class="n">frame32f</span><span class="p">,</span> <span class="n">frameFiltered</span><span class="p">,</span> <span class="n">frame32f</span><span class="p">.</span><span class="n">depth</span><span class="p">(),</span> <span class="n">mask</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">cv</span><span class="o">::</span><span class="n">BORDER_REPLICATE</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">absolut</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">frameFiltered</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">frameFiltered</span><span class="p">);</span>
+    <span class="p">}</span>
 
-  for (;;) {
-    cap &gt;&gt; frame;  // captura nova imagem da camera
-    cv::cvtColor(frame, framegray, cv::COLOR_BGR2GRAY);
-    cv::flip(framegray, framegray, 1);
-    cv::imshow("original", framegray);
-    framegray.convertTo(frame32f, CV_32F);
-    cv::filter2D(frame32f, frameFiltered, frame32f.depth(), mask, cv::Point(1, 1), cv::BORDER_REPLICATE);
-    if (absolut) {
-      frameFiltered = cv::abs(frameFiltered);
-    }
+    <span class="n">frameFiltered</span><span class="p">.</span><span class="n">convertTo</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">CV_8U</span><span class="p">);</span>
 
-    frameFiltered.convertTo(result, CV_8U);
+    <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"filtroespacial"</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
 
-    cv::imshow("filtroespacial", result);
-
-    key = (char)cv::waitKey(10);
-    if (key == 27) break;  // tecla ESC pressionada!
-    switch (key) {
-      case 'a':
-        absolut = !absolut;
-        break;
-      case 'm':
-        mask = cv::Mat(3, 3, CV_32F, media);
-        printmask(mask);
-        break;
-      case 'g':
-        mask = cv::Mat(3, 3, CV_32F, gauss);
-        printmask(mask);
-        break;
-      case 'h':
-        mask = cv::Mat(3, 3, CV_32F, horizontal);
-        printmask(mask);
-        break;
-      case 'v':
-        mask = cv::Mat(3, 3, CV_32F, vertical);
-        printmask(mask);
-        break;
-      case 'l':
-        mask = cv::Mat(3, 3, CV_32F, laplacian);
-        printmask(mask);
-        break;
-      case 'b':
-        mask = cv::Mat(3, 3, CV_32F, boost);
-        break;
-      default:
-        break;
-    }
-  }
-  return 0;
-}</code></pre>
+    <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">==</span> <span class="mi">27</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>  <span class="c1">// tecla ESC pressionada!</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="sc">'a'</span><span class="p">:</span>
+        <span class="n">absolut</span> <span class="o">=</span> <span class="o">!</span><span class="n">absolut</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="k">case</span> <span class="sc">'m'</span><span class="p">:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">CV_32F</span><span class="p">,</span> <span class="n">media</span><span class="p">);</span>
+        <span class="n">printmask</span><span class="p">(</span><span class="n">mask</span><span class="p">);</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="k">case</span> <span class="sc">'g'</span><span class="p">:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">CV_32F</span><span class="p">,</span> <span class="n">gauss</span><span class="p">);</span>
+        <span class="n">printmask</span><span class="p">(</span><span class="n">mask</span><span class="p">);</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="k">case</span> <span class="sc">'h'</span><span class="p">:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">CV_32F</span><span class="p">,</span> <span class="n">horizontal</span><span class="p">);</span>
+        <span class="n">printmask</span><span class="p">(</span><span class="n">mask</span><span class="p">);</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="k">case</span> <span class="sc">'v'</span><span class="p">:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">CV_32F</span><span class="p">,</span> <span class="n">vertical</span><span class="p">);</span>
+        <span class="n">printmask</span><span class="p">(</span><span class="n">mask</span><span class="p">);</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="k">case</span> <span class="sc">'l'</span><span class="p">:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">CV_32F</span><span class="p">,</span> <span class="n">laplacian</span><span class="p">);</span>
+        <span class="n">printmask</span><span class="p">(</span><span class="n">mask</span><span class="p">);</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="k">case</span> <span class="sc">'b'</span><span class="p">:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">CV_32F</span><span class="p">,</span> <span class="n">boost</span><span class="p">);</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="nl">default:</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/convolucao/convolucao.cpp">convolucao.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/convolucao/camera.hpp">camera.hpp</a>, usado para seleção de câmeras, o arquivo <a href="exemplos/convolucao/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="convolucao.html#convolucao-cmake">Listagem 37</a>) e execute a seqüência de comandos mostrada na <a href="convolucao.html#ex-compilacao-convolucao">Listagem 38</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/convolucao/convolucao.cpp">convolucao.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/convolucao/camera.hpp">camera.hpp</a>, usado para seleção de câmeras, o arquivo <a href="exemplos/convolucao/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="convolucao.html#convolucao-cmake">Listagem 37, &#8220;CMakeLists.txt&#8221;</a>) e execute a seqüência de comandos mostrada na <a href="convolucao.html#ex-compilacao-convolucao">Listagem 38, &#8220;Compilação e execução do programa convolucao&#8221;</a>.</p>
 </div>
 <div id="convolucao-cmake" class="listingblock">
 <div class="title">Listagem 37. CMakeLists.txt</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">cmake_minimum_required(VERSION 3.0.0)
-project(convolucao VERSION 0.1.0 LANGUAGES C CXX)
+<pre class="rouge highlight"><code data-lang="cmake"><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.0.0<span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span>convolucao VERSION 0.1.0 LANGUAGES C CXX<span class="p">)</span>
 
-find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
+<span class="nb">find_package</span><span class="p">(</span>OpenCV REQUIRED<span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">OpenCV_INCLUDE_DIRS</span><span class="si">}</span><span class="p">)</span>
 
-add_executable(convolucao convolucao.cpp)
-target_link_libraries(convolucao ${OpenCV_LIBS})</code></pre>
+<span class="nb">add_executable</span><span class="p">(</span>convolucao convolucao.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>convolucao <span class="si">${</span><span class="nv">OpenCV_LIBS</span><span class="si">}</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div id="ex-compilacao-convolucao" class="listingblock">
 <div class="title">Listagem 38. Compilação e execução do programa convolucao</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ mkdir build
-$ cd build
-$ cmake ..
-$ make
-$ ./convolucao</code></pre>
+<pre class="rouge highlight"><code data-lang="shell"><span class="nv">$ </span><span class="nb">mkdir </span>build
+<span class="nv">$ </span><span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make
+<span class="nv">$ </span>./convolucao</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -712,29 +829,29 @@ filtro inicial escolhido no exemplo é o da média.</p>
 <h3 id="_descrição_do_programa_convolucao_cpp">12.1. Descrição do programa <code>convolucao.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">  float media[] = {0.1111,0.1111,0.1111,
-                   0.1111,0.1111,0.1111,
-                   0.1111,0.1111,0.1111};
-  float gauss[] = {0.0625,0.125,0.0625,
-                   0.125,0.25,0.125,
-                   0.0625,0.125,0.0625};
-  float horizontal[]={-1,0,1,
-                      -2,0,2,
-                      -1,0,1};
-  float vertical[]={-1,-2,-1,
-                    0,0,0,
-                    1,2,1};
-  float laplacian[]={0,-1,0,
-                     -1,4,-1,
-                     0,-1,0};
-  float boost[]={0,-1,0,
-                 -1,5.2,-1,
-                 0,-1,0};</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp">  <span class="kt">float</span> <span class="n">media</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.1111</span><span class="p">,</span><span class="mf">0.1111</span><span class="p">,</span><span class="mf">0.1111</span><span class="p">,</span>
+                   <span class="mf">0.1111</span><span class="p">,</span><span class="mf">0.1111</span><span class="p">,</span><span class="mf">0.1111</span><span class="p">,</span>
+                   <span class="mf">0.1111</span><span class="p">,</span><span class="mf">0.1111</span><span class="p">,</span><span class="mf">0.1111</span><span class="p">};</span>
+  <span class="kt">float</span> <span class="n">gauss</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.0625</span><span class="p">,</span><span class="mf">0.125</span><span class="p">,</span><span class="mf">0.0625</span><span class="p">,</span>
+                   <span class="mf">0.125</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.125</span><span class="p">,</span>
+                   <span class="mf">0.0625</span><span class="p">,</span><span class="mf">0.125</span><span class="p">,</span><span class="mf">0.0625</span><span class="p">};</span>
+  <span class="kt">float</span> <span class="n">horizontal</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span>
+                      <span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span>
+                      <span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span>
+  <span class="kt">float</span> <span class="n">vertical</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                    <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>
+                    <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span>
+  <span class="kt">float</span> <span class="n">laplacian</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>
+                     <span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                     <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+  <span class="kt">float</span> <span class="n">boost</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mf">5.2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Os filtros usados no exemplo (determinados pelas matrizes de máscara)
-são de tamanho \$3 \times 3\$ pixels. Cinco tipos de filtros são
+são de tamanho \(3 \times 3\) pixels. Cinco tipos de filtros são
 testados: média, gaussiano, detector de bordas horizontais, detector de
 bordas verticais e laplaciano. Os coeficientes de cada filtro são
 armazenados em arrays unidimensionais que serão repassados ao
@@ -742,17 +859,17 @@ construtor da matriz do filtro.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">mask = cv::Mat(3, 3, CV_32F, media);</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">mask</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">CV_32F</span><span class="p">,</span> <span class="n">media</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Esse trecho de código mostra o procedimento padrão para construção da matriz que será usada como máscara de filtragem. A variável <code>mask</code> recebe uma matriz de tamanho \$3 \times 3\$ em ponto flutuante (<code>CV_32F</code>) com valores iniciais iguais ao do array <code>media</code> que é repassado. Repare que o tipo da matriz precisa ser estabelecido em ponto flutuante, posto que as operações de cálculo contarão com a presença de números fracionários.</p>
+<p>Esse trecho de código mostra o procedimento padrão para construção da matriz que será usada como máscara de filtragem. A variável <code>mask</code> recebe uma matriz de tamanho \(3 \times 3\) em ponto flutuante (<code>CV_32F</code>) com valores iniciais iguais ao do array <code>media</code> que é repassado. Repare que o tipo da matriz precisa ser estabelecido em ponto flutuante, posto que as operações de cálculo contarão com a presença de números fracionários.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">cap &gt;&gt; frame;
-cv::cvtColor(frame, framegray, cv::COLOR_BGR2GRAY);
-cv::flip(framegray, framegray, 1);</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cap</span> <span class="o">&gt;&gt;</span> <span class="n">frame</span><span class="p">;</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">framegray</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">COLOR_BGR2GRAY</span><span class="p">);</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">flip</span><span class="p">(</span><span class="n">framegray</span><span class="p">,</span> <span class="n">framegray</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -764,8 +881,8 @@ interação com o programa exemplo semelhante à de um espelho.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">framegray.convertTo(frame32f, CV_32F);
-filter2D(frame32f, frameFiltered, frame32f.depth(), mask, cv::Point(1,1), cv::BORDER_REPLICATE);</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">framegray</span><span class="p">.</span><span class="n">convertTo</span><span class="p">(</span><span class="n">frame32f</span><span class="p">,</span> <span class="n">CV_32F</span><span class="p">);</span>
+<span class="n">filter2D</span><span class="p">(</span><span class="n">frame32f</span><span class="p">,</span> <span class="n">frameFiltered</span><span class="p">,</span> <span class="n">frame32f</span><span class="p">.</span><span class="n">depth</span><span class="p">(),</span> <span class="n">mask</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">cv</span><span class="o">::</span><span class="n">BORDER_REPLICATE</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -778,10 +895,10 @@ o processo de filtragem.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">if(absolut){
-  frameFiltered=cv::abs(frameFiltered);
-}
-frameFiltered.convertTo(result, CV_8U);</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">if</span><span class="p">(</span><span class="n">absolut</span><span class="p">){</span>
+  <span class="n">frameFiltered</span><span class="o">=</span><span class="n">cv</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">frameFiltered</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">frameFiltered</span><span class="p">.</span><span class="n">convertTo</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">CV_8U</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -812,13 +929,6 @@ capturadas. Compare o resultado desse filtro com a simples aplicação do filtro
 <p>↑ : <a href="espacial.html">Processamento de Imagens no Domínio Espacial</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="tiltshift.html">Filtragem no domínio espacial II</a> →</p>
 </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
-<script>
-if (!hljs.initHighlighting.called) {
-  hljs.initHighlighting.called = true
-  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
-}
-</script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",

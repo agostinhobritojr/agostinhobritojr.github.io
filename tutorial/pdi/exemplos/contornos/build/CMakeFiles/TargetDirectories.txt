@@ -1,0 +1,3 @@
+/home/ambj/Dropbox/dca0445/pdi/exemplos/contornos/build/CMakeFiles/contornos.dir
+/home/ambj/Dropbox/dca0445/pdi/exemplos/contornos/build/CMakeFiles/edit_cache.dir
+/home/ambj/Dropbox/dca0445/pdi/exemplos/contornos/build/CMakeFiles/rebuild_cache.dir

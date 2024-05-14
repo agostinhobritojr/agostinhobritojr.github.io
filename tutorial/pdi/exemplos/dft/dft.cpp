@@ -81,7 +81,7 @@ int main(int argc, char** argv) {
 
   // calcula o logaritmo da magnitude para exibir
   // com compressao de faixa dinamica
-  log(magn, magn);
+  cv::log(magn, magn);
   cv::normalize(magn, magn, 0, 1, cv::NORM_MINMAX);
 
   // exibe as imagens processadas

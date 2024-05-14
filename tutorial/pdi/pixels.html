@@ -434,7 +434,120 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
 <style type="text/css">
   .imageblock>.title {
     text-align: inherit;
@@ -493,7 +606,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="segmentacao.html">Parte VI: Segmentação de imagens</a>
 </li>
-<li><a href="outras.html">Parte VII: Outras Ferramentas</a>
+<li><a href="caracteristicas.html">Parte VII: Extração de Características</a>
+</li>
+<li><a href="outras.html">Parte VIII: Outras Ferramentas</a>
+</li>
+<li><a href="atividades.html">Parte IX: Tarefas de Processamento de Imagens</a>
 </li>
 </ul>
 </div>
@@ -525,7 +642,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 <div class="paragraph">
-<p>Para experimentar a manipulação dos pixels em uma imagem, realize a compilação do programa-exemplo <a href="exemplos/pixels/pixels.cpp">pixels.cpp</a>, mostrado na <a href="pixels.html#ex-pixels">Listagem 4</a>, e teste-o com a imagem <a href="figs/bolhas.png">bolhas.png</a>. Reproduza o esquema de preparação do arquivo executável com <em>CMake</em>, compile o programa-exemplo e execute-o. Ele deverá abrir a imagem <code>bolhas.png</code> (interpretando-a em escala de cinza) e exibi-la em uma janela, desenhando um quadrado preto em uma região pré-estabelecida.</p>
+<p>Para experimentar a manipulação dos pixels em uma imagem, realize a compilação do programa-exemplo <a href="exemplos/pixels/pixels.cpp">pixels.cpp</a>, mostrado na <a href="pixels.html#ex-pixels">Listagem 4, &#8220;pixels.cpp&#8221;</a>, e teste-o com a imagem <a href="figs/bolhas.png">bolhas.png</a>. Reproduza o esquema de preparação do arquivo executável com <em>CMake</em>, compile o programa-exemplo e execute-o. Ele deverá abrir a imagem <code>bolhas.png</code> (interpretando-a em escala de cinza) e exibi-la em uma janela, desenhando um quadrado preto em uma região pré-estabelecida.</p>
 </div>
 <div class="paragraph">
 <p>Após isso, ele irá aguardar que o usuário pressione alguma tecla. Uma vez pressionada a tecla, o programa reabrirá o arquivo da imagem interpretando-a agora em formato com cores e passará a desenhar um quadrado vermelho na mesma região que foi pré-estabelecida.</p>
@@ -533,74 +650,74 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="ex-pixels" class="listingblock">
 <div class="title">Listagem 4. pixels.cpp</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;iostream&gt;
-#include &lt;opencv2/opencv.hpp&gt;
+<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">image</span><span class="p">;</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Vec3b</span> <span class="n">val</span><span class="p">;</span>
 
-int main(int, char**) {
-  cv::Mat image;
-  cv::Vec3b val;
+  <span class="n">image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="s">"bolhas.png"</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">image</span><span class="p">.</span><span class="n">data</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"nao abriu bolhas.png"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-  image = cv::imread("bolhas.png", cv::IMREAD_GRAYSCALE);
-  if (!image.data) std::cout &lt;&lt; "nao abriu bolhas.png" &lt;&lt; std::endl;
+  <span class="n">cv</span><span class="o">::</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">"janela"</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">WINDOW_AUTOSIZE</span><span class="p">);</span>
 
-  cv::namedWindow("janela", cv::WINDOW_AUTOSIZE);
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">210</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">200</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">image</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 
-  for (int i = 200; i &lt; 210; i++) {
-    for (int j = 10; j &lt; 200; j++) {
-      image.at&lt;uchar&gt;(i, j) = 0;
-    }
-  }
+  <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"janela"</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">();</span>
 
-  cv::imshow("janela", image);
-  cv::waitKey();
+  <span class="n">image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="s">"bolhas.png"</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_COLOR</span><span class="p">);</span>
 
-  image = cv::imread("bolhas.png", cv::IMREAD_COLOR);
+  <span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    <span class="c1">// B</span>
+  <span class="n">val</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    <span class="c1">// G</span>
+  <span class="n">val</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span><span class="p">;</span>  <span class="c1">// R</span>
 
-  val[0] = 0;    // B
-  val[1] = 0;    // G
-  val[2] = 255;  // R
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">210</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">200</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">image</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Vec3b</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 
-  for (int i = 200; i &lt; 210; i++) {
-    for (int j = 10; j &lt; 200; j++) {
-      image.at&lt;cv::Vec3b&gt;(i, j) = val;
-    }
-  }
-
-  cv::imshow("janela", image);
-  cv::waitKey();
-  return 0;
-}</code></pre>
+  <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"janela"</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/pixels/pixels.cpp">pixels.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/pixels/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="pixels.html#pixels-cmake">Listagem 5</a>) e execute a seqüência de comandos mostrada na <a href="pixels.html#ex-compilacao-pixels">Listagem 6</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/pixels/pixels.cpp">pixels.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/pixels/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="pixels.html#pixels-cmake">Listagem 5, &#8220;CMakeLists.txt&#8221;</a>) e execute a seqüência de comandos mostrada na <a href="pixels.html#ex-compilacao-pixels">Listagem 6, &#8220;Compilação do programa pixels&#8221;</a>.</p>
 </div>
 <div id="pixels-cmake" class="listingblock">
 <div class="title">Listagem 5. CMakeLists.txt</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">cmake_minimum_required(VERSION 3.0.0)
-project(pixels VERSION 0.1.0 LANGUAGES C CXX)
+<pre class="rouge highlight"><code data-lang="cmake"><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.0.0<span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span>pixels VERSION 0.1.0 LANGUAGES C CXX<span class="p">)</span>
 
-find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
+<span class="nb">find_package</span><span class="p">(</span>OpenCV REQUIRED<span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">OpenCV_INCLUDE_DIRS</span><span class="si">}</span><span class="p">)</span>
 
-add_executable(pixels pixels.cpp)
-target_link_libraries(pixels ${OpenCV_LIBS})</code></pre>
+<span class="nb">add_executable</span><span class="p">(</span>pixels pixels.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>pixels <span class="si">${</span><span class="nv">OpenCV_LIBS</span><span class="si">}</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div id="ex-compilacao-pixels" class="listingblock">
 <div class="title">Listagem 6. Compilação do programa pixels</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ mkdir build
-$ cd build
-$ cmake ..
-$ make
-$ cp ../bolhas.png .
-$ ./pixels</code></pre>
+<pre class="rouge highlight"><code data-lang="shell"><span class="nv">$ </span><span class="nb">mkdir </span>build
+<span class="nv">$ </span><span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make
+<span class="nv">$ </span><span class="nb">cp</span> ../bolhas.png <span class="nb">.</span>
+<span class="nv">$ </span>./pixels</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A saída do programa <em>pixels</em> é mostrado na <a href="pixels.html#fig_pixels">Figura 2</a></p>
+<p>A saída do programa <em>pixels</em> é mostrado na <a href="pixels.html#fig_pixels">Figura 2, &#8220;Saída do programa pixels&#8221;</a></p>
 </div>
 <div id="fig_pixels" class="imageblock text-center">
 <div class="content">
@@ -612,7 +729,7 @@ $ ./pixels</code></pre>
 <h3 id="_descrição_do_programa_pixels_cpp">2.1. Descrição do programa <code>pixels.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;opencv2/opencv.hpp&gt;</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -623,7 +740,7 @@ $ ./pixels</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">cv::Mat image;</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">image</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -640,27 +757,27 @@ $ ./pixels</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">typedef Vec&lt;uchar, 2&gt; Vec2b;
-typedef Vec&lt;uchar, 3&gt; Vec3b;
-typedef Vec&lt;uchar, 4&gt; Vec4b;
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="n">uchar</span><span class="p">,</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">Vec2b</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="n">uchar</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">Vec3b</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="n">uchar</span><span class="p">,</span> <span class="mi">4</span><span class="o">&gt;</span> <span class="n">Vec4b</span><span class="p">;</span>
 
-typedef Vec&lt;short, 2&gt; Vec2s;
-typedef Vec&lt;short, 3&gt; Vec3s;
-typedef Vec&lt;short, 4&gt; Vec4s;
+<span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="kt">short</span><span class="p">,</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">Vec2s</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="kt">short</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">Vec3s</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="kt">short</span><span class="p">,</span> <span class="mi">4</span><span class="o">&gt;</span> <span class="n">Vec4s</span><span class="p">;</span>
 
-typedef Vec&lt;int, 2&gt; Vec2i;
-typedef Vec&lt;int, 3&gt; Vec3i;
-typedef Vec&lt;int, 4&gt; Vec4i;
+<span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">Vec2i</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">Vec3i</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">4</span><span class="o">&gt;</span> <span class="n">Vec4i</span><span class="p">;</span>
 
-typedef Vec&lt;float, 2&gt; Vec2f;
-typedef Vec&lt;float, 3&gt; Vec3f;
-typedef Vec&lt;float, 4&gt; Vec4f;
-typedef Vec&lt;float, 6&gt; Vec6f;
+<span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">Vec2f</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">Vec3f</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span> <span class="mi">4</span><span class="o">&gt;</span> <span class="n">Vec4f</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span> <span class="mi">6</span><span class="o">&gt;</span> <span class="n">Vec6f</span><span class="p">;</span>
 
-typedef Vec&lt;double, 2&gt; Vec2d;
-typedef Vec&lt;double, 3&gt; Vec3d;
-typedef Vec&lt;double, 4&gt; Vec4d;
-typedef Vec&lt;double, 6&gt; Vec6d;</code></pre>
+<span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="n">Vec2d</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">Vec3d</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">4</span><span class="o">&gt;</span> <span class="n">Vec4d</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">Vec</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">6</span><span class="o">&gt;</span> <span class="n">Vec6d</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -668,9 +785,9 @@ typedef Vec&lt;double, 6&gt; Vec6d;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">image= cv::imread("bolhas.png",cv::IMREAD_GRAYSCALE);
-if(!image.data)
-  std::cout &lt;&lt; "nao abriu bolhas.png" &lt;&lt; std::endl;</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">image</span><span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="s">"bolhas.png"</span><span class="p">,</span><span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">image</span><span class="p">.</span><span class="n">data</span><span class="p">)</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"nao abriu bolhas.png"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -684,7 +801,7 @@ if(!image.data)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">std::namedWindow("janela", cv::WINDOW_AUTOSIZE);</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">"janela"</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">WINDOW_AUTOSIZE</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -692,22 +809,22 @@ if(!image.data)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">for(int i=200;i&lt;210;i++){
-  for(int j=10;j&lt;200;j++){
-    image.at&lt;uchar&gt;(i,j)=0;
-  }
-}</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">200</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">210</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">200</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+    <span class="n">image</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Este trecho de código desenha um retângulo preto na imagem. Neste caso, assumindo que a primeira dimensão representa a coordenada <em>x</em> e a segunda dimensão da matriz representa a coordenada <em>y</em>, será desenhado um retângulo do ponto \$(200,10)\$ até o ponto \$(210,200)\$.</p>
+<p>Este trecho de código desenha um retângulo preto na imagem. Neste caso, assumindo que a primeira dimensão representa a coordenada <em>x</em> e a segunda dimensão da matriz representa a coordenada <em>y</em>, será desenhado um retângulo do ponto \((200,10)\) até o ponto \((210,200)\).</p>
 </div>
 <div class="paragraph">
 <p>Os pixels da região são acessados ou modificados com o método <code>at</code>. Observe que este método sofre o efeito de um gabarito, que deve receber um tipo correspondente o tipo de dado que está armazenado no
 objeto <code>image</code>. Como a leitura nesta parte do código foi feita assumindo uma imagem em tons de cinza, o tipo de dado presente na memória será neste caso <code>unsigned char</code>. Tipos diferentes poderão gerar resultados incorretos, posto que a função <code>at()</code> interpretará a sequência de bytes da matriz <code>image</code> de forma inapropriada.</p>
 </div>
 <div class="paragraph">
-<p>Para manter os sistema referencial do tipo destrógiro, assume-se que os eixos <em>x</em> e <em>y</em> ficarão organizados conforme apresenta a <a href="pixels.html#fig_eixos">Figura 3</a>, com a origem no canto superior esquerdo da imagem.</p>
+<p>Para manter os sistema referencial do tipo destrógiro, assume-se que os eixos <em>x</em> e <em>y</em> ficarão organizados conforme apresenta a <a href="pixels.html#fig_eixos">Figura 3, &#8220;Sistema referencial adotado no OpenCV.&#8221;</a>, com a origem no canto superior esquerdo da imagem.</p>
 </div>
 <div id="fig_eixos" class="imageblock text-center">
 <div class="content">
@@ -717,8 +834,8 @@ objeto <code>image</code>. Como a leitura nesta parte do código foi feita assum
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">cv::imshow("janela", image);
-cv::waitKey();</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"janela"</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">();</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -726,7 +843,7 @@ cv::waitKey();</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">image= cv::imread("bolhas.png", cv::IMREAD_COLOR);</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">image</span><span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="s">"bolhas.png"</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_COLOR</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -734,9 +851,9 @@ cv::waitKey();</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">val[0] = 0;   //B
-val[1] = 0;   //G
-val[2] = 255; //R</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>   <span class="c1">//B</span>
+<span class="n">val</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>   <span class="c1">//G</span>
+<span class="n">val</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span><span class="p">;</span> <span class="c1">//R</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -744,11 +861,11 @@ val[2] = 255; //R</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">for(int i=200;i&lt;210;i++){
-  for(int j=10;j&lt;200;j++){
-    image.at&lt;Vec3b&gt;(i,j)=val;
-  }
-}</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">200</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">210</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">200</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
+    <span class="n">image</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">Vec3b</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="o">=</span><span class="n">val</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -760,7 +877,7 @@ val[2] = 255; //R</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Utilizando o programa da <a href="pixels.html#ex-pixels">Listagem 4</a> como referência, implemente um programa <code>regions.cpp</code>. Esse programa deverá solicitar ao usuário as coordenadas de dois pontos \$P_1\$ e \$P_2\$ localizados dentro dos limites do tamanho da imagem e exibir que lhe for fornecida. Entretanto, a região definida pelo retângulo de vértices opostos definidos pelos pontos \$P_1\$ e \$P_2\$ será exibida com o negativo da imagem na região correspondente. O efeito é ilustrado na <a href="pixels.html#fig_regions">Figura 4</a>.</p>
+<p>Utilizando o programa da <a href="pixels.html#ex-pixels">Listagem 4, &#8220;pixels.cpp&#8221;</a> como referência, implemente um programa <code>regions.cpp</code>. Esse programa deverá solicitar ao usuário as coordenadas de dois pontos \(P_1\) e \(P_2\) localizados dentro dos limites do tamanho da imagem e exibir que lhe for fornecida. Entretanto, a região definida pelo retângulo de vértices opostos definidos pelos pontos \(P_1\) e \(P_2\) será exibida com o negativo da imagem na região correspondente. O efeito é ilustrado na <a href="pixels.html#fig_regions">Figura 4, &#8220;Exemplo de saída do programa regions.cpp&#8221;</a>.</p>
 </li>
 </ul>
 </div>
@@ -773,8 +890,8 @@ val[2] = 255; //R</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Utilizando o programa da <a href="pixels.html#ex-pixels">Listagem 4</a> como referência, implemente um programa <code>trocaregioes.cpp</code>. Seu programa deverá trocar os quadrantes em diagonal na imagem. Explore o uso da classe
-<code>cv::Mat</code> e seus construtores para criar as regiões que serão trocadas. O efeito é ilustrado na <a href="pixels.html#fig_trocaregioes">Figura 5</a>. Assuma que a imagem de entrada tem dimensões múltiplas de 2 para facilitar a implementação do processo de troca.</p>
+<p>Utilizando o programa da <a href="pixels.html#ex-pixels">Listagem 4, &#8220;pixels.cpp&#8221;</a> como referência, implemente um programa <code>trocaregioes.cpp</code>. Seu programa deverá trocar os quadrantes em diagonal na imagem. Explore o uso da classe
+<code>cv::Mat</code> e seus construtores para criar as regiões que serão trocadas. O efeito é ilustrado na <a href="pixels.html#fig_trocaregioes">Figura 5, &#8220;Exemplo de saída do programa trocaregioes.cpp&#8221;</a>. Assuma que a imagem de entrada tem dimensões múltiplas de 2 para facilitar a implementação do processo de troca.</p>
 </li>
 </ul>
 </div>
@@ -791,13 +908,6 @@ val[2] = 255; //R</code></pre>
 <p>← : <a href="conceitos.html">Conceitos iniciais</a> | ↑ : <a href="representacao.html">Representação de Imagens</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="video.html">Tratando arquivos de vídeo</a> →</p>
 </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
-<script>
-if (!hljs.initHighlighting.called) {
-  hljs.initHighlighting.called = true
-  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
-}
-</script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",

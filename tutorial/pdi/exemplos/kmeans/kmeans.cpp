@@ -22,10 +22,7 @@ int main(int argc, char** argv) {
     }
   }
 
-  cv::kmeans(samples, nClusters, rotulos,
-             cv::TermCriteria(cv::TermCriteria::EPS | cv::TermCriteria::COUNT,
-                              10000, 0.0001),
-             nRodadas, cv::KMEANS_PP_CENTERS, centros);
+  cv::kmeans(samples, nClusters, rotulos, cv::TermCriteria(cv::TermCriteria::EPS | cv::TermCriteria::COUNT, 10000, 0.0001), nRodadas, cv::KMEANS_PP_CENTERS, centros);
 
   cv::Mat rotulada(img.size(), img.type());
   for (int y = 0; y < img.rows; y++) {

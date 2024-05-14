@@ -434,7 +434,120 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
 <style type="text/css">
   .imageblock>.title {
     text-align: inherit;
@@ -493,7 +606,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="segmentacao.html">Parte VI: Segmentação de imagens</a>
 </li>
-<li><a href="outras.html">Parte VII: Outras Ferramentas</a>
+<li><a href="caracteristicas.html">Parte VII: Extração de Características</a>
+</li>
+<li><a href="outras.html">Parte VIII: Outras Ferramentas</a>
+</li>
+<li><a href="atividades.html">Parte IX: Tarefas de Processamento de Imagens</a>
 </li>
 </ul>
 </div>
@@ -562,55 +679,59 @@ padrões.</p>
 <p>Uma vez gerado o arquivo <code>Makefile</code>, o controle é repassado ao utilitário <em>make</em>, que decide automaticamente que partes de um projeto necessitam ser recompiladas. Para isso, invoca os comandos necessários para recompilá-las a partir da leitura das regras definidas no <code>Makefile</code>. Assim, para efetuar a compilação do programa, basta executar o comando <em>make</em>, ao invés invocar repetitivamente chamadas de compilador.</p>
 </div>
 <div class="paragraph">
-<p>Em um projeto típico que utiliza OpenCV, o arquivo <code>CMakelists.txt</code> pode ser escrito conforme mostrado na <a href="conceitos.html#ex-cmake">Listagem 1</a>. No arquivo, podem ser percebidos os comandos para localizar a biblioteca OpenCV e incluir os arquivos de cabeçalho e bibliotecas necessários para a compilação do programa. Ainda, é possível definir variáveis para armazenar o nome do programa a ser compilado e os arquivos fonte que serão utilizados.</p>
+<p>Em um projeto típico que utiliza OpenCV, o arquivo <code>CMakelists.txt</code> pode ser escrito conforme mostrado na <a href="conceitos.html#ex-cmake">Listagem 1, &#8220;CMakeLists.txt&#8221;</a>. No arquivo, podem ser percebidos os comandos para localizar a biblioteca OpenCV e incluir os arquivos de cabeçalho e bibliotecas necessários para a compilação do programa. Ainda, é possível definir variáveis para armazenar o nome do programa a ser compilado e os arquivos fonte que serão utilizados.</p>
 </div>
 <div id="ex-cmake" class="listingblock">
 <div class="title">Listagem 1. CMakeLists.txt</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">cmake_minimum_required(VERSION 3.0.0)
-project(hello VERSION 0.1.0 LANGUAGES C CXX)
+<pre class="rouge highlight"><code data-lang="cmake"><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.0.0<span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span>hello VERSION 0.1.0 LANGUAGES C CXX<span class="p">)</span>
 
-find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
+<span class="nb">find_package</span><span class="p">(</span>OpenCV REQUIRED<span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">OpenCV_INCLUDE_DIRS</span><span class="si">}</span><span class="p">)</span>
 
-add_executable(hello hello.cpp)
-target_link_libraries(hello ${OpenCV_LIBS})</code></pre>
+<span class="nb">add_executable</span><span class="p">(</span>hello hello.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>hello <span class="si">${</span><span class="nv">OpenCV_LIBS</span><span class="si">}</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>O seu ambiente de desenvolvimento poderá ser testado com programa-exemplo <a href="exemplos/hello.cpp">hello.cpp</a> , mostrada na <a href="conceitos.html#ex-hello">Listagem 2</a>, cuja única funcionalidade apresentar na tela uma imagem fornecida via linha
+<p>O seu ambiente de desenvolvimento poderá ser testado com programa-exemplo <a href="exemplos/hello.cpp">hello.cpp</a> , mostrada na <a href="conceitos.html#ex-hello">Listagem 2, &#8220;hello.cpp&#8221;</a>, cuja única funcionalidade apresentar na tela uma imagem fornecida via linha
 de comando.</p>
 </div>
 <div id="ex-hello" class="listingblock">
 <div class="title">Listagem 2. hello.cpp</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;iostream&gt;
-#include &lt;opencv2/opencv.hpp&gt;
-
-int main(int argc, char** argv){
-  cv::Mat image;
-  image = cv::imread(argv[1],cv::IMREAD_GRAYSCALE);
-  cv::imshow("image", image);
-  cv::waitKey();
-  return 0;
-}</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">image</span><span class="p">;</span>
+  <span class="n">image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">image</span><span class="p">.</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"nao abriu"</span> <span class="o">&lt;&lt;</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"tamanho: "</span> <span class="o">&lt;&lt;</span> <span class="n">image</span><span class="p">.</span><span class="n">rows</span> <span class="o">&lt;&lt;</span> <span class="s">"x"</span> <span class="o">&lt;&lt;</span> <span class="n">image</span><span class="p">.</span><span class="n">cols</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"image"</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/hello/hello.cpp">hello.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/hello/CMakeLists.txt">CMakeLists.txt</a> e execute a sequência de comandos mostrados na <a href="conceitos.html#ex-compilacao-hello">Listagem 3</a>. O primeiro comando cria um diretório denominado <em>build</em> e o segundo comando entra no diretório criado. O terceiro comando invoca o utilitário <em>cmake</em> para gerar o arquivo <code>Makefile</code> e o quarto comando invoca o utilitário <em>make</em> para compilar o programa. O último comando executa o programa, passando como parâmetro o nome de uma imagem que será exibida na tela.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/hello/hello.cpp">hello.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/hello/CMakeLists.txt">CMakeLists.txt</a> e execute a sequência de comandos mostrados na <a href="conceitos.html#ex-compilacao-hello">Listagem 3, &#8220;Compilação e execução do programa hello&#8221;</a>. O primeiro comando cria um diretório denominado <em>build</em> e o segundo comando entra no diretório criado. O terceiro comando invoca o utilitário <em>cmake</em> para gerar o arquivo <code>Makefile</code> e o quarto comando invoca o utilitário <em>make</em> para compilar o programa. O último comando executa o programa, passando como parâmetro o nome de uma imagem que será exibida na tela.</p>
 </div>
 <div id="ex-compilacao-hello" class="listingblock">
 <div class="title">Listagem 3. Compilação e execução do programa hello</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ mkdir build
-$ cd build
-$ cmake ..
-$ make
-$ ./hello ../biel.png</code></pre>
+<pre class="rouge highlight"><code data-lang="shell"><span class="nv">$ </span><span class="nb">mkdir </span>build
+<span class="nv">$ </span><span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make
+<span class="nv">$ </span>./hello ../biel.png</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>A saída do programa <em>hello</em> é mostrado na <a href="conceitos.html#fig_hello">Figura 1</a></p>
+<p>A saída do programa <em>hello</em> é mostrado na <a href="conceitos.html#fig_hello">Figura 1, &#8220;Saída do programa hello&#8221;</a></p>
 </div>
 <div id="fig_hello" class="imageblock text-center">
 <div class="content">
@@ -631,13 +752,6 @@ $ ./hello ../biel.png</code></pre>
 <p>↑ : <a href="representacao.html">Representação de Imagens</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="pixels.html">Manipulando pixels em uma imagem</a> →</p>
 </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
-<script>
-if (!hljs.initHighlighting.called) {
-  hljs.initHighlighting.called = true
-  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
-}
-</script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",

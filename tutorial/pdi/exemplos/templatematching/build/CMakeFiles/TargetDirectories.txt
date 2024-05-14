@@ -1,0 +1,3 @@
+/home/ambj/Dropbox/dca0445/pdi/exemplos/templatematching/build/CMakeFiles/template.dir
+/home/ambj/Dropbox/dca0445/pdi/exemplos/templatematching/build/CMakeFiles/edit_cache.dir
+/home/ambj/Dropbox/dca0445/pdi/exemplos/templatematching/build/CMakeFiles/rebuild_cache.dir

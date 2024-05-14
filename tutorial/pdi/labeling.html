@@ -434,7 +434,120 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
 <style type="text/css">
   .imageblock>.title {
     text-align: inherit;
@@ -491,7 +604,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="segmentacao.html">Parte VI: Segmentação de imagens</a>
 </li>
-<li><a href="outras.html">Parte VII: Outras Ferramentas</a>
+<li><a href="caracteristicas.html">Parte VII: Extração de Características</a>
+</li>
+<li><a href="outras.html">Parte VIII: Outras Ferramentas</a>
+</li>
+<li><a href="atividades.html">Parte IX: Tarefas de Processamento de Imagens</a>
 </li>
 </ul>
 </div>
@@ -544,79 +661,79 @@ aglomerados de pixels. A imagem usada para teste será a presente no arquivo
 <div id="exa_labeling" class="listingblock">
 <div class="title">Listagem 30. labeling.cpp</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">#include &lt;iostream&gt;
-#include &lt;opencv2/opencv.hpp&gt;
+<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp">
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">cv</span><span class="p">;</span>
 
-using namespace cv;
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">image</span><span class="p">,</span> <span class="n">realce</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">nobjects</span><span class="p">;</span>
 
-int main(int argc, char** argv) {
-  cv::Mat image, realce;
-  int width, height;
-  int nobjects;
+  <span class="n">cv</span><span class="o">::</span><span class="n">Point</span> <span class="n">p</span><span class="p">;</span>
+  <span class="n">image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">);</span>
 
-  cv::Point p;
-  image = cv::imread(argv[1], cv::IMREAD_GRAYSCALE);
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">image</span><span class="p">.</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"imagem nao carregou corretamente</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
 
-  if (!image.data) {
-    std::cout &lt;&lt; "imagem nao carregou corretamente\n";
-    return (-1);
-  }
+  <span class="n">width</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">cols</span><span class="p">;</span>
+  <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">rows</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">width</span> <span class="o">&lt;&lt;</span> <span class="s">"x"</span> <span class="o">&lt;&lt;</span> <span class="n">height</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-  width = image.cols;
-  height = image.rows;
-  std::cout &lt;&lt; width &lt;&lt; "x" &lt;&lt; height &lt;&lt; std::endl;
+  <span class="n">p</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">p</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-  p.x = 0;
-  p.y = 0;
-
-  // busca objetos presentes
-  nobjects = 0;
-  for (int i = 0; i &lt; height; i++) {
-    for (int j = 0; j &lt; width; j++) {
-      if (image.at&lt;uchar&gt;(i, j) == 255) {
-        // achou um objeto
-        nobjects++;
-        // para o floodfill as coordenadas
-        // x e y são trocadas.
-        p.x = j;
-        p.y = i;
-        // preenche o objeto com o contador
-        cv::floodFill(image, p, nobjects);
-      }
-    }
-  }
-  std::cout &lt;&lt; "a figura tem " &lt;&lt; nobjects &lt;&lt; " bolhas\n";
-  cv::imshow("image", image);
-  cv::imwrite("labeling.png", image);
-  cv::waitKey();
-  return 0;
-}</code></pre>
+  <span class="c1">// busca objetos presentes</span>
+  <span class="n">nobjects</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">width</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">==</span> <span class="mi">255</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// achou um objeto</span>
+        <span class="n">nobjects</span><span class="o">++</span><span class="p">;</span>
+        <span class="c1">// para o floodfill as coordenadas</span>
+        <span class="c1">// x e y são trocadas.</span>
+        <span class="n">p</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+        <span class="n">p</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="c1">// preenche o objeto com o contador</span>
+        <span class="n">cv</span><span class="o">::</span><span class="n">floodFill</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">nobjects</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"a figura tem "</span> <span class="o">&lt;&lt;</span> <span class="n">nobjects</span> <span class="o">&lt;&lt;</span> <span class="s">" bolhas</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"image"</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">imwrite</span><span class="p">(</span><span class="s">"labeling.png"</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/labeling/labeling.cpp">labeling.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/labeling/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="labeling.html#labeling-cmake">Listagem 31</a>) e execute a seqüência de comandos mostrada na <a href="labeling.html#ex-compilacao-labeling">Listagem 32</a>. O último comando executa o programa, passando como parâmetros o nome da imagem a ser processada Para este exemplo, foi usada a imagem <a href="figs/bolhas.png">bolhas.png</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/labeling/labeling.cpp">labeling.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/labeling/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="labeling.html#labeling-cmake">Listagem 31, &#8220;CMakeLists.txt&#8221;</a>) e execute a seqüência de comandos mostrada na <a href="labeling.html#ex-compilacao-labeling">Listagem 32, &#8220;Compilação e execução do programa labeling&#8221;</a>. O último comando executa o programa, passando como parâmetros o nome da imagem a ser processada Para este exemplo, foi usada a imagem <a href="figs/bolhas.png">bolhas.png</a>.</p>
 </div>
 <div id="labeling-cmake" class="listingblock">
 <div class="title">Listagem 31. CMakeLists.txt</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmake hljs" data-lang="cmake">cmake_minimum_required(VERSION 3.0.0)
-project(labeling VERSION 0.1.0 LANGUAGES C CXX)
+<pre class="rouge highlight"><code data-lang="cmake"><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.0.0<span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span>labeling VERSION 0.1.0 LANGUAGES C CXX<span class="p">)</span>
 
-find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
+<span class="nb">find_package</span><span class="p">(</span>OpenCV REQUIRED<span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="si">${</span><span class="nv">OpenCV_INCLUDE_DIRS</span><span class="si">}</span><span class="p">)</span>
 
-add_executable(labeling labeling.cpp)
-target_link_libraries(labeling ${OpenCV_LIBS})</code></pre>
+<span class="nb">add_executable</span><span class="p">(</span>labeling labeling.cpp<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>labeling <span class="si">${</span><span class="nv">OpenCV_LIBS</span><span class="si">}</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div id="ex-compilacao-labeling" class="listingblock">
 <div class="title">Listagem 32. Compilação e execução do programa labeling</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ mkdir build
-$ cd build
-$ cmake ..
-$ make
-$ ./labeling ../bolhas.png</code></pre>
+<pre class="rouge highlight"><code data-lang="shell"><span class="nv">$ </span><span class="nb">mkdir </span>build
+<span class="nv">$ </span><span class="nb">cd </span>build
+<span class="nv">$ </span>cmake ..
+<span class="nv">$ </span>make
+<span class="nv">$ </span>./labeling ../bolhas.png</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -632,7 +749,7 @@ $ ./labeling ../bolhas.png</code></pre>
 <h3 id="_descrição_do_programa_labeling_cpp">10.1. Descrição do programa <code>labeling.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">cv::Point p;</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cv</span><span class="o">::</span><span class="n">Point</span> <span class="n">p</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -640,7 +757,7 @@ $ ./labeling ../bolhas.png</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">image = cv::imread(argv[1],cv::IMREAD_GRAYSCALE);</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -648,8 +765,8 @@ $ ./labeling ../bolhas.png</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">p.x=0;
-p.y=0;</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -663,7 +780,7 @@ p.y=0;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">nobjects=0;</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">nobjects</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -671,16 +788,16 @@ p.y=0;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">for(int i=0; i&lt;height; i++){
-  for(int j=0; j&lt;width; j++){
-    if(image.at&lt;uchar&gt;(i,j) == 255){
-      nobjects++;
-      p.x=j;
-      p.y=i;
-      cv::floodFill(image,p,nobjects);
-    }
-  }
-}</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">height</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">width</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">at</span><span class="o">&lt;</span><span class="n">uchar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span> <span class="o">==</span> <span class="mi">255</span><span class="p">){</span>
+      <span class="n">nobjects</span><span class="o">++</span><span class="p">;</span>
+      <span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="o">=</span><span class="n">j</span><span class="p">;</span>
+      <span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+      <span class="n">cv</span><span class="o">::</span><span class="n">floodFill</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">nobjects</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -694,9 +811,9 @@ atual.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">cv::imshow("image", image);
-cv::imwrite("labeling.png", image);
-cv::waitKey();</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"image"</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">imwrite</span><span class="p">(</span><span class="s">"labeling.png"</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
+<span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">();</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -722,13 +839,6 @@ cv::waitKey();</code></pre>
 <p>← : <a href="bitplanes.html">Decomposição de imagens em planos de bits</a> | ↑ : <a href="manipulacao.html">Manipulação de imagens</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="histograma.html">Manipulação de histogramas</a> →</p>
 </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
-<script>
-if (!hljs.initHighlighting.called) {
-  hljs.initHighlighting.called = true
-  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
-}
-</script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",
