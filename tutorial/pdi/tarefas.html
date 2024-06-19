@@ -434,6 +434,120 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
 <style type="text/css">
   .imageblock>.title {
     text-align: inherit;
@@ -487,6 +601,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="tarefas.html#_segunda_unidade">23.2. Segunda Unidade</a>
 </li>
 <li><a href="tarefas.html#_terceira_unidade">23.3. Terceira Unidade</a>
+</li>
+<li><a href="tarefas.html#_modelo_de_entrega">23.4. Modelo de entrega</a>
 </li>
 </ul>
 </li>
@@ -563,6 +679,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><a href="morfologia.html">Capítulo 22, <em>Filtragem de forma com morfologia matemática</em></a></p>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modelo_de_entrega">23.4. Modelo de entrega</h3>
+<div class="paragraph">
+<p>O modelo de entrega do relatório pode ser encontrado em <a href="modelo-report.asc">modelo-report.asc</a>.</p>
+</div>
+<div class="paragraph">
+<p>Sugere-se que os pacotes <a href="https://github.com/asciidoctor/asciidoctor-mathematical">asciidoctor-mathematical</a> e <a href="https://rubygems.org/gems/rouge">rouge</a> sejam instalados para melhorar o processamento e visualização do relatório.</p>
+</div>
+<div class="paragraph">
+<p>Para instalar o asciidoctor em sua máquina vá até o <a href="https://asciidoctor.org/">site oficial do asciidoctor</a> e siga as instruções de instalação. Para compilá-lo, basta executar o comando abaixo:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell"><span class="nv">$ </span>asciidoctor <span class="nt">-r</span> asciidoctor-mathematical modelo-report.asc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Para visualizar o relatório, basta abrir o arquivo <code>modelo-report.html</code> em um navegador.</p>
 </div>
 </div>
 </div>
