@@ -568,8 +568,6 @@ pre.rouge .gs {
 <h1>Introdução ao processamento digital de imagens com OpenCV</h1>
 <div class="details">
 <span id="author" class="author">Agostinho Brito</span><br>
-<span id="email" class="email"><a href="mailto:ambj@dca.ufrn.br">ambj@dca.ufrn.br</a></span><br>
-<span id="revdate">(C) 2015-2024 Agostinho Brito.</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
@@ -614,19 +612,14 @@ pre.rouge .gs {
 <h2 id="tiltshift">Capítulo 13. Filtragem no domínio espacial II</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Este capítulo visa explorar um pouco mais do uso de filtragem espacial
-aplicando seus princípios para simular uma técnica de fotografia denominada
+<p>Este capítulo visa explorar um pouco mais do uso de filtragem espacial aplicando seus princípios para simular uma técnica de fotografia denominada
 <em>tilt-shift</em>.</p>
 </div>
 <div class="paragraph">
-<p>A técnica fotográfica de <em>tilt-shift</em> envolve o uso de deslocamentos e
-rotações entre a lente e o plano de projeção (onde fica filme
-fotográfico ou o sensor da câmera) de modo a desfocar seletivamente
-regiões do assunto.</p>
+<p>A técnica fotográfica de <em>tilt-shift</em> envolve o uso de deslocamentos e rotações entre a lente e o plano de projeção (onde fica filme fotográfico ou o sensor da câmera) de modo a desfocar seletivamente regiões do assunto.</p>
 </div>
 <div class="paragraph">
-<p>O princípio básico dessa técnica é ilustrado na
-<a href="tiltshift.html#fig_tiltshift_svg">Figura 30, &#8220;Princípio de funcionamento do <em>tilt shift</em>&#8221;</a>.</p>
+<p>O princípio básico dessa técnica é ilustrado na <a href="tiltshift.html#fig_tiltshift_svg">Figura 30, &#8220;Princípio de funcionamento do <em>tilt shift</em>&#8221;</a>.</p>
 </div>
 <div id="fig_tiltshift_svg" class="imageblock text-center">
 <div class="content">
@@ -635,45 +628,22 @@ regiões do assunto.</p>
 <div class="title">Figura 30. Princípio de funcionamento do <em>tilt shift</em></div>
 </div>
 <div class="paragraph">
-<p>Na lente normal, o plano de projeção é paralelo ao plano de foco com o
-assunto que se deseja registrar. Quando a lente é submetida a uma
-inclinação (<em>tilt</em>), o plano de foco forma um ângulo diferente de zero
-com o plano de projeção, mudando assim a região que ficará em foco na
-imagem registrada pela câmera. Se a lente for deslocada para cima ou
-para baixo (<em>shift</em>), é possível também escolher seletivamente a
-região que ficará em foco, complementando o uso da técnica.</p>
+<p>Na lente normal, o plano de projeção é paralelo ao plano de foco com o assunto que se deseja registrar. Quando a lente é submetida a uma inclinação (<em>tilt</em>), o plano de foco forma um ângulo diferente de zero com o plano de projeção, mudando assim a região que ficará em foco na imagem registrada pela câmera. Se a lente for deslocada para cima ou para baixo (<em>shift</em>), é possível também escolher seletivamente a região que ficará em foco, complementando o uso da técnica.</p>
 </div>
 <div class="paragraph">
-<p>A técnica de <em>tilt-shift</em> consegue criar belos efeitos fotográficos,
-simulando miniaturas. O foco seletivo que a lente produz engana o olho
-humano, dando a impressão que a imagem foi registrada de uma cena em
-miniatura. Tomando a imagem usando ângulos e proporções adequadas do
-assunto, dá para se produzir versões em minatura de cenas reais que
-podem ser bastante convincentes.</p>
+<p>A técnica de <em>tilt-shift</em> consegue criar belos efeitos fotográficos, simulando miniaturas. O foco seletivo que a lente produz engana o olho humano, dando a impressão que a imagem foi registrada de uma cena em miniatura. Tomando a imagem usando ângulos e proporções adequadas do assunto, dá para se produzir versões em minatura de cenas reais que podem ser bastante convincentes.</p>
 </div>
 <div class="paragraph">
-<p>Lentes que produzem esse efeito não são baratas quando comparadas a
-lentes normais. Entrentanto, o efeito produzido por estas lentes pode
-ser reproduzido usando técnicas simples de processamento digital de
-imagens.</p>
+<p>Lentes que produzem esse efeito não são baratas quando comparadas a lentes normais. Entrentanto, o efeito produzido por estas lentes pode ser reproduzido usando técnicas simples de processamento digital de imagens.</p>
 </div>
 <div class="paragraph">
-<p>O princípio utilizado para simular a lente <em>tilt-shift</em> é combinar a
-imagem original com sua versão filtrada com filtro passa-baixas, de
-sorte a produzir nas proximidades da borda o efeito do borramento
-enquanto se mantém na região central a imagem sem borramento.</p>
+<p>O princípio utilizado para simular a lente <em>tilt-shift</em> é combinar a imagem original com sua versão filtrada com filtro passa-baixas, de sorte a produzir nas proximidades da borda o efeito do borramento enquanto se mantém na região central a imagem sem borramento.</p>
 </div>
 <div class="paragraph">
-<p>Uma forma de combinar pode ser realizada com a função <code>tiltshift()</code> do
-OpenCV. Ela opera calculando a combinação linear de duas imagens
-\(f_0(x,y)\) e \(f_1(x,y)\) pela
-equação \(g(x,y) = (1 - \alpha)f_0(x,y) + \alpha f_1(x,y)\), para um
-dado valor de \(\alpha\) fornecido.</p>
+<p>Uma forma de combinar pode ser realizada com a função <code>addWeighted()</code> do OpenCV. Ela opera calculando a combinação linear de duas imagens \(f_0(x,y)\) e \(f_1(x,y)\) pela equação \(g(x,y) = (1 - \alpha)f_0(x,y) + \alpha f_1(x,y)\), para um dado valor de \(\alpha\) fornecido.</p>
 </div>
 <div class="paragraph">
-<p>O programa de referência utilizado para exemplificar o uso da função sugerida,
-<a href="exemplos/tiltshift.cpp">tiltshift.cpp</a>, é mostrado na
-Listagem <a href="tiltshift.html#exa_tiltshift">tiltshift</a>.</p>
+<p>O programa de referência utilizado para exemplificar o uso da função sugerida, <a href="exemplos/tiltshift.cpp">tiltshift.cpp</a>, é mostrado na  <a href="tiltshift.html#exa_tiltshift">Listagem 39, &#8220;tiltshift.cpp&#8221;</a>.</p>
 </div>
 <div id="exa_tiltshift" class="listingblock">
 <div class="title">Listagem 39. tiltshift.cpp</div>

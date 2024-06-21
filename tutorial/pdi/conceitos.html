@@ -568,8 +568,6 @@ pre.rouge .gs {
 <h1>Introdução ao processamento digital de imagens com OpenCV</h1>
 <div class="details">
 <span id="author" class="author">Agostinho Brito</span><br>
-<span id="email" class="email"><a href="mailto:ambj@dca.ufrn.br">ambj@dca.ufrn.br</a></span><br>
-<span id="revdate">(C) 2015-2024 Agostinho Brito.</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
@@ -679,7 +677,7 @@ padrões.</p>
 <p>Uma vez gerado o arquivo <code>Makefile</code>, o controle é repassado ao utilitário <em>make</em>, que decide automaticamente que partes de um projeto necessitam ser recompiladas. Para isso, invoca os comandos necessários para recompilá-las a partir da leitura das regras definidas no <code>Makefile</code>. Assim, para efetuar a compilação do programa, basta executar o comando <em>make</em>, ao invés invocar repetitivamente chamadas de compilador.</p>
 </div>
 <div class="paragraph">
-<p>Em um projeto típico que utiliza OpenCV, o arquivo <code>CMakelists.txt</code> pode ser escrito conforme mostrado na <a href="conceitos.html#ex-cmake">Listagem 1, &#8220;CMakeLists.txt&#8221;</a>. No arquivo, podem ser percebidos os comandos para localizar a biblioteca OpenCV e incluir os arquivos de cabeçalho e bibliotecas necessários para a compilação do programa. Ainda, é possível definir variáveis para armazenar o nome do programa a ser compilado e os arquivos fonte que serão utilizados.</p>
+<p>Em um projeto típico que utiliza OpenCV, o arquivo <code>CMakeLists.txt</code> pode ser escrito conforme mostrado na <a href="conceitos.html#ex-cmake">Listagem 1, &#8220;CMakeLists.txt&#8221;</a>. No arquivo, podem ser percebidos os comandos para localizar a biblioteca OpenCV e incluir os arquivos de cabeçalho e bibliotecas necessários para a compilação do programa. Ainda, é possível definir variáveis para armazenar o nome do programa a ser compilado e os arquivos fonte que serão utilizados.</p>
 </div>
 <div id="ex-cmake" class="listingblock">
 <div class="title">Listagem 1. CMakeLists.txt</div>
@@ -740,10 +738,10 @@ de comando.</p>
 <div class="title">Figura 1. Saída do programa hello</div>
 </div>
 <div class="paragraph">
-<p>Caso o programa funcione conforme o exemplo, provavelmente seu ambiente de testes estará operacional para o restante dos exemplos.</p>
+<p>Caso o programa funcione conforme o exemplo, provavelmente seu ambiente de testes estará operacional.</p>
 </div>
 <div class="paragraph">
-<p>Neste documento, geralmente imagens armazenada no formato PNG serão usadas. Este formato suporta representação de imagens de diversas formas, como em tons de cinza, coloridas e preto-e-branco. Imagens em outros formatos tais como JPEG podem oferecer algumas limitações para os casos que serão abordados, como perda de informação durante a compressão. Ainda, por exemplo, arquivos JPEG armazenam apenas imagens em formato colorido e, durante a o processo de gravação das imagens, o algoritmo de compressão com perdas pode modificar o conteúdo da imagem original a ser gravada, impedindo que alguns exemplos não funcionem conforme esperado.</p>
+<p>Neste documento, a maior parte das imagens será fornecida no formato PNG. Este formato suporta representação de imagens em diversos formatos de cor, como em tons de cinza, coloridas e preto-e-branco. Imagens em outros formatos tais como JPEG podem oferecer algumas limitações para os casos que serão abordados, como perda de informação durante a compressão. Ainda, por exemplo, arquivos JPEG armazenam apenas imagens em formato colorido e, durante a o processo de gravação das imagens, o algoritmo de compressão com perdas pode modificar o conteúdo da imagem original a ser gravada, impedindo que alguns exemplos não funcionem conforme esperado.</p>
 </div>
 </div>
 </div>

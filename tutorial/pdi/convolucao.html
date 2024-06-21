@@ -568,8 +568,6 @@ pre.rouge .gs {
 <h1>Introdução ao processamento digital de imagens com OpenCV</h1>
 <div class="details">
 <span id="author" class="author">Agostinho Brito</span><br>
-<span id="email" class="email"><a href="mailto:ambj@dca.ufrn.br">ambj@dca.ufrn.br</a></span><br>
-<span id="revdate">(C) 2015-2024 Agostinho Brito.</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
@@ -614,16 +612,10 @@ pre.rouge .gs {
 <h2 id="convolucao">Capítulo 12. Filtragem no domínio espacial I</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A convolução é um processo pelo qual duas funções se combinam para
-formar uma terceira função no domínio espacial. Tal processo resulta
-do deslocamento de uma função sobre a outra e do cálculo de uma
-combinação linear entre ambas em cada ponto do deslocamento.</p>
+<p>A convolução é um processo pelo qual duas funções se combinam para formar uma terceira função no domínio espacial. Tal processo resulta do deslocamento de uma função sobre a outra e do cálculo de uma combinação linear entre ambas em cada ponto do deslocamento.</p>
 </div>
 <div class="paragraph">
-<p>Em se tratando de uma imagem digital, a convolução é chamada de
-convolução digital. Sua principal aplicação é na filtragem de sinais,
-permitindo que características de uma dada imagem sejam alteradas
-conforme o tipo de efeito que se deseja impor.</p>
+<p>Em se tratando de uma imagem digital, a convolução é chamada de convolução digital. Sua principal aplicação é na filtragem de sinais, permitindo que características de uma dada imagem sejam alteradas conforme o tipo de efeito que se deseja impor.</p>
 </div>
 <div class="paragraph">
 <p>A convolução discreta entre duas imagens pode ser definida como</p>
@@ -635,38 +627,19 @@ conforme o tipo de efeito que se deseja impor.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>As funções \(f(x,y)\) e \(g(x,y)\) normalmente estão associadas
-à imagem a ser filtrada e ao filtro digital associado.</p>
+<p>As funções \(f(x,y)\) e \(g(x,y)\) normalmente estão associadas à imagem a ser filtrada e ao filtro digital associado.</p>
 </div>
 <div class="paragraph">
-<p>Existem dois tipos de convolução: a 'convolução linear' e a
-'convolução circular'. Na primeira, assume-se que os sinais
-\(f(x,y)\) e \(g(x,y)\) existem em duas regiões com M e N
-amostras consecutivas, respectivamente, sendo zero fora desssas
-regiões. A região resultante da convolução terá suporte de tamanho
-\(M+N-1\). Fora desta, o resultado da convolução será nulo. Na
-segunda, assume-se que as sequências \(f(x,y)\) e \(g(x,y)\) são
-periódicas e com um mesmo período \(M=N\). O resultado da
-convolução, \(h(x,y)\) possuirá também o mesmo período \(M\).</p>
+<p>Existem dois tipos de convolução: a 'convolução linear' e a 'convolução circular'. Na primeira, assume-se que os sinais \(f(x,y)\) e \(g(x,y)\)  existem em duas regiões com M e N amostras consecutivas, respectivamente, sendo zero fora desssas regiões. A região resultante da convolução terá suporte de tamanho \(M+N-1\). Fora desta, o resultado da convolução será nulo. Na segunda, assume-se que as sequências \(f(x,y)\) e \(g(x,y)\) são periódicas e com um mesmo período \(M=N\). O resultado da convolução, \(h(x,y)\) possuirá também o mesmo período \(M\).</p>
 </div>
 <div class="paragraph">
-<p>Costuma-se simplificar essa equação e calcular os tons de cinza da
-imagem filtrada realizando o produto entre os coeficientes de uma
-pequena matriz comumente denominada 'máscara' e as intensidades dos
-pixels sobre uma posição específica na imagem.</p>
+<p>Costuma-se simplificar essa equação e calcular os tons de cinza da imagem filtrada realizando a soma dos produtos entre os coeficientes de uma pequena matriz comumente denominada núcleo da convolução, ou máscara (<em>mask</em>) e as intensidades dos pixels sobre uma posição específica na imagem.</p>
 </div>
 <div class="paragraph">
-<p>As máscaras normalmente possuem dimensões de tamanho ímpar (\(3
-\times 3\) elementos , \(5 \times 5\) elementos, \(7 \times 7\)
-elementos, etc), dependendo da intensidade da filtragem que se deseja
-realizar.</p>
+<p>As máscaras normalmente possuem dimensões de tamanho ímpar (\(3 \times 3\) elementos , \(5 \times 5\) elementos, \(7 \times 7\) elementos, etc), dependendo da intensidade do filtro que se deseja aplicar. Normalmente, máscaras maiores resultam em filtragens mais intensas.</p>
 </div>
 <div class="paragraph">
-<p>Considere uma imagem digital denotada por \(f(x,y)\), uma matriz de
-máscara denotada por \(w(s,t)\) e uma image filtrada denotada por
-\(g(x,y)\). Para uma máscara de tamanho \(3 \times 3\)
-elementos, o processo de filtragem no domínio espacial é ilustrado na
-<a href="convolucao.html#fig_filtragemespacial">Figura 29, &#8220;Filtragem espacial&#8221;</a>.</p>
+<p>Considere uma imagem digital denotada por \(f(x,y)\), uma matriz de máscara denotada por \(w(s,t)\) e uma image filtrada denotada por \(g(x,y)\). Para uma máscara de tamanho \(3 \times 3\) elementos, o processo de filtragem no domínio espacial é ilustrado na <a href="convolucao.html#fig_filtragemespacial">Figura 29, &#8220;Filtragem espacial&#8221;</a>.</p>
 </div>
 <div id="fig_filtragemespacial" class="imageblock text-center">
 <div class="content">
@@ -675,21 +648,13 @@ elementos, o processo de filtragem no domínio espacial é ilustrado na
 <div class="title">Figura 29. Filtragem espacial</div>
 </div>
 <div class="paragraph">
-<p>No processo, a imagem da máscara é deslocada (pixel a pixel) sobre a
-imagem a ser filtrada. Para cada deslocamento, calcula-se o somatório
-do produto entre os valores dos elementos da máscara e os tons de
-cinza dos pixels que esta sobrepõe e atribui-se o resultado ao pixel
-respectivo na imagem filtrada.</p>
+<p>No processo, a imagem da máscara é deslocada (pixel a pixel) sobre a imagem a ser filtrada. Para cada deslocamento, calcula-se o somatório do produto entre os valores dos elementos da máscara e os tons de cinza dos pixels que esta sobrepõe e atribui-se o resultado ao pixel respectivo na imagem filtrada.</p>
 </div>
 <div class="paragraph">
-<p>Muitos efeitos de filtragem são possíveis de se obter modificando os
-valores da imagem da máscara: borramento, aguçamento e detecção de
-bordas são os principais deles.</p>
+<p>Muitos efeitos de filtragem são possíveis de se obter modificando os valores da imagem da máscara: borramento, aguçamento e detecção de bordas são os principais deles.</p>
 </div>
 <div class="paragraph">
-<p>O programa de referência utilizado para essa tarefa,
-<a href="exemplos/convolucao.cpp">convolucao.cpp</a>, é mostrado na
-Listagem <a href="convolucao.html#exa_convolucao">convolucao</a>.</p>
+<p>O programa de referência utilizado para essa tarefa, <a href="exemplos/convolucao/convolucao.cpp">convolucao.cpp</a>, é mostrado na <a href="convolucao.html#exa_convolucao">Listagem 36, &#8220;convolucao.cpp&#8221;</a>.</p>
 </div>
 <div id="exa_convolucao" class="listingblock">
 <div class="title">Listagem 36. convolucao.cpp</div>
@@ -821,10 +786,50 @@ Listagem <a href="convolucao.html#exa_convolucao">convolucao</a>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>A saída do programa <em>convolucao</em> apresentará duas janelas: uma com
-a imagem original capturada e outra com o resultado da filtragem. O
-filtro inicial escolhido no exemplo é o da média.</p>
+<p>A saída do programa <em>convolucao</em> apresentará duas janelas: uma com a imagem original capturada e outra com o resultado da filtragem. O filtro inicial escolhido no exemplo é o da média. Para alterar o filtro, basta pressionar a tecla correspondente ao filtro desejado. A lista de efeitos disponíveis com as respectivas teclas de atalho para ativação é a seguinte:</p>
 </div>
+<table class="tableblock frame-all grid-all" style="width: 60%;">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Tecla de Atalho</th>
+<th class="tableblock halign-left valign-top">Efeito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><kbd>a</kbd></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Absoluto</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><kbd>m</kbd></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Filtro da Média</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><kbd>g</kbd></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Filtro Gaussiano</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><kbd>h</kbd></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Detector de bordas horizontais</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><kbd>v</kbd></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Detector de bordas verticais</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><kbd>l</kbd></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Filtro Laplaciano</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><kbd>b</kbd></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Filtro de ênfase - Boost</p></td>
+</tr>
+</tbody>
+</table>
 <div class="sect2">
 <h3 id="_descrição_do_programa_convolucao_cpp">12.1. Descrição do programa <code>convolucao.cpp</code></h3>
 <div class="listingblock">
@@ -850,12 +855,9 @@ filtro inicial escolhido no exemplo é o da média.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Os filtros usados no exemplo (determinados pelas matrizes de máscara)
-são de tamanho \(3 \times 3\) pixels. Cinco tipos de filtros são
-testados: média, gaussiano, detector de bordas horizontais, detector de
-bordas verticais e laplaciano. Os coeficientes de cada filtro são
-armazenados em arrays unidimensionais que serão repassados ao
-construtor da matriz do filtro.</p>
+<p>Os filtros usados no exemplo (determinados pelas matrizes de máscara) são de tamanho \(3 \times 3\) pixels. Cinco tipos de filtros são
+testados: média, gaussiano, detector de bordas horizontais, detector de bordas verticais e laplaciano. Os coeficientes de cada filtro são
+armazenados em arrays unidimensionais que serão repassados ao construtor da matriz do filtro.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -873,10 +875,8 @@ construtor da matriz do filtro.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Em loop infinito, imagens coloridas são capturadas constantemente na
-matriz <code>cap</code> e convertidas em equivalentes em tons de cinza usando a
-função <code>cvtColor()</code>. A imagem então é invertida horizontalmente com a
-função <code>flip()</code>. A inversão é feita apenas para fins de tornar a
+<p>Em loop infinito, imagens coloridas são capturadas constantemente na matriz <code>cap</code> e convertidas em equivalentes em tons de cinza usando a
+função <code>cvtColor()</code>. A imagem então é invertida horizontalmente com a função <code>flip()</code>. A inversão é feita apenas para fins de tornar a
 interação com o programa exemplo semelhante à de um espelho.</p>
 </div>
 <div class="listingblock">
@@ -891,7 +891,7 @@ para outra equivalente com representação em ponto flutuante - <code>frame32f</
 o processo de filtragem.</p>
 </div>
 <div class="paragraph">
-<p>A função <code>filter2d()</code> recebe então a matriz da imagem em ponto flutuante - <code>frame32f</code> - e produz a matriz <code>frameFiltered</code>, de acordo com o tipo do elemento da matriz de entrada - neste caso, CV_32F (ou float). O objeto <code>Point(1,1)</code> que é repassado como próximo argumento identifica a origem do sistema de coordenadas atribuído para a máscara que, neste caso, é o ponto central da matriz. O último argumento, <code>BORDER_REPLICATE</code>, indica que a borda da imagem será replicada para o exterior durante o processo de filtragem.</p>
+<p>A função <code>filter2d()</code> recebe então a matriz da imagem em ponto flutuante - <code>frame32f</code> - e produz a matriz <code>frameFiltered</code>, de acordo com o tipo do elemento da matriz de entrada - neste caso, <code>CV_32F</code> (ou <code>float</code>). O objeto <code>Point(1,1)</code> que é repassado como próximo argumento identifica a origem do sistema de coordenadas atribuído para a máscara que, neste caso, é o ponto central da matriz. O último argumento, <code>cv::BORDER_REPLICATE</code>, indica que a borda da imagem será replicada para o exterior durante o processo de filtragem.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -902,13 +902,13 @@ o processo de filtragem.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Caso a opção de módulo esteja selecionada, o cálculo deste é então procedido. Isso é útil para observar a magnitude da resposta dos filtros derivativos presentes no exemplo.</p>
+<p>Caso a opção de módulo esteja selecionada (absoluto), o cálculo deste é então procedido. Isso é útil para observar a magnitude da resposta dos filtros derivativos presentes no exemplo.</p>
 </div>
 <div class="paragraph">
 <p>A imagem filtrada é então convertida para formato de 8 bits em tons de cinza para posterior exibição na tela.</p>
 </div>
 <div class="paragraph">
-<p>O restante do código trata apenas da adaptação da matriz <code>mask</code> conforme o filtro escolhido pelo usuário para ser aplicado à imagem capturada.</p>
+<p>O restante do código trata apenas da adaptação da matriz <code>mask</code> conforme o filtro escolhido pelo usuário para ser aplicado à imagem capturada. Para cada escolha, a matriz <code>mask</code> é redefinida com os valores do filtro correspondente e em seguida impressa na tela.</p>
 </div>
 </div>
 <div class="sect2">
@@ -916,9 +916,10 @@ o processo de filtragem.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Utilizando o programa <a href="exemplos/convolucao.cpp" class="bare">exemplos/convolucao.cpp</a> como referência, implemente um programa <code>laplgauss.cpp</code>. O programa
-deverá acrescentar mais uma funcionalidade ao exemplo fornecido, permitindo que seja calculado o laplaciano do gaussiano das imagens
-capturadas. Compare o resultado desse filtro com a simples aplicação do filtro laplaciano.</p>
+<p>Utilizando o programa <a href="exemplos/convolucao.cpp" class="bare">exemplos/convolucao.cpp</a> como referência, implemente um programa <code>convolucao2.cpp</code>. O programa deverá realizar a convolução com o filtro da média para máscaras de tamanho \(11 \times 11\) e \(21 \times 21\) pixels. Compare os resultados obtidos com o filtro de tamanho \(3 \times 3\) pixels.</p>
+</li>
+<li>
+<p>Utilizando o programa <a href="exemplos/convolucao.cpp" class="bare">exemplos/convolucao.cpp</a> como referência, implemente um programa <code>laplgauss.cpp</code>. O programa deverá acrescentar mais uma funcionalidade ao exemplo fornecido, permitindo que seja calculado o laplaciano do gaussiano das imagens capturadas. Compare o resultado desse filtro com a simples aplicação do filtro laplaciano.</p>
 </li>
 </ul>
 </div>

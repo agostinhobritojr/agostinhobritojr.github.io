@@ -568,8 +568,6 @@ pre.rouge .gs {
 <h1>Introdução ao processamento digital de imagens com OpenCV</h1>
 <div class="details">
 <span id="author" class="author">Agostinho Brito</span><br>
-<span id="email" class="email"><a href="mailto:ambj@dca.ufrn.br">ambj@dca.ufrn.br</a></span><br>
-<span id="revdate">(C) 2015-2024 Agostinho Brito.</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
@@ -755,16 +753,16 @@ pre.rouge .gs {
 <div id="ex-senoideyml" class="listingblock">
 <div class="title">Listagem 18. trecho do arquivo senoide-256.yml</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="yaml"><span class="nt">%YAML</span><span class="err">:1.0
+<pre class="rouge highlight"><code data-lang="txt">%YAML:1.0
 ---
 mat: !!opencv-matrix
    rows: 256
    cols: 256
    dt: f
-   data: [ 128.,</span> <span class="m">1.52776474</span><span class="err">e+02,</span> <span class="err">1.76600800e+02,</span> <span class="err">1.98557419e+02,</span>
-       <span class="s">2.17802567e+02, 2.33596634e+02, 2.45332703e+02, 2.52559738e+02,</span>
-       <span class="s">255., 2.52559738e+02, 2.45332703e+02, 2.33596634e+02,</span>
-       <span class="s">2.17802567e+02, 1.98557419e+02, 1.76600800e+02, 1.52776474e+02,</span></code></pre>
+   data: [ 128., 1.52776474e+02, 1.76600800e+02, 1.98557419e+02,
+       2.17802567e+02, 2.33596634e+02, 2.45332703e+02, 2.52559738e+02,
+       255., 2.52559738e+02, 2.45332703e+02, 2.33596634e+02,
+       2.17802567e+02, 1.98557419e+02, 1.76600800e+02, 1.52776474e+02,</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -788,7 +786,7 @@ normalizar os valores da matriz de <code>float</code> para o intervalo \(0, 255\
 <div class="ulist">
 <ul>
 <li>
-<p>Utilizando o programa-exemplo <code>filestorage.cpp</code> como base, crie um programa que gere uma imagem de dimensões 256x256 pixels contendo uma senóide de 4 períodos com amplitude igual 127 desenhada na horizontal, semelhante àquela apresentada na <a href="filestorage.html#fig_filestorage">Figura 11, &#8220;Saída do programa filestorage&#8221;</a>. Grave a imagem no formato <code>YML</code> e também exporte no formato <code>PNG</code>, como faz o programa-exemplo. Compare os arquivos gerados, extraindo uma linha correspondente de cada imagem gravada e comparando a diferença entre elas. Trace um gráfico da diferença calculada ao longo da linha correspondente extraída nas imagens. O que você observa? Por que isso acontece?</p>
+<p>Utilizando o programa-exemplo <code>filestorage.cpp</code> como base, crie um programa que gere uma imagem de dimensões 256x256 pixels contendo uma senóide de 4 períodos com amplitude igual 127 desenhada na horizontal, semelhante àquela apresentada na <a href="filestorage.html#fig_filestorage">Figura 11, &#8220;Saída do programa filestorage&#8221;</a>. Grave a imagem no formato <code>YML</code> e também em formato <code>PNG</code>, como faz o programa-exemplo. Compare os arquivos gerados, extraindo uma linha correspondente de cada imagem gravada e comparando a diferença entre elas. Trace um gráfico da diferença calculada ao longo da linha correspondente extraída nas imagens. O que você observa? Por que isso acontece?</p>
 </li>
 </ul>
 </div>
