@@ -1,0 +1,3 @@
+/home/ambj/Dropbox/dca0445/pdi/exemplos/colorrange/build/CMakeFiles/colorrange.dir
+/home/ambj/Dropbox/dca0445/pdi/exemplos/colorrange/build/CMakeFiles/edit_cache.dir
+/home/ambj/Dropbox/dca0445/pdi/exemplos/colorrange/build/CMakeFiles/rebuild_cache.dir

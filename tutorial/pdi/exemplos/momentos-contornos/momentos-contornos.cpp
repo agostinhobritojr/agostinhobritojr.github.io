@@ -28,7 +28,7 @@ int main(int argc, char** argv){
   int nformas = 0;
 
   for (size_t i = 0; i < contours.size(); i++){
-    if(contours[i].size() < 100){
+    if(contours[i].size() < 10){
       continue;
     }
     nformas++;

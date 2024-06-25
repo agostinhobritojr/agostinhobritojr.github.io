@@ -580,19 +580,19 @@ pre.rouge .gs {
 </li>
 <li><a href="manipulacao.html">Parte III: Manipulação de imagens</a>
 <ul class="sectlevel1">
-<li><a href="combinacao.html">Capítulo 8. Combinação de Imagens</a>
+<li><a href="combinacao.html">Capítulo 9. Combinação de Imagens</a>
 </li>
-<li><a href="bitplanes.html">Capítulo 9. Decomposição de imagens em planos de bits</a>
+<li><a href="bitplanes.html">Capítulo 10. Decomposição de imagens em planos de bits</a>
 </li>
-<li><a href="labeling.html"><span class="toc-current">Capítulo 10. Preenchendo regiões</span></a>
+<li><a href="labeling.html"><span class="toc-current">Capítulo 11. Preenchendo regiões</span></a>
 <ul class="sectlevel2">
-<li><a href="labeling.html#_descrição_do_programa_labeling_cpp">10.1. Descrição do programa <code>labeling.cpp</code></a>
+<li><a href="labeling.html#_descrição_do_programa_labeling_cpp">11.1. Descrição do programa <code>labeling.cpp</code></a>
 </li>
-<li><a href="labeling.html#_exercícios_9">10.2. Exercícios</a>
+<li><a href="labeling.html#_exercícios_10">11.2. Exercícios</a>
 </li>
 </ul>
 </li>
-<li><a href="histograma.html">Capítulo 11. Manipulação de histogramas</a>
+<li><a href="histograma.html">Capítulo 12. Manipulação de histogramas</a>
 </li>
 </ul>
 </li>
@@ -613,7 +613,7 @@ pre.rouge .gs {
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="labeling">Capítulo 10. Preenchendo regiões</h2>
+<h2 id="labeling">Capítulo 11. Preenchendo regiões</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Uma tarefa bastante comum em processamento de imagens e visão
@@ -649,7 +649,7 @@ aglomerados de pixels. A imagem usada para teste será a presente no arquivo
 <div class="content">
 <img src="data:image/png;base64,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" alt="bolhas">
 </div>
-<div class="title">Figura 26. Imagem bolhas.png</div>
+<div class="title">Figura 29. Imagem bolhas.png</div>
 </div>
 <div class="paragraph">
 <p>O programa de referência utilizado para essa tarefa,
@@ -657,7 +657,7 @@ aglomerados de pixels. A imagem usada para teste será a presente no arquivo
 <a href="labeling.html#exa_labeling">Labeling</a>.</p>
 </div>
 <div id="exa_labeling" class="listingblock">
-<div class="title">Listagem 30. labeling.cpp</div>
+<div class="title">Listagem 33. labeling.cpp</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp">
@@ -709,10 +709,10 @@ aglomerados de pixels. A imagem usada para teste será a presente no arquivo
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/labeling/labeling.cpp">labeling.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/labeling/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="labeling.html#labeling-cmake">Listagem 31, &#8220;CMakeLists.txt&#8221;</a>) e execute a seqüência de comandos mostrada na <a href="labeling.html#ex-compilacao-labeling">Listagem 32, &#8220;Compilação e execução do programa labeling&#8221;</a>. O último comando executa o programa, passando como parâmetros o nome da imagem a ser processada Para este exemplo, foi usada a imagem <a href="figs/bolhas.png">bolhas.png</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/labeling/labeling.cpp">labeling.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/labeling/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="labeling.html#labeling-cmake">Listagem 34, &#8220;CMakeLists.txt&#8221;</a>) e execute a seqüência de comandos mostrada na <a href="labeling.html#ex-compilacao-labeling">Listagem 35, &#8220;Compilação e execução do programa labeling&#8221;</a>. O último comando executa o programa, passando como parâmetros o nome da imagem a ser processada Para este exemplo, foi usada a imagem <a href="figs/bolhas.png">bolhas.png</a>.</p>
 </div>
 <div id="labeling-cmake" class="listingblock">
-<div class="title">Listagem 31. CMakeLists.txt</div>
+<div class="title">Listagem 34. CMakeLists.txt</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="cmake"><span class="nb">cmake_minimum_required</span><span class="p">(</span>VERSION 3.0.0<span class="p">)</span>
 <span class="nb">project</span><span class="p">(</span>labeling VERSION 0.1.0 LANGUAGES C CXX<span class="p">)</span>
@@ -725,7 +725,7 @@ aglomerados de pixels. A imagem usada para teste será a presente no arquivo
 </div>
 </div>
 <div id="ex-compilacao-labeling" class="listingblock">
-<div class="title">Listagem 32. Compilação e execução do programa labeling</div>
+<div class="title">Listagem 35. Compilação e execução do programa labeling</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell"><span class="nv">$ </span><span class="nb">mkdir </span>build
 <span class="nv">$ </span><span class="nb">cd </span>build
@@ -741,10 +741,10 @@ aglomerados de pixels. A imagem usada para teste será a presente no arquivo
 <div class="content">
 <img src="data:image/png;base64,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" alt="labeling">
 </div>
-<div class="title">Figura 27. Saída do programa labeling</div>
+<div class="title">Figura 30. Saída do programa labeling</div>
 </div>
 <div class="sect2">
-<h3 id="_descrição_do_programa_labeling_cpp">10.1. Descrição do programa <code>labeling.cpp</code></h3>
+<h3 id="_descrição_do_programa_labeling_cpp">11.1. Descrição do programa <code>labeling.cpp</code></h3>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="cpp"><span class="n">cv</span><span class="o">::</span><span class="n">Point</span> <span class="n">p</span><span class="p">;</span></code></pre>
@@ -819,7 +819,7 @@ atual.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercícios_9">10.2. Exercícios</h3>
+<h3 id="_exercícios_10">11.2. Exercícios</h3>
 <div class="ulist">
 <ul>
 <li>
