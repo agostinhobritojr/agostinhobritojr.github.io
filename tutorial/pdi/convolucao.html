@@ -582,7 +582,7 @@ pre.rouge .gs {
 </li>
 <li><a href="espacial.html">Parte IV: Processamento de Imagens no Domínio Espacial</a>
 <ul class="sectlevel1">
-<li><a href="convolucao.html"><span class="toc-current">Capítulo 13. Filtragem no domínio espacial I</span></a>
+<li><a href="convolucao.html"><span class="toc-current">Capítulo 13. Filtragem no domínio espacial I - Convolução</span></a>
 <ul class="sectlevel2">
 <li><a href="convolucao.html#_descrição_do_programa_convolucao_cpp">13.1. Descrição do programa <code>convolucao.cpp</code></a>
 </li>
@@ -590,7 +590,7 @@ pre.rouge .gs {
 </li>
 </ul>
 </li>
-<li><a href="tiltshift.html">Capítulo 14. Filtragem no domínio espacial II</a>
+<li><a href="tiltshift.html">Capítulo 14. Filtragem no domínio espacial II - TiltShift</a>
 </li>
 </ul>
 </li>
@@ -609,7 +609,7 @@ pre.rouge .gs {
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="convolucao">Capítulo 13. Filtragem no domínio espacial I</h2>
+<h2 id="convolucao">Capítulo 13. Filtragem no domínio espacial I - Convolução</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A convolução é um processo pelo qual duas funções se combinam para formar uma terceira função no domínio espacial. Tal processo resulta do deslocamento de uma função sobre a outra e do cálculo de uma combinação linear entre ambas em cada ponto do deslocamento.</p>
@@ -919,15 +919,51 @@ o processo de filtragem.</p>
 <p>Utilizando o programa <a href="exemplos/convolucao.cpp" class="bare">exemplos/convolucao.cpp</a> como referência, implemente um programa <code>convolucao2.cpp</code>. O programa deverá realizar a convolução com o filtro da média para máscaras de tamanho \(11 \times 11\) e \(21 \times 21\) pixels. Compare os resultados obtidos com o filtro de tamanho \(3 \times 3\) pixels.</p>
 </li>
 <li>
-<p>Utilizando o programa <a href="exemplos/convolucao.cpp" class="bare">exemplos/convolucao.cpp</a> como referência, implemente um programa <code>laplgauss.cpp</code>. O programa deverá acrescentar mais uma funcionalidade ao exemplo fornecido, permitindo que seja calculado o laplaciano do gaussiano das imagens capturadas. Compare o resultado desse filtro com a simples aplicação do filtro laplaciano.</p>
+<p>Observe o efeito presente no vídeo <a href="convolucao.html#fig_convolucao_vasos">Exemplo do efeito de produndidade de campo</a>. Este efeito é conhecido como profundidade de campo. Ele ocorre porque o conjunto de lentes não permite, para a abertura do diafragma, que todos os objetos em diferentes distâncias do plano focal sejam focados simultaneamente. Há situações em que explorar a profundidade de campo é interessante, como em retratos, para deixar o fundo da cena desfocado. Em outros casos, como em imagens de microscopia, pode não ser possível ajustar as objetivas do microscópio para deixar todos os elementos da cena focados, dificultando a análise completa do objeto em estudo.</p>
+<div class="paragraph">
+<p>Entretanto, é possível oferecer alguma correção para o efeito de profundidade de campo em imagens digitais tomadas de uma cena sem movimento, como esta do vídeo apresentado. Utilizando o programa <a href="exemplos/convolucao.cpp" class="bare">exemplos/convolucao.cpp</a> como referência, implemente um programa <code>depthoffield.cpp</code> que funcione conforme os seguintes passos:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Capture um frame da cena do vídeo.</p>
+</li>
+<li>
+<p>Converta o frame para tons de cinza.</p>
+</li>
+<li>
+<p>Crie uma matriz para guardar os máximos dos laplacianos que serão calculados a seguir.</p>
+</li>
+<li>
+<p>Aplique um filtro laplaciano de tamanho \(3 \times 3\) pixels na imagem cinzenta.</p>
+</li>
+<li>
+<p>Compare o resultado do filtro com a matriz de máximos e selecione aqueles que possuem um valor maior que o correspondente na matriz de máximos. Para os pixels selecionados, copie para a imagem de saída os pixels coloridos da imagem capturada.</p>
+</li>
+<li>
+<p>Exiba a imagem de saída.</p>
+<div class="paragraph">
+<p>Apresente seus resultados e discuta sobre a eficácia da técnica proposta.</p>
+</div>
+</li>
+</ol>
+</div>
 </li>
 </ul>
+</div>
+<div id="fig_convolucao_vasos" class="videoblock text-center">
+<div class="title">Exemplo do efeito de produndidade de campo</div>
+<div class="content">
+<video src="./figs/vasos720p.mp4" width="640" autoplay controls>
+Your browser does not support the video tag.
+</video>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="paragraph nav-footer">
-<p>↑ : <a href="espacial.html">Processamento de Imagens no Domínio Espacial</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="tiltshift.html">Filtragem no domínio espacial II</a> →</p>
+<p>↑ : <a href="espacial.html">Processamento de Imagens no Domínio Espacial</a> | ⌂ : <a href="index.html">Introdução ao processamento digital de imagens com OpenCV</a> | : <a href="tiltshift.html">Filtragem no domínio espacial II - TiltShift</a> →</p>
 </div>
 </div>
 <script type="text/x-mathjax-config">
