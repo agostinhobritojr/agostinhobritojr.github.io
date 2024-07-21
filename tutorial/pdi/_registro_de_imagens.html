@@ -563,7 +563,7 @@ pre.rouge .gs {
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="registro" class="book toc2 toc-left">
+<body id="_registro_de_imagens" class="book toc2 toc-left">
 <div id="header">
 <h1>Introdução ao processamento digital de imagens com OpenCV</h1>
 <div class="details">
@@ -588,11 +588,11 @@ pre.rouge .gs {
 </li>
 <li><a href="histograma.html">Capítulo 12. Manipulação de histogramas</a>
 </li>
-<li><a href="registro.html"><span class="toc-current">Capítulo 13. Registro de imagens</span></a>
+<li><a href="_registro_de_imagens.html"><span class="toc-current">Capítulo 13. Registro de imagens</span></a>
 <ul class="sectlevel2">
-<li><a href="registro.html#_descrição_do_programa_registro_cpp">13.1. Descrição do programa <code>registro.cpp</code></a>
+<li><a href="_registro_de_imagens.html#_descrição_do_programa_registro_cpp">13.1. Descrição do programa <code>registro.cpp</code></a>
 </li>
-<li><a href="registro.html#_exercícios_12">13.2. Exercícios</a>
+<li><a href="_registro_de_imagens.html#_exercícios_12">13.2. Exercícios</a>
 </li>
 </ul>
 </li>
@@ -615,10 +615,10 @@ pre.rouge .gs {
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="registro">Capítulo 13. Registro de imagens</h2>
+<h2 id="_registro_de_imagens">Capítulo 13. Registro de imagens</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Considere a imagem da <a href="registro.html#fig_voltimetro">Figura 32, &#8220;Mostrador de um voltímetro digital com inclinação&#8221;</a>. Trata-se de um mostrador de um voltímetro digital. Uma possível aplicação de visão computacional poderia ser capaz de capturar as imagens do mostrador e realizar o reconhecimento automático do valor de tensão mostrado no visor. Para isso, é necessário realizar a separação dos pixels que compõem o mostrador do voltímetro dos pixels que compõem o fundo da imagem.</p>
+<p>Considere a imagem da <a href="_registro_de_imagens.html#fig_voltimetro">Figura 32, &#8220;Mostrador de um voltímetro digital com inclinação&#8221;</a>. Trata-se de um mostrador de um voltímetro digital. Uma possível aplicação de visão computacional poderia ser capaz de capturar as imagens do mostrador e realizar o reconhecimento automático do valor de tensão mostrado no visor. Para isso, é necessário realizar a separação dos pixels que compõem o mostrador do voltímetro dos pixels que compõem o fundo da imagem.</p>
 </div>
 <div class="paragraph">
 <p>Entretanto, a inclinação presente nesta imagem constitui uma distorção geométrica que pode dificultar a ação de uma ferramenta de reconhecimento de caracteres.</p>
@@ -661,13 +661,13 @@ pre.rouge .gs {
 </div>
 </div>
 <div class="paragraph">
-<p>onde \((x, y)\) são as coordenadas do ponto na imagem original, \((x', y')\) são as coordenadas do ponto na imagem corrigida e \(s\) é um fator de escala.</p>
+<p>onde $(x, y)$ são as coordenadas do ponto na imagem original, $(x', y')$ são as coordenadas do ponto na imagem corrigida e $s$ é um fator de escala.</p>
 </div>
 <div class="paragraph">
 <p>Com 4 pontos de referência é possível montar um sistema linear para obter os 8 coeficientes da matriz de transformação. No OpenCV, a função <code>getPerspectiveTransform()</code> realiza essa tarefa, permitindo obter a matriz de transformação a partir dos pontos de referência, e a função <code>warpPerspective()</code> aplica a transformação de perspectiva em toda uma imagem.</p>
 </div>
 <div class="paragraph">
-<p>A <a href="registro.html#fig_voltimetro_corrigido">Figura 33, &#8220;Mostrador de um voltímetro digital corrigido&#8221;</a> mostra a imagem do voltímetro corrigida pela transformação de perspectiva usando essa técnica. Perceba que agora os dígitos não encontram-se mais inclinados.</p>
+<p>A <a href="_registro_de_imagens.html#fig_voltimetro_corrigido">Figura 33, &#8220;Mostrador de um voltímetro digital corrigido&#8221;</a> mostra a imagem do voltímetro corrigida pela transformação de perspectiva usando essa técnica. Perceba que agora os dígitos não encontram-se mais inclinados.</p>
 </div>
 <div class="paragraph">
 <p>Os quatro pontos que definem a região dos dígitos do mostrador foram determinados manualmente. São eles:</p>
@@ -695,7 +695,7 @@ pre.rouge .gs {
 <div class="title">Figura 33. Mostrador de um voltímetro digital corrigido</div>
 </div>
 <div class="paragraph">
-<p>O programa de referência utilizado para essa tarefa, <a href="exemplos/registro/registro.cpp">registro.cpp</a>, é mostrado na <a href="registro.html#exa_registro">Listagem 39, &#8220;registro.cpp&#8221;</a>.</p>
+<p>O programa de referência utilizado para essa tarefa, <a href="exemplos/registro/registro.cpp">registro.cpp</a>, é mostrado na <a href="_registro_de_imagens.html#exa_registro">Listagem 39, &#8220;registro.cpp&#8221;</a>.</p>
 </div>
 <div id="exa_registro" class="listingblock">
 <div class="title">Listagem 39. registro.cpp</div>
@@ -751,7 +751,7 @@ pre.rouge .gs {
 </div>
 </div>
 <div class="paragraph">
-<p>Para compilar e executar o programa-exemplo <a href="exemplos/registro/registro.cpp">registro.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/registro/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="registro.html#registro-cmake">Listagem 40, &#8220;CMakeLists.txt&#8221;</a>), a imagem <a href="figs/voltimetro.png">voltimetro.png</a>, e execute a seqüência de comandos mostrada na <a href="registro.html#ex-compilacao-registro">Listagem 41, &#8220;Compilação e execução do programa registro&#8221;</a>.</p>
+<p>Para compilar e executar o programa-exemplo <a href="exemplos/registro/registro.cpp">registro.cpp</a>, salve-o em um diretório juntamente com o arquivo <a href="exemplos/registro/CMakeLists.txt">CMakeLists.txt</a> adaptado para o exemplo (<a href="_registro_de_imagens.html#registro-cmake">Listagem 40, &#8220;CMakeLists.txt&#8221;</a>), a imagem <a href="figs/voltimetro.png">voltimetro.png</a>, e execute a seqüência de comandos mostrada na <a href="_registro_de_imagens.html#ex-compilacao-registro">Listagem 41, &#8220;Compilação e execução do programa registro&#8221;</a>.</p>
 </div>
 <div id="registro-cmake" class="listingblock">
 <div class="title">Listagem 40. CMakeLists.txt</div>
@@ -777,7 +777,7 @@ pre.rouge .gs {
 </div>
 </div>
 <div class="paragraph">
-<p>A saída do programa <em>registro</em> é mostrada na <a href="registro.html#fig_voltimetro_corrigido">Figura 33, &#8220;Mostrador de um voltímetro digital corrigido&#8221;</a>.</p>
+<p>A saída do programa <em>registro</em> é mostrada na <a href="_registro_de_imagens.html#fig_voltimetro_corrigido">Figura 33, &#8220;Mostrador de um voltímetro digital corrigido&#8221;</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="_descrição_do_programa_registro_cpp">13.1. Descrição do programa <code>registro.cpp</code></h3>
@@ -829,7 +829,7 @@ pre.rouge .gs {
 <div class="ulist">
 <ul>
 <li>
-<p>Modifique o programa <code>registro.cpp</code> para que o usuário defina de forma interativa com o mouse os quatro pontos que deverão ser usados para realizar a correção de perspectiva.</p>
+<p>Modifique o programa <code>registro.cpp</code> para que o usuário defina, utilizando o mouse, os quatro pontos que deverão ser usados para realizar a correção de perspectiva.</p>
 </li>
 </ul>
 </div>
