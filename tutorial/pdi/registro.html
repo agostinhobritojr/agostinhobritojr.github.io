@@ -621,7 +621,7 @@ pre.rouge .gs {
 <p>Considere a imagem da <a href="registro.html#fig_voltimetro">Figura 32, &#8220;Mostrador de um voltímetro digital com inclinação&#8221;</a>. Trata-se de um mostrador de um voltímetro digital. Uma possível aplicação de visão computacional poderia ser capaz de capturar as imagens do mostrador e realizar o reconhecimento automático do valor de tensão mostrado no visor. Para isso, é necessário realizar a separação dos pixels que compõem o mostrador do voltímetro dos pixels que compõem o fundo da imagem.</p>
 </div>
 <div class="paragraph">
-<p>Entretanto, a inclinação presente nesta imagem constitui uma distorção geométrica que pode dificultar a ação de uma ferramenta de reconhecimento de caracteres.</p>
+<p>Entretanto, a inclinação presente nesta imagem constitui uma distorção geométrica que pode dificultar a ação de uma ferramenta de reconhecimento de caracteres. O processo de mapear os pontos de uma imagem para uma nova posição, de forma que a imagem resultante tenha sua perspectiva corrigida, é conhecido como registro de imagens. Com isso, correspondências geométricas são estabelecidas. O processo de registro pode ser utilizado para corrigir distorções geométricas, mas também é usado para fins de alinhamento de imagens, estabilização de vídeos, entre outros.</p>
 </div>
 <div id="fig_voltimetro" class="imageblock text-center">
 <div class="content">
@@ -790,7 +790,7 @@ pre.rouge .gs {
 </div>
 </div>
 <div class="paragraph">
-<p>A matriz de transformação necessita de dois conjuntos de pontos para ser calculada. O primeiro conjunto é composto pelos pontos de referência na imagem original e o segundo conjunto é composto pelos pontos correspondentes na imagem corrigida. Os pontos de referência na imagem original são armazenados no vetor <code>srcPoints</code> e os pontos correspondentes na imagem corrigida são armazenados no vetor <code>dstPoints</code>.</p>
+<p>A matriz de transformação necessita de dois conjuntos de pontos para ser calculada. O primeiro conjunto é composto pelos pontos de referência na imagem original e o segundo conjunto é composto pelos pontos correspondentes na imagem corrigida. Os pontos de referência na imagem original são armazenados no vetor <code>srcPoints</code> e os pontos correspondentes na imagem corrigida são armazenados no vetor <code>dstPoints</code>. Uma atenção especial deve ser dada à especificação das coordenadas dos pontos. No OpenCV, as coordenadas na classe <code>Point2f</code> são dadas na forma (y, x), ou seja, primeiro vai a coordenada y (horizontal) e depois a coordenada x (vertical).</p>
 </div>
 <div class="paragraph">
 <p>A sequência de pontos deve ser observada na ordem prevista para que a transformação seja realizada corretamente. A ordem dos pontos é <strong>Canto Superior Esquerdo</strong> &#8594; <strong>Canto Superior Direito</strong> &#8594; <strong>Canto Inferior Direito</strong> &#8594; <strong>Canto Inferior Esquerdo</strong>. Essa sequência deve ser observada tanto para os pontos de referência quanto para os pontos correspondentes.</p>
