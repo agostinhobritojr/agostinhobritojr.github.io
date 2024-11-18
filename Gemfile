@@ -20,6 +20,6 @@ end
 
 group :theme_bj_plugins do
 gem 'execjs'
-gem 'octopress'
-gem 'therubyracer'
+# gem 'octopress'
+# gem 'therubyracer'
 end

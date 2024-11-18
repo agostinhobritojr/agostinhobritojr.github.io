@@ -20,7 +20,7 @@ tags:
   - "cursos"
 ---
 
-## [Programação Avançada - DCA1202](/curso/progav-dca1202/)
+## [Programação Avançada - DCA3303](/curso/progav-dca3303/)
 
 ## [Programação Avançada - DCA0803](/curso/progav-dca0803/)
 
