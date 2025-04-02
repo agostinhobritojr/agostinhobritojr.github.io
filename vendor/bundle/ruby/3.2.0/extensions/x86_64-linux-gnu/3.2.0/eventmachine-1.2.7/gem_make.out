@@ -1,8 +1,19 @@
-current directory: /home/ambj/blogs/agostinhobritojr/vendor/bundle/ruby/3.2.0/gems/eventmachine-1.2.7/ext
+current directory: /home/ambj/blogs/agostinhobritojr/vendor/bundle/ruby/3.2.0/gems/eventmachine-1.2.7/ext/fastfilereader
 /usr/bin/ruby3.2 -I/usr/lib/ruby/vendor_ruby extconf.rb
-mkmf.rb can't find header files for ruby at /usr/lib/ruby/include/ruby.h
+creating Makefile
 
-You might have to install separate package for the ruby development
-environment, ruby-dev or ruby-devel for example.
+current directory: /home/ambj/blogs/agostinhobritojr/vendor/bundle/ruby/3.2.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= sitearchdir\=./.gem.20241118-6742-pkj2vq sitelibdir\=./.gem.20241118-6742-pkj2vq clean
 
-extconf failed, exit code 1
+current directory: /home/ambj/blogs/agostinhobritojr/vendor/bundle/ruby/3.2.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= sitearchdir\=./.gem.20241118-6742-pkj2vq sitelibdir\=./.gem.20241118-6742-pkj2vq
+compiling mapper.cpp
+compiling rubymain.cpp
+linking shared-object fastfilereaderext.so
+
+current directory: /home/ambj/blogs/agostinhobritojr/vendor/bundle/ruby/3.2.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= sitearchdir\=./.gem.20241118-6742-pkj2vq sitelibdir\=./.gem.20241118-6742-pkj2vq install
+/usr/bin/install -c -m 0755 fastfilereaderext.so ./.gem.20241118-6742-pkj2vq
+
+current directory: /home/ambj/blogs/agostinhobritojr/vendor/bundle/ruby/3.2.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= sitearchdir\=./.gem.20241118-6742-pkj2vq sitelibdir\=./.gem.20241118-6742-pkj2vq clean
