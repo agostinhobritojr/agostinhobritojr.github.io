@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="author" content="Agostinho Brito">
+<title>Introdução à computação gráfica com OpenGL</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<style>
+pre.pygments .hll { background-color: #ffffcc }
+pre.pygments { background: #f8f8f8; }
+pre.pygments .tok-c { color: #3D7B7B; font-style: italic } /* Comment */
+pre.pygments .tok-err { border: 1px solid #FF0000 } /* Error */
+pre.pygments .tok-k { color: #008000; font-weight: bold } /* Keyword */
+pre.pygments .tok-o { color: #666666 } /* Operator */
+pre.pygments .tok-ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+pre.pygments .tok-cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+pre.pygments .tok-cp { color: #9C6500 } /* Comment.Preproc */
+pre.pygments .tok-cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+pre.pygments .tok-c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+pre.pygments .tok-cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+pre.pygments .tok-gd { color: #A00000 } /* Generic.Deleted */
+pre.pygments .tok-ge { font-style: italic } /* Generic.Emph */
+pre.pygments .tok-ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+pre.pygments .tok-gr { color: #E40000 } /* Generic.Error */
+pre.pygments .tok-gh { color: #000080; font-weight: bold } /* Generic.Heading */
+pre.pygments .tok-gi { color: #008400 } /* Generic.Inserted */
+pre.pygments .tok-go { color: #717171 } /* Generic.Output */
+pre.pygments .tok-gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+pre.pygments .tok-gs { font-weight: bold } /* Generic.Strong */
+pre.pygments .tok-gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+pre.pygments .tok-gt { color: #0044DD } /* Generic.Traceback */
+pre.pygments .tok-kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+pre.pygments .tok-kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+pre.pygments .tok-kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+pre.pygments .tok-kp { color: #008000 } /* Keyword.Pseudo */
+pre.pygments .tok-kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+pre.pygments .tok-kt { color: #B00040 } /* Keyword.Type */
+pre.pygments .tok-m { color: #666666 } /* Literal.Number */
+pre.pygments .tok-s { color: #BA2121 } /* Literal.String */
+pre.pygments .tok-na { color: #687822 } /* Name.Attribute */
+pre.pygments .tok-nb { color: #008000 } /* Name.Builtin */
+pre.pygments .tok-nc { color: #0000FF; font-weight: bold } /* Name.Class */
+pre.pygments .tok-no { color: #880000 } /* Name.Constant */
+pre.pygments .tok-nd { color: #AA22FF } /* Name.Decorator */
+pre.pygments .tok-ni { color: #717171; font-weight: bold } /* Name.Entity */
+pre.pygments .tok-ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+pre.pygments .tok-nf { color: #0000FF } /* Name.Function */
+pre.pygments .tok-nl { color: #767600 } /* Name.Label */
+pre.pygments .tok-nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+pre.pygments .tok-nt { color: #008000; font-weight: bold } /* Name.Tag */
+pre.pygments .tok-nv { color: #19177C } /* Name.Variable */
+pre.pygments .tok-ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+pre.pygments .tok-w { color: #bbbbbb } /* Text.Whitespace */
+pre.pygments .tok-mb { color: #666666 } /* Literal.Number.Bin */
+pre.pygments .tok-mf { color: #666666 } /* Literal.Number.Float */
+pre.pygments .tok-mh { color: #666666 } /* Literal.Number.Hex */
+pre.pygments .tok-mi { color: #666666 } /* Literal.Number.Integer */
+pre.pygments .tok-mo { color: #666666 } /* Literal.Number.Oct */
+pre.pygments .tok-sa { color: #BA2121 } /* Literal.String.Affix */
+pre.pygments .tok-sb { color: #BA2121 } /* Literal.String.Backtick */
+pre.pygments .tok-sc { color: #BA2121 } /* Literal.String.Char */
+pre.pygments .tok-dl { color: #BA2121 } /* Literal.String.Delimiter */
+pre.pygments .tok-sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+pre.pygments .tok-s2 { color: #BA2121 } /* Literal.String.Double */
+pre.pygments .tok-se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+pre.pygments .tok-sh { color: #BA2121 } /* Literal.String.Heredoc */
+pre.pygments .tok-si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+pre.pygments .tok-sx { color: #008000 } /* Literal.String.Other */
+pre.pygments .tok-sr { color: #A45A77 } /* Literal.String.Regex */
+pre.pygments .tok-s1 { color: #BA2121 } /* Literal.String.Single */
+pre.pygments .tok-ss { color: #19177C } /* Literal.String.Symbol */
+pre.pygments .tok-bp { color: #008000 } /* Name.Builtin.Pseudo */
+pre.pygments .tok-fm { color: #0000FF } /* Name.Function.Magic */
+pre.pygments .tok-vc { color: #19177C } /* Name.Variable.Class */
+pre.pygments .tok-vg { color: #19177C } /* Name.Variable.Global */
+pre.pygments .tok-vi { color: #19177C } /* Name.Variable.Instance */
+pre.pygments .tok-vm { color: #19177C } /* Name.Variable.Magic */
+pre.pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
+</style>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+</head>
+<body id="preenchimento" class="book toc2 toc-left">
+<div id="header">
+<h1>Introdução à computação gráfica com OpenGL</h1>
+<div class="details">
+<span id="author" class="author">Agostinho Brito</span><br>
+<span id="revnumber">version 0.9,</span>
+<span id="revdate">(c)2006-15</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<p><span class="toc-root"><a href="index.html">Introdução à computação gráfica com OpenGL</a></span></p><ul class="sectlevel1">
+<li><a href="preface.html">1. Prefácio</a>
+</li>
+<li><a href="conceitos.html">2. Conceitos iniciais</a>
+</li>
+<li><a href="linhas_e_planos.html">3. Desenhando linhas e pontos</a>
+</li>
+<li><a href="preenchimento.html"><span class="toc-current">4. Preenchimento de regiões</span></a>
+<ul class="sectlevel2">
+<li><a href="preenchimento.html#_descrição_do_programa_preenchimento_c">4.1. Descrição do programa <code>preenchimento.c</code></a>
+</li>
+<li><a href="preenchimento.html#preenchimento_exercicios">4.2. Exercícios</a>
+</li>
+</ul>
+</li>
+<li><a href="transformacoes.html">5. Transformações geométricas</a>
+</li>
+<li><a href="projecoes_geometricas.html">6. Projeções geométricas</a>
+</li>
+<li><a href="curvas_plano.html">7. Curvas no plano</a>
+</li>
+<li><a href="superficies_espaco.html">8. Superfícies no espaço</a>
+</li>
+<li><a href="modelagem_solidos.html">9. Modelagem de Sólidos</a>
+</li>
+<li><a href="modelos_iluminação.html">10. Modelos de iluminação e sombreamento</a>
+</li>
+<li><a href="bibliography.html">11. Bibliografia</a>
+</li>
+<li><a href="contribuicoes.html">12. Contribuições</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="preenchimento">4. Preenchimento de regiões</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>O propósito desta lição é aprender funções básicas do OpenGL que
+tratam do preenchimento de regiões. Será mostrado um programa de
+desenho de polígonos com preenchimento interno com cores sólidas,
+padrões e combinações de cores. O programa analisado,
+<a href="exemplos/preenchimento.c" class="bare">exemplos/preenchimento.c</a>, é mostrado no
+Exemplo <a href="preenchimento.html#exemplo_preenchimento">preenchimento.c</a>.</p>
+</div>
+<div id="exemplo_preenchimento" class="listingblock">
+<div class="title">preenchimento.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-cp">#include</span><span class="tok-w"> </span><span class="tok-cpf">&lt;GL/glut.h&gt;</span>
+<span class="tok-cp">#include</span><span class="tok-w"> </span><span class="tok-cpf">&lt;stdlib.h&gt;</span>
+
+<span class="tok-n">GLubyte</span><span class="tok-w"> </span><span class="tok-n">tux</span><span class="tok-p">[]</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x7f</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xfe</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xc4</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x23</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x1</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x83</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x21</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x80</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x1</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x7</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xe0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x80</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x1</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x7</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xf0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x80</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x1</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x8f</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xf9</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x80</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xff</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xff</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x4f</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xf1</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x6f</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xf1</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x2f</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xf3</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x27</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xe2</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x30</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x66</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x1b</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x1c</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xb</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x88</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xb</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x98</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x8</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x18</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xa</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x90</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x8</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x10</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xc</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x30</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x6</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x60</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x3</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xc0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span>
+<span class="tok-p">};</span>
+
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">r</span><span class="tok-p">,</span><span class="tok-n">g</span><span class="tok-p">,</span><span class="tok-n">b</span><span class="tok-p">;</span>
+
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">init</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">);</span>
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">display</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">);</span>
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">keyboard</span><span class="tok-p">(</span><span class="tok-kt">unsigned</span><span class="tok-w"> </span><span class="tok-kt">char</span><span class="tok-w"> </span><span class="tok-n">key</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-p">);</span>
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">mouse</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">button</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">state</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-p">);</span>
+
+<span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">argc</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">char</span><span class="tok-o">**</span><span class="tok-w"> </span><span class="tok-n">argv</span><span class="tok-p">){</span>
+<span class="tok-w">  </span><span class="tok-n">glutInit</span><span class="tok-p">(</span><span class="tok-o">&amp;</span><span class="tok-n">argc</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">argv</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutInitDisplayMode</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">GLUT_DOUBLE</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-n">GLUT_RGB</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutInitWindowSize</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-mi">256</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">256</span><span class="tok-p">);</span><span class="tok-w"> </span>
+<span class="tok-w">  </span><span class="tok-n">glutInitWindowPosition</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-mi">100</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">100</span><span class="tok-p">);</span><span class="tok-w"> </span>
+<span class="tok-w">  </span><span class="tok-n">glutCreateWindow</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-s">&quot;Preenchendo regiões&quot;</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">init</span><span class="tok-p">();</span>
+<span class="tok-w">  </span><span class="tok-n">glutDisplayFunc</span><span class="tok-p">(</span><span class="tok-n">display</span><span class="tok-p">);</span><span class="tok-w"> </span>
+<span class="tok-w">  </span><span class="tok-n">glutKeyboardFunc</span><span class="tok-p">(</span><span class="tok-n">keyboard</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutMouseFunc</span><span class="tok-p">(</span><span class="tok-n">mouse</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutMainLoop</span><span class="tok-p">();</span>
+<span class="tok-w">  </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-mi">0</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">init</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
+<span class="tok-w">  </span><span class="tok-n">glClearColor</span><span class="tok-p">(</span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glOrtho</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">256</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">256</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">-1</span><span class="tok-w"> </span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">r</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-n">g</span><span class="tok-o">=</span><span class="tok-mi">1</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-n">b</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span>
+<span class="tok-p">}</span>
+
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">display</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
+<span class="tok-w">  </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-n">glClear</span><span class="tok-p">(</span><span class="tok-n">GL_COLOR_BUFFER_BIT</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glDisable</span><span class="tok-p">(</span><span class="tok-n">GL_POLYGON_STIPPLE</span><span class="tok-p">);</span>
+
+<span class="tok-w">  </span><span class="tok-n">glPolygonMode</span><span class="tok-p">(</span><span class="tok-n">GL_BACK</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">GL_LINE</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glBegin</span><span class="tok-p">(</span><span class="tok-n">GL_POLYGON</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">30</span><span class="tok-p">,</span><span class="tok-mi">226</span><span class="tok-p">);</span><span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">113</span><span class="tok-p">,</span><span class="tok-mi">226</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">113</span><span class="tok-p">,</span><span class="tok-mi">143</span><span class="tok-p">);</span><span class="tok-w"> </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">30</span><span class="tok-p">,</span><span class="tok-mi">143</span><span class="tok-p">);</span><span class="tok-w"> </span>
+<span class="tok-w">  </span><span class="tok-n">glEnd</span><span class="tok-p">();</span>
+
+<span class="tok-w">  </span><span class="tok-n">glPolygonMode</span><span class="tok-p">(</span><span class="tok-n">GL_BACK</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">GL_FILL</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-n">r</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">g</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">b</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glBegin</span><span class="tok-p">(</span><span class="tok-n">GL_POLYGON</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">143</span><span class="tok-p">,</span><span class="tok-mi">226</span><span class="tok-p">);</span><span class="tok-w"> </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">226</span><span class="tok-p">,</span><span class="tok-mi">226</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">226</span><span class="tok-p">,</span><span class="tok-mi">143</span><span class="tok-p">);</span><span class="tok-w"> </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">143</span><span class="tok-p">,</span><span class="tok-mi">143</span><span class="tok-p">);</span><span class="tok-w"> </span>
+<span class="tok-w">  </span><span class="tok-n">glEnd</span><span class="tok-p">();</span>
+
+<span class="tok-w">  </span><span class="tok-n">glBegin</span><span class="tok-p">(</span><span class="tok-n">GL_POLYGON</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">);</span><span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">30</span><span class="tok-p">,</span><span class="tok-mi">113</span><span class="tok-p">);</span><span class="tok-w">  </span>
+<span class="tok-w">  </span><span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">);</span><span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">113</span><span class="tok-p">,</span><span class="tok-mi">113</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">);</span><span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">113</span><span class="tok-p">,</span><span class="tok-mi">30</span><span class="tok-p">);</span><span class="tok-w">  </span>
+<span class="tok-w">  </span><span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">);</span><span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">30</span><span class="tok-p">,</span><span class="tok-mi">30</span><span class="tok-p">);</span><span class="tok-w"> </span>
+<span class="tok-w">  </span><span class="tok-n">glEnd</span><span class="tok-p">();</span>
+
+<span class="tok-w">  </span><span class="tok-n">glEnable</span><span class="tok-p">(</span><span class="tok-n">GL_POLYGON_STIPPLE</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glPolygonStipple</span><span class="tok-p">(</span><span class="tok-n">tux</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glBegin</span><span class="tok-p">(</span><span class="tok-n">GL_POLYGON</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">143</span><span class="tok-p">,</span><span class="tok-mi">113</span><span class="tok-p">);</span><span class="tok-w"> </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">226</span><span class="tok-p">,</span><span class="tok-mi">113</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">226</span><span class="tok-p">,</span><span class="tok-mi">30</span><span class="tok-p">);</span><span class="tok-w"> </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">143</span><span class="tok-p">,</span><span class="tok-mi">30</span><span class="tok-p">);</span><span class="tok-w"> </span>
+<span class="tok-w">  </span><span class="tok-n">glEnd</span><span class="tok-p">();</span>
+<span class="tok-w">  </span><span class="tok-n">glFlush</span><span class="tok-p">();</span>
+<span class="tok-w">  </span><span class="tok-n">glutSwapBuffers</span><span class="tok-p">();</span>
+<span class="tok-p">}</span>
+
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">keyboard</span><span class="tok-p">(</span><span class="tok-kt">unsigned</span><span class="tok-w"> </span><span class="tok-kt">char</span><span class="tok-w"> </span><span class="tok-n">key</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-p">){</span>
+<span class="tok-w">  </span><span class="tok-k">switch</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">key</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">case</span><span class="tok-w"> </span><span class="tok-mi">27</span><span class="tok-p">:</span>
+<span class="tok-w">	</span><span class="tok-n">exit</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">);</span>
+<span class="tok-w">	</span><span class="tok-k">break</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-p">}</span>
+
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">mouse</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">button</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">state</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-p">){</span>
+<span class="tok-w">  </span><span class="tok-k">switch</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">button</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">case</span><span class="tok-w"> </span><span class="tok-no">GLUT_LEFT_BUTTON</span><span class="tok-p">:</span>
+<span class="tok-w">	</span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">state</span><span class="tok-w"> </span><span class="tok-o">==</span><span class="tok-w"> </span><span class="tok-n">GLUT_DOWN</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">	  </span><span class="tok-n">r</span><span class="tok-o">=</span><span class="tok-p">(</span><span class="tok-n">GLfloat</span><span class="tok-p">)</span><span class="tok-n">rand</span><span class="tok-p">()</span><span class="tok-o">/</span><span class="tok-p">(</span><span class="tok-n">RAND_MAX</span><span class="tok-o">+</span><span class="tok-mf">1.0</span><span class="tok-p">);</span>
+<span class="tok-w">	  </span><span class="tok-n">g</span><span class="tok-o">=</span><span class="tok-p">(</span><span class="tok-n">GLfloat</span><span class="tok-p">)</span><span class="tok-n">rand</span><span class="tok-p">()</span><span class="tok-o">/</span><span class="tok-p">(</span><span class="tok-n">RAND_MAX</span><span class="tok-o">+</span><span class="tok-mf">1.0</span><span class="tok-p">);</span>
+<span class="tok-w">	  </span><span class="tok-n">b</span><span class="tok-o">=</span><span class="tok-p">(</span><span class="tok-n">GLfloat</span><span class="tok-p">)</span><span class="tok-n">rand</span><span class="tok-p">()</span><span class="tok-o">/</span><span class="tok-p">(</span><span class="tok-n">RAND_MAX</span><span class="tok-o">+</span><span class="tok-mf">1.0</span><span class="tok-p">);</span>
+<span class="tok-w">	  </span><span class="tok-n">glutPostRedisplay</span><span class="tok-p">();</span>
+<span class="tok-w">	</span><span class="tok-p">}</span>
+<span class="tok-w">	</span><span class="tok-k">break</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Para compilar e executar o programa <a href="exemplos/preenchimento.c" class="bare">exemplos/preenchimento.c</a>,
+salve-o juntamente com o arquivo <a href="exemplos/Makefile" class="bare">exemplos/Makefile</a> em um
+diretório e execute a seguinte seqüência de comandos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell"><span></span>$<span class="tok-w"> </span>make<span class="tok-w"> </span>preenchimento
+$<span class="tok-w"> </span>./preenchimento</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A saída do programa <code>preenchimento</code> é mostrado na Figura <a href="preenchimento.html#fig_preenchimento">Preenchimento</a>.</p>
+</div>
+<div id="fig_preenchimento" class="paragraph text-center">
+<div class="title">Saída do programa <code>preenchimento</code>.</div>
+<p><span class="image"><img src="data:image/jpg;base64,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o/aS/wCPHSP+un9GooA2rf47+ELINEklxKvy/P5TLnCqvp04qb/hoLwl/duf++G/woooAP8AhoLwl/duf++G/wAKP+GgvCX925/74b/CiigA/wCGgvCX925/74b/AAo/4aC8Jf3bn/vhv8KKKAD/AIaC8Jf3bn/vhv8ACj/hoLwl/duf++G/woooAP8AhoLwl/duf++G/wAKP+GgvCX925/74b/CiigA/wCGgvCX925/74b/AAo/4aC8Jf3bn/vhv8KKKAD/AIaC8Jf3bn/vhv8ACj/hoLwl/duf++G/woooAP8AhoLwl/duf++G/wAKP+GgvCX925/74b/CiigA/wCGgvCX925/74b/AAo/4aC8Jf3bn/vhv8KKKAD/AIaC8Jf3bn/vhv8ACj/hoLwl/duf++G/woooAP8AhoLwl/duf++G/wAKP+GgvCX925/74b/CiigA/wCGgvCX925/74b/AAo/4aC8Jf3bn/vhv8KKKAD/AIaC8Jf3bn/vhv8ACj/hoLwl/duf++G/woooAP8AhoLwl/duf++G/wAKP+GgvCX925/74b/CiigA/wCGgvCX925/74b/AAo/4aC8Jf3bn/vhv8KKKAD/AIaC8Jf3bn/vhv8ACj/hoLwl/duf++G/woooA8z+L/xC0XxxY2C6Y0gkglyyOhHGDzkj3ooooA//2Q==" alt="preenchimento" title="Preenchimento"></span></p>
+</div>
+<div class="sect2">
+<h3 id="_descrição_do_programa_preenchimento_c">4.1. Descrição do programa <code>preenchimento.c</code></h3>
+<div class="paragraph">
+<p>Serão descritas aqui apenas as partes do programa que acrescentam
+conceitos novos em relação aos exemplos anteriores.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">GLubyte</span><span class="tok-w"> </span><span class="tok-n">tux</span><span class="tok-p">[]</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x7f</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xfe</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xc4</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x23</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x1</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x83</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x21</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x80</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x1</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x7</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xe0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x80</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x1</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x7</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xf0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x80</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x1</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x8f</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xf9</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x80</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xff</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xff</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x4f</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xf1</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x6f</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xf1</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x2f</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xf3</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x27</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xe2</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x30</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x66</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x1b</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x1c</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xb</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x88</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xb</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x98</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x8</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x18</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xa</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x90</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x8</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x10</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xc</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x30</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x6</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x60</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x3</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0xc0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span>
+<span class="tok-w"> </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mh">0x0</span>
+<span class="tok-p">};</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Define o vetor <code>tux[]</code>, do tipo <code>GLubyte</code>, para representar o padrão
+de preenchimento de polígonos utilizado neste exemplo.</p>
+</div>
+<div class="paragraph">
+<p>Existem dois métodos principais para preencher regiões utilizando
+padrões. O mais comum utiliza texturas, mas não será abordado nesta
+lição. O outro método consiste em definir um mapa de bits
+monocromático de 32x32 pixels, representando a máscara para o padrão
+que se deseja desenhar. O padrão utilizado neste exemplo é mostrado na Figura <a href="preenchimento.html#fig_tuxfig">Padrão de desenho "tux"</a>.</p>
+</div>
+<div id="fig_tuxfig" class="paragraph text-center">
+<div class="title">Padrão de desenho "tux"</div>
+<p><span class="image"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRvcjogZmlnMmRldiBWZXJzaW9uIDMuMiBQYXRjaGxldmVsIDVlIC0tPgoKPCEtLSBDcmVhdGlvbkRhdGU6IFN1biBPY3QgIDQgMTM6NTQ6NTggMjAxNSAtLT4KCjwhLS0gTWFnbmlmaWNhdGlvbjogMS4wNTAgLS0+Cgo8c3ZnCiAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIKICAgeG1sbnM6Y2M9Imh0dHA6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL25zIyIKICAgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHdpZHRoPSI0LjBpbiIKICAgaGVpZ2h0PSIzLjhpbiIKICAgdmlld0JveD0iLTEyIC0xNSA0ODUxIDQ1NjYiCiAgIGlkPSJzdmcyIgogICB2ZXJzaW9uPSIxLjEiCiAgIGlua3NjYXBlOnZlcnNpb249IjAuOTEgcjEzNzI1IgogICBzb2RpcG9kaTpkb2NuYW1lPSJ0dXhmaWcuc3ZnIj4KICA8bWV0YWRhdGEKICAgICBpZD0ibWV0YWRhdGE0NjYiPgogICAgPHJkZjpSREY+CiAgICAgIDxjYzpXb3JrCiAgICAgICAgIHJkZjphYm91dD0iIj4KICAgICAgICA8ZGM6Zm9ybWF0PmltYWdlL3N2Zyt4bWw8L2RjOmZvcm1hdD4KICAgICAgICA8ZGM6dHlwZQogICAgICAgICAgIHJkZjpyZXNvdXJjZT0iaHR0cDovL3B1cmwub3JnL2RjL2RjbWl0eXBlL1N0aWxsSW1hZ2UiIC8+CiAgICAgICAgPGRjOnRpdGxlPjwvZGM6dGl0bGU+CiAgICAgIDwvY2M6V29yaz4KICAgIDwvcmRmOlJERj4KICA8L21ldGFkYXRhPgogIDxkZWZzCiAgICAgaWQ9ImRlZnM0NjQiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzY2NjY2NiIKICAgICBib3JkZXJvcGFjaXR5PSIxIgogICAgIG9iamVjdHRvbGVyYW5jZT0iMTAiCiAgICAgZ3JpZHRvbGVyYW5jZT0iMTAiCiAgICAgZ3VpZGV0b2xlcmFuY2U9IjEwIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwIgogICAgIGlua3NjYXBlOnBhZ2VzaGFkb3c9IjIiCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSIxMzE3IgogICAgIGlua3NjYXBlOndpbmRvdy1oZWlnaHQ9Ijc0NCIKICAgICBpZD0ibmFtZWR2aWV3NDYyIgogICAgIHNob3dncmlkPSJmYWxzZSIKICAgICBpbmtzY2FwZTp6b29tPSIwLjY5MDA1ODQ5IgogICAgIGlua3NjYXBlOmN4PSIxODAiCiAgICAgaW5rc2NhcGU6Y3k9IjE3MSIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iNDkiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9IjI0IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ic3ZnMiIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmU2IgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIwLDAgNDUzNSwwICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmU4IgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIxNDEsNDUzNSAxNDEsMCAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lMTAiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjI4Myw0NTM1IDI4MywwICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmUxMiIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iNDI1LDQ1MzUgNDI1LDAgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTE0IgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSI1NjYsNDUzNSA1NjYsMCAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lMTYiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjcwOCw0NTM1IDcwOCwwICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmUxOCIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iODUwLDQ1MzUgODUwLDAgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTIwIgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSI5OTIsNDUzNSA5OTIsMCAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lMjIiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjExMzMsNDUzNSAxMTMzLDAgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTI0IgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIxMjc1LDQ1MzUgMTI3NSwwICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmUyNiIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMTQxNyw0NTM1IDE0MTcsMCAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lMjgiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjE1NTksNDUzNSAxNTU5LDAgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTMwIgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIxNzAwLDQ1MzUgMTcwMCwwICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmUzMiIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMTg0Miw0NTM1IDE4NDIsMCAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lMzQiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjE5ODQsNDUzNSAxOTg0LDAgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTM2IgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIyMTI1LDQ1MzUgMjEyNSwwICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmUzOCIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMjI2Nyw0NTM1IDIyNjcsMCAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lNDAiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjI0MDksNDUzNSAyNDA5LDAgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTQyIgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIyNTUxLDQ1MzUgMjU1MSwwICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmU0NCIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMjY5Miw0NTM1IDI2OTIsMCAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lNDYiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjI4MzQsNDUzNSAyODM0LDAgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTQ4IgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIyOTc2LDQ1MzUgMjk3NiwwICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmU1MCIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMzExOCw0NTM1IDMxMTgsMCAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lNTIiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjMyNTksNDUzNSAzMjU5LDAgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTU0IgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIzNDAxLDQ1MzUgMzQwMSwwICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmU1NiIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMzU0Myw0NTM1IDM1NDMsMCAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lNTgiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjM2ODUsNDUzNSAzNjg1LDAgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTYwIgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIzODI2LDQ1MzUgMzgyNiwwICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmU2MiIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMzk2OCw0NTM1IDM5NjgsMCAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lNjQiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjQxMTAsNDUzNSA0MTEwLDAgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTY2IgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSI0MjUxLDQ1MzUgNDI1MSwwICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmU2OCIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iNDM5Myw0NTM1IDQzOTMsMCAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lNzAiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjQ1MzUsNDUzNSA0NTM1LDAgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTcyIgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIwLDE0MSA0NTM1LDE0MSAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lNzQiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjAsMjgzIDQ1MzUsMjgzICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmU3NiIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMCw0MjUgNDUzNSw0MjUgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTc4IgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIwLDU2NiA0NTM1LDU2NiAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lODAiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjAsNzA4IDQ1MzUsNzA4ICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmU4MiIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMCw4NTAgNDUzNSw4NTAgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTg0IgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIwLDk5MiA0NTM1LDk5MiAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lODYiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjAsMTEzMyA0NTM1LDExMzMgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTg4IgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIwLDEyNzUgNDUzNSwxMjc1ICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmU5MCIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMCwxNDE3IDQ1MzUsMTQxNyAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lOTIiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjAsMTU1OSA0NTM1LDE1NTkgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTk0IgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIwLDE3MDAgNDUzNSwxNzAwICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmU5NiIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMCwxODQyIDQ1MzUsMTg0MiAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lOTgiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjAsMTk4NCA0NTM1LDE5ODQgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTEwMCIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMCwyMTI1IDQ1MzUsMjEyNSAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lMTAyIgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIwLDIyNjcgNDUzNSwyMjY3ICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmUxMDQiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjAsMjQwOSA0NTM1LDI0MDkgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTEwNiIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMCwyNTUxIDQ1MzUsMjU1MSAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lMTA4IgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIwLDI2OTIgNDUzNSwyNjkyICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmUxMTAiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjAsMjgzNCA0NTM1LDI4MzQgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTExMiIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMCwyOTc2IDQ1MzUsMjk3NiAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lMTE0IgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIwLDMxMTggNDUzNSwzMTE4ICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmUxMTYiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjAsMzI1OSA0NTM1LDMyNTkgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTExOCIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMCwzNDAxIDQ1MzUsMzQwMSAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lMTIwIgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIwLDM1NDMgNDUzNSwzNTQzICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmUxMjIiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjAsMzY4NSA0NTM1LDM2ODUgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTEyNCIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMCwzODI2IDQ1MzUsMzgyNiAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lMTI2IgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIwLDM5NjggNDUzNSwzOTY4ICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmUxMjgiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjAsNDExMCA0NTM1LDQxMTAgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTEzMCIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMCw0MjUxIDQ1MzUsNDI1MSAiIC8+CiAgPHBvbHlsaW5lCiAgICAgaWQ9InBvbHlsaW5lMTMyIgogICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcG9pbnRzPSIwLDQzOTMgNDUzNSw0MzkzICIgLz4KICA8cG9seWxpbmUKICAgICBpZD0icG9seWxpbmUxMzQiCiAgICAgc3R5bGU9ImZpbGw6bm9uZTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICBwb2ludHM9IjAsNDUzNSA0NTM1LDQ1MzUgIiAvPgogIDxwb2x5bGluZQogICAgIGlkPSJwb2x5bGluZTEzNiIKICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHBvaW50cz0iMCw0NTM1IDAsMCAiIC8+CiAgPHRleHQKICAgICBzdHlsZT0iZm9udC1zdHlsZTpub3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2ZvbnQtc2l6ZToxNTEuOTk5Njg2MzdweDtmb250LWZhbWlseTpzYW5zLXNlcmlmO3RleHQtYW5jaG9yOnN0YXJ0O2ZpbGw6IzAwMDAwMDtzdHJva2Utd2lkdGg6MC4wMjVpbjstaW5rc2NhcGUtZm9udC1zcGVjaWZpY2F0aW9uOidzYW5zLXNlcmlmLCBOb3JtYWwnO2ZvbnQtc3RyZXRjaDpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWFsaWduOnN0YXJ0O3dyaXRpbmctbW9kZTpscjtsaW5lLWhlaWdodDoxMjUlOyIKICAgICBpZD0idGV4dDEzOCIKICAgICBmb250LXNpemU9IjE1MiIKICAgICBmb250LXdlaWdodD0ibm9ybWFsIgogICAgIGZvbnQtc3R5bGU9Im5vcm1hbCIKICAgICB5PSI0NTM1IgogICAgIHg9IjQ2MjkiCiAgICAgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIKICAgICBzb2RpcG9kaTpsaW5lc3BhY2luZz0iMTI1JSI+MTwvdGV4dD4KICA8dGV4dAogICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXdlaWdodDpub3JtYWw7Zm9udC1zaXplOjE1MS45OTk2ODYzN3B4O2ZvbnQtZmFtaWx5OnNhbnMtc2VyaWY7dGV4dC1hbmNob3I6c3RhcnQ7ZmlsbDojMDAwMDAwO3N0cm9rZS13aWR0aDowLjAyNWluOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246J3NhbnMtc2VyaWYsIE5vcm1hbCc7Zm9udC1zdHJldGNoOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO3RleHQtYWxpZ246c3RhcnQ7d3JpdGluZy1tb2RlOmxyO2xpbmUtaGVpZ2h0OjEyNSU7IgogICAgIGlkPSJ0ZXh0MTQwIgogICAgIGZvbnQtc2l6ZT0iMTUyIgogICAgIGZvbnQtd2VpZ2h0PSJub3JtYWwiCiAgICAgZm9udC1zdHlsZT0ibm9ybWFsIgogICAgIHk9IjQyNTEiCiAgICAgeD0iNDYyOSIKICAgICB4bWw6c3BhY2U9InByZXNlcnZlIgogICAgIHNvZGlwb2RpOmxpbmVzcGFjaW5nPSIxMjUlIj4zPC90ZXh0PgogIDx0ZXh0CiAgICAgc3R5bGU9ImZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtmb250LXNpemU6MTUxLjk5OTY4NjM3cHg7Zm9udC1mYW1pbHk6c2Fucy1zZXJpZjt0ZXh0LWFuY2hvcjpzdGFydDtmaWxsOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjAuMDI1aW47LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjonc2Fucy1zZXJpZiwgTm9ybWFsJztmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7dGV4dC1hbGlnbjpzdGFydDt3cml0aW5nLW1vZGU6bHI7bGluZS1oZWlnaHQ6MTI1JTsiCiAgICAgaWQ9InRleHQxNDIiCiAgICAgZm9udC1zaXplPSIxNTIiCiAgICAgZm9udC13ZWlnaHQ9Im5vcm1hbCIKICAgICBmb250LXN0eWxlPSJub3JtYWwiCiAgICAgeT0iMTQxIgogICAgIHg9IjQ2MjkiCiAgICAgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIKICAgICBzb2RpcG9kaTpsaW5lc3BhY2luZz0iMTI1JSI+MzI8L3RleHQ+CiAgPHRleHQKICAgICBzdHlsZT0iZm9udC1zdHlsZTpub3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2ZvbnQtc2l6ZToxNTEuOTk5Njg2MzdweDtmb250LWZhbWlseTpzYW5zLXNlcmlmO3RleHQtYW5jaG9yOnN0YXJ0O2ZpbGw6IzAwMDAwMDtzdHJva2Utd2lkdGg6MC4wMjVpbjstaW5rc2NhcGUtZm9udC1zcGVjaWZpY2F0aW9uOidzYW5zLXNlcmlmLCBOb3JtYWwnO2ZvbnQtc3RyZXRjaDpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDt0ZXh0LWFsaWduOnN0YXJ0O3dyaXRpbmctbW9kZTpscjtsaW5lLWhlaWdodDoxMjUlOyIKICAgICBpZD0idGV4dDE0NCIKICAgICBmb250LXNpemU9IjE1MiIKICAgICBmb250LXdlaWdodD0ibm9ybWFsIgogICAgIGZvbnQtc3R5bGU9Im5vcm1hbCIKICAgICB5PSIzNTQzIgogICAgIHg9IjQ2MjkiCiAgICAgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIKICAgICBzb2RpcG9kaTpsaW5lc3BhY2luZz0iMTI1JSI+ODwvdGV4dD4KICA8cmVjdAogICAgIGlkPSJyZWN0MTQ2IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSI3MDgiCiAgICAgeD0iMTk4NCIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MTQ4IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSI3MDgiCiAgICAgeD0iMjEyNSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MTUwIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSI3MDgiCiAgICAgeD0iMjI2NyIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MTUyIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSI3MDgiCiAgICAgeD0iMjQwOSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MTU0IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSI4NTAiCiAgICAgeD0iMjQwOSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MTU2IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSI4NTAiCiAgICAgeD0iMjU1MSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MTU4IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSI5OTIiCiAgICAgeD0iMjU1MSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MTYwIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSI5OTIiCiAgICAgeD0iMjY5MiIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MTYyIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIxMTMzIgogICAgIHg9IjI2OTIiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDE2NCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMTI3NSIKICAgICB4PSIyNjkyIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QxNjYiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjE0MTciCiAgICAgeD0iMjY5MiIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MTY4IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIxNTU5IgogICAgIHg9IjI2OTIiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDE3MCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMTU1OSIKICAgICB4PSIyODM0IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QxNzIiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjE0MTciCiAgICAgeD0iMjgzNCIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MTc0IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIxNzAwIgogICAgIHg9IjI4MzQiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDE3NiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMTg0MiIKICAgICB4PSIyODM0IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QxNzgiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjE4NDIiCiAgICAgeD0iMjY5MiIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MTgwIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIxODQyIgogICAgIHg9IjI5NzYiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDE4MiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMTk4NCIKICAgICB4PSIyOTc2IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QxODQiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjE5ODQiCiAgICAgeD0iMzExOCIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MTg2IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyMTI1IgogICAgIHg9IjMxMTgiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDE4OCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjI2NyIKICAgICB4PSIzMTE4IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QxOTAiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjIyNjciCiAgICAgeD0iMzI1OSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MTkyIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyNDA5IgogICAgIHg9IjMyNTkiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDE5NCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjU1MSIKICAgICB4PSIzMjU5IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QxOTYiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI2OTIiCiAgICAgeD0iMzI1OSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MTk4IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyODM0IgogICAgIHg9IjMyNTkiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDIwMCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjgzNCIKICAgICB4PSIzNDAxIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyMDIiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI5NzYiCiAgICAgeD0iMzQwMSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MjA0IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIzMTE4IgogICAgIHg9IjM0MDEiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDIwNiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMzI1OSIKICAgICB4PSIzNDAxIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyMDgiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9Ijg1MCIKICAgICB4PSIxOTg0IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyMTAiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9Ijg1MCIKICAgICB4PSIxODQyIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyMTIiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9Ijk5MiIKICAgICB4PSIxODQyIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyMTQiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9Ijk5MiIKICAgICB4PSIxNzAwIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyMTYiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjExMzMiCiAgICAgeD0iMTcwMCIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MjE4IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIxMjc1IgogICAgIHg9IjE3MDAiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDIyMCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMTQxNyIKICAgICB4PSIxNzAwIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyMjIiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjE1NTkiCiAgICAgeD0iMTcwMCIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MjI0IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIxNzAwIgogICAgIHg9IjE3MDAiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDIyNiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMTg0MiIKICAgICB4PSIxNzAwIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyMjgiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjE4NDIiCiAgICAgeD0iMTU1OSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MjMwIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIxOTg0IgogICAgIHg9IjE1NTkiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDIzMiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMTk4NCIKICAgICB4PSIxNDE3IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyMzQiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjIxMjUiCiAgICAgeD0iMTQxNyIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MjM2IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyMjY3IgogICAgIHg9IjE0MTciIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDIzOCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjQwOSIKICAgICB4PSIxNDE3IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyNDAiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI0MDkiCiAgICAgeD0iMTI3NSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MjQyIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyNTUxIgogICAgIHg9IjEyNzUiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDI0NCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjY5MiIKICAgICB4PSIxMTMzIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyNDYiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI2OTIiCiAgICAgeD0iMTI3NSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MjQ4IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyNjkyIgogICAgIHg9IjE0MTciIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDI1MCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjY5MiIKICAgICB4PSIxNTU5IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyNTIiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI2OTIiCiAgICAgeD0iMTcwMCIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MjU0IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyNTUxIgogICAgIHg9IjE3MDAiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDI1NiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjQwOSIKICAgICB4PSIxNzAwIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyNTgiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjIyNjciCiAgICAgeD0iMTcwMCIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MjYwIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyODM0IgogICAgIHg9IjE3MDAiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDI2MiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjEyNSIKICAgICB4PSIxODQyIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyNjQiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjIyNjciCiAgICAgeD0iMTg0MiIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MjY2IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyNDA5IgogICAgIHg9IjE4NDIiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDI2OCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjU1MSIKICAgICB4PSIxODQyIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyNzAiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI2OTIiCiAgICAgeD0iMTg0MiIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MjcyIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyMTI1IgogICAgIHg9IjE5ODQiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDI3NCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjI2NyIKICAgICB4PSIxOTg0IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyNzYiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI0MDkiCiAgICAgeD0iMTk4NCIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0Mjc4IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyNTUxIgogICAgIHg9IjE5ODQiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDI4MCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjY5MiIKICAgICB4PSIxOTg0IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyODIiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjIxMjUiCiAgICAgeD0iMjEyNSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0Mjg0IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyMjY3IgogICAgIHg9IjIxMjUiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDI4NiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjQwOSIKICAgICB4PSIyMTI1IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyODgiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI1NTEiCiAgICAgeD0iMjEyNSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MjkwIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyNjkyIgogICAgIHg9IjIxMjUiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDI5MiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjEyNSIKICAgICB4PSIyMjY3IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QyOTQiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjIyNjciCiAgICAgeD0iMjI2NyIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0Mjk2IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyNDA5IgogICAgIHg9IjIyNjciIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDI5OCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjU1MSIKICAgICB4PSIyMjY3IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzMDAiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI2OTIiCiAgICAgeD0iMjI2NyIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MzAyIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIxOTg0IgogICAgIHg9IjI0MDkiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDMwNCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjEyNSIKICAgICB4PSIyNDA5IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzMDYiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjIyNjciCiAgICAgeD0iMjQwOSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MzA4IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyNDA5IgogICAgIHg9IjI0MDkiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDMxMCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjU1MSIKICAgICB4PSIyNDA5IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzMTIiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjE5ODQiCiAgICAgeD0iMjU1MSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MzE0IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyMTI1IgogICAgIHg9IjI1NTEiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDMxNiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjI2NyIKICAgICB4PSIyNTUxIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzMTgiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI0MDkiCiAgICAgeD0iMjU1MSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MzIwIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyNTUxIgogICAgIHg9IjI1NTEiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDMyMiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjI2NyIKICAgICB4PSIyNjkyIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzMjQiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI0MDkiCiAgICAgeD0iMjY5MiIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MzI2IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyNTUxIgogICAgIHg9IjI2OTIiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDMyOCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjY5MiIKICAgICB4PSIyNjkyIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzMzAiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI4MzQiCiAgICAgeD0iMjY5MiIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MzMyIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyNjkyIgogICAgIHg9IjI0MDkiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDMzNCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjY5MiIKICAgICB4PSIyNTUxIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzMzYiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI4MzQiCiAgICAgeD0iMjU1MSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MzM4IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyOTc2IgogICAgIHg9IjI1NTEiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDM0MCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMzExOCIKICAgICB4PSIyNTUxIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzNDIiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjMyNTkiCiAgICAgeD0iMjU1MSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MzQ0IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyODM0IgogICAgIHg9IjE4NDIiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDM0NiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjgzNCIKICAgICB4PSIxOTg0IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzNDgiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI4MzQiCiAgICAgeD0iMjEyNSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MzUwIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyODM0IgogICAgIHg9IjIyNjciIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDM1MiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjk3NiIKICAgICB4PSIxODQyIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzNTQiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI5NzYiCiAgICAgeD0iMTk4NCIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MzU2IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyOTc2IgogICAgIHg9IjIxMjUiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDM1OCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjk3NiIKICAgICB4PSIyMjY3IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzNjAiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI5NzYiCiAgICAgeD0iMjQwOSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MzYyIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIzMTE4IgogICAgIHg9IjE4NDIiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDM2NCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMzExOCIKICAgICB4PSIxOTg0IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzNjYiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjMxMTgiCiAgICAgeD0iMjEyNSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MzY4IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIzMTE4IgogICAgIHg9IjIyNjciIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDM3MCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMzExOCIKICAgICB4PSIyNDA5IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzNzIiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjM0MDEiCiAgICAgeD0iMTg0MiIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0Mzc0IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIzMjU5IgogICAgIHg9IjE5ODQiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDM3NiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMzI1OSIKICAgICB4PSIyMTI1IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzNzgiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI4MzQiCiAgICAgeD0iMjQwOSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MzgwIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyOTc2IgogICAgIHg9IjI2OTIiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDM4MiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMjY5MiIKICAgICB4PSIyODM0IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzODQiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjI2OTIiCiAgICAgeD0iMjk3NiIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0Mzg2IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyNjkyIgogICAgIHg9IjMxMTgiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDM4OCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMzI1OSIKICAgICB4PSIzMjU5IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzOTAiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjM0MDEiCiAgICAgeD0iMzI1OSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0MzkyIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIzNDAxIgogICAgIHg9IjMxMTgiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDM5NCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMzU0MyIKICAgICB4PSIzMTE4IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3QzOTYiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjM1NDMiCiAgICAgeD0iMjk3NiIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0Mzk4IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIzNTQzIgogICAgIHg9IjI4MzQiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDQwMCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMzU0MyIKICAgICB4PSIyNjkyIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3Q0MDIiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjM1NDMiCiAgICAgeD0iMjU1MSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0NDA0IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIzNTQzIgogICAgIHg9IjI0MDkiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDQwNiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMzU0MyIKICAgICB4PSIyMjY3IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3Q0MDgiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjM1NDMiCiAgICAgeD0iMjEyNSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0NDEwIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIzNTQzIgogICAgIHg9IjE5ODQiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDQxMiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMzU0MyIKICAgICB4PSIxODQyIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3Q0MTQiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjM1NDMiCiAgICAgeD0iMTcwMCIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0NDE2IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIzNTQzIgogICAgIHg9IjE1NTkiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDQxOCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMzU0MyIKICAgICB4PSIxNDE3IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3Q0MjAiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjM1NDMiCiAgICAgeD0iMTI3NSIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0NDIyIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIzNDAxIgogICAgIHg9IjEyNzUiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDQyNCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMzQwMSIKICAgICB4PSIxMTMzIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3Q0MjYiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjMyNTkiCiAgICAgeD0iMTEzMyIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0NDI4IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIzMjU5IgogICAgIHg9Ijk5MiIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0NDMwIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIzMTE4IgogICAgIHg9Ijk5MiIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0NDMyIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyOTc2IgogICAgIHg9Ijk5MiIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0NDM0IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyODM0IgogICAgIHg9Ijk5MiIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0NDM2IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyODM0IgogICAgIHg9IjExMzMiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDQzOCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMzQwMSIKICAgICB4PSIyNTUxIiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3Q0NDAiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjE1NTkiCiAgICAgeD0iMTk4NCIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0NDQyIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIxNTU5IgogICAgIHg9IjIxMjUiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDQ0NCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMTg0MiIKICAgICB4PSIyMTI1IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3Q0NDYiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjE3MDAiCiAgICAgeD0iMTk4NCIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0NDQ4IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIxODQyIgogICAgIHg9IjE5ODQiIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDQ1MCIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMTcwMCIKICAgICB4PSIyMTI1IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3Q0NTIiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjE3MDAiCiAgICAgeD0iMjI2NyIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0NDU0IgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIxNTU5IgogICAgIHg9IjIyNjciIC8+CiAgPHJlY3QKICAgICBpZD0icmVjdDQ1NiIKICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDo4O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyIgogICAgIHJ4PSIwIgogICAgIGhlaWdodD0iMTQxIgogICAgIHdpZHRoPSIxNDEiCiAgICAgeT0iMTI3NSIKICAgICB4PSIyMjY3IiAvPgogIDxyZWN0CiAgICAgaWQ9InJlY3Q0NTgiCiAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6ODtzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlciIKICAgICByeD0iMCIKICAgICBoZWlnaHQ9IjE0MSIKICAgICB3aWR0aD0iMTQxIgogICAgIHk9IjEyNzUiCiAgICAgeD0iMTk4NCIgLz4KICA8cmVjdAogICAgIGlkPSJyZWN0NDYwIgogICAgIHN0eWxlPSJmaWxsOiMwMDAwMDA7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXIiCiAgICAgcng9IjAiCiAgICAgaGVpZ2h0PSIxNDEiCiAgICAgd2lkdGg9IjE0MSIKICAgICB5PSIyODM0IgogICAgIHg9IjI4MzQiIC8+Cjwvc3ZnPgo=" alt="Tux" title="Tux"></span></p>
+</div>
+<div class="paragraph">
+<p>O padrão de desenho (vetor <code>tux[]</code>) o formada por um conjunto de
+números representados na forma hexadecimal. Para construir este vetor,
+toma-se cada linha do mapa de bits de baixo para cima. Cada 8 pixels
+de uma linha da figura equivalem aos bits componentes de um elemento
+do vetor. Os bits mais significativos ficam à esquerda e os menos
+significativos à direita. Seguindo esta receita, então a linha 8 da
+<a href="preenchimento.html#fig_tuxfig">Padrão de desenho "tux"</a>, representada pela seqüência de bits
+<code>00000000110001000010001100000000</code>, equivalerá à seqüência <code>0x0,0xc4,0x23,0x0</code> do array <code>tux[]</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">glutInitDisplayMode</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">GLUT_DOUBLE</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-n">GLUT_RGB</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A função <code>glutInitDisplayMode()</code> avisa GLUT para utilizar dois
+<em>buffers</em> no desenho de cenas: um principal e outro auxiliar. Todos os
+objetos deverão desenhados no buffer auxiliar. Quando a função
+<code>glutSwapBuffers()</code> for chamada, o buffer auxiliar passa a ser o
+principal, e o principal toma o lugar do auxiliar. Assim, a imagem
+gerada é apresentada de uma só vez na tela, evitando cintilações e a
+visualização do processo de desenho, efeitos indesejáveis
+principalmente em animações.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">glutMouseFunc</span><span class="tok-p">(</span><span class="tok-n">mouse</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Define que função GLUT deverá chamar quando ocorrerem eventos de
+mouse. Quando o usuário pressiona ou solta uma dos botões do mouse,
+cada pressionamento ou soltura gera uma chamada de mouse. A função de
+chamada passada como argumento para <code>glutMouseFunc()</code> deve possuir o
+seguinte protótipo:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">funcao</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">button</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">state</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">glClear</span><span class="tok-p">(</span><span class="tok-n">GL_COLOR_BUFFER_BIT</span><span class="tok-p">);</span>
+<span class="tok-n">glDisable</span><span class="tok-p">(</span><span class="tok-n">GL_POLYGON_STIPPLE</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As funções <code>glDisable()</code> e <code>glEnable()</code> permitem habilitar diversas habilidades do OpenGL. O parâmetro &lt;parameter&gt;GL_POLYGON_STIPPLE` passado para essa função desabilita o desenho de polígonos utilizando padrões de desenho. Quando <code>GL_POLYGON_STIPPLE</code> é habilitado, OpenGL usa o padrão corrente para desenhar.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">glPolygonMode</span><span class="tok-p">(</span><span class="tok-n">GL_BACK</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">GL_LINE</span><span class="tok-p">);</span>
+<span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">);</span>
+<span class="tok-n">glBegin</span><span class="tok-p">(</span><span class="tok-n">GL_POLYGON</span><span class="tok-p">);</span>
+<span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">30</span><span class="tok-p">,</span><span class="tok-mi">226</span><span class="tok-p">);</span><span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">113</span><span class="tok-p">,</span><span class="tok-mi">226</span><span class="tok-p">);</span>
+<span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">113</span><span class="tok-p">,</span><span class="tok-mi">143</span><span class="tok-p">);</span><span class="tok-w"> </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">30</span><span class="tok-p">,</span><span class="tok-mi">143</span><span class="tok-p">);</span>
+<span class="tok-n">glEnd</span><span class="tok-p">();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Neste trecho, a função <code>glPolygonMode()</code> indica que a parte de trás
+dos polígonos (<code>GL_BACK</code>) será desenhada apenas com a linha de
+contorno externo (<code>GL_LINE</code>), de cor vermelha, conforme especificado
+pela função <code>glColor3f()</code>. As funções <code>glBegin()</code>/<code>glEnd()</code> são usadas
+agora para iniciar o traçado de um polígono (<code>GL_POLYGON</code>) de
+coordenadas especificadas pela função <code>glVertex2i()</code>. O resultado é o
+contorno retangular vermelho mostrado na <a href="preenchimento.html#fig_tuxfig">Padrão de desenho "tux"</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">glPolygonMode</span><span class="tok-p">(</span><span class="tok-n">GL_BACK</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">GL_FILL</span><span class="tok-p">);</span>
+<span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">);</span>
+<span class="tok-n">glBegin</span><span class="tok-p">(</span><span class="tok-n">GL_POLYGON</span><span class="tok-p">);</span>
+<span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">143</span><span class="tok-p">,</span><span class="tok-mi">226</span><span class="tok-p">);</span><span class="tok-w"> </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">226</span><span class="tok-p">,</span><span class="tok-mi">226</span><span class="tok-p">);</span>
+<span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">226</span><span class="tok-p">,</span><span class="tok-mi">143</span><span class="tok-p">);</span><span class="tok-w"> </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">143</span><span class="tok-p">,</span><span class="tok-mi">143</span><span class="tok-p">);</span>
+<span class="tok-n">glEnd</span><span class="tok-p">();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A função <code>glPolygonMode()</code> indica agora que a parte de trás dos
+polígonos será desenhada apenas com preenchimento sólido
+(<code>GL_FULL</code>). A cor de desenho agora é (R, G, B) = (0, 1, 0), de modo
+que o resultado da execução desse trecho de código é o retângulo verde
+mostrado na Figura <a href="preenchimento.html#fig_tuxfig">Padrão de desenho "tux"</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">glBegin</span><span class="tok-p">(</span><span class="tok-n">GL_POLYGON</span><span class="tok-p">);</span>
+<span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">);</span><span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">30</span><span class="tok-p">,</span><span class="tok-mi">113</span><span class="tok-p">);</span>
+<span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">);</span><span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">113</span><span class="tok-p">,</span><span class="tok-mi">113</span><span class="tok-p">);</span>
+<span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">);</span><span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">113</span><span class="tok-p">,</span><span class="tok-mi">30</span><span class="tok-p">);</span>
+<span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">);</span><span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">30</span><span class="tok-p">,</span><span class="tok-mi">30</span><span class="tok-p">);</span>
+<span class="tok-n">glEnd</span><span class="tok-p">();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Este trecho de código demonstra uma característica peculiar de
+preenchimento. Como cada vértice é desenhado com uma cor diferente,
+OpenGL interpola estas cores para compor as tonalidades do interior do
+polígono, gerando um preenchimento bastante colorido.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">glEnable</span><span class="tok-p">(</span><span class="tok-n">GL_POLYGON_STIPPLE</span><span class="tok-p">);</span>
+<span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">);</span>
+<span class="tok-n">glPolygonStipple</span><span class="tok-p">(</span><span class="tok-n">tux</span><span class="tok-p">);</span>
+<span class="tok-n">glBegin</span><span class="tok-p">(</span><span class="tok-n">GL_POLYGON</span><span class="tok-p">);</span>
+<span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">143</span><span class="tok-p">,</span><span class="tok-mi">113</span><span class="tok-p">);</span><span class="tok-w"> </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">226</span><span class="tok-p">,</span><span class="tok-mi">113</span><span class="tok-p">);</span>
+<span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">226</span><span class="tok-p">,</span><span class="tok-mi">30</span><span class="tok-p">);</span><span class="tok-w"> </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">143</span><span class="tok-p">,</span><span class="tok-mi">30</span><span class="tok-p">);</span>
+<span class="tok-n">glEnd</span><span class="tok-p">();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>O preenchimento com padrões é agora habilitado pela função
+<code>glEnable()</code>. A função <code>glColor3f()</code> define magenta, combinação das
+tonalidades puras vermelho (R=1) e azul (B=1), como a nova cor de
+desenho. A função <code>glPolygonStipple()</code> define o novo padrão de
+preenchimento de polígonos, representado pelo vetor
+&lt;varname&gt;tux[]<code>. Em seguida, o par `glBegin()</code>/<code>glEnd()</code>
+desenha o último polígono, preenchindo com o padrão "tux".</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">glFlush</span><span class="tok-p">();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A função <code>glFlush()</code> faz com que qualquer comando OpenGL ainda não
+executado seja executado o mais rápido possível pelo mecanismo de
+exibição. OpenGL freqüentemente executa comandos aos lotes, de modo a
+tornar mais eficiente o processo de exibição, principalmente quando os
+programas são executados via rede. Neste caso, quando os comandos
+executados um a um, o programa pode se tornar ineficiente,
+considerando as sobrecargas existentes em um barramento de rede. Caso
+o programa desenvolvido seja destinado ao uso somente local, a função
+<code>glFlush()</code> torna-se desnecessária. Entretanto, se o programa é feito
+para funcionar bem tanto localmente quanto em rede, deve ser incluída
+uma chamada à função <code>glFlush()</code> no final de cada quadro ou cena.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">mouse</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">button</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">state</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-p">){</span>
+<span class="tok-w">  </span><span class="tok-k">switch</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">button</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">case</span><span class="tok-w"> </span><span class="tok-no">GLUT_LEFT_BUTTON</span><span class="tok-p">:</span>
+<span class="tok-w">	</span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">state</span><span class="tok-w"> </span><span class="tok-o">==</span><span class="tok-w"> </span><span class="tok-n">GLUT_DOWN</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">	  </span><span class="tok-n">r</span><span class="tok-o">=</span><span class="tok-p">(</span><span class="tok-n">GLfloat</span><span class="tok-p">)</span><span class="tok-n">rand</span><span class="tok-p">()</span><span class="tok-o">/</span><span class="tok-p">(</span><span class="tok-n">RAND_MAX</span><span class="tok-o">+</span><span class="tok-mf">1.0</span><span class="tok-p">);</span>
+<span class="tok-w">	  </span><span class="tok-n">g</span><span class="tok-o">=</span><span class="tok-p">(</span><span class="tok-n">GLfloat</span><span class="tok-p">)</span><span class="tok-n">rand</span><span class="tok-p">()</span><span class="tok-o">/</span><span class="tok-p">(</span><span class="tok-n">RAND_MAX</span><span class="tok-o">+</span><span class="tok-mf">1.0</span><span class="tok-p">);</span>
+<span class="tok-w">	  </span><span class="tok-n">b</span><span class="tok-o">=</span><span class="tok-p">(</span><span class="tok-n">GLfloat</span><span class="tok-p">)</span><span class="tok-n">rand</span><span class="tok-p">()</span><span class="tok-o">/</span><span class="tok-p">(</span><span class="tok-n">RAND_MAX</span><span class="tok-o">+</span><span class="tok-mf">1.0</span><span class="tok-p">);</span>
+<span class="tok-w">	  </span><span class="tok-n">glutPostRedisplay</span><span class="tok-p">();</span>
+<span class="tok-w">	</span><span class="tok-p">}</span>
+<span class="tok-w">	</span><span class="tok-k">break</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A função de tratamento de eventos de mouse verifica se algum botão é
+pressionado. Caso o botão esquerdo (<code>GLUT_LEFT_BUTTON</code>) seja
+pressionado (<code>GLUT_DOWN</code>), serão gerados três valores aleatórios para
+as variáveis <code>r</code>, <code>g</code> e <code>b</code>, na faixa [0,1]. Quando a função
+<code>glutPostRedisplay()</code> é executada, a função <code>display</code> é chamada
+novamente, fazendo com que a janela corrente seja redesenhada e o
+polígono no canto superior esquerdo dessa janela mude de cor.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="preenchimento_exercicios">4.2. Exercícios</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Utilizando o programa <a href="exemplos/preenchimento.c" class="bare">exemplos/preenchimento.c</a> como
+referência, implemente um programa <code>selecao.c</code>. Este programa deverá
+desenhar numa janela com fundo branco, de dimensões 256x256 pixels,
+quatro polígonos com as mesmas coordenadas dos polígonos do programa
+de referência. Todos os polígonos devem estar inicialmente preenchidos
+de amarelo e com bordas pretas. Quando o usuário clicar com o botão
+esquerdo do mouse dentro de um dos polígonos, a cor de preechimento
+deste polígono deverá mudar para uma cor aleatória. Quando a tecla
+<kbd>b</kbd> for pressionada, o programa passará a mudar as cores das
+bordas e não mais dos fundos dos polígonos. Quando a tecla <kbd>f</kbd> for
+pressionada, o programa passará a mudar as cores dos fundos dos
+polígonos e não mais das bordas.</p>
+</li>
+<li>
+<p>Repita o item anterior utilizando <em>buffer</em> simples e comente os
+resultados obtidos.</p>
+</li>
+<li>
+<p>Crie um padrão de preenchimento com as iniciais dos seu nome e sobre
+nome, por exemplo, AB, para Agostinho Brito. Implemente um programa
+que desenhe em uma janela de fundo branco de dimensões 300x300 pixels
+um hexágono com <em>bounding box</em> de dimensões 200x200 pixels. O hexágono
+deve estar centrado na tela e preenchido com cor azul, utilize este
+padrão de preenchimento criado.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Previous: <a href="linhas_e_planos.html">Desenhando linhas e pontos</a> | ↑ Up: <a href="index.html">Introdução à computação gráfica com OpenGL</a> | Next: <a href="transformacoes.html">Transformações geométricas</a> →</p>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 0.9<br>
+Last updated 2025-04-22 10:50:34 -0300
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>

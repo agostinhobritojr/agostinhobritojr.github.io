@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="author" content="Agostinho Brito">
+<title>Introdução à computação gráfica com OpenGL</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<style>
+pre.pygments .hll { background-color: #ffffcc }
+pre.pygments { background: #f8f8f8; }
+pre.pygments .tok-c { color: #3D7B7B; font-style: italic } /* Comment */
+pre.pygments .tok-err { border: 1px solid #FF0000 } /* Error */
+pre.pygments .tok-k { color: #008000; font-weight: bold } /* Keyword */
+pre.pygments .tok-o { color: #666666 } /* Operator */
+pre.pygments .tok-ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+pre.pygments .tok-cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+pre.pygments .tok-cp { color: #9C6500 } /* Comment.Preproc */
+pre.pygments .tok-cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+pre.pygments .tok-c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+pre.pygments .tok-cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+pre.pygments .tok-gd { color: #A00000 } /* Generic.Deleted */
+pre.pygments .tok-ge { font-style: italic } /* Generic.Emph */
+pre.pygments .tok-ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+pre.pygments .tok-gr { color: #E40000 } /* Generic.Error */
+pre.pygments .tok-gh { color: #000080; font-weight: bold } /* Generic.Heading */
+pre.pygments .tok-gi { color: #008400 } /* Generic.Inserted */
+pre.pygments .tok-go { color: #717171 } /* Generic.Output */
+pre.pygments .tok-gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+pre.pygments .tok-gs { font-weight: bold } /* Generic.Strong */
+pre.pygments .tok-gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+pre.pygments .tok-gt { color: #0044DD } /* Generic.Traceback */
+pre.pygments .tok-kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+pre.pygments .tok-kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+pre.pygments .tok-kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+pre.pygments .tok-kp { color: #008000 } /* Keyword.Pseudo */
+pre.pygments .tok-kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+pre.pygments .tok-kt { color: #B00040 } /* Keyword.Type */
+pre.pygments .tok-m { color: #666666 } /* Literal.Number */
+pre.pygments .tok-s { color: #BA2121 } /* Literal.String */
+pre.pygments .tok-na { color: #687822 } /* Name.Attribute */
+pre.pygments .tok-nb { color: #008000 } /* Name.Builtin */
+pre.pygments .tok-nc { color: #0000FF; font-weight: bold } /* Name.Class */
+pre.pygments .tok-no { color: #880000 } /* Name.Constant */
+pre.pygments .tok-nd { color: #AA22FF } /* Name.Decorator */
+pre.pygments .tok-ni { color: #717171; font-weight: bold } /* Name.Entity */
+pre.pygments .tok-ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+pre.pygments .tok-nf { color: #0000FF } /* Name.Function */
+pre.pygments .tok-nl { color: #767600 } /* Name.Label */
+pre.pygments .tok-nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+pre.pygments .tok-nt { color: #008000; font-weight: bold } /* Name.Tag */
+pre.pygments .tok-nv { color: #19177C } /* Name.Variable */
+pre.pygments .tok-ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+pre.pygments .tok-w { color: #bbbbbb } /* Text.Whitespace */
+pre.pygments .tok-mb { color: #666666 } /* Literal.Number.Bin */
+pre.pygments .tok-mf { color: #666666 } /* Literal.Number.Float */
+pre.pygments .tok-mh { color: #666666 } /* Literal.Number.Hex */
+pre.pygments .tok-mi { color: #666666 } /* Literal.Number.Integer */
+pre.pygments .tok-mo { color: #666666 } /* Literal.Number.Oct */
+pre.pygments .tok-sa { color: #BA2121 } /* Literal.String.Affix */
+pre.pygments .tok-sb { color: #BA2121 } /* Literal.String.Backtick */
+pre.pygments .tok-sc { color: #BA2121 } /* Literal.String.Char */
+pre.pygments .tok-dl { color: #BA2121 } /* Literal.String.Delimiter */
+pre.pygments .tok-sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+pre.pygments .tok-s2 { color: #BA2121 } /* Literal.String.Double */
+pre.pygments .tok-se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+pre.pygments .tok-sh { color: #BA2121 } /* Literal.String.Heredoc */
+pre.pygments .tok-si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+pre.pygments .tok-sx { color: #008000 } /* Literal.String.Other */
+pre.pygments .tok-sr { color: #A45A77 } /* Literal.String.Regex */
+pre.pygments .tok-s1 { color: #BA2121 } /* Literal.String.Single */
+pre.pygments .tok-ss { color: #19177C } /* Literal.String.Symbol */
+pre.pygments .tok-bp { color: #008000 } /* Name.Builtin.Pseudo */
+pre.pygments .tok-fm { color: #0000FF } /* Name.Function.Magic */
+pre.pygments .tok-vc { color: #19177C } /* Name.Variable.Class */
+pre.pygments .tok-vg { color: #19177C } /* Name.Variable.Global */
+pre.pygments .tok-vi { color: #19177C } /* Name.Variable.Instance */
+pre.pygments .tok-vm { color: #19177C } /* Name.Variable.Magic */
+pre.pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
+</style>
+<style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
+                       font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
+             .nav-footer{text-align: center; margin-top: auto;}
+             .nav-footer > p > a {white-space: nowrap;}</style>
+</head>
+<body id="curvas_plano" class="book toc2 toc-left">
+<div id="header">
+<h1>Introdução à computação gráfica com OpenGL</h1>
+<div class="details">
+<span id="author" class="author">Agostinho Brito</span><br>
+<span id="revnumber">version 0.9,</span>
+<span id="revdate">(c)2006-15</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<p><span class="toc-root"><a href="index.html">Introdução à computação gráfica com OpenGL</a></span></p><ul class="sectlevel1">
+<li><a href="preface.html">1. Prefácio</a>
+</li>
+<li><a href="conceitos.html">2. Conceitos iniciais</a>
+</li>
+<li><a href="linhas_e_planos.html">3. Desenhando linhas e pontos</a>
+</li>
+<li><a href="preenchimento.html">4. Preenchimento de regiões</a>
+</li>
+<li><a href="transformacoes.html">5. Transformações geométricas</a>
+</li>
+<li><a href="projecoes_geometricas.html">6. Projeções geométricas</a>
+</li>
+<li><a href="curvas_plano.html"><span class="toc-current">7. Curvas no plano</span></a>
+<ul class="sectlevel2">
+<li><a href="curvas_plano.html#curvas_plano_descricao">7.1. Descrição do programa <code>splines2d.c</code></a>
+</li>
+<li><a href="curvas_plano.html#curvas_plano_exercicios">7.2. Exercícios</a>
+</li>
+</ul>
+</li>
+<li><a href="superficies_espaco.html">8. Superfícies no espaço</a>
+</li>
+<li><a href="modelagem_solidos.html">9. Modelagem de Sólidos</a>
+</li>
+<li><a href="modelos_iluminação.html">10. Modelos de iluminação e sombreamento</a>
+</li>
+<li><a href="bibliography.html">11. Bibliografia</a>
+</li>
+<li><a href="contribuicoes.html">12. Contribuições</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="curvas_plano">7. Curvas no plano</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>O propósito desta lição é mostrar como gerar em um plano as curvas paramétricas mais comuns no OpenGL: as curvas de Bézier e as NURBS (<em>Non Uniform Rational B-Splines</em>). A forma destas curvas é controlada pelo posicionamento dos vértices de um polígono característico, cuja influência será estudada de forma interativa no programa exemplo. Será estudada também a influência dos vetores de nós sobre as NURBS, vetores estes que servem para definir a região de influência de cada vértice do polígono característico na forma da curva.</p>
+</div>
+<div class="paragraph">
+<p>É introduzido também o uso de uma nova função do GLUT: <code>glutMotionFunc()</code>, ativada quando o mouse é movimentado pela janela enquanto um ou mais botões são pressionados.</p>
+</div>
+<div class="paragraph">
+<p>O programa utilizado nesta lição permite que o usuário controle a forma de uma curva através da seleção e movimentação dos vértices (destacados em vermelho) de um polígono (em amarelo), como mostra a Figura <a href="#fig_curvas-plano-splines">[fig_curvas-plano-splines]</a>.</p>
+</div>
+<div id="fig_curvas_plano_splines" class="paragraph text-center">
+<div class="title">Traçado interativo de splines</div>
+<p><span class="image"><img src="data:image/jpg;base64,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" alt="curvas plano splines"></span></p>
+</div>
+<div class="paragraph">
+<p>O programa usado para modelar as splines é mostrado no exemplo <a href="curvas_plano.html#exemplo_curvas_plano">splines2d.c</a>. As teclas <kbd>b</kbd> e <kbd>n</kbd> definem o tipo de curva que será desenhada: Bézier ou NURBS, respectivamente.</p>
+</div>
+<div id="exemplo_curvas_plano" class="listingblock">
+<div class="title">programa <code>splines2d.c</code></div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-cp">#include</span><span class="tok-w"> </span><span class="tok-cpf">&lt;stdlib.h&gt;</span>
+<span class="tok-cp">#include</span><span class="tok-w"> </span><span class="tok-cpf">&lt;GL/glut.h&gt;</span>
+<span class="tok-cp">#include</span><span class="tok-w"> </span><span class="tok-cpf">&lt;math.h&gt;</span>
+
+<span class="tok-n">GLint</span><span class="tok-w"> </span><span class="tok-n">nVertices</span><span class="tok-o">=</span><span class="tok-mi">6</span><span class="tok-p">;</span>
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-mi">6</span><span class="tok-p">][</span><span class="tok-mi">3</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-p">{</span><span class="tok-mf">-4.0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">},</span><span class="tok-w"> </span>
+<span class="tok-w">  </span><span class="tok-p">{</span><span class="tok-mf">-4.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-o">+</span><span class="tok-mf">4.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">},</span><span class="tok-w"> </span>
+<span class="tok-w">  </span><span class="tok-p">{</span><span class="tok-o">+</span><span class="tok-mf">4.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">-4.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">},</span><span class="tok-w"> </span>
+<span class="tok-w">  </span><span class="tok-p">{</span><span class="tok-mf">-4.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">-4.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">},</span><span class="tok-w"> </span>
+<span class="tok-w">  </span><span class="tok-p">{</span><span class="tok-o">+</span><span class="tok-mf">4.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-o">+</span><span class="tok-mf">4.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">},</span><span class="tok-w"> </span>
+<span class="tok-w">  </span><span class="tok-p">{</span><span class="tok-o">+</span><span class="tok-mf">4.0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">}</span>
+<span class="tok-p">};</span>
+
+<span class="tok-n">GLint</span><span class="tok-w"> </span><span class="tok-n">largura</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">altura</span><span class="tok-p">;</span>
+<span class="tok-n">GLint</span><span class="tok-w"> </span><span class="tok-n">mudaCurva</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span>
+<span class="tok-n">GLint</span><span class="tok-w"> </span><span class="tok-n">verticeCorrente</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span>
+
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">esquerda</span><span class="tok-o">=</span><span class="tok-mi">-5</span><span class="tok-p">;</span>
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">direita</span><span class="tok-w"> </span><span class="tok-o">=+</span><span class="tok-mi">5</span><span class="tok-p">;</span>
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">fundo</span><span class="tok-w">   </span><span class="tok-o">=</span><span class="tok-mi">-5</span><span class="tok-p">;</span>
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">topo</span><span class="tok-w">    </span><span class="tok-o">=+</span><span class="tok-mi">5</span><span class="tok-p">;</span>
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">longe</span><span class="tok-w">   </span><span class="tok-o">=+</span><span class="tok-mi">5</span><span class="tok-p">;</span>
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">perto</span><span class="tok-w">   </span><span class="tok-o">=</span><span class="tok-mi">-5</span><span class="tok-p">;</span>
+
+<span class="tok-k">enum</span><span class="tok-w"> </span><span class="tok-p">{</span><span class="tok-n">BEZIER</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">NURBS</span><span class="tok-p">};</span>
+<span class="tok-n">GLint</span><span class="tok-w"> </span><span class="tok-n">spline</span><span class="tok-p">;</span>
+<span class="tok-n">GLUnurbsObj</span><span class="tok-w"> </span><span class="tok-o">*</span><span class="tok-n">nc</span><span class="tok-p">;</span>
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">nos</span><span class="tok-p">[</span><span class="tok-mi">10</span><span class="tok-p">]</span><span class="tok-o">=</span><span class="tok-p">{</span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">2.5</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">3.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">3.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">3.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">3.0</span><span class="tok-p">};</span>
+<span class="tok-n">GLint</span><span class="tok-w"> </span><span class="tok-n">nNos</span><span class="tok-o">=</span><span class="tok-mi">10</span><span class="tok-p">;</span>
+
+<span class="tok-n">GLint</span><span class="tok-w"> </span><span class="tok-n">matrizViewport</span><span class="tok-p">[</span><span class="tok-mi">4</span><span class="tok-p">];</span>
+<span class="tok-n">GLdouble</span><span class="tok-w"> </span><span class="tok-n">matrizModelview</span><span class="tok-p">[</span><span class="tok-mi">16</span><span class="tok-p">],</span><span class="tok-w"> </span><span class="tok-n">matrizProjecao</span><span class="tok-p">[</span><span class="tok-mi">16</span><span class="tok-p">];</span>
+<span class="tok-n">GLint</span><span class="tok-w"> </span><span class="tok-n">yreal</span><span class="tok-p">;</span><span class="tok-w">  </span><span class="tok-cm">/*  posição da coordenada y no OpenGL */</span>
+<span class="tok-n">GLdouble</span><span class="tok-w"> </span><span class="tok-n">wx</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">wy</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">wz</span><span class="tok-p">;</span><span class="tok-w">  </span><span class="tok-cm">/*  coordenadas no mundo real: x, y, z  */</span>
+
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">display</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
+<span class="tok-w">  </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-n">glClear</span><span class="tok-p">(</span><span class="tok-n">GL_COLOR_BUFFER_BIT</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-k">switch</span><span class="tok-p">(</span><span class="tok-n">spline</span><span class="tok-p">){</span>
+<span class="tok-w">  </span><span class="tok-k">case</span><span class="tok-w"> </span><span class="tok-no">BEZIER</span><span class="tok-p">:</span>
+<span class="tok-w">    </span><span class="tok-n">glMap1f</span><span class="tok-p">(</span><span class="tok-n">GL_MAP1_VERTEX_3</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">nVertices</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-o">&amp;</span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-p">]);</span>
+<span class="tok-w">    </span><span class="tok-n">glBegin</span><span class="tok-p">(</span><span class="tok-n">GL_LINE_STRIP</span><span class="tok-p">);</span>
+<span class="tok-w">    </span><span class="tok-k">for</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-w"> </span><span class="tok-o">&lt;=</span><span class="tok-w"> </span><span class="tok-mi">30</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
+<span class="tok-w">      </span><span class="tok-n">glEvalCoord1f</span><span class="tok-p">((</span><span class="tok-n">GLfloat</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-o">/</span><span class="tok-mf">30.0</span><span class="tok-p">);</span>
+<span class="tok-w">    </span><span class="tok-p">}</span>
+<span class="tok-w">    </span><span class="tok-n">glEnd</span><span class="tok-p">();</span>
+<span class="tok-w">    </span><span class="tok-k">break</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">case</span><span class="tok-w"> </span><span class="tok-no">NURBS</span><span class="tok-p">:</span>
+<span class="tok-w">    </span><span class="tok-n">gluBeginCurve</span><span class="tok-p">(</span><span class="tok-n">nc</span><span class="tok-p">);</span>
+<span class="tok-w">    </span><span class="tok-n">gluNurbsCurve</span><span class="tok-p">(</span><span class="tok-n">nc</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">nNos</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">nos</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-o">&amp;</span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-p">],</span><span class="tok-w"> </span><span class="tok-mi">4</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">GL_MAP1_VERTEX_3</span><span class="tok-p">);</span>
+<span class="tok-w">    </span><span class="tok-n">gluEndCurve</span><span class="tok-p">(</span><span class="tok-n">nc</span><span class="tok-p">);</span>
+<span class="tok-w">    </span><span class="tok-k">break</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-w">  </span><span class="tok-n">glPointSize</span><span class="tok-p">(</span><span class="tok-mf">5.0</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glBegin</span><span class="tok-p">(</span><span class="tok-n">GL_LINE_STRIP</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-k">for</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-w"> </span><span class="tok-o">&lt;</span><span class="tok-w"> </span><span class="tok-n">nVertices</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">)</span><span class="tok-w"> </span>
+<span class="tok-w">    </span><span class="tok-n">glVertex3fv</span><span class="tok-p">(</span><span class="tok-o">&amp;</span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-p">]);</span>
+<span class="tok-w">  </span><span class="tok-n">glEnd</span><span class="tok-p">();</span>
+<span class="tok-w">  </span><span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glBegin</span><span class="tok-p">(</span><span class="tok-n">GL_POINTS</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-k">for</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-w"> </span><span class="tok-o">&lt;</span><span class="tok-w"> </span><span class="tok-n">nVertices</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">)</span><span class="tok-w"> </span>
+<span class="tok-w">    </span><span class="tok-n">glVertex3fv</span><span class="tok-p">(</span><span class="tok-o">&amp;</span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-p">]);</span>
+<span class="tok-w">  </span><span class="tok-n">glEnd</span><span class="tok-p">();</span>
+<span class="tok-w">  </span><span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glFlush</span><span class="tok-p">();</span>
+<span class="tok-w">  </span><span class="tok-n">glutSwapBuffers</span><span class="tok-p">();</span>
+<span class="tok-p">}</span>
+
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">init</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
+<span class="tok-w">  </span><span class="tok-n">glClearColor</span><span class="tok-p">(</span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">spline</span><span class="tok-o">=</span><span class="tok-n">BEZIER</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-n">nc</span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-n">gluNewNurbsRenderer</span><span class="tok-p">();</span>
+<span class="tok-w">  </span><span class="tok-n">gluNurbsProperty</span><span class="tok-p">(</span><span class="tok-n">nc</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">GLU_SAMPLING_TOLERANCE</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">5.0</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glEnable</span><span class="tok-p">(</span><span class="tok-n">GL_MAP1_VERTEX_3</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">display</span><span class="tok-p">();</span>
+<span class="tok-p">}</span>
+
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">reshape</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">w</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">h</span><span class="tok-p">)</span>
+<span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-n">glViewport</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">GLsizei</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">w</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">GLsizei</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">h</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glMatrixMode</span><span class="tok-p">(</span><span class="tok-n">GL_PROJECTION</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">largura</span><span class="tok-o">=</span><span class="tok-n">w</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-n">altura</span><span class="tok-o">=</span><span class="tok-n">h</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-n">glLoadIdentity</span><span class="tok-p">();</span>
+<span class="tok-w">  </span><span class="tok-n">glOrtho</span><span class="tok-p">(</span><span class="tok-n">esquerda</span><span class="tok-p">,</span><span class="tok-n">direita</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">fundo</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">topo</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">perto</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">longe</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glMatrixMode</span><span class="tok-p">(</span><span class="tok-n">GL_MODELVIEW</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glGetIntegerv</span><span class="tok-p">(</span><span class="tok-n">GL_VIEWPORT</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">matrizViewport</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glGetDoublev</span><span class="tok-p">(</span><span class="tok-n">GL_MODELVIEW_MATRIX</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">matrizModelview</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glGetDoublev</span><span class="tok-p">(</span><span class="tok-n">GL_PROJECTION_MATRIX</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">matrizProjecao</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glLoadIdentity</span><span class="tok-p">();</span>
+<span class="tok-w">  </span><span class="tok-n">glutSwapBuffers</span><span class="tok-p">();</span>
+<span class="tok-p">}</span>
+
+<span class="tok-cm">/* ARGSUSED1 */</span>
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">keyboard</span><span class="tok-p">(</span><span class="tok-kt">unsigned</span><span class="tok-w"> </span><span class="tok-kt">char</span><span class="tok-w"> </span><span class="tok-n">key</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-p">)</span>
+<span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">switch</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">key</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">case</span><span class="tok-w"> </span><span class="tok-sc">&#39;b&#39;</span><span class="tok-p">:</span>
+<span class="tok-w">    </span><span class="tok-n">spline</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-n">BEZIER</span><span class="tok-p">;</span>
+<span class="tok-w">    </span><span class="tok-n">glutPostRedisplay</span><span class="tok-p">();</span>
+<span class="tok-w">    </span><span class="tok-k">break</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">case</span><span class="tok-w"> </span><span class="tok-sc">&#39;n&#39;</span><span class="tok-p">:</span>
+<span class="tok-w">    </span><span class="tok-n">spline</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-n">NURBS</span><span class="tok-p">;</span>
+<span class="tok-w">    </span><span class="tok-n">glutPostRedisplay</span><span class="tok-p">();</span>
+<span class="tok-w">    </span><span class="tok-k">break</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">case</span><span class="tok-w"> </span><span class="tok-mi">27</span><span class="tok-p">:</span>
+<span class="tok-w">    </span><span class="tok-n">exit</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">);</span>
+<span class="tok-w">    </span><span class="tok-k">break</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-p">}</span>
+
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">proximidade</span><span class="tok-p">(){</span>
+<span class="tok-w">  </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-kt">double</span><span class="tok-w"> </span><span class="tok-n">tam</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">tamin</span><span class="tok-o">=</span><span class="tok-mi">32000</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-n">verticeCorrente</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-n">nVertices</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
+<span class="tok-w">    </span><span class="tok-n">tam</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">wx</span><span class="tok-o">-</span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-p">])</span><span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">wx</span><span class="tok-o">-</span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-p">])</span><span class="tok-o">+</span>
+<span class="tok-w">      </span><span class="tok-p">(</span><span class="tok-n">wy</span><span class="tok-o">-</span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">][</span><span class="tok-mi">1</span><span class="tok-p">])</span><span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">wy</span><span class="tok-o">-</span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">][</span><span class="tok-mi">1</span><span class="tok-p">]);</span>
+<span class="tok-w">    </span><span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">tam</span><span class="tok-w"> </span><span class="tok-o">&lt;</span><span class="tok-w"> </span><span class="tok-n">tamin</span><span class="tok-p">){</span>
+<span class="tok-w">      </span><span class="tok-n">tamin</span><span class="tok-o">=</span><span class="tok-n">tam</span><span class="tok-p">;</span>
+<span class="tok-w">      </span><span class="tok-n">verticeCorrente</span><span class="tok-o">=</span><span class="tok-n">i</span><span class="tok-p">;</span>
+<span class="tok-w">    </span><span class="tok-p">}</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-w">  </span><span class="tok-n">tamin</span><span class="tok-o">=</span><span class="tok-n">sqrt</span><span class="tok-p">(</span><span class="tok-n">tamin</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">tamin</span><span class="tok-w"> </span><span class="tok-o">&gt;</span><span class="tok-w"> </span><span class="tok-mf">0.5</span><span class="tok-p">){</span>
+<span class="tok-w">    </span><span class="tok-n">mudaCurva</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-p">}</span>
+
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">mouse</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">button</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">state</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-p">){</span>
+<span class="tok-w">  </span><span class="tok-k">switch</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">button</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-k">case</span><span class="tok-w"> </span><span class="tok-no">GLUT_LEFT_BUTTON</span><span class="tok-p">:</span>
+<span class="tok-w">    </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">state</span><span class="tok-w"> </span><span class="tok-o">==</span><span class="tok-w"> </span><span class="tok-n">GLUT_DOWN</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">      </span><span class="tok-n">yreal</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-n">matrizViewport</span><span class="tok-p">[</span><span class="tok-mi">3</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">-</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">GLint</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-w"> </span><span class="tok-o">-</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-p">;</span>
+<span class="tok-w">      </span><span class="tok-n">gluUnProject</span><span class="tok-w"> </span><span class="tok-p">((</span><span class="tok-n">GLdouble</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">GLdouble</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">yreal</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w">		    </span><span class="tok-n">matrizModelview</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">matrizProjecao</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">matrizViewport</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w">		    </span><span class="tok-o">&amp;</span><span class="tok-n">wx</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-o">&amp;</span><span class="tok-n">wy</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-o">&amp;</span><span class="tok-n">wz</span><span class="tok-p">);</span><span class="tok-w"> </span>
+<span class="tok-w">      </span><span class="tok-n">mudaCurva</span><span class="tok-o">=</span><span class="tok-mi">1</span><span class="tok-p">;</span>
+<span class="tok-w">      </span><span class="tok-n">proximidade</span><span class="tok-p">();</span>
+<span class="tok-w">    </span><span class="tok-p">}</span>
+<span class="tok-w">    </span><span class="tok-k">if</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">state</span><span class="tok-w"> </span><span class="tok-o">==</span><span class="tok-w"> </span><span class="tok-n">GLUT_UP</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">      </span><span class="tok-n">mudaCurva</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span>
+<span class="tok-w">    </span><span class="tok-p">}</span>
+<span class="tok-w">    </span><span class="tok-k">break</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-p">}</span>
+
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">motion</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-p">){</span>
+<span class="tok-w">  </span><span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">mudaCurva</span><span class="tok-p">){</span>
+<span class="tok-w">    </span><span class="tok-n">yreal</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-n">matrizViewport</span><span class="tok-p">[</span><span class="tok-mi">3</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">-</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">GLint</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-w"> </span><span class="tok-o">-</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-p">;</span>
+<span class="tok-w">    </span><span class="tok-n">gluUnProject</span><span class="tok-w"> </span><span class="tok-p">((</span><span class="tok-n">GLdouble</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">GLdouble</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">yreal</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w">		  </span><span class="tok-n">matrizModelview</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">matrizProjecao</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">matrizViewport</span><span class="tok-p">,</span><span class="tok-w"> </span>
+<span class="tok-w">		  </span><span class="tok-o">&amp;</span><span class="tok-n">wx</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-o">&amp;</span><span class="tok-n">wy</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-o">&amp;</span><span class="tok-n">wz</span><span class="tok-p">);</span><span class="tok-w"> </span>
+<span class="tok-w">    </span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-n">verticeCorrente</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-p">]</span><span class="tok-o">=</span><span class="tok-n">wx</span><span class="tok-p">;</span>
+<span class="tok-w">    </span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-n">verticeCorrente</span><span class="tok-p">][</span><span class="tok-mi">1</span><span class="tok-p">]</span><span class="tok-o">=</span><span class="tok-n">wy</span><span class="tok-p">;</span>
+<span class="tok-w">    </span><span class="tok-n">glutPostRedisplay</span><span class="tok-p">();</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-p">}</span>
+
+<span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">argc</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">char</span><span class="tok-o">**</span><span class="tok-w"> </span><span class="tok-n">argv</span><span class="tok-p">){</span>
+<span class="tok-w">  </span><span class="tok-n">glutInit</span><span class="tok-p">(</span><span class="tok-o">&amp;</span><span class="tok-n">argc</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">argv</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutInitDisplayMode</span><span class="tok-p">(</span><span class="tok-n">GLUT_DOUBLE</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-n">GLUT_RGB</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutInitWindowSize</span><span class="tok-p">(</span><span class="tok-mi">500</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">500</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutInitWindowPosition</span><span class="tok-p">(</span><span class="tok-mi">100</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">100</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutCreateWindow</span><span class="tok-p">(</span><span class="tok-n">argv</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">]);</span>
+<span class="tok-w">  </span><span class="tok-n">init</span><span class="tok-p">();</span>
+<span class="tok-w">  </span><span class="tok-n">glutDisplayFunc</span><span class="tok-p">(</span><span class="tok-n">display</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutReshapeFunc</span><span class="tok-p">(</span><span class="tok-n">reshape</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutKeyboardFunc</span><span class="tok-p">(</span><span class="tok-n">keyboard</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutMotionFunc</span><span class="tok-p">(</span><span class="tok-n">motion</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutMouseFunc</span><span class="tok-p">(</span><span class="tok-n">mouse</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutMainLoop</span><span class="tok-p">();</span>
+<span class="tok-w">  </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-mi">0</span><span class="tok-p">;</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Para compilar e executar o programa <a href="exemplos/splines2d.c" class="bare">exemplos/splines2d.c</a>, salve-o juntamente com o arquivo <a href="exemplos/Makefile" class="bare">exemplos/Makefile</a> em um diretório e execute a seguinte seqüência de comandos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="shell"><span></span>$<span class="tok-w"> </span>make<span class="tok-w"> </span>splines2d
+$<span class="tok-w"> </span>./splines2d</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="curvas_plano_descricao">7.1. Descrição do programa <code>splines2d.c</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">GLint</span><span class="tok-w"> </span><span class="tok-n">nVertices</span><span class="tok-o">=</span><span class="tok-mi">6</span><span class="tok-p">;</span>
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-mi">6</span><span class="tok-p">][</span><span class="tok-mi">3</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-p">{</span>
+<span class="tok-w">  </span><span class="tok-p">{</span><span class="tok-mf">-4.0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">},</span>
+<span class="tok-w">  </span><span class="tok-p">{</span><span class="tok-mf">-4.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-o">+</span><span class="tok-mf">4.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">},</span>
+<span class="tok-w">  </span><span class="tok-p">{</span><span class="tok-o">+</span><span class="tok-mf">4.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">-4.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">},</span>
+<span class="tok-w">  </span><span class="tok-p">{</span><span class="tok-mf">-4.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">-4.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">},</span>
+<span class="tok-w">  </span><span class="tok-p">{</span><span class="tok-o">+</span><span class="tok-mf">4.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-o">+</span><span class="tok-mf">4.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">},</span>
+<span class="tok-w">  </span><span class="tok-p">{</span><span class="tok-o">+</span><span class="tok-mf">4.0</span><span class="tok-p">,</span><span class="tok-w">  </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">}</span>
+<span class="tok-p">};</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Define o número de vértices do polígono característico (variável <code>nVertices</code>) e as posições no espaço dos seus respectivos vértices (vetor <code>vertices</code>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">GLint</span><span class="tok-w"> </span><span class="tok-n">largura</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">altura</span><span class="tok-p">;</span>
+<span class="tok-n">GLint</span><span class="tok-w"> </span><span class="tok-n">mudaCurva</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span>
+<span class="tok-n">GLint</span><span class="tok-w"> </span><span class="tok-n">verticeCorrente</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As variáveis <code>largura</code> e <code>altura</code> armazenam a largura e a altura da janela corrente, em pixels. <code>mudaCurva</code> grava o estado da curva; quando <code>mudaCurva</code>=1, a posição dos vértices pode ser alterada; quando <code>mudaCurva</code>=0, a curva permanece inalterada com o movimento do mouse. A variável <code>verticeCorrente</code> indica o vértice cuja posição poderá ser alterada através da movimentação do mouse.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">esquerda</span><span class="tok-o">=</span><span class="tok-mi">-5</span><span class="tok-p">;</span>
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">direita</span><span class="tok-w"> </span><span class="tok-o">=+</span><span class="tok-mi">5</span><span class="tok-p">;</span>
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">fundo</span><span class="tok-w">   </span><span class="tok-o">=</span><span class="tok-mi">-5</span><span class="tok-p">;</span>
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">topo</span><span class="tok-w">    </span><span class="tok-o">=+</span><span class="tok-mi">5</span><span class="tok-p">;</span>
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">longe</span><span class="tok-w">   </span><span class="tok-o">=+</span><span class="tok-mi">5</span><span class="tok-p">;</span>
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">perto</span><span class="tok-w">   </span><span class="tok-o">=</span><span class="tok-mi">-5</span><span class="tok-p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Define as coordenadas do volume de recorte a ser utilizado na projeção ortográfica.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">GLUnurbsObj</span><span class="tok-w"> </span><span class="tok-o">*</span><span class="tok-n">nc</span><span class="tok-p">;</span>
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">nos</span><span class="tok-p">[</span><span class="tok-mi">10</span><span class="tok-p">]</span><span class="tok-o">=</span><span class="tok-p">{</span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">2.5</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">3.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">3.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">3.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">3.0</span><span class="tok-p">};</span>
+<span class="tok-n">GLint</span><span class="tok-w"> </span><span class="tok-n">nNos</span><span class="tok-o">=</span><span class="tok-mi">10</span><span class="tok-p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A variável <code>nc</code> contém a referência para a spline que irá modelar a curva usando NURBS. <code>nos</code> e <code>nNos</code> são o vetor de nós e o número de nós neste vetor, respectivamente.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">GLint</span><span class="tok-w"> </span><span class="tok-n">matrizViewport</span><span class="tok-p">[</span><span class="tok-mi">4</span><span class="tok-p">];</span>
+<span class="tok-n">GLdouble</span><span class="tok-w"> </span><span class="tok-n">matrizModelview</span><span class="tok-p">[</span><span class="tok-mi">16</span><span class="tok-p">],</span><span class="tok-w"> </span><span class="tok-n">matrizProjecao</span><span class="tok-p">[</span><span class="tok-mi">16</span><span class="tok-p">];</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Define as matrizes de viewport, de modelo e de projeção para a cena. Estas matrizes serão usadas no cálculo da posição do mouse no mundo real.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">glMap1f</span><span class="tok-p">(</span><span class="tok-n">GL_MAP1_VERTEX_3</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">nVertices</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-o">&amp;</span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-p">]);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Caso a spline seja do tipo Bézier, o traçado da curva se com o uso de avaliadores. Tais <em>evaluators</em> proporcionam uma forma de utilizar o mapeamento de polinômios para produzir vértices, coordenadas de texturas e cores, baseados em funções de base de Bernstein, ou de Bézier.</p>
+</div>
+<div class="paragraph">
+<p>A função <code>glMap1f()</code> define um avaliador (<em>evaluator</em>)
+unidimesional. Neste caso, os valores gerados por esta função são
+utilizados pelos estágios posteriores do processamento como se
+houvessem sido gerados utilizando a função <code>glVertex*()</code>. A função
+<code>glMap1f()</code> possui o seguinte protótipo:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">glMap1f</span><span class="tok-p">(</span><span class="tok-n">GLenum</span><span class="tok-w"> </span><span class="tok-n">target</span><span class="tok-p">,</span>
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">u1</span><span class="tok-p">,</span>
+<span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-n">u2</span><span class="tok-p">,</span>
+<span class="tok-n">GLint</span><span class="tok-w"> </span><span class="tok-n">stride</span><span class="tok-p">,</span>
+<span class="tok-n">GLint</span><span class="tok-w"> </span><span class="tok-n">order</span><span class="tok-p">,</span>
+<span class="tok-k">const</span><span class="tok-w"> </span><span class="tok-n">GLfloat</span><span class="tok-w"> </span><span class="tok-o">*</span><span class="tok-n">points</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>O parâmetro <code>target</code> especifica o tipo de valores gerados pelo <em>evaluator</em>; neste caso, especifica que cada ponto de controle é usado para mapear três valores x, y e z. Comandos internos <code>glVertex*()</code> são gerados quando este mapeamento é realizado. <code>u1</code> e <code>u2</code> especificam a faixa de mapeamento linear para u, ou seja, a faixa de variação do parâmetro que define a curva; neste caso [0,1]. <code>stride</code> especifica o número de elementos entre o início de um ponto de controle e o início do ponto de controle seguinte; como cada ponto de controle possui três coordenadas, <code>stride=3</code> para este exemplo. O parâmetro <code>order</code> especifica o número de pontos de controle para a curva (6 pontos). Finalmente, o parâmetro <code>*points</code> deve conter a posição do primeiro ponto do polígono de controle.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">glBegin</span><span class="tok-p">(</span><span class="tok-n">GL_LINE_STRIP</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-k">for</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-w"> </span><span class="tok-o">&lt;=</span><span class="tok-w"> </span><span class="tok-mi">30</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
+<span class="tok-w">    </span><span class="tok-n">glEvalCoord1f</span><span class="tok-p">((</span><span class="tok-n">GLfloat</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-o">/</span><span class="tok-mf">30.0</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-n">glEnd</span><span class="tok-p">();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Neste laço, quando a função <code>glEvalCoord1f()</code> é chamada, o valor do
+ponto a ser traçado na spline é calculado (ou avaliado) para o valor
+passado como referência para esta função. Quando o laço terminar, um
+conjunto de pontos interligados (via <code>GL_LINE_STRIP</code>) irá compor a
+forma da curva de Bézier, usando o polígono de controle especificado a
+priorio com a função <code>glMap1f()</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">gluBeginCurve</span><span class="tok-p">(</span><span class="tok-n">nc</span><span class="tok-p">);</span>
+<span class="tok-n">gluNurbsCurve</span><span class="tok-p">(</span><span class="tok-n">nc</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">nNos</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">nos</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-o">&amp;</span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-p">],</span><span class="tok-w"> </span><span class="tok-mi">4</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">GL_MAP1_VERTEX_3</span><span class="tok-p">);</span>
+<span class="tok-n">gluEndCurve</span><span class="tok-p">(</span><span class="tok-n">nc</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Se a curva a ser desenhada for do tipo NURBS, então as funções
+<code>gluBeginCurve()</code> e <code>gluEndCurve()</code> serão utilizadas para demarcar o
+início e o fim do seu traçado. A função usada para desenhar esta
+classe de curvas é <code>gluNurbsCurve</code>, cujos parâmetros são bastante
+semelhantes aos da função <code>glMap1f()</code>, acrescentando apenas a
+referência para a curva, <code>nc</code> e os dados do vetor de nós (<code>nos</code> e
+<code>nNos</code>). A variável <code>nc</code> é iniciada na função <code>init()</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">glPointSize</span><span class="tok-p">(</span><span class="tok-mf">5.0</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>O diâmetro dos pontos rasterizados é mudado para facilitar a
+visualização dos vértices do polígono de controle (5 pixels).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">nc</span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-n">gluNewNurbsRenderer</span><span class="tok-p">();</span>
+<span class="tok-n">gluNurbsProperty</span><span class="tok-p">(</span><span class="tok-n">nc</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">GLU_SAMPLING_TOLERANCE</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">5.0</span><span class="tok-p">);</span>
+<span class="tok-n">glEnable</span><span class="tok-p">(</span><span class="tok-n">GL_MAP1_VERTEX_3</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A função <code>gluNewNurbsRenderer()</code> cria um objeto NURBS, que pode ser
+referenciado durante a chamada para o traçado de curvas desta
+caterogia. A função <code>gluNurbsProperty()</code> aqui colocada define o
+espaçamento máximo, em pixels, usado na amostragem de pontos, durante
+o traçado da curva, geralmente traçada por aproximação
+poligonal. Neste exemplo, pontos adjacentes do polígono que aproxima a
+curva têm espacamento máximo de 5 pixels.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">glGetIntegerv</span><span class="tok-p">(</span><span class="tok-n">GL_VIEWPORT</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">matrizViewport</span><span class="tok-p">);</span>
+<span class="tok-n">glGetDoublev</span><span class="tok-p">(</span><span class="tok-n">GL_MODELVIEW_MATRIX</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">matrizModelview</span><span class="tok-p">);</span>
+<span class="tok-n">glGetDoublev</span><span class="tok-p">(</span><span class="tok-n">GL_PROJECTION_MATRIX</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">matrizProjecao</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As chamadas às funções <code>glGetIntergerv</code> e <code>glGetDoublev</code> gravam em
+<code>matrizViewport</code>, <code>matrizModelview</code> e <code>matrizProjecao</code> as matrizes de
+viewport, de modelo e de projeção. Na matriz de viewport ficam
+armazenadas as coordenadas da origem da janela, seguidas pela sua
+altura e largura.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">proximidade</span><span class="tok-p">(){</span>
+<span class="tok-w">  </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-kt">double</span><span class="tok-w"> </span><span class="tok-n">tam</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">tamin</span><span class="tok-o">=</span><span class="tok-mi">32000</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-n">verticeCorrente</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-n">nVertices</span><span class="tok-p">;</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
+<span class="tok-w">    </span><span class="tok-n">tam</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">wx</span><span class="tok-o">-</span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-p">])</span><span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">wx</span><span class="tok-o">-</span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-p">])</span><span class="tok-o">+</span>
+<span class="tok-w">      </span><span class="tok-p">(</span><span class="tok-n">wy</span><span class="tok-o">-</span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">][</span><span class="tok-mi">1</span><span class="tok-p">])</span><span class="tok-o">*</span><span class="tok-p">(</span><span class="tok-n">wy</span><span class="tok-o">-</span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-n">i</span><span class="tok-p">][</span><span class="tok-mi">1</span><span class="tok-p">]);</span>
+<span class="tok-w">    </span><span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">tam</span><span class="tok-w"> </span><span class="tok-o">&lt;</span><span class="tok-w"> </span><span class="tok-n">tamin</span><span class="tok-p">){</span>
+<span class="tok-w">      </span><span class="tok-n">tamin</span><span class="tok-o">=</span><span class="tok-n">tam</span><span class="tok-p">;</span>
+<span class="tok-w">      </span><span class="tok-n">verticeCorrente</span><span class="tok-o">=</span><span class="tok-n">i</span><span class="tok-p">;</span>
+<span class="tok-w">    </span><span class="tok-p">}</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-w">  </span><span class="tok-n">tamin</span><span class="tok-o">=</span><span class="tok-n">sqrt</span><span class="tok-p">(</span><span class="tok-n">tamin</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">tamin</span><span class="tok-w"> </span><span class="tok-o">&gt;</span><span class="tok-w"> </span><span class="tok-mf">0.5</span><span class="tok-p">){</span>
+<span class="tok-w">    </span><span class="tok-n">mudaCurva</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A função <code>proximidade()</code> compara os valores das distâncias entre a
+posição do mouse em coordenadas do mundo real, (wx, wy), com as
+coordenadas de cada vértice do polígono de controle, em busca do
+vértice mais próximo. Caso a distância entre a posição do mouse e o
+vértice mais próximo seja maior que uma dada tolerância, o vértice não
+será selecionado para alteração.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">yreal</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-n">matrizViewport</span><span class="tok-p">[</span><span class="tok-mi">3</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">-</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">GLint</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-w"> </span><span class="tok-o">-</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-p">;</span>
+<span class="tok-n">gluUnProject</span><span class="tok-w"> </span><span class="tok-p">((</span><span class="tok-n">GLdouble</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">GLdouble</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">yreal</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span>
+<span class="tok-w">	    </span><span class="tok-n">matrizModelview</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">matrizProjecao</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">matrizViewport</span><span class="tok-p">,</span>
+<span class="tok-w">	    </span><span class="tok-o">&amp;</span><span class="tok-n">wx</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-o">&amp;</span><span class="tok-n">wy</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-o">&amp;</span><span class="tok-n">wz</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A variável <code>yreal</code> armazena a coordenada y (em pixels) da posição do
+cursor, assumindo origem na parte inferior esquerda da janela.</p>
+</div>
+<div class="paragraph">
+<p>A função <code>gluUnProject()</code> serve para mapear as coordenadas da janela
+para as coordenadas do mundo real. Com base nas coordenadas do mouse
+na janela, <code>x</code> e <code>yreal</code>, nas matrizes de modelo, de projeção e de
+viewport, e assumindo a posição z=0, a função <code>gluUnProject()</code> calcula
+as respectivas coordenadas wx, wy e wz da posição do mouse no mundo
+real, possibilitando a comparação das distâncias para cada vértice do
+polígono característico.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">motion</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-p">){</span>
+<span class="tok-w">  </span><span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">mudaCurva</span><span class="tok-p">){</span>
+<span class="tok-w">    </span><span class="tok-n">yreal</span><span class="tok-w"> </span><span class="tok-o">=</span><span class="tok-w"> </span><span class="tok-n">matrizViewport</span><span class="tok-p">[</span><span class="tok-mi">3</span><span class="tok-p">]</span><span class="tok-w"> </span><span class="tok-o">-</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">GLint</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-w"> </span><span class="tok-o">-</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-p">;</span>
+<span class="tok-w">    </span><span class="tok-n">gluUnProject</span><span class="tok-w"> </span><span class="tok-p">((</span><span class="tok-n">GLdouble</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">GLdouble</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-n">yreal</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span>
+<span class="tok-w">		  </span><span class="tok-n">matrizModelview</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">matrizProjecao</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">matrizViewport</span><span class="tok-p">,</span>
+<span class="tok-w">		  </span><span class="tok-o">&amp;</span><span class="tok-n">wx</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-o">&amp;</span><span class="tok-n">wy</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-o">&amp;</span><span class="tok-n">wz</span><span class="tok-p">);</span>
+<span class="tok-w">    </span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-n">verticeCorrente</span><span class="tok-p">][</span><span class="tok-mi">0</span><span class="tok-p">]</span><span class="tok-o">=</span><span class="tok-n">wx</span><span class="tok-p">;</span>
+<span class="tok-w">    </span><span class="tok-n">vertices</span><span class="tok-p">[</span><span class="tok-n">verticeCorrente</span><span class="tok-p">][</span><span class="tok-mi">1</span><span class="tok-p">]</span><span class="tok-o">=</span><span class="tok-n">wy</span><span class="tok-p">;</span>
+<span class="tok-w">    </span><span class="tok-n">glutPostRedisplay</span><span class="tok-p">();</span>
+<span class="tok-w">  </span><span class="tok-p">}</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A função <code>motion()</code> é chamada cada vez que o mouse é movimentado na
+janela e um ou mais botões encontra-se pressionado. Caso a alteração
+dos vértices esteja habilitada, as coordenadas da posição do mouse são
+mapeadas para o mundo real e atribuídas ao vértice a ser modificado.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-n">glutMotionFunc</span><span class="tok-p">(</span><span class="tok-n">motion</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Define a função de movimentação do mouse para a janela corrente. A
+função passada como parâmetro deve possuir o seguinte protótipo:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">funcao</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Os parâmetros <code>x</code> e <code>y</code> passados para esta função indicam a posição do
+mouse em coordenadas relativas à janela.</p>
+</div>
+<div class="paragraph">
+<p>Caso seja necessário, a função <code>glutPassiveMotionFunc</code> pode ser
+utilizada para monitorar o movimento do mouse quando não há botões
+pressionados, e possui o mesmo protótipo da função <code>glutMotionFunc</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="curvas_plano_exercicios">7.2. Exercícios</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Comente as funcionalidades das curvas de Bézier e NURBS utilizadas
+neste exemplo.</p>
+</li>
+<li>
+<p>Utilizando o programa <a href="exemplos/splines2d.c" class="bare">exemplos/splines2d.c</a> como referência,
+implemente um programa <code>splinesnurbs.c</code>. Quando a tecla <kbd>u</kbd> for
+pressionada, a NURBS deverá ser desenhada utilizando um vetor de nós
+uniforme. Quando a tecla <kbd>o</kbd> for pressionada, a NURBS deverá ser
+desenhada utilizando um vetor de nós uniforme aberto. Quando a tecla
+<kbd>n</kbd> for pressionada, a NURBS deverá ser desenhada utilizando um
+vetor de nós não uniforme.</p>
+</li>
+<li>
+<p>Qual a influência do vetor de nós foi utilizado sobre o
+comportamento das curvas tipo NURBS? Comente o resultado que obteve
+para curvas de ordens 3 e 5.</p>
+</li>
+<li>
+<p>Compare curvas de Beziér com NURBS considerando ordens iguais para
+ambas as curvas.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph nav-footer">
+<p>← Previous: <a href="projecoes_geometricas.html">Projeções geométricas</a> | ↑ Up: <a href="index.html">Introdução à computação gráfica com OpenGL</a> | Next: <a href="superficies_espaco.html">Superfícies no espaço</a> →</p>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 0.9<br>
+Last updated 2025-04-22 10:50:34 -0300
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>

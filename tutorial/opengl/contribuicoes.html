@@ -439,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
              .nav-footer{text-align: center; margin-top: auto;}
              .nav-footer > p > a {white-space: nowrap;}</style>
 </head>
-<body id="index" class="book toc2 toc-left">
+<body id="contribuicoes" class="book toc2 toc-left">
 <div id="header">
 <h1>Introdução à computação gráfica com OpenGL</h1>
 <div class="details">
@@ -449,7 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
-<p><span class="toc-root toc-current"><a href="index.html">Introdução à computação gráfica com OpenGL</a></span></p><ul class="sectlevel1">
+<p><span class="toc-root"><a href="index.html">Introdução à computação gráfica com OpenGL</a></span></p><ul class="sectlevel1">
 <li><a href="preface.html">1. Prefácio</a>
 </li>
 <li><a href="conceitos.html">2. Conceitos iniciais</a>
@@ -472,54 +472,72 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="bibliography.html">11. Bibliografia</a>
 </li>
-<li><a href="contribuicoes.html">12. Contribuições</a>
+<li><a href="contribuicoes.html"><span class="toc-current">12. Contribuições</span></a>
 </li>
 </ul>
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="contribuicoes">12. Contribuições</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Envie suas contribuições para ambj_at_dca.ufrn.br. Elas serão muito bem acolhidas.</p>
+</div>
+<div class="paragraph">
+<p>Agradecimentos àqueles que contribuíram para melhorar ou corrigir erros.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="preface.html">Prefácio</a></p>
+<p>Leonardo Campos, em 16/11/2000: A pagina do capitulo 6 de opengl, na
+parte de quadricas, ha um erro. Ao invés de \$a_1x^2+a_2x^2+a_3x^2\$  deveria ser \$a_1x^2+a_2y^2+a_3z^2\$.</p>
 </li>
 <li>
-<p><a href="conceitos.html">Conceitos iniciais</a></p>
-</li>
-<li>
-<p><a href="linhas_e_planos.html">Desenhando linhas e pontos</a></p>
-</li>
-<li>
-<p><a href="preenchimento.html">Preenchimento de regiões</a></p>
-</li>
-<li>
-<p><a href="transformacoes.html">Transformações geométricas</a></p>
-</li>
-<li>
-<p><a href="projecoes_geometricas.html">Projeções geométricas</a></p>
-</li>
-<li>
-<p><a href="curvas_plano.html">Curvas no plano</a></p>
-</li>
-<li>
-<p><a href="superficies_espaco.html">Superfícies no espaço</a></p>
-</li>
-<li>
-<p><a href="modelagem_solidos.html">Modelagem de Sólidos</a></p>
-</li>
-<li>
-<p><a href="modelos_iluminação.html">Modelos de iluminação e sombreamento</a></p>
-</li>
-<li>
-<p><a href="bibliography.html">Bibliografia</a></p>
-</li>
-<li>
-<p><a href="contribuicoes.html">Contribuições</a></p>
+<p>Adler Cardoso</p>
+<div class="literalblock">
+<div class="content">
+<pre>ai estão alguns erros que encontrei na especificação do cap. 6:
+1 - no arquivo jato.c tem:
+      GLint WIDTH =320;
+      GLint HEIGHT=240;
+e na explicação do arquivo tem:
+      int WIDTH =320;
+      int HEIGHT=240;
+2 - na explicação da tetaxz tem escrito tetaxy (em vermelho);
+3 - na explicação de coordenadas ctp e cta tem matrix ao invés de
+matriz;
+4 - na equação de objetos quádricos tem stem:[a_1x^2+a_2x^2+a_3x^3+\dots];
+5 - na explicação de glTexEnvf aparece glBindTexture, que é explicada
+logo após também;
+6 - na explicação de ImageLoad, tem ImageLoad(();
+7 - GL_TEXTURE_WRAP_S é repetido na explicação;
+8 - na última, explicação, tem GL_LINEAR_.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Espero que isto ajude.
+[]'s
+Adler.</pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41839650-2', 'auto');
+  ga('send', 'pageview');
+</script>
+</div>
+</div>
 <div class="paragraph nav-footer">
-<p>Next: <a href="preface.html">Prefácio</a> →</p>
+<p>← Previous: <a href="bibliography.html">Bibliografia</a> | ↑ Up: <a href="index.html">Introdução à computação gráfica com OpenGL</a></p>
 </div>
 </div>
 <div id="footer">
