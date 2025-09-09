@@ -1,3 +1,0 @@
-/home/ambj/Dropbox/dca0445/pdi/exemplos/addweighted/build/CMakeFiles/addweighted.dir
-/home/ambj/Dropbox/dca0445/pdi/exemplos/addweighted/build/CMakeFiles/edit_cache.dir
-/home/ambj/Dropbox/dca0445/pdi/exemplos/addweighted/build/CMakeFiles/rebuild_cache.dir

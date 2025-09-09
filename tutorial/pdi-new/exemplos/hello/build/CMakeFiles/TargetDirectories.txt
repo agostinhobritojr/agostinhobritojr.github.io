@@ -1,3 +1,0 @@
-/home/ambj/Dropbox/dca0445/pdi/exemplos/hello/build/CMakeFiles/hello.dir
-/home/ambj/Dropbox/dca0445/pdi/exemplos/hello/build/CMakeFiles/edit_cache.dir
-/home/ambj/Dropbox/dca0445/pdi/exemplos/hello/build/CMakeFiles/rebuild_cache.dir
