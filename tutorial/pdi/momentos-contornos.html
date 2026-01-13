@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="author" content="Agostinho Brito">
 <title>Introdução ao processamento digital de imagens com OpenCV</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -141,7 +141,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -163,6 +163,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -328,7 +329,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -476,6 +477,10 @@ pre.rouge .gi {
   color: #116329;
   background-color: #dafbe1;
 }
+pre.rouge .ges {
+  font-weight: bold;
+  font-style: italic;
+}
 pre.rouge .kc {
   color: #0550ae;
 }
@@ -548,16 +553,14 @@ pre.rouge .gs {
   font-weight: bold;
 }
 </style>
-<style type="text/css">
-  .imageblock>.title {
-    text-align: inherit;
-  }
-</style>
-<style type="text/css">
-  .videoblock>.title {
-    text-align: inherit;
-  }
-</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-XBSN6ND3Y4');
+</script>
 <style>.toc-current{font-weight: bold;} .toc-root{font-family: "Open Sans","DejaVu Sans",sans-serif;
                        font-size: 0.9em;} #content{display: flex; flex-direction: column; flex: 1 1 auto;}
              .nav-footer{text-align: center; margin-top: auto;}
@@ -631,67 +634,72 @@ pre.rouge .gs {
 <div id="exa_momentos_contornos" class="listingblock">
 <div class="title">Listagem 72. momentos-contornos.cpp</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;opencv2/opencv.hpp&gt;</span><span class="cp">
 </span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">){</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">cv</span><span class="o">::</span><span class="n">Mat</span> <span class="n">image</span><span class="p">,</span> <span class="n">gray</span><span class="p">;</span>
   <span class="n">std</span><span class="o">::</span><span class="n">ofstream</span> <span class="n">file</span><span class="p">;</span>
   <span class="n">cv</span><span class="o">::</span><span class="n">Moments</span> <span class="n">momentos</span><span class="p">;</span>
 
-  <span class="n">image</span><span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">);</span>
+  <span class="n">image</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cv</span><span class="o">::</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">);</span>
 
-  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">image</span><span class="p">.</span><span class="n">data</span><span class="p">){</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">image</span><span class="p">.</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"nao abriu "</span> <span class="o">&lt;&lt;</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
   <span class="p">}</span>
-  
+
   <span class="n">file</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">"momentos.txt"</span><span class="p">);</span>
 
-  <span class="n">cv</span><span class="o">::</span><span class="n">threshold</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">THRESH_BINARY</span> <span class="o">+</span> <span class="n">cv</span><span class="o">::</span><span class="n">THRESH_OTSU</span> <span class="o">+</span> <span class="n">cv</span><span class="o">::</span><span class="n">THRESH_BINARY_INV</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">threshold</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span>
+                <span class="n">cv</span><span class="o">::</span><span class="n">THRESH_BINARY</span> <span class="o">+</span> <span class="n">cv</span><span class="o">::</span><span class="n">THRESH_OTSU</span> <span class="o">+</span> <span class="n">cv</span><span class="o">::</span><span class="n">THRESH_BINARY_INV</span><span class="p">);</span>
 
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">contours</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">cv</span><span class="o">::</span> <span class="n">Vec4i</span><span class="o">&gt;</span> <span class="n">hierarchy</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Point</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">contours</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cv</span><span class="o">::</span><span class="n">Vec4i</span><span class="o">&gt;</span> <span class="n">hierarchy</span><span class="p">;</span>
 
-  <span class="n">cv</span><span class="o">::</span><span class="n">findContours</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">contours</span><span class="p">,</span> <span class="n">hierarchy</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">RETR_EXTERNAL</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">CHAIN_APPROX_NONE</span><span class="p">);</span>
+  <span class="n">cv</span><span class="o">::</span><span class="n">findContours</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">contours</span><span class="p">,</span> <span class="n">hierarchy</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">RETR_EXTERNAL</span><span class="p">,</span>
+                   <span class="n">cv</span><span class="o">::</span><span class="n">CHAIN_APPROX_NONE</span><span class="p">);</span>
 
   <span class="n">cv</span><span class="o">::</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">COLOR_GRAY2BGR</span><span class="p">);</span>
 
+  <span class="n">cv</span><span class="o">::</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">"image"</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">WINDOW_NORMAL</span><span class="p">);</span>
+
   <span class="kt">int</span> <span class="n">nformas</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-  <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">contours</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">contours</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">){</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">contours</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">contours</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">continue</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="n">nformas</span><span class="o">++</span><span class="p">;</span>
     <span class="n">momentos</span> <span class="o">=</span> <span class="n">cv</span><span class="o">::</span><span class="n">moments</span><span class="p">(</span><span class="n">contours</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 
-    <span class="n">cv</span><span class="o">::</span><span class="n">Point2f</span> <span class="nf">center</span><span class="p">(</span><span class="n">momentos</span><span class="p">.</span><span class="n">m10</span><span class="o">/</span><span class="n">momentos</span><span class="p">.</span><span class="n">m00</span><span class="p">,</span> <span class="n">momentos</span><span class="p">.</span><span class="n">m01</span><span class="o">/</span><span class="n">momentos</span><span class="p">.</span><span class="n">m00</span><span class="p">);</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">Point2f</span> <span class="nf">center</span><span class="p">(</span><span class="n">momentos</span><span class="p">.</span><span class="n">m10</span> <span class="o">/</span> <span class="n">momentos</span><span class="p">.</span><span class="n">m00</span><span class="p">,</span>
+                       <span class="n">momentos</span><span class="p">.</span><span class="n">m01</span> <span class="o">/</span> <span class="n">momentos</span><span class="p">.</span><span class="n">m00</span><span class="p">);</span>
 
     <span class="kt">double</span> <span class="n">hu</span><span class="p">[</span><span class="mi">7</span><span class="p">];</span>
     <span class="n">cv</span><span class="o">::</span><span class="n">HuMoments</span><span class="p">(</span><span class="n">momentos</span><span class="p">,</span> <span class="n">hu</span><span class="p">);</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">hu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">hu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">cv</span><span class="o">::</span><span class="n">drawContours</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">contours</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="mi">2</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">else</span><span class="p">{</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
       <span class="n">cv</span><span class="o">::</span><span class="n">drawContours</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">contours</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">);</span>
     <span class="p">}</span>
-    <span class="n">cv</span><span class="o">::</span><span class="n">putText</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">center</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">8</span><span class="p">);</span>
-    <span class="n">cv</span><span class="o">::</span><span class="n">putText</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">center</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">putText</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">center</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span>
+                <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">8</span><span class="p">);</span>
+    <span class="n">cv</span><span class="o">::</span><span class="n">putText</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">center</span><span class="p">,</span> <span class="n">cv</span><span class="o">::</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span>
+                <span class="n">cv</span><span class="o">::</span><span class="n">Scalar</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
 
     <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">", "</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">){</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">hu</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">copysign</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">hu</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">*</span> <span class="n">log10</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">hu</span><span class="p">[</span><span class="n">j</span><span class="p">]));</span>
       <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">hu</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">", "</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-	<span class="p">}</span>
+  <span class="p">}</span>
   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Numero de objetos: "</span> <span class="o">&lt;&lt;</span> <span class="n">nformas</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
   <span class="n">file</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
 
-  <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"janela"</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>  
+  <span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">"janela"</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
   <span class="n">cv</span><span class="o">::</span><span class="n">imwrite</span><span class="p">(</span><span class="s">"contornos-rotulados.png"</span><span class="p">,</span> <span class="n">image</span><span class="p">);</span>
   <span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">();</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
