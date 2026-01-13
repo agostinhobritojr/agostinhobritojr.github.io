@@ -1,3 +1,0 @@
-/home/ambj/Dropbox/dca0445/pdi/exemplos/convolucao/build/CMakeFiles/convolucao.dir
-/home/ambj/Dropbox/dca0445/pdi/exemplos/convolucao/build/CMakeFiles/edit_cache.dir
-/home/ambj/Dropbox/dca0445/pdi/exemplos/convolucao/build/CMakeFiles/rebuild_cache.dir

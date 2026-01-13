@@ -1,3 +1,0 @@
-/home/ambj/Dropbox/dca0445/pdi/exemplos/dftfilter/build/CMakeFiles/dftfilter.dir
-/home/ambj/Dropbox/dca0445/pdi/exemplos/dftfilter/build/CMakeFiles/edit_cache.dir
-/home/ambj/Dropbox/dca0445/pdi/exemplos/dftfilter/build/CMakeFiles/rebuild_cache.dir

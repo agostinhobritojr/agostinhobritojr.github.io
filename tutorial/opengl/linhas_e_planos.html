@@ -578,39 +578,41 @@ pre.pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
 <span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">display</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">);</span>
 <span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">keyboard</span><span class="tok-p">(</span><span class="tok-kt">unsigned</span><span class="tok-w"> </span><span class="tok-kt">char</span><span class="tok-w"> </span><span class="tok-n">key</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-p">);</span>
 
-<span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">argc</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">char</span><span class="tok-o">**</span><span class="tok-w"> </span><span class="tok-n">argv</span><span class="tok-p">){</span>
+<span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-nf">main</span><span class="tok-p">(</span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">argc</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">char</span><span class="tok-o">**</span><span class="tok-w"> </span><span class="tok-n">argv</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
 <span class="tok-w">  </span><span class="tok-n">glutInit</span><span class="tok-p">(</span><span class="tok-o">&amp;</span><span class="tok-n">argc</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-n">argv</span><span class="tok-p">);</span>
-<span class="tok-w">  </span><span class="tok-n">glutInitDisplayMode</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">GLUT_SINGLE</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-n">GLUT_RGB</span><span class="tok-p">);</span>
-<span class="tok-w">  </span><span class="tok-n">glutInitWindowSize</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-mi">256</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">256</span><span class="tok-p">);</span><span class="tok-w"> </span>
-<span class="tok-w">  </span><span class="tok-n">glutInitWindowPosition</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-mi">100</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">100</span><span class="tok-p">);</span><span class="tok-w"> </span>
-<span class="tok-w">  </span><span class="tok-n">glutCreateWindow</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-s">&quot;Desenhando uma linha&quot;</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutInitDisplayMode</span><span class="tok-p">(</span><span class="tok-n">GLUT_SINGLE</span><span class="tok-w"> </span><span class="tok-o">|</span><span class="tok-w"> </span><span class="tok-n">GLUT_RGB</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutInitWindowSize</span><span class="tok-p">(</span><span class="tok-mi">256</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">256</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutInitWindowPosition</span><span class="tok-p">(</span><span class="tok-mi">100</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">100</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glutCreateWindow</span><span class="tok-p">(</span><span class="tok-s">&quot;Desenhando uma linha&quot;</span><span class="tok-p">);</span>
 <span class="tok-w">  </span><span class="tok-n">init</span><span class="tok-p">();</span>
-<span class="tok-w">  </span><span class="tok-n">glutDisplayFunc</span><span class="tok-p">(</span><span class="tok-n">display</span><span class="tok-p">);</span><span class="tok-w"> </span>
+<span class="tok-w">  </span><span class="tok-n">glutDisplayFunc</span><span class="tok-p">(</span><span class="tok-n">display</span><span class="tok-p">);</span>
 <span class="tok-w">  </span><span class="tok-n">glutKeyboardFunc</span><span class="tok-p">(</span><span class="tok-n">keyboard</span><span class="tok-p">);</span>
 <span class="tok-w">  </span><span class="tok-n">glutMainLoop</span><span class="tok-p">();</span>
 <span class="tok-w">  </span><span class="tok-k">return</span><span class="tok-w"> </span><span class="tok-mi">0</span><span class="tok-p">;</span>
 <span class="tok-p">}</span>
 
-<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">init</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">init</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
+
 <span class="tok-w">  </span><span class="tok-n">glClearColor</span><span class="tok-p">(</span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">1.0</span><span class="tok-p">);</span>
-<span class="tok-w">  </span><span class="tok-n">glOrtho</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">256</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">256</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">-1</span><span class="tok-w"> </span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glOrtho</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">256</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">256</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">-1</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">1</span><span class="tok-p">);</span>
 <span class="tok-p">}</span>
 
-<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">display</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">){</span>
-<span class="tok-w">  </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">i</span><span class="tok-p">;</span>
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">display</span><span class="tok-p">(</span><span class="tok-kt">void</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
 <span class="tok-w">  </span><span class="tok-n">glClear</span><span class="tok-p">(</span><span class="tok-n">GL_COLOR_BUFFER_BIT</span><span class="tok-p">);</span>
-<span class="tok-w">  </span><span class="tok-n">glColor3f</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glColor3f</span><span class="tok-p">(</span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mf">0.0</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glLineWidth</span><span class="tok-p">(</span><span class="tok-mf">5.0</span><span class="tok-p">);</span>
 <span class="tok-w">  </span><span class="tok-n">glBegin</span><span class="tok-p">(</span><span class="tok-n">GL_LINES</span><span class="tok-p">);</span>
-<span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">40</span><span class="tok-p">,</span><span class="tok-mi">200</span><span class="tok-p">);</span><span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">200</span><span class="tok-p">,</span><span class="tok-mi">10</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">40</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">200</span><span class="tok-p">);</span>
+<span class="tok-w">  </span><span class="tok-n">glVertex2i</span><span class="tok-p">(</span><span class="tok-mi">200</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-mi">10</span><span class="tok-p">);</span>
 <span class="tok-w">  </span><span class="tok-n">glEnd</span><span class="tok-p">();</span>
 <span class="tok-w">  </span><span class="tok-n">glFlush</span><span class="tok-p">();</span>
 <span class="tok-p">}</span>
 
-<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">keyboard</span><span class="tok-p">(</span><span class="tok-kt">unsigned</span><span class="tok-w"> </span><span class="tok-kt">char</span><span class="tok-w"> </span><span class="tok-n">key</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-p">){</span>
+<span class="tok-kt">void</span><span class="tok-w"> </span><span class="tok-nf">keyboard</span><span class="tok-p">(</span><span class="tok-kt">unsigned</span><span class="tok-w"> </span><span class="tok-kt">char</span><span class="tok-w"> </span><span class="tok-n">key</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">x</span><span class="tok-p">,</span><span class="tok-w"> </span><span class="tok-kt">int</span><span class="tok-w"> </span><span class="tok-n">y</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
 <span class="tok-w">  </span><span class="tok-k">switch</span><span class="tok-w"> </span><span class="tok-p">(</span><span class="tok-n">key</span><span class="tok-p">)</span><span class="tok-w"> </span><span class="tok-p">{</span>
-<span class="tok-w">  </span><span class="tok-k">case</span><span class="tok-w"> </span><span class="tok-mi">27</span><span class="tok-p">:</span>
-<span class="tok-w">	</span><span class="tok-n">exit</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">);</span>
-<span class="tok-w">	</span><span class="tok-k">break</span><span class="tok-p">;</span>
+<span class="tok-w">    </span><span class="tok-k">case</span><span class="tok-w"> </span><span class="tok-mi">27</span><span class="tok-p">:</span>
+<span class="tok-w">      </span><span class="tok-n">exit</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">);</span>
+<span class="tok-w">      </span><span class="tok-k">break</span><span class="tok-p">;</span>
 <span class="tok-w">  </span><span class="tok-p">}</span>
 <span class="tok-p">}</span></code></pre>
 </div>
@@ -884,7 +886,7 @@ circunferência azul de raio r=50, centrada no ponto (x, y) = (128,
 <div id="footer">
 <div id="footer-text">
 Version 0.9<br>
-Last updated 2025-04-22 10:50:34 -0300
+Last updated 2025-06-23 15:14:13 -0300
 </div>
 </div>
 <script type="text/x-mathjax-config">

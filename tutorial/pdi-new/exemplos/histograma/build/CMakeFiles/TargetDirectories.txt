@@ -1,3 +1,0 @@
-/home/ambj/Dropbox/dca0445/pdi/exemplos/histogram/build/CMakeFiles/histogram.dir
-/home/ambj/Dropbox/dca0445/pdi/exemplos/histogram/build/CMakeFiles/edit_cache.dir
-/home/ambj/Dropbox/dca0445/pdi/exemplos/histogram/build/CMakeFiles/rebuild_cache.dir

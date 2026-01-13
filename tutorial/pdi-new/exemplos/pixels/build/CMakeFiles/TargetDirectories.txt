@@ -1,3 +1,0 @@
-/home/ambj/Dropbox/dca0445/pdi/exemplos-cmake/pixels/build/CMakeFiles/pixels.dir
-/home/ambj/Dropbox/dca0445/pdi/exemplos-cmake/pixels/build/CMakeFiles/edit_cache.dir
-/home/ambj/Dropbox/dca0445/pdi/exemplos-cmake/pixels/build/CMakeFiles/rebuild_cache.dir
