@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/momentos-contornos.dir/link.d"
   "CMakeFiles/momentos-contornos.dir/momentos-contornos.cpp.o"
   "CMakeFiles/momentos-contornos.dir/momentos-contornos.cpp.o.d"
   "momentos-contornos"

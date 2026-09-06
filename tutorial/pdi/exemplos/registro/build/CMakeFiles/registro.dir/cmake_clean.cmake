@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/registro.dir/link.d"
   "CMakeFiles/registro.dir/registro.cpp.o"
   "CMakeFiles/registro.dir/registro.cpp.o.d"
   "registro"

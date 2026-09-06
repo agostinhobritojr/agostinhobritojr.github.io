@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/ambj/Dropbox/dca0445/pdi/exemplos/registro/registro.cpp" "CMakeFiles/registro.dir/registro.cpp.o" "gcc" "CMakeFiles/registro.dir/registro.cpp.o.d"
+  "" "registro" "gcc" "CMakeFiles/registro.dir/link.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
