@@ -1,3 +1,0 @@
-/home/ambj/Dropbox/dca0445/pdi/exemplos/registro/build/CMakeFiles/registro.dir
-/home/ambj/Dropbox/dca0445/pdi/exemplos/registro/build/CMakeFiles/edit_cache.dir
-/home/ambj/Dropbox/dca0445/pdi/exemplos/registro/build/CMakeFiles/rebuild_cache.dir
